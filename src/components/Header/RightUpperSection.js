@@ -1,6 +1,5 @@
 import React from 'react'
 import UpperOption from './UpperOption'
-import BreakingNews from './BreakingNews'
 import {rightUpperSection} from './styles'
 import { faVirus } from '@fortawesome/free-solid-svg-icons'
 import { faNewspaper } from '@fortawesome/free-regular-svg-icons'

@@ -46,7 +46,8 @@ let logoLabelStyle = {
     position: 'absolute',
     top: '6vh',
     left: '9%',
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Nunito, sans-serif'
 }
 
 let navbar = {
