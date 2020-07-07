@@ -1,7 +1,7 @@
 import React from 'react'
 import { lowerHeader } from './styles'
-import Logo from './Logo'
-import Navbar from './Navbar'
+import CompleteNavbar from './CompleteNavbar'
+import CompleteLowerLowerSection from './CompleteLowerLowerSection'
 
 class LowerSection extends React.Component {
     constructor(props){
@@ -9,10 +9,15 @@ class LowerSection extends React.Component {
     }
 
     render(){
+        let output 
+        this.props.width > 950?
+        output = <div><CompleteNavbar width={this.props.width} height={this.props.height}/>
+        <CompleteLowerLowerSection width={this.props.width} height={this.props.height}/></div> :
+        output = <CompleteNavbar width={this.props.width} height={this.props.height}/>
+        
         return (
             <div style={lowerHeader} className="lowerHeader">
-                <Logo url={'https://upload.wikimedia.org/wikipedia/commons/2/24/Seal_of_Key_West%2C_Florida.png'}/>
-                <Navbar />
+                {output}
             </div>
         )
     }

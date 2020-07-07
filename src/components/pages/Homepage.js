@@ -8,7 +8,7 @@ class Homepage extends React.Component{
 
     render(){
         return(
-            <Header />
+            <Header width={this.props.width} height={this.props.height}/>
         )
     }
 }

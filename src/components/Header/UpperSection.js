@@ -9,11 +9,16 @@ class UpperSection extends React.Component{
     }
 
     render(){
+        let output
+        this.props.width > 700? output = <div>
+          <li><LocalTime/></li>
+          <li><RightUpperSection width={this.props.width} height={this.props.height}/></li></div>
+         :  output = <li><RightUpperSection width={this.props.width} height={this.props.height}/></li>
+
         return(
             <div style={upperHeader}>
                 <ul>
-                    <li><LocalTime /></li>
-                    <li><RightUpperSection /></li>
+                    {output}
                 </ul>
             </div>
         )

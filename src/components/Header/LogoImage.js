@@ -7,9 +7,11 @@ class LogoImage extends React.Component{
     }
 
     render(){
+        let logoWidth
+        const width = this.props.width
         return(
             <div>
-                <img src={this.props.url} style={logoImageStyle} width='5%' height='auto'/>
+                <img src={this.props.url} style={logoImageStyle} width="5%" height='auto'/>
             </div>
         )
     }
