@@ -58,18 +58,10 @@ let logoImageStyle = {
     left: '3%'
 }
 
-let logoLabelStyle = {
-    position: 'absolute',
-    top: '5vh',
-    left: '9%',
-    color: 'white',
-    fontFamily: 'Nunito, sans-serif'
-}
-
 let navbar = {
     position: 'absolute',
     right: '5%',
-    top: '1vh',
+    top: '0',
     marginTop: '5vh'
 }
 
@@ -134,7 +126,8 @@ let dropDownMenu = {
     right: '5%',
     textAlign: 'center',
     boxShadow: '1vh 1vw 3vh',
-    borderRadius: '2vh'
+    borderRadius: '2vh',
+    zIndex: '2'
 }
 
 let dropDownItem = {
@@ -145,9 +138,9 @@ let dropDownItem = {
 
 export { divStyle, item, iconStyle, 
     upperHeader, lowerHeader, logoImageStyle, 
-    logoLabelStyle, navbar, navbarItem, 
+    navbar, navbarItem, dropDownMenu,
     rightUpperSection, headerTwitts, twitts, 
     twitt, twitterStyle, twitterItem, weather,
     weatherIconStyle, forecastSection, hiddenNavbarIcon,
-    dropDownItem, dropDownMenu
+    dropDownItem
 }

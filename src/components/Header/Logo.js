@@ -10,8 +10,8 @@ class Logo extends React.Component{
     render(){
         return(
             <div>
-                <LogoImage url={this.props.url} />
-                <LogoLabel/>
+                <LogoImage width={this.props.width} height={this.props.height} url={this.props.url} />
+                <LogoLabel width={this.props.width} height={this.props.height}/>
             </div>
         )
     }
