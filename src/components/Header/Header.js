@@ -3,7 +3,7 @@ import UpperSection from './UpperSection'
 import LowerSection from './LowerSection'
 import StickyNavbar from './StickyNavbar'
 
-function Header(props) {
+function Header() {
     return (
         <div>
             <StickyNavbar/>

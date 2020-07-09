@@ -2,7 +2,6 @@ import React from 'react'
 import { WidthContext, ScrollTopContext } from '../pages/contexts'
 
 const Width = () => React.useContext(WidthContext)
-const ScrollTop = () => React.useContext(ScrollTopContext)
 
 const LogoImage = (props) => {
 

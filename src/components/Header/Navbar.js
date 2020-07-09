@@ -6,6 +6,8 @@ import { WidthContext, ScrollTopContext } from '../pages/contexts'
 const Navbar = () => {
     const Width = () => React.useContext(WidthContext)
     const ScrollTop = () => React.useContext(ScrollTopContext)
+    const width = Width()
+    const scrollTop = ScrollTop()
     let output
     let style = {
       position: 'absolute',
@@ -13,15 +15,15 @@ const Navbar = () => {
       top: '5vh',
     }
     
-    if(ScrollTop() && Width() > 1100) {
+    if(scrollTop && width > 1100) {
       style.top = '5vh'
-    } else if (ScrollTop() && Width() < 1100) {
+    } else if (scrollTop && width < 1100) {
       style.top = '3vh'
     } else {
       style.top = '5vh'
     }
 
-    Width() > 1100? output = 
+    width > 1100? output = 
     <ul>
       <li><NavbarItem option='Home' /></li>
        <li><NavbarItem option='About' /></li>

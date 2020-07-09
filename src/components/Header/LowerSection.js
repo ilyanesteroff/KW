@@ -3,9 +3,10 @@ import CompleteNavbar from './CompleteNavbar'
 import CompleteLowerLowerSection from './CompleteLowerLowerSection'
 import { WidthContext } from '../pages/contexts'
 
+const Width = () => React.useContext(WidthContext)
+
 const LowerSection = () => {
 
-  const Width = () => React.useContext(WidthContext)
   let output 
   Width() > 950?
   output = <div><CompleteNavbar/>

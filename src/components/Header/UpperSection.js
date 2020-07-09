@@ -4,9 +4,9 @@ import RightUpperSection from './RightUpperSection'
 import { upperHeader } from './styles'
 import { WidthContext } from '../pages/contexts'
 
-const UpperSection = () => {
+const Width = () => React.useContext(WidthContext)
 
-    const Width = () => React.useContext(WidthContext)
+const UpperSection = () => {
     
     let output
     Width() > 700? output = <div>

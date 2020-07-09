@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../Header/Header'
+import Head from './Head'
 import MainSection from '../MainSection/MainSection'
-import { WidthContext, HeightContext } from './contexts'
 
 class Homepage extends React.Component{
     constructor(props){
@@ -10,10 +10,17 @@ class Homepage extends React.Component{
 
     render(){
         return(
-            <div>
-                <Header/>
-                <MainSection/>
-            </div>
+            <html>
+                <head>
+                    <Head />
+                </head>
+                <body>
+                    <div>
+                        <Header/>
+                        <MainSection/>
+                    </div>
+                </body>
+            </html>
         )
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import Container from './Container'
 
 class MainSection extends React.Component{
     constructor(props){
@@ -9,14 +10,14 @@ class MainSection extends React.Component{
         const style = {
             position: 'relative',
             height: '60vh',
-            backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/0/08/Fortzacharytaylor.jpg)',
+            marginTop: '10vh',
             backgroundPosition: 'center',
             backgroundsize: 'cover'
         }
 
         return(
             <main style={style}>
-                <h1>Main</h1>
+                <Container/>
             </main>
         )
     }
