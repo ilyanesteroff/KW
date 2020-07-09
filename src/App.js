@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Homepage from './components/pages/Homepage'
 import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from "react-router-dom";
 import { WidthContext, HeightContext, ScrollTopContext } from './components/pages/contexts'

@@ -45,13 +45,6 @@ let upperHeader = {
     position: 'relative'
 }
 
-let lowerHeader = {
-    height: '70vh',
-    position: 'relative',
-    boxShadow: 'inset 0 0 40vh black, inset 0 0 40vh black',
-    opacity: '0.9'
-}
-
 let logoImageStyle = {
     position: 'absolute',
     top: '3vh',
@@ -59,10 +52,13 @@ let logoImageStyle = {
     width: '5vw'
 }
 
+
 let navbarItem = {
     color: 'white',
     fontFamily: 'Ubuntu, sans-serif',
-    margin: '0 4vw'
+    margin: '0 4vw',
+    cursor: 'pointer',
+    paddingBottom: '1vh'
 }
 
 let rightUpperSection = {
@@ -131,7 +127,7 @@ let dropDownItem = {
 }
 
 export { divStyle, item, iconStyle, 
-    upperHeader, lowerHeader, logoImageStyle, navbarItem, dropDownMenu,
+    upperHeader, logoImageStyle, navbarItem, dropDownMenu,
     rightUpperSection, headerTwitts, twitts, 
     twitt, twitterStyle, twitterItem, weather,
     weatherIconStyle, forecastSection, hiddenNavbarIcon,
