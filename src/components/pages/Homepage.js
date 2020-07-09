@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../Header/Header'
 import MainSection from '../MainSection/MainSection'
+import { WidthContext, HeightContext } from './contexts'
 
 class Homepage extends React.Component{
     constructor(props){
@@ -10,7 +11,7 @@ class Homepage extends React.Component{
     render(){
         return(
             <div>
-                <Header width={this.props.width} height={this.props.height}/>
+                <Header/>
                 <MainSection/>
             </div>
         )

@@ -55,14 +55,8 @@ let lowerHeader = {
 let logoImageStyle = {
     position: 'absolute',
     top: '3vh',
-    left: '3%'
-}
-
-let navbar = {
-    position: 'absolute',
-    right: '5%',
-    top: '0',
-    marginTop: '5vh'
+    left: '3%',
+    width: '5vw'
 }
 
 let navbarItem = {
@@ -122,7 +116,7 @@ let hiddenNavbarIcon = {
 let dropDownMenu = {
     position: 'absolute',
     backgroundColor: '#111166',
-    top: '7vh',
+    top: '10vh',
     right: '5%',
     textAlign: 'center',
     boxShadow: '1vh 1vw 3vh',
@@ -137,8 +131,7 @@ let dropDownItem = {
 }
 
 export { divStyle, item, iconStyle, 
-    upperHeader, lowerHeader, logoImageStyle, 
-    navbar, navbarItem, dropDownMenu,
+    upperHeader, lowerHeader, logoImageStyle, navbarItem, dropDownMenu,
     rightUpperSection, headerTwitts, twitts, 
     twitt, twitterStyle, twitterItem, weather,
     weatherIconStyle, forecastSection, hiddenNavbarIcon,

@@ -10,8 +10,8 @@ class CompleteNavbar extends React.Component{
     render(){
         return(
             <div>
-                <Logo width={this.props.width} height={this.props.height} url={'https://upload.wikimedia.org/wikipedia/commons/2/24/Seal_of_Key_West%2C_Florida.png'}/>
-                <Navbar width={this.props.width} height={this.props.height} />
+                <Logo url={'https://upload.wikimedia.org/wikipedia/commons/2/24/Seal_of_Key_West%2C_Florida.png'}/>
+                <Navbar/>
             </div>
         )
     }
