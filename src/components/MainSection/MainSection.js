@@ -1,5 +1,7 @@
 import React from 'react'
 import UpperContainer from './UpperContainer'
+import VideoSection from '../MainSection/VideoSection'
+import { Sectionstyle } from './styles'
 
 class MainSection extends React.Component{
     constructor(props){
@@ -7,14 +9,8 @@ class MainSection extends React.Component{
     }
 
     render(){
-        const style = {
-            position: 'relative',
-            height: '60vh',
-            marginTop: '10vh'
-        }
-
         return(
-            <main style={style}>
+            <main style={Sectionstyle}>
                 <UpperContainer/>
             </main>
         )

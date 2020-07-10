@@ -31,22 +31,22 @@ const CityStuff = () => {
          href: '#'
      }]
     let items = info.map((item, index) => 
-    <Item url={info[index].href} icon={info[index].icon} headline={info[index].point} text={info[index].text} />)
+    <Item url={info[index].href} icon={info[index].icon} headline={info[index].point} text={info[index].text} key={index}/>)
 
     return <div style={style}>{items}</div>
 }
 
 const getStyle = () => {
     let output = {
-        margin: '15vh 0 10vh 0'
+        margin: '8vh 0 10vh 0'
     }
-    if(Width() > 750){
+    if(Width() > 750) {
         output.display = 'flex'
         output.flexDirection = 'row'
         output.flexWrap = 'nowrap'
-        output.justifyContent = 'center'
+        output.justifyContent = 'space-around'
         output.alignItems = 'baseline'
-        output.height = '45vh'
+        output.height = '35vh'
         output.textAlign = 'center'
     } else {
         output.display = 'block'

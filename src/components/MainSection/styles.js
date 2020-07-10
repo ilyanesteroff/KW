@@ -13,11 +13,18 @@ const generateContainerStyle = () => {
       _width = (Width() * 0.9) * 100 / Width()
   }
   let output = {
-      position: 'absolute',
+      position: 'relative',
       width: _width + '%',
       left: _left + '%',
   }
   return output
 }
 
-export { generateContainerStyle }
+const Sectionstyle = {
+    position: 'relative',
+    height: 'auto',
+    marginTop: '10vh',
+    marginBottom: '6rem'
+}
+
+export { generateContainerStyle, Sectionstyle }

@@ -2,6 +2,7 @@ import React from 'react';
 import Homepage from './components/pages/Homepage'
 import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from "react-router-dom";
 import { WidthContext, HeightContext, ScrollTopContext } from './components/pages/contexts'
+import Head from './components/pages/Head'
 
 class App extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class App extends React.Component {
         <WidthContext.Provider value={this.state.width}>
           <HeightContext.Provider value={this.state.height}>
             <div className="App">
+              <Head/>
               <Router>
                 <div>
                   <Switch>
