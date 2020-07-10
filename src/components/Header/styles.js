@@ -1,5 +1,5 @@
 let divStyle = {
-    margin: '0.5vh 1vw',
+    margin: '0.5vh 0',
     padding: '0.2vh',
     width: '120%'
 }
@@ -63,9 +63,9 @@ let navbarItem = {
 
 let rightUpperSection = {
     position: 'absolute',
-    right: '2%', 
+    right: '3%', 
     top: '0',
-    margin: '0.5vh 1vw',
+    margin: '0.5vh 0',
     padding: '0.3vh'
 }
 

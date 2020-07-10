@@ -1,11 +1,13 @@
 import React from 'react'
 
 const Description = () => {
-
-
+    let style = {
+        marginBottom: '7vh',
+        marginTop: '3vh'
+    }
 
     return(
-        <div>
+        <div style={style}>
             <Chapter/>
             <TextArea/>
         </div>

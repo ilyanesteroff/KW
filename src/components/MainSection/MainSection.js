@@ -1,5 +1,5 @@
 import React from 'react'
-import Container from './Container'
+import UpperContainer from './UpperContainer'
 
 class MainSection extends React.Component{
     constructor(props){
@@ -10,14 +10,12 @@ class MainSection extends React.Component{
         const style = {
             position: 'relative',
             height: '60vh',
-            marginTop: '10vh',
-            backgroundPosition: 'center',
-            backgroundsize: 'cover'
+            marginTop: '10vh'
         }
 
         return(
             <main style={style}>
-                <Container/>
+                <UpperContainer/>
             </main>
         )
     }
