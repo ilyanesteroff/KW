@@ -1,5 +1,5 @@
 import React from 'react'
-import { Width } from '../pages/contexts'
+import { Width, Height } from '../pages/contexts'
 
 const VideoDescription = () => {
   const width = Width()
@@ -43,14 +43,18 @@ const getStyles = (width) => {
         fontWeight: '600'
       } 
     }
-    console.log(width)
     if(width < 925) {
         output.main.left = '10%'
-        output.main.top = '5%'
+        output.main.top = '7%'
         output.main.width = '80%'
         output.headline.fontSize = '1.4rem'
         output.paragraph.fontSize = '1.2rem'
         output.paragraph.fontWeight = '500'
+    }
+    if(Height() < 400) {
+      output.headline.fontSize = '1.4rem'
+      output.paragraph.fontSize = '1.2rem'
+      output.main.top = '1%'
     }
     return output
 }

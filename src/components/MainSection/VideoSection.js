@@ -8,7 +8,8 @@ const VideoSection = () => {
     position: 'relative',
     width: '100%',
     height: '70vh',
-    backgroundColor: '#aaaaff'
+    backgroundColor: '#aaaaff',
+    marginBottom: '20vh'
   }
   if(Width() < 925)
     videoSectionStyle.height = '90vh'

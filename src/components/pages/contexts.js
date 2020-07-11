@@ -6,4 +6,6 @@ const ScrollTopContext = React.createContext(false)
 
 
 const Width = () => React.useContext(WidthContext)
-export { WidthContext, HeightContext, ScrollTopContext, Width }
+const Height = () => React.useContext(HeightContext)
+
+export { WidthContext, HeightContext, ScrollTopContext, Width, Height }

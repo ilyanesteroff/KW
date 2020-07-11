@@ -1,7 +1,7 @@
 import React from 'react'
 import Item from './Item'
 import { faComment, faChartBar, faBuilding, faCompass} from '@fortawesome/free-regular-svg-icons'
-import { Width } from '../pages/contexts'
+import { Width, Height } from '../pages/contexts'
 
 const CityStuff = () => {
     let style = getStyle()
@@ -38,6 +38,8 @@ const getStyle = () => {
     let output = {
         margin: '8vh 0 10vh 0'
     }
+    if(Height() < 400)
+        output.margin = '15vh 0 40vh 0'
     if(Width() > 750) {
         output.display = 'flex'
         output.flexDirection = 'row'

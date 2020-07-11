@@ -1,16 +1,14 @@
 import React from 'react'
-import { WidthContext } from '../pages/contexts'
+import { Width } from '../pages/contexts'
 
-const Width = () => React.useContext(WidthContext)
-
-const generateContainerStyle = () => {
+const generateContainerStyle = (mediaLeft = 0.05, left = 0.125) => {
     let _left, _width
   if(Width() > 800){
-      _left = (Width() * 0.125) * 100 / Width()
-      _width = (Width() * 0.75) * 100 / Width()
+      _left = (Width() * left) * 100 / Width()
+      _width = (Width() * (1 - (left * 2))) * 100 / Width()
   } else {
-      _left = (Width() * 0.05) * 100 / Width()
-      _width = (Width() * 0.9) * 100 / Width()
+      _left = (Width() * mediaLeft) * 100 / Width()
+      _width = (Width() * (1 - (mediaLeft * 2))) * 100 / Width()
   }
   let output = {
       position: 'relative',
