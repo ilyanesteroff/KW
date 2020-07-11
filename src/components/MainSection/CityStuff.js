@@ -1,9 +1,7 @@
 import React from 'react'
 import Item from './Item'
 import { faComment, faChartBar, faBuilding, faCompass} from '@fortawesome/free-regular-svg-icons'
-import { WidthContext } from '../pages/contexts'
-
-const Width = () => React.useContext(WidthContext)
+import { Width } from '../pages/contexts'
 
 const CityStuff = () => {
     let style = getStyle()

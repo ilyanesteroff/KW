@@ -3,11 +3,7 @@ import Header from '../Header/Header'
 import VideoSection from '../MainSection/VideoSection'
 import MainSection from '../MainSection/MainSection'
 
-class Homepage extends React.Component{
-  constructor(props){
-    super(props)
-  }
-
+class Homepage extends React.Component {
   render(){
     return(
       <div>

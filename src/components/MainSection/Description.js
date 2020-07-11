@@ -1,9 +1,7 @@
 import React from 'react'
-import { WidthContext } from '../pages/contexts'
+import { Width } from '../pages/contexts'
 
 const Description = () => {
-
-    const Width = () => React.useContext(WidthContext)
     let style = {
         marginBottom: '2vh',
         marginTop: '3vh'

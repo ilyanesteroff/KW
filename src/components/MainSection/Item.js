@@ -1,8 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { WidthContext } from '../pages/contexts'
-
-const Width = () => React.useContext(WidthContext)
+import { Width } from '../pages/contexts'
 
 const Item = (props) => {
     const styles = getStyles()
