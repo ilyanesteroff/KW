@@ -31,6 +31,7 @@ const Facts = (props) => {
     ]
     let facts = factInfo.map((fact, index) => 
     <Fact 
+      key={index}
       url={factInfo[index].url}
       factType={factInfo[index].factType}
       content={factInfo[index].content}
