@@ -61,6 +61,11 @@ const getStyles = () => {
     output.iconStyle.margin = '0 5% 0 0'
     output.mainStyle.width = 'auto'
   }
+  if(Width() < 306) {
+    output.iconStyle.fontSize = '1.8rem'
+    output.headlineStyle.fontSize = '1.2rem'
+    output.mainStyle.margin = '0 2% 0 0'
+  }
   return output
 }
 

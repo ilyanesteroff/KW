@@ -28,15 +28,10 @@ const SocialMedias = () => {
           color: '#ffaa00'
       }
   ]
-  let result = elementsInfo.map((element,index) => 
-  <SocialMedia 
-    key={index}
-    style={styles.link} 
-    icon={elementsInfo[index].icon} 
-    link={elementsInfo[index].link}
-    color={elementsInfo[index].color}
-    />
-  )
+  let result = elementsInfo.map((element,index) => {
+  const props = {key: index, style: styles.link, icon: elementsInfo[index].icon, link: elementsInfo[index].link, color: elementsInfo[index].color}
+  return <SocialMedia {...props} />
+  })
 
   return <div style={styles.main}>{result}</div>
 }
@@ -54,6 +49,10 @@ class SocialMedia extends React.Component{
   
   mouseLeaves = (event) => {
     event.target.style.color = '#fff'
+  }
+
+  shouldComponentUpdate = (prevProps) => {
+    return prevProps.icon !== this.props.icon
   }
 
   render() {

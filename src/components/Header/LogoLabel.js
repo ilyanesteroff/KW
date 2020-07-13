@@ -22,7 +22,7 @@ const LogoLabel = () => {
 const getStyle = (style, Width) => {
 
   const width = Math.floor(Width/100)
-  let minLeft = 9
+  let minLeft = 10
   let minTop
   ScrollTop()? minTop = 4.6 : minTop = 5.3
   let maxfontSize = 1.5
@@ -35,10 +35,11 @@ const getStyle = (style, Width) => {
       maxfontSize -= 0.05
     }
   }
+  if(Width < 376)
+    minLeft += 10 
   style.left = minLeft+'vw'
   style.top = minTop +'vh'
   style.fontSize = maxfontSize+'rem'
-  
   return style
 }
 

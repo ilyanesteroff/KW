@@ -17,7 +17,7 @@ const StickyNavbar = () => {
         transition: 'top 0.5s',
         zIndex: '2'
     }  
-    ScrollTop() ? style.top = '0' : style.top = '-20%'
+    ScrollTop() ? style.top = '0' : style.top = '-27%'
 
     return (
         <div style={style}>

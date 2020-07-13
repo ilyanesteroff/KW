@@ -3,7 +3,10 @@ import UpperSection from './UpperSection'
 import LowerSection from './LowerSection'
 import StickyNavbar from './StickyNavbar'
 
-function Header() {
+class Header extends React.Component {
+  
+  shouldComponentUpdate(){}
+  render () {
     return (
         <div>
             <StickyNavbar/>
@@ -11,6 +14,7 @@ function Header() {
             <LowerSection/>
         </div>
     )
+  }
 }
 
 export default Header

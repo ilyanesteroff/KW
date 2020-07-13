@@ -5,6 +5,7 @@ import { generateContainerStyle } from './styles'
 
 const UpperContainer = () => {
   let style = generateContainerStyle()
+  console.log('rendered')
   return (
       <div style={style}>
          <Description/>

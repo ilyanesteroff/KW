@@ -7,7 +7,12 @@ class MainSection extends React.Component{
         super(props)
     }
 
+    shouldComponentUpdate(){
+      return false
+    }
+
     render(){
+        console.log('render')
         return(
             <main style={Sectionstyle}>
                 <UpperContainer/>

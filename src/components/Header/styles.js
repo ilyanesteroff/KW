@@ -117,13 +117,14 @@ let dropDownMenu = {
     textAlign: 'center',
     boxShadow: '1vh 1vw 3vh',
     borderRadius: '2vh',
-    zIndex: '2'
+    zIndex: '3'
 }
 
 let dropDownItem = {
     color: '#aaaaaa',
     padding: '2rem 6rem',
     letterSpacing: '0.1vw',
+    zIndex: '10'
 }
 
 export { divStyle, item, iconStyle, 

@@ -1,15 +1,19 @@
 import React from 'react'
 import Container from './Container'
-import { Width } from '../pages/contexts'
+import { WidthContext } from '../pages/contexts'
 
-const Footer = () => {
-    let style = getStyle(Width())
+class Footer extends React.Component {
+  static contextType = WidthContext
+  
+  render () {
+    let style = getStyle(this.context)
     return (
-        <div style={style}>
-            <ShadowLayer/>
-            <Container/>
-        </div>
+      <div style={style}>
+        <ShadowLayer/>
+        <Container/>
+      </div>
     )
+  }
 }
 
 const ShadowLayer = () => {

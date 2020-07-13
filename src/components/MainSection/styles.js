@@ -1,7 +1,7 @@
 import React from 'react'
 import { Width } from '../pages/contexts'
 
-const generateContainerStyle = (mediaLeft = 0.05, left = 0.125) => {
+const generateContainerStyle = (left = 0.125, mediaLeft = 0.05) => {
     let _left, _width
   if(Width() > 800){
       _left = (Width() * left) * 100 / Width()

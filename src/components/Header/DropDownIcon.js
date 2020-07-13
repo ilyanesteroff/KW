@@ -10,6 +10,8 @@ class DropDownIcon extends React.Component{
         this.state = {
             isClicked: false
         }
+
+        this.openedNavbar = React.createRef()
     }
     
     openNavbar(){
@@ -23,7 +25,7 @@ class DropDownIcon extends React.Component{
         this.state.isClicked? output = 
         <div>
            <h2 style={hiddenNavbarIcon} onClick={this.openNavbar}>☰</h2>
-           <DropDownMenu/>
+           <DropDownMenu ref={this.openedNavbar}/>
         </div> : output = 
         <div>
             <h2 style={hiddenNavbarIcon} onClick={this.openNavbar}>☰</h2>

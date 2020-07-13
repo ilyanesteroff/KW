@@ -2,8 +2,7 @@ import React from 'react'
 import { Width, Height } from '../pages/contexts'
 
 const VideoDescription = () => {
-  const width = Width()
-  let styles = getStyles(width)
+  let styles = getStyles(Width(), Height())
   return (
     <div style={styles.main}>
       <Headline style={styles.headline}/>
@@ -20,7 +19,7 @@ const Paragraph = (props) => {
     return <p style={props.style}>In this video are introduced the most marvellous places in Florida state, in this video you will find Key West too</p>
 }
 
-const getStyles = (width) => {
+const getStyles = (width, height) => {
     let output = {
       main: {
         position: 'absolute',
@@ -45,16 +44,17 @@ const getStyles = (width) => {
     }
     if(width < 925) {
         output.main.left = '10%'
-        output.main.top = '7%'
+        output.main.top = '3%'
         output.main.width = '80%'
         output.headline.fontSize = '1.4rem'
         output.paragraph.fontSize = '1.2rem'
         output.paragraph.fontWeight = '500'
     }
-    if(Height() < 400) {
+    if(height < 500) {
       output.headline.fontSize = '1.4rem'
       output.paragraph.fontSize = '1.2rem'
       output.main.top = '1%'
+      output.main.margin = '0'
     }
     return output
 }

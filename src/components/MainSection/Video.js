@@ -1,13 +1,13 @@
 import React from 'react'
-import { Width } from '../pages/contexts'
+import { Width, Height } from '../pages/contexts'
 
 const Video = (props) => {
-   let style = getStyle(Width())
+   let style = getStyle(Width(), Height())
    let content = <iframe src={props.url} style={style} allowFullScreen/>
    return content
 }
 
-const getStyle = (width) => {
+const getStyle = (width, height) => {
     let output = {
         position: 'absolute',
         right: '5%',
@@ -22,6 +22,12 @@ const getStyle = (width) => {
         output.right = '10%' 
         output.top = '40%'
     }
+    if(width < 400 || height < 500){
+        output.height = '55vh'
+        output.top = '35%'
+    }
+    if(width >= 768 && height >= 1024 || width >= 1024 && height >= 768)
+      output.height = '30vh'
     return output
 }
 
