@@ -3,7 +3,7 @@ import { ScrollTopContext } from '../pages/contexts'
 import Navbar from './Navbar'
 import LogoLabel from './LogoLabel'
 
-const StickyNavbar = () => {
+const StickyNavbar = (props) => {
 
     const ScrollTop = () => React.useContext(ScrollTopContext)
     let style = {
@@ -17,7 +17,7 @@ const StickyNavbar = () => {
         transition: 'top 0.5s',
         zIndex: '2'
     }  
-    ScrollTop() ? style.top = '0' : style.top = '-27%'
+    ScrollTop() || props.fixed ? style.top = '0' : style.top = '-27%'
 
     return (
         <div style={style}>

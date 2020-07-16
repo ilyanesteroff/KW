@@ -12,8 +12,8 @@ class RightUpperSection extends React.Component{
     render() {
         return(
             <ul style={rightUpperSection}>
-                <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} /></li>
-                <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} /></li>
+                <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
+                <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
             </ul>
         )
     }

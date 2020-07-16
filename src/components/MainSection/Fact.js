@@ -1,16 +1,18 @@
 import React from 'react'
 import { Width, Height } from '../pages/contexts'
+import { Link } from 'react-router-dom'
 import { generateContainerStyle } from './styles'
 
-const Fact = (props) => {
+export default (props) => {
     let styles = getStyles(Width(), Height(), props.color, props.imgDir)
+    const { url, place, factType } = props
     return ( 
       <div style={styles.main}>
-          <img src={props.url} style={styles.img}/>
+          <img src={url} style={styles.img}/>
           <div style={styles.content}>
-            <h3 style={styles.title}>{props.factType}</h3>
+            <h3 style={styles.title}>{factType}</h3>
             <p style={styles.para}>{props.content}</p>
-            <a href={props.href} style={styles.link}>More details</a>
+            <Link to={`/places/${place}`} style={styles.link}>More details</Link>
           </div>
       </div> 
     )
@@ -95,5 +97,3 @@ const getStyles = (width, height, bgColor, imgDir) => {
     output.content.width = '40%'
     return output
 }
-
-export default Fact

@@ -5,7 +5,7 @@ import { WidthContext } from '../pages/contexts'
 
 const Width = () => React.useContext(WidthContext)
 
-const LowerSection = () => {
+const LowerSection = (props) => {
 
   let output 
   Width() > 950?
@@ -17,7 +17,7 @@ const LowerSection = () => {
       position: 'relative',
       boxShadow: 'inset 0 0 40vh black, inset 0 0 40vh black',
       opacity: '0.9',
-      backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/b/b5/Key_road.jpeg)',
+      backgroundImage: props.image,
       backgroundPosition: 'center',
       backgroundSize: 'cover'
   }

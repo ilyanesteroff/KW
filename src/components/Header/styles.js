@@ -127,10 +127,14 @@ let dropDownItem = {
     zIndex: '10'
 }
 
+let link = {
+    textDecoration: 'none'
+}
+
 export { divStyle, item, iconStyle, 
     upperHeader, logoImageStyle, navbarItem, dropDownMenu,
     rightUpperSection, headerTwitts, twitts, 
     twitt, twitterStyle, twitterItem, weather,
     weatherIconStyle, forecastSection, hiddenNavbarIcon,
-    dropDownItem
+    dropDownItem, link
 }

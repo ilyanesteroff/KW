@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { divStyle, item, iconStyle } from './styles'
 import { WidthContext } from '../pages/contexts'
+import { Link } from 'react-router-dom'
 
 class UpperOption extends React.Component{
   
@@ -15,19 +16,20 @@ class UpperOption extends React.Component{
   }
 
   render() {
+    const { divStyle, iconStyle, link, sentence, icon, itemStyle } = this.props
     const width = this.context
     let output 
     width > 700?
     output =
-    <ul style={this.props.divStyle}>
-      <li><FontAwesomeIcon style={this.props.iconStyle} icon={this.props.icon}/></li>
-      <li><h3 style={this.props.itemStyle}> {this.props.sentence} </h3></li>
-    </ul> : output = <FontAwesomeIcon style={this.props.iconStyle} icon={this.props.icon}/>
+    <ul style={divStyle}>
+      <li><FontAwesomeIcon style={iconStyle} icon={icon}/></li>
+      <li><h3 style={itemStyle}> {sentence} </h3></li>
+    </ul> : output = <FontAwesomeIcon style={iconStyle} icon={icon}/>
 
         
     return(
       <div>
-        {output}
+        <Link to={link}>{output}</Link>
       </div>
     )
   }

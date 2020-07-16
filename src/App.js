@@ -1,8 +1,9 @@
 import React from 'react';
-import Homepage from './components/pages/Homepage'
-import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from "react-router-dom";
-import { WidthContext, HeightContext, ScrollTopContext } from './components/pages/contexts'
+import { Homepage, InitialPage, AboutPage, HistoryPage, LocationPage, PlacePage, Covid, News} from './components/pages/Pages'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { WidthContext, HeightContext, ScrollTopContext, FactContext } from './components/pages/contexts'
 import Head from './components/pages/Head'
+import { factInfo } from './components/MainSection/info'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,11 +12,13 @@ class App extends React.Component {
     this.state = { 
       width: 0, 
       height: 0,
-      scrollTop: 0 
+      scrollTop: 0,
+      loaded: false 
     };
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.updateScrollTop = this.updateScrollTop.bind(this)
+    this.changeBg = this.changeBg.bind(this)
   }
 
   componentDidMount = () => {
@@ -23,11 +26,13 @@ class App extends React.Component {
     this.updateScrollTop()
     window.addEventListener('resize', this.updateWindowDimensions)
     window.addEventListener('scroll', this.updateScrollTop)
+    window.addEventListener('load', this.changeBg)
   }
 
   componentWillUnmount = () => {
     window.removeEventListener('resize', this.updateWindowDimensions)
     window.removeEventListener('scroll', this.updateScrollTop)
+    window.removeEventListener('load', this.changeBg)
   }
 
   updateWindowDimensions = () => {
@@ -43,7 +48,20 @@ class App extends React.Component {
     })
   }
 
+  changeBg = () => {
+    setTimeout(() => {
+      this.setState({
+        loaded: true
+      })
+    }, 500)
+  }
+
   render = () => {
+    let output 
+    this.state.loaded ? output = <Homepage /> : output = 
+    <InitialPage>
+      <img src={'https://upload.wikimedia.org/wikipedia/commons/2/24/Seal_of_Key_West%2C_Florida.png'} style={{transform: 'scale(0.3)'}}/>
+    </InitialPage>
     return (
       <ScrollTopContext.Provider value={this.state.scrollTop}>
         <WidthContext.Provider value={this.state.width}>
@@ -53,9 +71,16 @@ class App extends React.Component {
               <Router>
                 <div>
                   <Switch>
-                    <Route exact path="/">
-                      <Homepage />
-                    </Route>
+                    <Route exact path="/" render={() => output}/>
+                    <Route path="/about" render={() => <AboutPage/>} />
+                    <Route path="/history" render={() => <HistoryPage/>}/>
+                    <Route path="/location" render={() => <LocationPage/>}/>
+                    <Route path="/places/:place" render={({match}) => <PlacePage place={factInfo.find(fact =>
+                      fact.place === match.params.place
+                    )}/>}/>
+                    <Route path="/covid" render={() => <Covid/>}/>
+                    <Route path="/news" render={() => <News/>}/>
+                    <Route path="/twitts/:topic"/>
                   </Switch>
                 </div>
               </Router>
