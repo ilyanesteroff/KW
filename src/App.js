@@ -1,5 +1,5 @@
 import React from 'react';
-import { Homepage, InitialPage, AboutPage, HistoryPage, LocationPage, PlacePage, Covid, News} from './components/pages/Pages'
+import { Homepage, InitialPage, AboutPage, HistoryPage, LocationPage, PlacePage, Twitts, Covid, News} from './components/pages/Pages'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { WidthContext, HeightContext, ScrollTopContext, FactContext } from './components/pages/contexts'
 import Head from './components/pages/Head'
@@ -80,7 +80,7 @@ class App extends React.Component {
                     )}/>}/>
                     <Route path="/covid" render={() => <Covid/>}/>
                     <Route path="/news" render={() => <News/>}/>
-                    <Route path="/twitts/:topic"/>
+                    <Route path="/twitts/:topic" render={({match}) => <Twitts Twitt={match.params.topic}/>}/>
                   </Switch>
                 </div>
               </Router>

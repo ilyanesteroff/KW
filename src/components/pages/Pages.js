@@ -5,18 +5,19 @@ import MainSection from '../MainSection/MainSection'
 import Facts from '../MainSection/Facts'
 import Footer from '../FooterSection/Footer'
 import StickyNavbar from '../Header/StickyNavbar'
+import UpperSection from '../Header/UpperSection'
 import CovidData from '../MainSection/Covid'
 
 class Homepage extends React.Component {
   render(){
     return(
-      <div>
+      <>
         <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/b/b5/Key_road.jpeg)'}/>
         <MainSection/>
         <VideoSection/> 
         <Facts/>
         <Footer/>
-      </div>
+      </>
     )
   }
 }
@@ -24,10 +25,10 @@ class Homepage extends React.Component {
 class AboutPage extends React.Component{
   render() {
     return(
-      <div>
+      <>
         <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/e/e2/Brickell_skyline_2012.jpg)'}/>
         <Footer/>
-      </div>
+      </>
     )
   }
 }
@@ -60,10 +61,10 @@ class InitialPage extends React.Component{
 class HistoryPage extends React.Component{
   render() {
     return(
-      <div>
+      <>
         <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/6/6e/Chiaves-la-florida-1584.jpg)'}/>
         <Footer/>
-      </div>
+      </>
     )
   }
 }
@@ -71,10 +72,10 @@ class HistoryPage extends React.Component{
 class LocationPage extends React.Component{
   render() {
     return(
-      <div>
+      <>
         <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/f/f4/Carnival_Destiny_Miami_12-22-11.JPG)'}/>
         <Footer/>
-      </div>
+      </>
     )
   }
 }
@@ -82,10 +83,21 @@ class LocationPage extends React.Component{
 const PlacePage = (props) => {
   const { place } = props
   return (
-    <div>
+    <>
       <Header image={'url('+ place.url + ')'}/>
       <Footer/>
-    </div>)
+    </>
+  )
+}
+
+const Twitts = (props) => {
+  const { twitt } = props
+  return(
+    <>
+      <StickyNavbar fixed={true}/>
+      <Footer/>
+    </>
+  )
 }
 
 class Covid extends React.Component{
@@ -93,7 +105,6 @@ class Covid extends React.Component{
     return(
       <>
         <StickyNavbar fixed={true}/>
-        <CovidData/>
         <Footer/>
       </>
     )
@@ -111,4 +122,4 @@ class News extends React.Component{
   }
 }
 
-export { Homepage, AboutPage, InitialPage, HistoryPage, LocationPage, PlacePage, Covid, News}
+export { Homepage, AboutPage, InitialPage, HistoryPage, LocationPage, PlacePage, Twitts, Covid, News}

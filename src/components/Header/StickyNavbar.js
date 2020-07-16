@@ -11,7 +11,7 @@ const StickyNavbar = (props) => {
         height: '13vh',
         minHeight: '4rem',
         backgroundColor: 'rgba(51, 34, 136, 0.9)',
-        position : 'fixed', 
+        position : props.fixed? 'static' : 'fixed', 
         left: '0',
         top: '-10%',
         transition: 'top 0.5s',
