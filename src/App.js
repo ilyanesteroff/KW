@@ -1,5 +1,7 @@
 import React from 'react';
-import { Homepage, InitialPage, AboutPage, HistoryPage, LocationPage, PlacePage, Twitts, Covid, News, WeatherPage } from './components/pages/Pages'
+import { Homepage, InitialPage, AboutPage, 
+  HistoryPage, LocationPage, PlacePage, 
+  Twitts, Covid, News, WeatherPage, NoMatchPage } from './components/pages/Pages'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { WidthContext, HeightContext, ScrollTopContext, FactContext } from './components/pages/contexts'
 import Head from './components/pages/Head'
@@ -82,6 +84,7 @@ class App extends React.Component {
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/twitts/:topic" render={({match}) => <Twitts twitt={match.params.topic}/>}/>
                     <Route path="/weather" render={() => <WeatherPage/>}/>
+                    <Route path="*" render={() => <NoMatchPage/>}/>
                   </Switch>
                 </div>
               </Router>

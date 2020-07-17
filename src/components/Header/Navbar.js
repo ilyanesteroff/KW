@@ -34,7 +34,7 @@ const Navbar = () => {
          if(window.location.pathname === '/' + path) {
            return 
          } else {
-           return <li><Link to={'/' + path} style={link}><NavbarItem option={item} /></Link></li>
+           return <li key={item}><Link to={'/' + path} style={link}><NavbarItem option={item} /></Link></li>
          }
         })}
     </ul> 

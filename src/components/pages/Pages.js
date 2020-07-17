@@ -12,6 +12,7 @@ import { faVirus, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import UpperOption from '../Header/UpperOption'
 import TwitterTags  from '../Header/TwitterTags'
 import { twitterTags } from '../MainSection/info'
+import { useLocation } from 'react-router-dom'
 
 class Homepage extends React.Component {
   render(){
@@ -153,4 +154,29 @@ class News extends React.Component{
   }
 }
 
-export { Homepage, AboutPage, InitialPage, HistoryPage, LocationPage, PlacePage, Twitts, WeatherPage, Covid, News}
+const NoMatchPage = () => {
+  let location = useLocation()
+
+  return (
+    <div style={{position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: '80%',
+      transform: 'translate(-50%, -50%)',
+      textAlign: 'center'
+    }}>
+      <h3 style={{
+        fontFamily: 'Ubuntu, sans-serif',
+        color: '#444',
+        fontSize: '1.5rem'
+      }}>
+        No results found for <code>{location.pathname}</code>
+      </h3>
+    </div>
+  );
+}
+
+export { Homepage, AboutPage, InitialPage, 
+  HistoryPage, LocationPage, PlacePage, 
+  Twitts, WeatherPage, NoMatchPage, Covid, 
+  News}

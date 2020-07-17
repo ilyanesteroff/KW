@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import { generateContainerStyle } from './styles'
 import { getCovidData } from '../Helpers/Helpers'
 
 export default (props) =>{

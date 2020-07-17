@@ -13,9 +13,13 @@ class DropDownMenu extends React.Component{
         let options = navbarItems.map((item, index) => {
           let res
           index > 0 ? res = item.toLowerCase() : res = ''
-          return <Link to={'/' + res } style={link}>
-                   <DropDownItem item={item} style={dropDownItem} />
-                 </Link>
+          if(window.location.pathname === '/' + res) {
+            return 
+          } else {
+            return <Link to={'/' + res } style={link} key={res}>
+                    <DropDownItem item={item} style={dropDownItem}/>
+                  </Link>
+          }
         })
         return(
             <div style={dropDownMenu}>

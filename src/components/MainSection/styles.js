@@ -1,4 +1,3 @@
-import React from 'react'
 import { Width } from '../pages/contexts'
 
 const generateContainerStyle = (left = 0.125, mediaLeft = 0.05) => {
