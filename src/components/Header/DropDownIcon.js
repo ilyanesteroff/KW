@@ -3,36 +3,50 @@ import { hiddenNavbarIcon } from './styles'
 import DropDownMenu from './DropDownMenu'
 
 class DropDownIcon extends React.Component{
-    constructor(props){
-        super(props)
-        this.openNavbar = this.openNavbar.bind(this)
+  constructor(props){
+    super(props)
+    this.openNavbar = this.openNavbar.bind(this)
+    this.handleClickOutside = this.handleClickOutside.bind(this)
 
-        this.state = {
-            isClicked: false
-        }
-
-        this.openedNavbar = React.createRef()
+    this.state = {
+      isClicked: false
     }
+
+    this.container = React.createRef()
+  }
     
-    openNavbar(){
-        this.setState({
-            isClicked: !this.state.isClicked
-        })
-    }
+  openNavbar(){
+    this.setState({
+    isClicked: !this.state.isClicked
+    })
+  }
 
-    render(){
-        let output
-        this.state.isClicked? output = 
-        <div>
-           <h2 style={hiddenNavbarIcon} onClick={this.openNavbar}>☰</h2>
-           <DropDownMenu ref={this.openedNavbar}/>
-        </div> : output = 
-        <div>
-            <h2 style={hiddenNavbarIcon} onClick={this.openNavbar}>☰</h2>
-        </div>
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside)
+    document.addEventListener('scroll', this.handleClickOutside)
+  }
 
-        return output
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside)
+    document.removeEventListener('scroll', this.handleClickOutside)
+  }
+
+  handleClickOutside = event => {
+    if (this.container.current && !this.container.current.contains(event.target)) {
+      this.setState({
+        isClicked: false,
+      });
     }
+  }
+
+  render(){
+    return (
+      <div ref={this.container}>
+        <h2 style={hiddenNavbarIcon} onClick={this.openNavbar}>☰</h2>
+        {this.state.isClicked && <DropDownMenu/>}
+      </div>
+    )
+  }
 }
 
 export default DropDownIcon

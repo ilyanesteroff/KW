@@ -9,7 +9,6 @@ const LowerSection = (props) => {
       height: Height() < 950? '50vh' : '70vh',
       position: 'relative',
       boxShadow: 'inset 0 0 40vh black, inset 0 0 40vh black',
-      opacity: '0.9',
       backgroundImage: props.image,
       backgroundPosition: 'center',
       backgroundSize: 'cover'
