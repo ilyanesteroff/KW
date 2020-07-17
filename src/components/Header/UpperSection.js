@@ -1,26 +1,32 @@
 import React from 'react'
 import LocalTime from './LocalTime'
 import RightUpperSection from './RightUpperSection'
-import { upperHeader } from './styles'
+import { upperHeader, rightUpperSection } from './styles'
 import { WidthContext } from '../pages/contexts'
 
-const Width = () => React.useContext(WidthContext)
+class UpperSection extends React.Component {
+  constructor(props){
+      super(props)
+  }
 
-const UpperSection = () => {
-    
-    let output
-    Width() > 700? output = <div>
-        <li><LocalTime/></li>
-        <li><RightUpperSection /></li></div>
-        :  output = <li><RightUpperSection /></li>
+  static contextType = WidthContext
 
-    return(
-        <div style={upperHeader}>
-            <ul>
-                {output}
-            </ul>
-        </div>
+  render() {
+    return (
+      <div style={upperHeader}>
+        <ul>
+          {this.context > 700 && <li><LocalTime/></li>}
+          <li>
+            <RightUpperSection>
+              <>
+                {this.props.children}
+              </>
+            </RightUpperSection>
+          </li>
+        </ul>
+      </div>
     )
+  }
 }
 
 export default UpperSection

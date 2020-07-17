@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import Header from '../Header/Header'
 import VideoSection from '../MainSection/VideoSection'
 import MainSection from '../MainSection/MainSection'
@@ -7,6 +7,9 @@ import Footer from '../FooterSection/Footer'
 import StickyNavbar from '../Header/StickyNavbar'
 import UpperSection from '../Header/UpperSection'
 import CovidData from '../MainSection/Covid'
+import { WidthContext } from './contexts'
+import { faVirus, faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import UpperOption from '../Header/UpperOption'
 
 class Homepage extends React.Component {
   render(){
@@ -95,16 +98,21 @@ const Twitts = (props) => {
   return(
     <>
       <StickyNavbar fixed={true}/>
+      <UpperSection/>
       <Footer/>
     </>
   )
 }
 
 class Covid extends React.Component{
+  static contextType = WidthContext
   render() {
     return(
       <>
         <StickyNavbar fixed={true}/>
+        <UpperSection>
+          <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
+        </UpperSection>
         <Footer/>
       </>
     )
@@ -116,6 +124,9 @@ class News extends React.Component{
     return(
       <>
         <StickyNavbar fixed={true}/>
+        <UpperSection>
+          <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
+        </UpperSection>
         <Footer/>
       </>
     )

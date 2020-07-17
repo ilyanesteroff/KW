@@ -3,6 +3,7 @@ import UpperOption from './UpperOption'
 import TwitterTags from './TwitterTags'
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { headerTwitts, twitterStyle, twitterItem } from './styles'
+import { twitterTags as tags } from '../MainSection/info'
 
 
 class HeaderTweets extends React.Component{
@@ -11,7 +12,6 @@ class HeaderTweets extends React.Component{
     }
 
     render(){
-        let tags = ['COVID19', 'KeyWest', 'Florida']
         return(
             <div style={headerTwitts}>
                 <UpperOption sentence={"Trending Twitts"} icon={faTwitter} iconStyle={twitterStyle} itemStyle={twitterItem}/>

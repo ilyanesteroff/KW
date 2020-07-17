@@ -28,4 +28,6 @@ let factInfo = [
     }
 ]
 
-export { factInfo }
+let twitterTags = ['COVID19', 'KeyWest', 'Florida']
+
+export { factInfo, twitterTags }
