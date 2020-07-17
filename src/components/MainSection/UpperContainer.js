@@ -3,14 +3,17 @@ import Description from './Description'
 import CityStuff from './CityStuff'
 import { generateContainerStyle } from './styles'
 
-const UpperContainer = () => {
+export default (props) => {
   let style = generateContainerStyle()
   return (
       <div style={style}>
-         <Description/>
-         <CityStuff/>
+         { props.children === undefined &&
+           <>
+             <Description/>
+             <CityStuff/>
+           </>
+         }
+         {props.children}
       </div>
   )
 }
-
-export default UpperContainer

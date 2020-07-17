@@ -11,7 +11,7 @@ class MainSection extends React.Component{
       return false
     }
 
-    render(){
+    render() {
         return(
             <main style={Sectionstyle}>
                 <UpperContainer/>

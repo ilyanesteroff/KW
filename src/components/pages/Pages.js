@@ -13,6 +13,7 @@ import UpperOption from '../Header/UpperOption'
 import TwitterTags  from '../Header/TwitterTags'
 import { twitterTags } from '../MainSection/info'
 import { useLocation } from 'react-router-dom'
+import Place from '../MainSection/Place'
 
 class Homepage extends React.Component {
   render(){
@@ -91,6 +92,7 @@ const PlacePage = (props) => {
   return (
     <>
       <Header image={'url('+ place.url + ')'}/>
+      <Place info={place}/>
       <Footer/>
     </>
   )
