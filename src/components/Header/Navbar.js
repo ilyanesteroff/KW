@@ -4,6 +4,7 @@ import DropDownIcon from './DropDownIcon'
 import { WidthContext, ScrollTopContext } from '../pages/contexts'
 import { Link } from "react-router-dom";
 import { link } from './styles'
+import { navbarItems } from '../MainSection/info'
 
 const Navbar = () => {
     const Width = () => React.useContext(WidthContext)
@@ -27,10 +28,15 @@ const Navbar = () => {
 
     width > 1100? output = 
     <ul>
-      <li><Link to="/" style={link}><NavbarItem option='Home' /></Link></li>
-       <li><Link to="/about" style={link}><NavbarItem option='About' /></Link></li>
-       <li><Link to="/history" style={link}><NavbarItem option='History' /></Link></li>
-       <li><Link to="/location" style={link}><NavbarItem option='Location' /></Link></li>
+       {navbarItems.map(item => {
+         let path
+         item === 'Home' ? path = '' : path = item.toLowerCase()
+         if(window.location.pathname === '/' + path) {
+           return 
+         } else {
+           return <li><Link to={'/' + path} style={link}><NavbarItem option={item} /></Link></li>
+         }
+        })}
     </ul> 
      : output = <DropDownIcon/>
     return(

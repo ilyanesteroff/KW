@@ -2,6 +2,7 @@ import React from 'react'
 import { dropDownItem, dropDownMenu } from './styles'
 import { Link } from "react-router-dom";
 import { link } from './styles'
+import { navbarItems } from '../MainSection/info'
 
 class DropDownMenu extends React.Component{
     constructor(props){
@@ -9,8 +10,7 @@ class DropDownMenu extends React.Component{
     }
 
     render(){
-        let items = ['Home', 'About', 'History', 'Location']
-        let options = items.map((item, index) => {
+        let options = navbarItems.map((item, index) => {
           let res
           index > 0 ? res = item.toLowerCase() : res = ''
           return <Link to={'/' + res } style={link}>

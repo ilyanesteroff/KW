@@ -2,7 +2,7 @@ import React from 'react'
 import { twitts, twitt } from './styles'
 import { Link } from 'react-router-dom'
 
-class TwitterTags extends React.Component{
+export default class extends React.Component{
     
     render(){
         let twitterTags = this.props.tags.map((tag, index) => {
@@ -16,5 +16,3 @@ class TwitterTags extends React.Component{
         )
     }
 }
-
-export default TwitterTags

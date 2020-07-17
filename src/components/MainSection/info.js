@@ -30,4 +30,6 @@ let factInfo = [
 
 let twitterTags = ['COVID19', 'KeyWest', 'Florida']
 
-export { factInfo, twitterTags }
+let navbarItems = ['Home', 'About', 'Location', 'History']
+
+export { factInfo, twitterTags, navbarItems }

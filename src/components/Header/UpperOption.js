@@ -26,10 +26,11 @@ class UpperOption extends React.Component{
       <li><h3 style={itemStyle}> {sentence} </h3></li>
     </ul> : output = <FontAwesomeIcon style={iconStyle} icon={icon}/>
 
-        
     return(
       <div>
-        <Link to={link}>{output}</Link>
+        <Link to={link}>
+          {output}
+        </Link>
       </div>
     )
   }

@@ -10,6 +10,8 @@ import CovidData from '../MainSection/Covid'
 import { WidthContext } from './contexts'
 import { faVirus, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import UpperOption from '../Header/UpperOption'
+import TwitterTags  from '../Header/TwitterTags'
+import { twitterTags } from '../MainSection/info'
 
 class Homepage extends React.Component {
   render(){
@@ -95,10 +97,28 @@ const PlacePage = (props) => {
 
 const Twitts = (props) => {
   const { twitt } = props
+
   return(
     <>
       <StickyNavbar fixed={true}/>
-      <UpperSection/>
+      <UpperSection>
+        <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
+        <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
+      </UpperSection>
+      <TwitterTags tags={twitterTags.filter(twit => twit !== twitt)}/>
+      <Footer/>
+    </>
+  )
+}
+
+const WeatherPage = () => {
+  return (
+    <>
+      <StickyNavbar fixed={true}/>
+      <UpperSection>
+        <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
+        <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
+      </UpperSection>
       <Footer/>
     </>
   )
@@ -133,4 +153,4 @@ class News extends React.Component{
   }
 }
 
-export { Homepage, AboutPage, InitialPage, HistoryPage, LocationPage, PlacePage, Twitts, Covid, News}
+export { Homepage, AboutPage, InitialPage, HistoryPage, LocationPage, PlacePage, Twitts, WeatherPage, Covid, News}
