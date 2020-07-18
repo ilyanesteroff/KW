@@ -6,19 +6,16 @@ import Items from './Items'
 import Slide from './Slide'
 
 const getWidth = () => window.innerWidth
+const getHeight = () => window.innerHeight
 
 export default (props) => {
+  let style = generateContainerStyle()
 
-  let style = {
-    position: 'relative',
-    height: '65vh',
-    width: '75%',
-    margin: '0 auto',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    backgroundColor: '#333',
-    marginTop: '10vh'
-  }
+  getHeight() > 900 ? style.height = '35vh': style.height = '65vh'
+  style.overflow = 'hidden'
+  style.whiteSpace = 'nowrap'
+  style.backgroundColor = '#333'
+  style.marginTop = '10vh'
   
   const { slides } = props
 
@@ -45,6 +42,8 @@ export default (props) => {
     resizeRef.current = handleResize
   })
 
+  let interval = null
+
   useEffect(() => {
     const play = () => {
       autoPlayRef.current()
@@ -62,8 +61,6 @@ export default (props) => {
 
     const transitionEnd = window.addEventListener('transitionend', smooth)
     const onResize = window.addEventListener('resize', resize)
-
-    let interval = null
 
     if (props.autoPlay) {
       interval = setInterval(play, props.autoPlay * 1000)
@@ -103,26 +100,31 @@ export default (props) => {
     })
   }
 
-  const nextSlide = () =>
+  const nextSlide = () => {
     setState({
       ...state,
       translate: translate + getWidth(),
       activeSlide: activeSlide === slides.length - 1 ? 0 : activeSlide + 1
-  })
+    })
+  }
 
-  const prevSlide = () =>
+  const prevSlide = () => {
     setState({
       ...state,
       translate: 0,
       activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
-  })
+    })
+  }
 
-  return(
+  return (
       <div style={style}>
           <SliderContent translate={translate} transition={transition} width={getWidth() * _slides.length}>
             {
-                _slides.map((slide, index) => 
-                <Slide width={getWidth()} key={slide + index} content={slide} />)}
+                _slides.map((slide, index) => {
+                  console.log(props.descriptions)
+                  console.log(_slides)
+                return <Slide width={getWidth()} key={slide + index} image={slide} />})
+            }
           </SliderContent>
 
           <DirArrow direction={'left'} handleClick={prevSlide}/>

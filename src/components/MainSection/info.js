@@ -16,6 +16,14 @@ let factInfo = [
             'https://upload.wikimedia.org/wikipedia/commons/f/fc/Hemingway%27s_writing_desk_in_Key_West.jpg',
             'https://upload.wikimedia.org/wikipedia/commons/2/20/HemingwayHouseFront.jpg',
             'https://upload.wikimedia.org/wikipedia/commons/7/7d/HemingwayGarden.jpg'
+        ],
+        descriptions: [
+            'Tourists in Hemingway house',
+            `Hemingway's pool`,
+            `Host room`,
+            `Hemingway's desktop`,
+            `The front of the house`,
+            `Hemingway's garden`
         ]
     },
     {
@@ -31,6 +39,10 @@ let factInfo = [
         images: [
             'https://upload.wikimedia.org/wikipedia/commons/1/18/The_Southernmost_Point%2C_90_miles_to_Cuba-_Key_West%2C_Florida_%288379456437%29.jpg',
             'https://upload.wikimedia.org/wikipedia/commons/9/99/SOUVENIR_SEASHELLS_FOR_SALE_AT_THE_SOUTHERNMOST_POINT_OF_THE_UNITED_STATES_-_NARA_-_548545.jpg'
+        ], 
+        descriptions: [
+             'The bouy',
+             'The Southernmost Buoy'
         ]
     },
     {
@@ -46,6 +58,10 @@ let factInfo = [
         images: [
             'https://upload.wikimedia.org/wikipedia/commons/2/2a/Southernmost_House_from_Ocean.jpg',
             'https://upload.wikimedia.org/wikipedia/commons/7/74/Southernmosthouse.jpg'
+        ],
+        descriptions: [
+            'View from ocean',
+            'View from street'
         ]
     },
     {
@@ -61,6 +77,10 @@ let factInfo = [
         images: [
             'https://upload.wikimedia.org/wikipedia/commons/d/d8/Truman-key-1950.gif',
             'https://upload.wikimedia.org/wikipedia/commons/4/44/USA_Florida_location_map.svg'
+        ],
+        descriptions: [
+            'In 1950',
+            'Florida on map'
         ]
     }
 ]

@@ -9,6 +9,8 @@ const Chapter = props => {
         marginLeft: '0',
         fontSize: props.width > 750 ? '1.8rem' : '1.3rem'
     }
+    if (props.additionalStyle !== undefined)
+      chapterStyle += props.additionalStyle
     return <h2 style={chapterStyle}>{props.children}</h2>
 }
 

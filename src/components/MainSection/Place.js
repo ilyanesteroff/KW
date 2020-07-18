@@ -4,6 +4,7 @@ import { Chapter, TextArea, Link } from '../Helpers/DesignAssistants'
 import { Sectionstyle } from '../MainSection/styles'
 import UpperContainer from '../MainSection/UpperContainer'
 import Slider from '../Slider/Slider'
+import ReadySlider from '../Slider/ReadySlider'
 
 export default class extends React.Component{
     constructor(props){
@@ -12,9 +13,9 @@ export default class extends React.Component{
 
     static contextType = WidthContext
 
-    render(){
+    render() {
         const { info } = this.props
-        return(
+        return (
             <div style={Sectionstyle}>
               <UpperContainer>
                   <Chapter width={this.context}>
@@ -26,8 +27,12 @@ export default class extends React.Component{
                   <Link href={info.href} width={this.context}>
                     A lot more info and facts in wikipedia
                   </Link>
+                  
               </UpperContainer>
-              <Slider slides={info.images} autoPlay={10}/>
+              <div style={{padding: '2vh', backgroundColor: '#333', height: '68vh', marginTop: '10vh'}}>
+                <ReadySlider images={info.images} descriptions={info.descriptions} color={info.color}/>
+              </div>
+              { this.context > 1950 && <Slider slides={info.images} autoPlay={10} descriptions={info.descriptions}/>}
             </div>
         )
     }

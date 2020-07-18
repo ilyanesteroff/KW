@@ -28,3 +28,13 @@ li{
 :root {
   background-color: #cccccc;
 }
+
+.each-fade {
+  display: flex;
+  max-height: 60vh;
+}
+
+.each-fade  .image {
+  width: 75%;
+  height: 96%;
+}
