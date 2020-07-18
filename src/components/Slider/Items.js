@@ -12,7 +12,7 @@ export default ({ slides, activeSlide }) => {
     return (
         <div style={style}>
           {slides.map((slide, index) => 
-              <Item key={slide} active={activeSlide === index} />
+              <Item key={slide} active={activeSlide === index}/>
           )}
         </div>
     )
@@ -20,14 +20,14 @@ export default ({ slides, activeSlide }) => {
 
 const Item = ({ active }) => {
   let style = {
-      padding: '3vh',
+      padding: '1.5vh',
       marginRight: '6px',
+      border: 'solid 2px black',
       cursor: 'pointer',
       borderRadius: '50%',
       backgroundColor: active ? '#232323' : '#afafaf'
   }
-
-  return <span style={style} />
+  return <span style={style}/>
 }
 
 

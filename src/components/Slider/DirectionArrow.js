@@ -11,14 +11,13 @@ export default ({ direction, handleClick }) => {
         width: 'auto',
         fontSize: '2rem',
         justifyContent: 'center',
-        backgroundColor: '#333',
-        borderRadius: '50%',
+        padding: '1vh',
         cursor: 'pointer',
         alignItems: 'center',
         transition: 'transform ease-in 0.1s',
         color: '#eaeaea'
     }
-    console.log(direction)
+
     let icon
     if(direction === 'right') { 
         style.right = '25px' 

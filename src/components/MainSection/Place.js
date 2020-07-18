@@ -27,7 +27,7 @@ export default class extends React.Component{
                     A lot more info and facts in wikipedia
                   </Link>
               </UpperContainer>
-              <Slider slides={info.images} autoplay={true}/>
+              <Slider slides={info.images} autoPlay={10}/>
             </div>
         )
     }
