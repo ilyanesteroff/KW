@@ -15,6 +15,8 @@ export default class extends React.Component{
 
     render() {
         const { info } = this.props
+        let height 
+        this.context > 625 ? height = 60 : height = 40
         return (
             <div style={Sectionstyle}>
               <UpperContainer>
@@ -29,8 +31,8 @@ export default class extends React.Component{
                   </Link>
                   
               </UpperContainer>
-              <div style={{padding: '2vh', backgroundColor: '#333', height: '68vh', marginTop: '10vh'}}>
-                <ReadySlider images={info.images} descriptions={info.descriptions} color={info.color}/>
+              <div style={{padding: '2vh', backgroundColor: '#333', height: `${height + 8}vh`, marginTop: '10vh'}}>
+                <ReadySlider images={info.images} info={info.descriptions} color={info.color} height={height}/>
               </div>
               { this.context > 1950 && <Slider slides={info.images} autoPlay={10} descriptions={info.descriptions}/>}
             </div>

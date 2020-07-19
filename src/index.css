@@ -38,3 +38,60 @@ li{
   width: 75%;
   height: 96%;
 }
+
+.TextContent {
+  /*width: '25%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: '0',
+      background: color, 
+      padding: '0 3%',
+      color: '#99dddd',
+      fontSize: '1.4rem',
+      fontFamily: 'Ubuntu, sans-serif'*/
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0 3%;
+  border : solid 2px black;
+}
+
+.TextContent h2{
+  color: #99dddd;
+  font-size: 1.4rem;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+@media only screen and (max-width: 600px){
+  .TextContent h2{
+    font-size: 0.9rem;
+  }
+}
+
+table{
+  border-collapse: collapse;
+  font-family: 'Ubuntu', sans-serif;
+  width: 100%;
+  text-align: center;
+  margin-top: 5vh;
+}
+
+th {
+  border: solid 2px #333333;
+  padding: 2%;
+  background-color: #113377;
+  color: #ddd;
+  font-size: 1.2rem;
+}
+
+td{
+  border: solid 2px #333333;
+  background-color: #33aaff;
+  padding: 2%;
+  font-size: 1rem;
+  font-weight: 700;
+  min-width: 10vw;
+}

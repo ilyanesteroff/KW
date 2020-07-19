@@ -1,3 +1,5 @@
+import React from 'react'
+
 let factInfo = [
     {
         url: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Hemingway_House_Key_West_FL1.jpg",
@@ -18,12 +20,12 @@ let factInfo = [
             'https://upload.wikimedia.org/wikipedia/commons/7/7d/HemingwayGarden.jpg'
         ],
         descriptions: [
-            'Tourists in Hemingway house',
-            `Hemingway's pool`,
-            `Host room`,
-            `Hemingway's desktop`,
-            `The front of the house`,
-            `Hemingway's garden`
+            <h2>Tourists in Hemingway house</h2>,
+            <h2>Hemingway's pool</h2>,
+            <h2>Host room</h2>,
+            <h2>Hemingway's desktop</h2>,
+            <h2>The front of the house</h2>,
+            <h2>Hemingway's garden</h2>
         ]
     },
     {
@@ -41,8 +43,8 @@ let factInfo = [
             'https://upload.wikimedia.org/wikipedia/commons/9/99/SOUVENIR_SEASHELLS_FOR_SALE_AT_THE_SOUTHERNMOST_POINT_OF_THE_UNITED_STATES_-_NARA_-_548545.jpg'
         ], 
         descriptions: [
-             'The bouy',
-             'The Southernmost Buoy'
+             <h2>The bouy</h2>,
+             <h2>The Southernmost Buoy</h2>
         ]
     },
     {
@@ -60,8 +62,8 @@ let factInfo = [
             'https://upload.wikimedia.org/wikipedia/commons/7/74/Southernmosthouse.jpg'
         ],
         descriptions: [
-            'View from ocean',
-            'View from street'
+            <h2>View from the ocean</h2>,
+            <h2>View from the street</h2>
         ]
     },
     {
@@ -79,8 +81,8 @@ let factInfo = [
             'https://upload.wikimedia.org/wikipedia/commons/4/44/USA_Florida_location_map.svg'
         ],
         descriptions: [
-            'In 1950',
-            'Florida on map'
+            <h2>In 1950</h2>,
+            <h2>Florida on map</h2>
         ]
     }
 ]

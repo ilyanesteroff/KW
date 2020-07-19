@@ -136,6 +136,7 @@ class Covid extends React.Component{
         <UpperSection>
           <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
         </UpperSection>
+        <CovidData/>
         <Footer/>
       </>
     )
