@@ -1,30 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { CovidLinks } from './refs/links'
 
 export default (props) => {
 
-  const links = [ 
-    {
-      link: 'https://covid-19-statistics.p.rapidapi.com/reports?iso=USA&region_name=US&q=US%20Florida',
-      headers: {
-        "headers": {
-          "x-rapidapi-host": 'covid-19-statistics.p.rapidapi.com',
-          "x-rapidapi-key": 'bd0b30ab4dmsh22d059c15a32a28p1c4cd5jsn33d087f197cf'
-        }
-      }
-    },
-    {
-      link: 'https://covid-19-data.p.rapidapi.com/country/code?format=json&code=us',
-      headers: {
-        "headers": {
-          "x-rapidapi-host": 'covid-19-data.p.rapidapi.com',
-          "x-rapidapi-key": 'bd0b30ab4dmsh22d059c15a32a28p1c4cd5jsn33d087f197cf'
-        }
-      }
-    }
-  ]
-
-  const [response, loading, hasError] = useFetch(links[0].link, links[0].headers)
-  const [response1, loading1, hasError1] = useFetch(links[1].link, links[1].headers)
+  const [response, loading, hasError] = useFetch(CovidLinks[0].link, CovidLinks[0].headers)
+  const [response1, loading1, hasError1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers)
 
   let style = {
     position: 'relative',
@@ -93,7 +73,7 @@ const Headline = (props) => {
 const Table = ({data}) => {
   data.local.place = 'Florida'
   data.global.place = 'USA'
-  let content = [<tr><Cols data={data.local}/></tr>, <tr><Cols data={data.global}/></tr>]
+  let content = [<Cols key={1} data={data.local}/>, <Cols key={2} data={data.global}/>]
  
   return (
     <table>
@@ -117,7 +97,7 @@ const Table = ({data}) => {
 
 const Cols = ({data}) => {
     return(
-        <>
+        <tr>
           <td key={data.place}>{data.place}</td>
           <td key={data.confirmed}>{data.confirmed}</td>
           <td key={data.critical}>{data.critical}</td>
@@ -125,6 +105,6 @@ const Cols = ({data}) => {
           <td key={data.recovered}>{data.recovered}</td>
           <td key={data.lastUpdate}>{data.lastUpdate}</td>
           <td key={data.fatalityRate}>{data.fatalityRate}</td>
-        </>
+        </tr>
     )
 }

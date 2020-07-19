@@ -8,12 +8,14 @@ export default (props) => {
         indicators: true
     }
     return (
-      <div style={{height: props.height + 'vh', width: '80%', marginLeft: '10%', backgroundColor: '#aaa', borderRadius: '5px'}}>
+      <div style={{height: props.height + 'vh', width: '80%', marginLeft: '10%', marginTop: '5vh', backgroundColor: '#aaa', borderRadius: '5px'}}>
         <div className="slide-container">
           <Fade {...config}>
             {props.images.map((image, index) => 
-              <GenerateSlides image={image} isOdd={index % 2 === 0}  color={props.color} height={props.height}>
-                 {props.info[index]}
+              <GenerateSlides key={index} image={image} isOdd={index % 2 === 0}  color={props.color} height={props.height}>
+                <>
+                  {props.info[index]}
+                </>
               </GenerateSlides>)}
           </Fade>
         </div>

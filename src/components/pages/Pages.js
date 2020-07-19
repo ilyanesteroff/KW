@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import Header from '../Header/Header'
 import VideoSection from '../MainSection/VideoSection'
 import MainSection from '../MainSection/MainSection'
@@ -6,7 +6,6 @@ import Facts from '../MainSection/Facts'
 import Footer from '../FooterSection/Footer'
 import StickyNavbar from '../Header/StickyNavbar'
 import UpperSection from '../Header/UpperSection'
-import CovidData from '../MainSection/Covid'
 import { WidthContext } from './contexts'
 import { faVirus, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import UpperOption from '../Header/UpperOption'
@@ -14,6 +13,14 @@ import TwitterTags  from '../Header/TwitterTags'
 import { twitterTags } from '../MainSection/info'
 import { useLocation } from 'react-router-dom'
 import Place from '../MainSection/Place'
+import Spinner from '../MainSection/Spinner'
+import NewsData from '../MainSection/News'
+
+const CovidData = lazy(() => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(import("../MainSection/Covid")), 10000);
+  });
+});
 
 class Homepage extends React.Component {
   render(){
@@ -136,7 +143,9 @@ class Covid extends React.Component{
         <UpperSection>
           <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
         </UpperSection>
-        <CovidData/>
+        <Suspense fallback={<Spinner/>}>
+          <CovidData/>
+        </Suspense>
         <Footer/>
       </>
     )
@@ -151,6 +160,7 @@ class News extends React.Component{
         <UpperSection>
           <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
         </UpperSection>
+        <NewsData/>
         <Footer/>
       </>
     )
