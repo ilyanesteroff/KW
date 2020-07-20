@@ -83,6 +83,17 @@ td{
   min-width: 10vw;
 }
 
+@media only screen and (max-width: 900px){
+  th{
+    padding: 0.5%;
+    font-size: 0.9rem;
+  }
+  td{
+    padding: 0.5%;
+    font-size: 0.7rem;
+  }
+}
+
 .spinner {
   animation: spin 5s infinite linear;
 }

@@ -1,31 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { CovidLinks } from './refs/links'
+import Spinner from '../MainSection/Spinner'
+import { Chapter } from '../Helpers/DesignAssistants'
+
+const Width = () => window.innerWidth
 
 export default (props) => {
 
-  const [response, loading, hasError] = useFetch(CovidLinks[0].link, CovidLinks[0].headers)
-  const [response1, loading1, hasError1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers)
+  const [response, loading, hasError] = useFetch(CovidLinks[0].link, CovidLinks[0].headers, extractCovidData)
+  const [response1, loading1, hasError1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers, extractCovidData)
 
   let style = {
     position: 'relative',
-    marginLeft: '10%',
-    width: '80%',
+    marginLeft: Width() > 1000 ? '10%' : '2.5%',
+    width: Width() > 1000 ? '80%' : '95%',
     marginTop: '15vh',
     textAlign: 'center'
   }
 
-  return (
+  let output 
+  !hasError && !hasError1 ?
+  response !== null && response1 !== null ? 
+  output = 
     <div style={style}>
-      <Headline content={'Novel Coronavirus in Florida'}/>
-      {response !== null & response1 !== null?
-       <Table data={{local: response, global: response1}}></Table> : <h2>Loading</h2>
-      }
-    </div>
-  )
+      <Chapter width={Width()}>Covid-19 Statistics</Chapter>
+      <Table data={{local: response, global: response1}} width={Width()}></Table> 
+    </div> : output = <Spinner/>
+  : output = <Spinner spinner={false}/>
+  return output 
 }
 
-const useFetch = (url, opts) => {
-  const [response, setResponse] = useState({})
+const useFetch = (url, opts, func) => {
+  const [response, setResponse] = useState(null)
   const [loading, setLoading] = useState(false)
   const [hasError, setHasError] = useState(false)
 
@@ -39,7 +45,7 @@ const useFetch = (url, opts) => {
         else 
           return res.data[0]
       })
-      .then(res => extractCovidData(res))
+      .then(res => func(res))
       .then(res => setResponse(res))
       .catch(() => setHasError(true))
     
@@ -50,42 +56,45 @@ const useFetch = (url, opts) => {
 }
 
 const extractCovidData = (json) => {
-  let output = {
-      confirmed: json.confirmed,
-      critical: json.critical || Math.floor(json.confirmed_diff / 5),
-      deaths: json.deaths,
-      recovered: json.recovered, 
-      lastUpdate: json.lastUpdate || json.last_update,
-      fatalityRate: json.fatality_rate || 0.01
-  }
+  let output = []
+  output.push(json.confirmed)
+  output.push(json.critical || Math.floor(json.confirmed_diff / 5))
+  output.push(json.deaths)
+  output.push(json.recovered)
+  output.push(json.lastUpdate || json.last_update)
+  output.push(json.fatality_rate || 0.01)
   return output
 }
 
-const Headline = (props) => {
-    let style = {
-        fontFamily: 'Ubuntu, sans-serif',
-        fontSize: '1.5rem',
-        color: '#444',
-    }
-    return <h1 style={style}>{props.content}</h1>
-}
-
 const Table = ({data}) => {
-  data.local.place = 'Florida'
-  data.global.place = 'USA'
-  let content = [<Cols key={1} data={data.local}/>, <Cols key={2} data={data.global}/>]
- 
+  data.local = ['Florida', ...data.local]
+  data.global = ['Usa', ...data.global]
+  let items = ['', 'Confirmed Cases', 'Critical', 'Deaths', 'Recovered', 'Last Update', 'Fatality Rate']
+  let head, content
+  if(Width() > 1000) { 
+    head = <>
+      {
+        items.map((item, index) => <th key={index}>{item}</th>)
+      }
+    </>
+    content = [<Cols key={1} data={data.local}/>, <Cols key={2} data={data.global}/>]
+  } else { 
+    head = <> 
+      <th key={0}>{items[0]}</th>
+      <th key={1}>{data.local[0]}</th>
+      <th key={2}>{data.global[0]}</th>
+    </>
+    content = []
+    for ( let i = 1; i < items.length-1; i++){
+      content = [...content, <Cols key={i} data={[items[i], data.local[i], data.global[i]]}/>]
+    }
+  }
+
   return (
     <table>
       <thead>
         <tr>
-          <th key={1}></th>
-          <th key={2}>Confirmed Cases</th>
-          <th key={3}>Critical</th>
-          <th key={4}>Deaths</th>
-          <th key={5}>Recovered</th>
-          <th key={6}>Last Update</th>
-          <th key={7}>Fatality Rate</th>
+          {head}
         </tr>
       </thead>
       <tbody>
@@ -96,15 +105,12 @@ const Table = ({data}) => {
 }
 
 const Cols = ({data}) => {
+    let output 
+    Width() > 1000 ? output = <>{data.map(item => <td key={item}>{item}</td>)}</> :
+    output = <><th>{data[0]}</th><td>{data[1]}</td><td>{data[2]}</td></>
     return(
         <tr>
-          <td key={data.place}>{data.place}</td>
-          <td key={data.confirmed}>{data.confirmed}</td>
-          <td key={data.critical}>{data.critical}</td>
-          <td key={data.deaths}>{data.deaths}</td>
-          <td key={data.recovered}>{data.recovered}</td>
-          <td key={data.lastUpdate}>{data.lastUpdate}</td>
-          <td key={data.fatalityRate}>{data.fatalityRate}</td>
+          {output}
         </tr>
     )
 }

@@ -15,12 +15,7 @@ import { useLocation } from 'react-router-dom'
 import Place from '../MainSection/Place'
 import Spinner from '../MainSection/Spinner'
 import NewsData from '../MainSection/News'
-
-const CovidData = lazy(() => {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(import("../MainSection/Covid")), 10000);
-  });
-});
+import CovidData from '../MainSection/Covid'
 
 class Homepage extends React.Component {
   render(){
@@ -143,9 +138,7 @@ class Covid extends React.Component{
         <UpperSection>
           <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
         </UpperSection>
-        <Suspense fallback={<Spinner/>}>
-          <CovidData/>
-        </Suspense>
+        <CovidData/>
         <Footer/>
       </>
     )

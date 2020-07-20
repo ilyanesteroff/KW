@@ -17,9 +17,8 @@ class UpperOption extends React.Component{
 
   render() {
     const { divStyle, iconStyle, link, sentence, icon, itemStyle } = this.props
-    const width = this.context
     let output 
-    width > 700?
+    this.context > 700?
     output =
     <ul style={divStyle}>
       <li><FontAwesomeIcon style={iconStyle} icon={icon}/></li>

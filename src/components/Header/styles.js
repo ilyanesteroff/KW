@@ -9,7 +9,7 @@ let item = {
     color: 'white',
     fontWeight: '400',
     fontFamily: 'Roboto Condensed, sans-serif',
-    cursor: 'pointer'
+    cursor: 'pointer',
 }
 
 let twitterItem = {
@@ -63,7 +63,7 @@ let navbarItem = {
 
 let rightUpperSection = {
     position: 'absolute',
-    right: '3%', 
+    right: '4%', 
     top: '0',
     margin: '0.5vh 0',
     padding: '0.3vh'
