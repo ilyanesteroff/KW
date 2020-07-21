@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import Header from '../Header/Header'
 import VideoSection from '../MainSection/VideoSection'
 import MainSection from '../MainSection/MainSection'
@@ -13,7 +13,6 @@ import TwitterTags  from '../Header/TwitterTags'
 import { twitterTags } from '../MainSection/info'
 import { useLocation } from 'react-router-dom'
 import Place from '../MainSection/Place'
-import Spinner from '../MainSection/Spinner'
 import NewsData from '../MainSection/News'
 import CovidData from '../MainSection/Covid'
 

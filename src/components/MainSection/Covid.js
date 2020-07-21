@@ -24,7 +24,7 @@ export default (props) => {
   output = 
     <div style={style}>
       <Chapter width={Width()}>Covid-19 Statistics</Chapter>
-      <Table data={{local: response, global: response1}} width={Width()}></Table> 
+      {generateTable({local: response, global: response1})}
     </div> : output = <Spinner/>
   : output = <Spinner spinner={false}/>
   return output 
@@ -39,12 +39,6 @@ const useFetch = (url, opts, func) => {
     setLoading(true)
     fetch(url, opts)
       .then(res => res.json())
-      .then(res => {
-        if(res.data === undefined)
-          return res[0] 
-        else 
-          return res.data[0]
-      })
       .then(res => func(res))
       .then(res => setResponse(res))
       .catch(() => setHasError(true))
@@ -56,6 +50,10 @@ const useFetch = (url, opts, func) => {
 }
 
 const extractCovidData = (json) => {
+  if(json.data === undefined)
+    json = json[0] 
+  else 
+    json = json.data[0]
   let output = []
   output.push(json.confirmed)
   output.push(json.critical || Math.floor(json.confirmed_diff / 5))
@@ -66,7 +64,7 @@ const extractCovidData = (json) => {
   return output
 }
 
-const Table = ({data}) => {
+const generateTable = (data) => {
   data.local = ['Florida', ...data.local]
   data.global = ['Usa', ...data.global]
   let items = ['', 'Confirmed Cases', 'Critical', 'Deaths', 'Recovered', 'Last Update', 'Fatality Rate']
@@ -89,7 +87,10 @@ const Table = ({data}) => {
       content = [...content, <Cols key={i} data={[items[i], data.local[i], data.global[i]]}/>]
     }
   }
+  return <Table head={head} content={content}/>
+}
 
+const Table = ({head, content}) => {
   return (
     <table>
       <thead>

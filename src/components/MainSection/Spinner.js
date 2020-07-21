@@ -13,18 +13,25 @@ export default ({spinner}) => {
       textAlign: 'center',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      position: 'relative'
     },
     icon: {
       width: '20%',
       height: 'auto',
       color: spinner ? '#3388dd' : '#882222',
       marginTop: '20vh',
+    },
+    chapter : {
+      position: 'absolute',
+      bottom: '-35%',
+      marginLeft: '3%'
     }
   }
   let output
-  spinner ? output = <FontAwesomeIcon icon={faReact} style={style.icon} className="spinner"/>
-    : output = <><FontAwesomeIcon icon={faSadCry} style={style.icon}/> <Chapter>Server failed</Chapter> </>
+  spinner ? output = <><FontAwesomeIcon icon={faReact} style={style.icon} className="spinner"/><Chapter additionalStyle={style.chapter}>Loading...</Chapter></>
+    : output = <><FontAwesomeIcon icon={faSadCry} style={style.icon}/>
+                  <Chapter additionalStyle={style.chapter}>Server failed</Chapter> </>
   return (
       <div style={style.main}>
         {output}

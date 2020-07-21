@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { width } from '../Helpers/Helpers'
 
 const Chapter = props => {
     let chapterStyle = {
@@ -7,10 +7,10 @@ const Chapter = props => {
         fontFamily: 'Ubuntu, sans-serif',
         margin: '3%',
         marginLeft: '0',
-        fontSize: props.width > 750 ? '1.8rem' : '1.3rem'
+        fontSize: width() > 750 ? '1.8rem' : '1.3rem'
     }
     if (props.additionalStyle !== undefined)
-      chapterStyle += props.additionalStyle
+      chapterStyle = Object.assign({}, chapterStyle, props.additionalStyle)
     return <h2 style={chapterStyle}>{props.children}</h2>
 }
 
@@ -18,7 +18,7 @@ const TextArea = props => {
     let paragraphStyle = {
         color: '#111133',
         fontFamily: 'Josefin Sans, sans-serif',
-        fontSize: props.width > 750 ? '1.4rem': '1.1rem'
+        fontSize: width() > 750 ? '1.4rem': '1.1rem'
     }
     return <p style={paragraphStyle}>{props.children}</p>
 }
@@ -27,7 +27,7 @@ const Link = props => {
     let style = {
         color: '#222255',
         fontFamily: 'Nunito, sans-serif',
-        fontSize: props.width > 750? '1.6rem' : '1.2rem',
+        fontSize: width() > 750? '1.6rem' : '1.2rem',
         textDecoration: 'none',
         lineHeight: '8vh'
     }

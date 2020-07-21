@@ -16,4 +16,6 @@ const makeCancelable = (promise) => {
     };
 };
 
-export { makeCancelable }
+const width = () => window.innerWidth
+
+export { makeCancelable, width }

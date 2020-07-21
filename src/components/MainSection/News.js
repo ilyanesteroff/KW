@@ -2,15 +2,17 @@ import React from 'react'
 import {NYTimes} from './refs/links'
 import ReadySlider from '../Slider/ReadySlider'
 import Spinner from '../MainSection/Spinner'
+import { width } from '../Helpers/Helpers'
+import { NewsContext } from '../pages/contexts'
 
 export default class extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      isMounted: false,
       images: [],
       info: [], 
-      urls: []
+      urls: [],
+      colors: []
     }
   }
 
@@ -29,9 +31,11 @@ export default class extends React.Component{
         image: json.multimedia[7] === undefined ? picture : domain + json.multimedia[7].url,
         url: json.web_url
       }
+      let info 
+      width() < 1000? info = output.headline : info = [output.headline, output.content]
       this.setState({
         images: [...this.state.images, output.image],
-        info: [...this.state.info, [output.headline, output.content]],
+        info: [...this.state.info, info],
         urls: [...this.state.urls, output.url]
       })
     } 
@@ -51,16 +55,17 @@ export default class extends React.Component{
 
   componentWillUnmount() {
     this.controller.abort()
-    this.setState({
-      isMounted: false
-    })
   }
 
 
   render() {
     let { images, info, urls } = this.state
-    let output
-    images.length > 0 ? output = <ReadySlider images={images} info={info} color={'#333333'} height={60} />
+    let output, height
+    width() < 600? height = 30: height = 60
+    images.length > 0 ? output =
+    <NewsContext.Provider value={true}>
+      <ReadySlider images={images} info={info} color={'#333333'} height={height} url={urls}/>
+    </NewsContext.Provider>
       : output = <Spinner/>
     return (
       <div>

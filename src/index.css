@@ -14,6 +14,10 @@ li{
   list-style-type: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -31,12 +35,14 @@ li{
 }
 
 .each-fade  .image {
-  width: 75%;
+  width: 70%;
   height: 96%;
+  display: flex;
+  justify-content: center;
 }
 
 .TextContent {
-  width: 25%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,11 +55,52 @@ li{
   color: #99dddd;
   font-size: 1.4rem;
   font-family: 'Ubuntu', sans-serif;
-  display: block;
+  margin: 10% 0;
+}
+
+.TextContent p{
+  color: #11ffff;
+  font-size: 1rem;
+  font-family: 'Ubuntu', sans-serif;
+  margin: auto;
+}
+
+.image h2 {
+  font-size: 1rem;
+  margin-bottom: 5%;
+  color: #333;
+  text-shadow: 0 0 0.1rem #11ffff;
 }
 
 @media only screen and (max-width: 600px){
   .TextContent h2{
+    font-size: 0.6rem;
+  }
+  .each-fade{
+    max-height: 30vh;
+  }
+  .each-fade .image{
+    width: 50%;
+  }
+  .TextContent {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .each-fade{
+    max-height: 35vh;
+  }
+  .each-fade .image{
+    width: 100%;
+  }
+  .TextContent {
+    width: 0%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .TextContent h2 {
     font-size: 0.9rem;
   }
 }
