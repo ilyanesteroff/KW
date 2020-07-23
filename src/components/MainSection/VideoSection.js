@@ -1,7 +1,7 @@
 import React from 'react'
 import Video from './Video'
 import VideoDescription from './VideoDescription'
-import { Width, Height } from '../pages/contexts'
+import { width, height } from '../Helpers/Helpers'
 
 const VideoSection = () => {
   let videoSectionStyle = {
@@ -11,10 +11,10 @@ const VideoSection = () => {
     backgroundColor: '#aaaaff',
     marginBottom: '20vh'
   }
-  if(Width() < 925)
+  if(width() < 925)
     videoSectionStyle.height = '90vh'
     //For Ipads
-  if((Width() >= 768 && Height() >= 1024) || (Width() >= 1024 && Height() >= 768))
+  if((width() >= 768 && height() >= 1024) || (width() >= 1024 && height() >= 768))
     videoSectionStyle.height = '60vh'
   return(
     <div style={videoSectionStyle}>

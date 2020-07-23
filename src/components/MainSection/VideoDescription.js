@@ -1,8 +1,8 @@
 import React from 'react'
-import { Width, Height } from '../pages/contexts'
+import { width, height } from '../Helpers/Helpers'
 
 const VideoDescription = () => {
-  let styles = getStyles(Width(), Height())
+  let styles = getStyles(width(), height())
   return (
     <div style={styles.main}>
       <Headline style={styles.headline}/>

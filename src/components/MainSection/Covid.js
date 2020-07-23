@@ -1,33 +1,31 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { CovidLinks } from './refs/links'
 import Spinner from '../MainSection/Spinner'
 import { Chapter, PS } from '../Helpers/DesignAssistants'
 import { width } from '../Helpers/Helpers'
-import { useFetch, useLocalStorage } from '../Helpers/Helpers'
+import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
+import { SSS } from '../MainSection//styles'
+
 export default (props) => {
 
-  const [response, loading, hasError] = useFetch(CovidLinks[0].link, CovidLinks[0].headers, extractCovidData, 'Florida')
-  const [response1, loading1, hasError1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers, extractCovidData, 'USA')
+  const [response, loading, hasError, message] = useFetch(CovidLinks[0].link, CovidLinks[0].headers, extractCovidData, 'Florida')
+  const [response1, loading1, hasError1, message1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers, extractCovidData, 'USA')
+  const [spin] = useSpinnerSuspense(10)
 
-  let style = {
-    position: 'relative',
-    marginLeft: width() > 1000 ? '10%' : '2.5%',
-    width: width() > 1000 ? '80%' : '95%',
-    marginTop: '15vh',
-    textAlign: 'center'
-  }
+  let output
 
-  let output 
-  !hasError && !hasError1 ?
-  response !== null && response1 !== null ? 
-  output = 
-    <div style={style}>
+  if (response1 !== null &&  response !== null && !hasError ){
+    output = 
+    <div style={SSS}>
       <Chapter>Covid-19 Statistics in USA and Florida</Chapter>
       {generateTable({local: response, global: response1})}
       <PS>Source: </PS>
-    </div> : output = <Spinner/>
-  : output = <Spinner spinner={false}/>
-  return output 
+    </div>
+  }
+  else if(hasError || hasError1) output = <Spinner spinner={false} message={hasError1? message1 : message}/>
+  else if (spin) output = <Spinner/>
+
+  return <>{output}</>
 }
 
 const extractCovidData = (json) => {
@@ -42,7 +40,7 @@ const extractCovidData = (json) => {
   output.push(json.recovered)
   output.push(json.lastUpdate || json.last_update)
   output.push(json.fatality_rate || 0.01)
-  console.log('data fetched!')
+  
   return output
 }
 

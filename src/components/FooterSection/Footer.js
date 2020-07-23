@@ -8,7 +8,7 @@ class Footer extends React.Component {
   render () {
     let style = getStyle(this.context)
     return (
-      <div style={style}>
+      <div style={style} id="footer">
         <ShadowLayer/>
         <Container/>
       </div>
@@ -36,7 +36,7 @@ const getStyle = (width) => {
         backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/c/c6/Castillo_de_San_Marcos_Fort_Panorama_1.jpg)',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
-        marginTop: '20vh',
+        marginTop: '15vh',
         width: '100%',
         height: '30vh',
         borderTop: 'solid #111 1vh'

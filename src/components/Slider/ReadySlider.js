@@ -1,7 +1,7 @@
 import React from 'react' 
 import { Fade } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css'
-import { width } from '../Helpers/Helpers'
+import { Width } from '../pages/contexts'
 import { NewsContext } from '../pages/contexts'
 
 export default (props) => {
@@ -10,7 +10,7 @@ export default (props) => {
     }
     const { color, url } = props
     return (
-      <div style={{height: props.height + 'vh', width: '80%', marginLeft: '10%', marginTop: '10vh', backgroundColor: '#aaa', borderRadius: '5px'}}>
+      <div style={{height: props.height + 'vh', width: '80%', marginLeft: '10%', marginTop: '6vh', backgroundColor: '#aaa', borderRadius: '5px'}}>
         <div className="slide-container">
           <Fade {...config}>
             {props.images.map((image, index) => {
@@ -49,7 +49,7 @@ const GenerateSlides = (props) => {
     linkContainer = <div className="TextContent" style={{background: props.color}}><a href={props.url} target="blank">{props.children}</a></div>
     : linkContainer = <div className="TextContent" style={{background: props.color}}>{props.children}</div>
 
-    if(width() < 500) {
+    if(Width() < 500) {
       if(props.url !== ''){
         Container = 
         <div style={style} className="image">

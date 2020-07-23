@@ -1,4 +1,5 @@
 import React from 'react'
+import { faComment, faChartBar, faBuilding, faCompass} from '@fortawesome/free-regular-svg-icons'
 
 let factInfo = [
     {
@@ -87,8 +88,32 @@ let factInfo = [
     }
 ]
 
+let services = [{
+    point: 'Contact us', 
+    icon: faComment, 
+    text: 'Contact Key West government and administration', 
+    href: 'https://www.cityofkeywest-fl.gov/egov/apps/services/index.egov?view=detail;id=109'},
+ {
+     point: 'Agendas & Minutes', 
+     icon: faChartBar, 
+     text: 'Find out about upcoming events and meetings at Key West Florida', 
+     href: 'http://keywest.legistar.com/Calendar.aspx'
+ },
+ {
+     point: 'Parking Information', 
+     icon: faBuilding, 
+     text: 'Learn more about parking rules and pricing at Key West', 
+     href: 'https://www.cityofkeywest-fl.gov/department/index.php?structureid=18'
+ },
+ {
+     point: 'Airport', 
+     icon: faCompass, 
+     text: 'Find out about local airport', 
+     href: '#'
+ }]
+
 let twitterTags = ['COVID19', 'KeyWest', 'Florida']
 
 let navbarItems = ['Home', 'About', 'Location', 'History']
 
-export { factInfo, twitterTags, navbarItems }
+export { factInfo, twitterTags, navbarItems, services }

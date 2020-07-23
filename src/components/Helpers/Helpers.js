@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 
 const makeCancelable = (promise) => {
     let hasCanceled_ = false;
@@ -19,97 +19,84 @@ const makeCancelable = (promise) => {
 };
 
 const width = () => window.innerWidth
+const height = () => window.innerHeight
 
 const useFetch = (url, opts, func, key) => {
-    const [response, setResponse] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const [hasError, setHasError] = useState(false)
+  const controller = new AbortController()
+  const [response, setResponse] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const [message, setMessage] = useState('')
   
-    useEffect(() => {
-      setLoading(true)
-      let dataExists = getDate(key)
+  useEffect(() => {
+    setLoading(true)
+    let dataExists = getDate(key)
       
-      dataExists ? setResponse(dataExists) : 
-      fetch(url, opts)
-        .then(res => res.json())
-        .then(res => func(res))
-        .then(res => setItem(res, key))
-        .then(res => {
-          res.pop()
-          setResponse(res)
-        })
-        .catch(() => setHasError(true))
-      
-      setLoading(false)
-    }, [url])
-
-    const getDate = key => {
-      let data = localStorage.getItem(key)
-
-      if (data === null) return false
-
-      try {
-        data = data.split(',')
-        let date = new Date(data[data.length-1])
-        let now = new Date()
-        data.pop()
-        if(date.getUTCHours() !== now.getUTCHours())
-        data = false
-      } catch (error) {
-        console.log(error)
-        data = false
-      } finally {
-        return data
-      }
-    }
+    dataExists ? setResponse(dataExists) : 
+    fetch(url, Object.assign({}, opts, {signal: controller.signal}))
+      .then(res => res.json())
+      .then(res => func(res))
+      .then(res => {
+        setItem(res, key)
+        setResponse(res)
+      })
+      .catch(() => {
+        setHasError(true)
+        setMessage('Server failed')
+      })
     
-    const setItem = (value, key) => {
-        let today = new Date()
-        value.push(today)
-        localStorage.setItem(key, value)
+      let timeout
+      loading ? timeout = setTimeout(() => { 
+        controller.abort()
+        setHasError(true)
+        setMessage('Your internet connection is too slow')
+      }, 5000) : clearTimeout(timeout)
+      
+    setLoading(false)
+  }, [url])
 
-        return value
+  const getDate = key => {
+    let data = localStorage.getItem(key)
+
+    if (data === null) return false
+
+    try {
+      data = data.split(',')
+      let date = new Date(data[data.length-1])
+      let now = new Date()
+      data.pop()
+      if(date.getUTCHours() !== now.getUTCHours())
+      data = false
+    } catch (error) {
+      console.log(error)
+      data = false
+    } finally {
+      return data
     }
+  }
+    
+  const setItem = (value, key) => {
+    let today = new Date()
+    value.push(today)
+    localStorage.setItem(key, value)
+    value.pop()
+  }
   
-    return [ response, loading, hasError ]
+  return [ response, loading, hasError, message ]
 }
 
+const useSpinnerSuspense = (delay) => {
+  const [ showSpinner, setShowSpinner ] = useState(false)
 
+  useEffect(() => {
+    setTimeout(() => setShowSpinner(true), 10)
+  }, [])
 
-function useLocalStorage(key, initialValue) {
-    // State to store our value
-    // Pass initial state function to useState so logic is only executed once
-    const [storedValue, setStoredValue] = useState(() => {
-      try {
-        // Get from local storage by key
-        const item = window.localStorage.getItem(key);
-        // Parse stored json or if none return initialValue
-        return item ? JSON.parse(item) : initialValue;
-      } catch (error) {
-        // If error also return initialValue
-        console.log(error);
-        return initialValue;
-      }
-    });
-  
-    // Return a wrapped version of useState's setter function that ...
-    // ... persists the new value to localStorage.
-    const setValue = value => {
-      try {
-        // Allow value to be a function so we have same API as useState
-        const valueToStore =
-          value instanceof Function ? value(storedValue) : value;
-        // Save state
-        setStoredValue(valueToStore);
-        // Save to local storage
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      } catch (error) {
-        // A more advanced implementation would handle the error case
-        console.log(error);
-      }
-    };
-    console.log('set')
-    return [storedValue, setValue];
-  }
+  useLayoutEffect(() => {
+    showSpinner? document.getElementById('footer').style.marginTop = '15vh' : document.getElementById('footer').style.marginTop = '90vh'
+  }, [showSpinner])
 
-export { makeCancelable, width, useFetch, useLocalStorage }
+  return [showSpinner]
+}
+
+export { makeCancelable, width, height, useFetch, useSpinnerSuspense }

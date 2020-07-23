@@ -1,8 +1,8 @@
 import React from 'react'
-import { Width, Height } from '../pages/contexts'
+import { width, height } from '../Helpers/Helpers'
 
 const Video = (props) => {
-   let style = getStyle(Width(), Height())
+   let style = getStyle(width(), height())
    let content = <iframe src={props.url} style={style} allowFullScreen/>
    return content
 }

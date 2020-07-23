@@ -117,7 +117,7 @@ let dropDownMenu = {
     textAlign: 'center',
     boxShadow: '1vh 1vw 3vh',
     borderRadius: '2vh',
-    zIndex: '3'
+    zIndex: '5'
 }
 
 let dropDownItem = {

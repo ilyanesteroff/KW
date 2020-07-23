@@ -6,17 +6,18 @@ import { width } from '../Helpers/Helpers'
 import { Chapter, PS } from '../Helpers/DesignAssistants'
 import { NewsContext } from '../pages/contexts'
 import UpperContainer from './UpperContainer'
-import { useFetch } from '../Helpers/Helpers'
+import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
 
 const { link, domain, picture } = NYTimes
 
 const useSetNews = () => {
-  const controller = new AbortController()
-  const [ response, loading, hasError ] = useFetch(link, {signal: controller.signal}, retrieveNews, 'News')
+
+  const [ response, loading, hasError, message ] = useFetch(link, {}, retrieveNews, 'News')
 
   const [ content, setContent] = useState([])
   const [ images, setImages] = useState([])
   const [ url, setUrl] = useState([])
+  const [ error, setError ] = useState({hasError: false, message: ''})
   const [ newsLoaded, setNewsLoaded ] = useState(false)
 
   useEffect(() => {
@@ -32,35 +33,37 @@ const useSetNews = () => {
       })
 
       setNewsLoaded(true)
-
-      return () => {
-        controller.abort()
-      }
+    } else if (response === null && hasError) {
+      setError({hasError: hasError, message: message})
     }
   }, [response, loading])
 
-  return[{images: images, content: content, url: url}, newsLoaded]
+  return[{images: images, content: content, url: url}, newsLoaded, error]
 }
 
 const NewsData = (props) => {
-  const [ news, newsLoaded ] = useSetNews()
 
+  const [ news, newsLoaded, error ] = useSetNews()
+  const [ spin ] = useSpinnerSuspense(50)
   let output, height
-
+  
   width() < 600? height = 30: height = 60
 
-  newsLoaded ? output =
-  <NewsContext.Provider value={true}>
-    <UpperContainer>
-      <Chapter additionalStyle={{marginTop: '10vh'}}>Here are some breaking news from use and Florida</Chapter>
-    </UpperContainer>
-    <ReadySlider images={news.images} info={news.content} color={'#333333'} height={height} url={news.url}/>
-    <UpperContainer>
-      <PS>Source: New York Times</PS>
-    </UpperContainer>
-  </NewsContext.Provider>
-    : output = <Spinner/>
-    
+  if(!newsLoaded && spin) output = <Spinner/>
+  else if(error.hasError) output = <Spinner spinner={false} message={error.message}/>
+  else if (newsLoaded){
+    output = 
+    <NewsContext.Provider value={true}>
+      <UpperContainer>
+        <Chapter additionalStyle={{marginTop: '10vh'}}>Here are some breaking news from use and Florida</Chapter>
+      </UpperContainer>
+      <ReadySlider images={news.images} info={news.content} color={'#333333'} height={height} url={news.url}/>
+      <UpperContainer>
+        <PS>Source: New York Times</PS>
+      </UpperContainer>
+    </NewsContext.Provider>
+  }
+
   return <div>{output}</div>
 }
 
@@ -83,7 +86,7 @@ const getData = json => {
     image: json.multimedia[7] === undefined ? picture : domain + json.multimedia[7].url,
     url: json.web_url
   }
-  console.log('retrieved from here')
+  
   output = JSON.stringify(output).replace(/[,]/g,'$')
   return output
 } 

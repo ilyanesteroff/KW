@@ -7,7 +7,7 @@ import Footer from '../FooterSection/Footer'
 import StickyNavbar from '../Header/StickyNavbar'
 import UpperSection from '../Header/UpperSection'
 import { WidthContext } from './contexts'
-import { faVirus, faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import { faVirus, faNewspaper, faCloud } from '@fortawesome/free-solid-svg-icons'
 import UpperOption from '../Header/UpperOption'
 import TwitterTags  from '../Header/TwitterTags'
 import { twitterTags } from '../MainSection/info'
@@ -15,6 +15,7 @@ import { useLocation } from 'react-router-dom'
 import Place from '../MainSection/Place'
 import { NewsData } from '../MainSection/News'
 import CovidData from '../MainSection/Covid'
+import WeatherData from '../MainSection/Weather'
 
 class Homepage extends React.Component {
   render(){
@@ -108,6 +109,7 @@ const Twitts = (props) => {
       <UpperSection>
         <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
+        <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
       </UpperSection>
       <TwitterTags tags={twitterTags.filter(twit => twit !== twitt)}/>
       <Footer/>
@@ -123,6 +125,7 @@ const WeatherPage = () => {
         <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
       </UpperSection>
+      <WeatherData/>
       <Footer/>
     </>
   )
@@ -136,6 +139,7 @@ class Covid extends React.Component{
         <StickyNavbar fixed={true}/>
         <UpperSection>
           <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
+          <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
         </UpperSection>
         <CovidData/>
         <Footer/>
@@ -151,6 +155,7 @@ class News extends React.Component{
         <StickyNavbar fixed={true}/>
         <UpperSection>
           <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
+          <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
         </UpperSection>
         <NewsData/>
         <Footer/>

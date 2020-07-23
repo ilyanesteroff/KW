@@ -87,7 +87,7 @@ a {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 490px) {
   .each-fade{
     max-height: 35vh;
   }
@@ -121,22 +121,29 @@ th {
   font-size: 1.2rem;
 }
 
-td{
+td {
   border: solid 2px #333333;
   background-color: #33aaff;
   padding: 2%;
   font-size: 1rem;
   font-weight: 700;
   min-width: 10vw;
+  transition: all 1s;
+}
+
+@media only screen and (min-width: 1100px) {
+  td:hover {
+    background-color: #9999ff;
+  }
 }
 
 @media only screen and (max-width: 900px){
   th{
-    padding: 0.5%;
+    padding: 2%;
     font-size: 0.9rem;
   }
   td{
-    padding: 0.5%;
+    padding: 2%;
     font-size: 0.7rem;
   }
 }

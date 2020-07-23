@@ -1,11 +1,11 @@
 import React from 'react'
-import { Width, Height } from '../pages/contexts'
+import { width, height } from '../Helpers/Helpers'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faTwitter, faYoutube, faInstagram } from '@fortawesome/free-brands-svg-icons'
 const os = require('os')
 
 const SocialMedias = () => {
-  let styles = getStyles(Width(), Height())
+  let styles = getStyles(width(), height())
   let elementsInfo = [
       {
          icon: faFacebook, 
@@ -81,13 +81,13 @@ const getStyles = (width, height) => {
         }
     }
     if(width > 950) {
-        output.main.width = '50%'
+        output.main.width = '60%'
         output.main.height = '10%'
         output.link.fontSize = '3rem'
         output.link.marginRight = '6%'
     } else {
         output.main.top = '15%'
-        output.main.width = '70%'
+        output.main.width = '90%'
         output.link.fontSize = '2rem'
         output.link.marginRight = '4%'
     }
