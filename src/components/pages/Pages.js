@@ -13,7 +13,7 @@ import TwitterTags  from '../Header/TwitterTags'
 import { twitterTags } from '../MainSection/info'
 import { useLocation } from 'react-router-dom'
 import Place from '../MainSection/Place'
-import NewsData from '../MainSection/News'
+import { NewsData } from '../MainSection/News'
 import CovidData from '../MainSection/Covid'
 
 class Homepage extends React.Component {

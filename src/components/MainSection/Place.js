@@ -3,19 +3,17 @@ import { Chapter, TextArea, Link } from '../Helpers/DesignAssistants'
 import { Sectionstyle } from '../MainSection/styles'
 import UpperContainer from '../MainSection/UpperContainer'
 import ReadySlider from '../Slider/ReadySlider'
+import { width } from '../Helpers/Helpers'
 
 export default class extends React.Component{
     constructor(props){
         super(props)
-        this.width = this.width.bind(this)
     }
-
-    width = () => window.innerWidth
 
     render() {
         const { info } = this.props
         let height 
-        this.width() > 625 ? height = 60 : height = 40
+        width() > 625 ? height = 60 : height = 40
         return (
             <div style={Sectionstyle}>
               <UpperContainer>

@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React from 'react'
 import { CovidLinks } from './refs/links'
 import Spinner from '../MainSection/Spinner'
-import { Chapter } from '../Helpers/DesignAssistants'
-
-const Width = () => window.innerWidth
-
+import { Chapter, PS } from '../Helpers/DesignAssistants'
+import { width } from '../Helpers/Helpers'
+import { useFetch, useLocalStorage } from '../Helpers/Helpers'
 export default (props) => {
 
-  const [response, loading, hasError] = useFetch(CovidLinks[0].link, CovidLinks[0].headers, extractCovidData)
-  const [response1, loading1, hasError1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers, extractCovidData)
+  const [response, loading, hasError] = useFetch(CovidLinks[0].link, CovidLinks[0].headers, extractCovidData, 'Florida')
+  const [response1, loading1, hasError1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers, extractCovidData, 'USA')
 
   let style = {
     position: 'relative',
-    marginLeft: Width() > 1000 ? '10%' : '2.5%',
-    width: Width() > 1000 ? '80%' : '95%',
+    marginLeft: width() > 1000 ? '10%' : '2.5%',
+    width: width() > 1000 ? '80%' : '95%',
     marginTop: '15vh',
     textAlign: 'center'
   }
@@ -23,30 +22,12 @@ export default (props) => {
   response !== null && response1 !== null ? 
   output = 
     <div style={style}>
-      <Chapter width={Width()}>Covid-19 Statistics</Chapter>
+      <Chapter>Covid-19 Statistics in USA and Florida</Chapter>
       {generateTable({local: response, global: response1})}
+      <PS>Source: </PS>
     </div> : output = <Spinner/>
   : output = <Spinner spinner={false}/>
   return output 
-}
-
-const useFetch = (url, opts, func) => {
-  const [response, setResponse] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [hasError, setHasError] = useState(false)
-
-  useEffect(() => {
-    setLoading(true)
-    fetch(url, opts)
-      .then(res => res.json())
-      .then(res => func(res))
-      .then(res => setResponse(res))
-      .catch(() => setHasError(true))
-    
-    setLoading(false)
-  }, [url])
-
-  return [ response, loading, hasError]
 }
 
 const extractCovidData = (json) => {
@@ -61,6 +42,7 @@ const extractCovidData = (json) => {
   output.push(json.recovered)
   output.push(json.lastUpdate || json.last_update)
   output.push(json.fatality_rate || 0.01)
+  console.log('data fetched!')
   return output
 }
 
@@ -69,7 +51,7 @@ const generateTable = (data) => {
   data.global = ['Usa', ...data.global]
   let items = ['', 'Confirmed Cases', 'Critical', 'Deaths', 'Recovered', 'Last Update', 'Fatality Rate']
   let head, content
-  if(Width() > 1000) { 
+  if(width() > 1000) { 
     head = <>
       {
         items.map((item, index) => <th key={index}>{item}</th>)
@@ -107,7 +89,7 @@ const Table = ({head, content}) => {
 
 const Cols = ({data}) => {
     let output 
-    Width() > 1000 ? output = <>{data.map(item => <td key={item}>{item}</td>)}</> :
+    width() > 1000 ? output = <>{data.map(item => <td key={item}>{item}</td>)}</> :
     output = <><th>{data[0]}</th><td>{data[1]}</td><td>{data[2]}</td></>
     return(
         <tr>

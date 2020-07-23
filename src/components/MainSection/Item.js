@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Width } from '../pages/contexts'
+import { width } from '../Helpers/Helpers'
 
 const Item = (props) => {
     const styles = getStyles()
@@ -18,7 +18,7 @@ const Item = (props) => {
 }
 
 const Topic = (props) => {
-  if(Width() > 750) return <p style={props.style}>{props.text}</p>
+  if(width() > 750) return <p style={props.style}>{props.text}</p>
   else return ''
 }
 
@@ -52,8 +52,8 @@ const getStyles = () => {
       width: '25%'
     }
   }
-  if(Width() > 1000) return output
-  else if (Width() < 768){
+  if(width() > 1000) return output
+  else if (width() < 768){
     output.iconStyle.fontSize = '2.2rem'
     output.headlineStyle.display = 'inline-block'
     output.headlineStyle.fontSize = '1.5rem'
@@ -61,7 +61,7 @@ const getStyles = () => {
     output.iconStyle.margin = '0 5% 0 0'
     output.mainStyle.width = 'auto'
   }
-  if(Width() < 306) {
+  if(width() < 306) {
     output.iconStyle.fontSize = '1.8rem'
     output.headlineStyle.fontSize = '1.2rem'
     output.mainStyle.margin = '0 2% 0 0'

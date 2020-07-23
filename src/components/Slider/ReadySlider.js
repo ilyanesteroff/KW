@@ -10,7 +10,7 @@ export default (props) => {
     }
     const { color, url } = props
     return (
-      <div style={{height: props.height + 'vh', width: '80%', marginLeft: '10%', marginTop: '5vh', backgroundColor: '#aaa', borderRadius: '5px'}}>
+      <div style={{height: props.height + 'vh', width: '80%', marginLeft: '10%', marginTop: '10vh', backgroundColor: '#aaa', borderRadius: '5px'}}>
         <div className="slide-container">
           <Fade {...config}>
             {props.images.map((image, index) => {

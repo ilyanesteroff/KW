@@ -1,5 +1,6 @@
 import React from 'react'
 import { width } from '../Helpers/Helpers'
+import { NewsContext } from '../pages/contexts'
 
 const Chapter = props => {
     let chapterStyle = {
@@ -34,6 +35,20 @@ const Link = props => {
     return <a style={style} href={props.href}>{props.children}</a>
 }
 
+const PS = props => {
+    const News = () => React.useContext(NewsContext)
+    let style = {
+        color: '#444',
+        fontFamily: News() ? 'Grenze Gotisch, cursive' : 'Oxygen, sans-serif',
+        color: '#111133',
+        fontSize: width() > 750? '2rem': '1.5rem',
+        marginTop: '5vh'
+    }
+    if (props.additionalStyle !== undefined)
+      style = Object.assign({}, style, props.additionalStyle)
+    return <h3 style={style}>{props.children}</h3>
+}
+
 export {
-    Chapter, TextArea, Link
+    Chapter, TextArea, Link, PS
 }

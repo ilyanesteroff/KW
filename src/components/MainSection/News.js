@@ -1,76 +1,91 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {NYTimes} from './refs/links'
 import ReadySlider from '../Slider/ReadySlider'
 import Spinner from '../MainSection/Spinner'
 import { width } from '../Helpers/Helpers'
+import { Chapter, PS } from '../Helpers/DesignAssistants'
 import { NewsContext } from '../pages/contexts'
+import UpperContainer from './UpperContainer'
+import { useFetch } from '../Helpers/Helpers'
 
-export default class extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      images: [],
-      info: [], 
-      urls: [],
-      colors: []
-    }
-  }
+const { link, domain, picture } = NYTimes
 
-  controller = new AbortController()
+const useSetNews = () => {
+  const controller = new AbortController()
+  const [ response, loading, hasError ] = useFetch(link, {signal: controller.signal}, retrieveNews, 'News')
 
-  async componentDidMount() {
-    this.setState({
-      isMounted: true
-    })
-    const { link, domain, picture } = NYTimes
+  const [ content, setContent] = useState([])
+  const [ images, setImages] = useState([])
+  const [ url, setUrl] = useState([])
+  const [ newsLoaded, setNewsLoaded ] = useState(false)
 
-    const getData = (json, index) => {
-      let output = {
-        headline: <h2 key={index + 'h2'}>{json.headline.main}</h2>,
-        content: <p key={index + 'p'}>{json.abstract}</p>,
-        image: json.multimedia[7] === undefined ? picture : domain + json.multimedia[7].url,
-        url: json.web_url
+  useEffect(() => {
+    if (response !== null) {
+
+      response.map((item) => JSON.parse(item.replace(/[$^]/g,','))).forEach((item, index) => {
+        let _content 
+        width() < 1000? _content = <h2 key={index + 'h2'}>{item.headline}</h2> : 
+          _content = [<h2 key={index + 'h2'}>{item.headline}</h2>, <p key={index+'p'}>{item.content}</p>]
+        setContent(content => [...content, _content])
+        setImages(images => [...images, item.image])
+        setUrl(url => [...url, item.url])
+      })
+
+      setNewsLoaded(true)
+
+      return () => {
+        controller.abort()
       }
-      let info 
-      width() < 1000? info = output.headline : info = [output.headline, output.content]
-      this.setState({
-        images: [...this.state.images, output.image],
-        info: [...this.state.info, info],
-        urls: [...this.state.urls, output.url]
-      })
-    } 
-
-    try {
-      const res = await fetch(link, {signal: this.controller.signal})
-      const res_1 = await res.json()
-      const res_2 = res_1.response.docs
-      return res_2.forEach((item, index_1) => {
-        return getData(item, index_1)
-      })
     }
-    catch (err) {
-      return console.log(err)
-    }
-  }
+  }, [response, loading])
 
-  componentWillUnmount() {
-    this.controller.abort()
-  }
-
-
-  render() {
-    let { images, info, urls } = this.state
-    let output, height
-    width() < 600? height = 30: height = 60
-    images.length > 0 ? output =
-    <NewsContext.Provider value={true}>
-      <ReadySlider images={images} info={info} color={'#333333'} height={height} url={urls}/>
-    </NewsContext.Provider>
-      : output = <Spinner/>
-    return (
-      <div>
-        { output }
-      </div> 
-    )
-  }
+  return[{images: images, content: content, url: url}, newsLoaded]
 }
+
+const NewsData = (props) => {
+  const [ news, newsLoaded ] = useSetNews()
+
+  let output, height
+
+  width() < 600? height = 30: height = 60
+
+  newsLoaded ? output =
+  <NewsContext.Provider value={true}>
+    <UpperContainer>
+      <Chapter additionalStyle={{marginTop: '10vh'}}>Here are some breaking news from use and Florida</Chapter>
+    </UpperContainer>
+    <ReadySlider images={news.images} info={news.content} color={'#333333'} height={height} url={news.url}/>
+    <UpperContainer>
+      <PS>Source: New York Times</PS>
+    </UpperContainer>
+  </NewsContext.Provider>
+    : output = <Spinner/>
+    
+  return <div>{output}</div>
+}
+
+
+
+
+const retrieveNews = (json) => {
+  let output = []
+  json = json.response.docs
+  json.forEach((item, index) => {
+    output.push(getData(item, index))
+  })
+  return output
+} 
+
+const getData = json => {
+  let output = {
+    headline: json.headline.main.replace(/[,]/g,'^'),
+    content: json.abstract.replace(/[,]/g,'^'),
+    image: json.multimedia[7] === undefined ? picture : domain + json.multimedia[7].url,
+    url: json.web_url
+  }
+  console.log('retrieved from here')
+  output = JSON.stringify(output).replace(/[,]/g,'$')
+  return output
+} 
+
+export { NewsData }
