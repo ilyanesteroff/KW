@@ -1,13 +1,13 @@
-import { width } from '../Helpers/Helpers'
+import { Width } from '../pages/contexts'
 
 const generateContainerStyle = (left = 0.125, mediaLeft = 0.05) => {
     let _left, _width
-  if(width() > 800){
-      _left = (width() * left) * 100 / width()
-      _width = (width() * (1 - (left * 2))) * 100 / width()
+  if(Width() > 800){
+      _left = (Width() * left) * 100 / Width()
+      _width = (Width() * (1 - (left * 2))) * 100 / Width()
   } else {
-      _left = (width() * mediaLeft) * 100 / width()
-      _width = (width() * (1 - (mediaLeft * 2))) * 100 / width()
+      _left = (Width() * mediaLeft) * 100 / Width()
+      _width = (Width() * (1 - (mediaLeft * 2))) * 100 / Width()
   }
   let output = {
       position: 'relative',
@@ -24,12 +24,15 @@ const Sectionstyle = {
     marginBottom: '6rem'
 }
 
-let SSS = {
+let SSS = () => {
+    let output = {
     position: 'relative',
-    marginLeft: width() > 1000 ? '10%' : '2.5%',
-    width: width() > 1000 ? '80%' : '95%',
+    marginLeft: Width() > 1000 ? '10%' : '2.5%',
+    width: Width() > 1000 ? '80%' : '95%',
     marginTop: '7.5vh',
     textAlign: 'center'
   }
+  return output
+}
 
 export { generateContainerStyle, Sectionstyle, SSS }

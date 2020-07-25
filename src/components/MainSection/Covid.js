@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { CovidLinks } from './refs/links'
 import Spinner from '../MainSection/Spinner'
-import { Chapter, PS } from '../Helpers/DesignAssistants'
+import { Chapter, PS, TextArea, Link } from '../Helpers/DesignAssistants'
 import { width } from '../Helpers/Helpers'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
 import { SSS } from '../MainSection//styles'
@@ -16,9 +16,13 @@ export default (props) => {
 
   if (response1 !== null &&  response !== null && !hasError ){
     output = 
-    <div style={SSS}>
+    <div style={SSS()}>
       <Chapter>Covid-19 Statistics in USA and Florida</Chapter>
-      {generateTable({local: response, global: response1})}
+      <div style={{backgroundColor: '#9999ee', boxShadow: '0 0 10px'}}>
+        <Chapter additionalStyle={{textAlign: 'center', marginTop: '10vh', paddingTop: '2%'}}>About Covid-19</Chapter>
+        <TextArea additionalStyle={{textAlign: 'left', padding: '0 2%', color: '#333', color: '#222'}}>Covid-19 is an infectious disease caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). It was first identified in December 2019 in Wuhan, Hubei, China, and has resulted in an ongoing pandemic. The first confirmed case has been traced back to 17 November 2019 in Hubei. Common symptoms include fever, cough, fatigue, shortness of breath, and loss of smell and taste. <a href="https://en.wikipedia.org/wiki/Coronavirus_disease_2019">Learn more...</a></TextArea>
+        {generateTable({local: response, global: response1})}
+      </div>
       <PS>Source: </PS>
     </div>
   }
@@ -72,7 +76,7 @@ const generateTable = (data) => {
 
 const Table = ({head, content}) => {
   return (
-    <table className="Covid" style={{boxShadow: '0 0 10px'}}>
+    <table className="Covid">
       <thead>
         <tr>
           {head}

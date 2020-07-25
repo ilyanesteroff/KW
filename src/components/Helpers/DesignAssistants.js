@@ -21,6 +21,8 @@ const TextArea = props => {
         fontFamily: 'Josefin Sans, sans-serif',
         fontSize: width() > 750 ? '1.4rem': '1.1rem'
     }
+    if (props.additionalStyle !== undefined)
+      paragraphStyle = Object.assign({}, paragraphStyle, props.additionalStyle)
     return <p style={paragraphStyle}>{props.children}</p>
 }
 
@@ -32,6 +34,8 @@ const Link = props => {
         textDecoration: 'none',
         lineHeight: '8vh'
     }
+    if (props.additionalStyle !== undefined)
+      style = Object.assign({}, style, props.additionalStyle)
     return <a style={style} href={props.href}>{props.children}</a>
 }
 

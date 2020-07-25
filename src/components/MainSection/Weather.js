@@ -17,7 +17,7 @@ export default () => {
         output = 
         <>
           <Chapter additionalStyle={{textAlign: 'center', marginTop: '10vh'}}>The weather in Key West now</Chapter>
-          <div style={Object.assign({}, SSS, {backgroundColor: '#9999ee', boxShadow: '0 0 10px'})}>
+          <div style={Object.assign({}, SSS(), {backgroundColor: '#9999ee', boxShadow: '0 0 10px'})}>
             <Weather data={JSON.parse(response[0].replace(/[$]/g,','))}/>
           </div>
         </>

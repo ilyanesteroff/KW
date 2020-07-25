@@ -45,6 +45,10 @@ const NewsData = (props) => {
 
   const [ news, newsLoaded, error ] = useSetNews()
   const [ spin ] = useSpinnerSuspense(50)
+  let colors = []
+  for (let i = 0; i < news.images.length; i++) {
+    colors.push('#0000'+i.toString() + i.toString())
+  }
   let output, height
   
   width() < 600? height = 30: height = 60
@@ -57,7 +61,7 @@ const NewsData = (props) => {
       <UpperContainer>
         <Chapter additionalStyle={{marginTop: '10vh'}}>Here are some breaking news from use and Florida</Chapter>
       </UpperContainer>
-      <ReadySlider images={news.images} info={news.content} color={'#333333'} height={height} url={news.url} shadow/>
+      <ReadySlider images={news.images} info={news.content} color={colors} height={height} url={news.url} shadow/>
       <UpperContainer>
         <PS>Source: New York Times</PS>
       </UpperContainer>

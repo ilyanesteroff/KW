@@ -88,8 +88,8 @@ const getStyles = (width, height) => {
     } else {
         output.main.top = '15%'
         output.main.width = '90%'
-        output.link.fontSize = '2rem'
-        output.link.marginRight = '4%'
+        output.link.fontSize = '1.5rem'
+        output.link.marginRight = '3%'
     }
     return output
 }
