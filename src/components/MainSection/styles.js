@@ -28,7 +28,7 @@ let SSS = {
     position: 'relative',
     marginLeft: width() > 1000 ? '10%' : '2.5%',
     width: width() > 1000 ? '80%' : '95%',
-    marginTop: '15vh',
+    marginTop: '7.5vh',
     textAlign: 'center'
   }
 

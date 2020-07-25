@@ -57,7 +57,7 @@ const NewsData = (props) => {
       <UpperContainer>
         <Chapter additionalStyle={{marginTop: '10vh'}}>Here are some breaking news from use and Florida</Chapter>
       </UpperContainer>
-      <ReadySlider images={news.images} info={news.content} color={'#333333'} height={height} url={news.url}/>
+      <ReadySlider images={news.images} info={news.content} color={'#333333'} height={height} url={news.url} shadow/>
       <UpperContainer>
         <PS>Source: New York Times</PS>
       </UpperContainer>

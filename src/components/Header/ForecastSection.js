@@ -9,7 +9,7 @@ class ForecastSection extends React.Component{
     render() {
         return(
             <div style={forecastSection}>
-                <h4>{this.props.option}</h4>
+                <h4>{this.props.option.toUpperCase()}</h4>
                 <h3 style={{fontSize: '3vh'}}>{this.props.result}</h3>
             </div>
         )

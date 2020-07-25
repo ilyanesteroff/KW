@@ -6,7 +6,8 @@ import { divStyle, item, iconStyle } from './styles'
 class LocalTime extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {date: new Date()};
+        this.getTime = this.getTime.bind(this)
+        this.state = {date: this.getTime()}
       }
     
       componentDidMount() {
@@ -22,8 +23,14 @@ class LocalTime extends React.Component {
 
       tick() {
         this.setState({
-          date: new Date()
+          date: this.getTime()
         });
+      }
+
+      getTime = () => {
+        let date = new Date();
+        let utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+        return new Date(utc + (3600000*(-4)))
       }
     
       render() {

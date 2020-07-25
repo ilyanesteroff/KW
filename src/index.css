@@ -111,23 +111,27 @@ table{
   width: 100%;
   text-align: center;
   margin-top: 5vh;
+  table-layout: fixed;
+  word-wrap: break-word;
 }
 
 th {
-  border: solid 2px #333333;
-  padding: 2%;
+  border: solid 2px #444;
+  padding: 2% 0.5%;
   background-color: #113377;
   color: #ddd;
-  font-size: 1.2rem;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
 td {
-  border: solid 2px #333333;
+  border: solid 2px #444;
   background-color: #33aaff;
-  padding: 2%;
+  padding: 2% 0.2%;
   font-size: 1rem;
   font-weight: 700;
   min-width: 10vw;
+  text-align: center;
   transition: all 1s;
 }
 

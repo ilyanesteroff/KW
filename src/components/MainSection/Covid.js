@@ -72,7 +72,7 @@ const generateTable = (data) => {
 
 const Table = ({head, content}) => {
   return (
-    <table>
+    <table className="Covid" style={{boxShadow: '0 0 10px'}}>
       <thead>
         <tr>
           {head}
