@@ -18,15 +18,15 @@ const makeCancelable = (promise) => {
     };
 };
 
-const width = () => window.innerWidth
+let width = () => window.innerWidth
+document.addEventListener('resize', width)
 const height = () => window.innerHeight
 
 const useFetch = (url, opts, func, key) => {
   const controller = new AbortController()
   const [response, setResponse] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [hasError, setHasError] = useState(false)
-  const [message, setMessage] = useState('')
+  const [error, setError] = useState({hasError: false, message: ''})
   
   useEffect(() => {
     setLoading(true)
@@ -41,15 +41,19 @@ const useFetch = (url, opts, func, key) => {
         setResponse(res)
       })
       .catch(() => {
-        setHasError(true)
-        setMessage('Server failed')
+        setError({
+          hasError: true,
+          message: 'Server failed'
+        })
       })
     
       let timeout
       loading ? timeout = setTimeout(() => { 
         controller.abort()
-        setHasError(true)
-        setMessage('Your internet connection is too slow')
+        setError({
+          hasError: true,
+          message: 'Your internet connection is too slow'
+        })
       }, 5000) : clearTimeout(timeout)
       
     setLoading(false)
@@ -82,7 +86,7 @@ const useFetch = (url, opts, func, key) => {
     value.pop()
   }
   
-  return [ response, loading, hasError, message ]
+  return [ response, loading, error ]
 }
 
 const useSpinnerSuspense = (delay) => {

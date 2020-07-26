@@ -8,12 +8,12 @@ import { defineIcon, extractWeather, WeatherData } from './WeatherContent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default () => {
-    const [ response, loading, hasError, message ] = useFetch(weather.url, weather.headers, extractWeather, 'Weather')
+    const [ response, loading, error ] = useFetch(weather.url, weather.headers, extractWeather, 'Weather')
     const [ spin ] = useSpinnerSuspense(7)
     
     let output
 
-    if (response !== null && !hasError ){
+    if (response !== null && !error.hasError ){
         output = 
         <>
           <Chapter additionalStyle={{textAlign: 'center', marginTop: '10vh'}}>The weather in Key West now</Chapter>
@@ -22,7 +22,7 @@ export default () => {
           </div>
         </>
     }
-    else if(hasError) output = <Spinner spinner={false} message={message}/>
+    else if(error.hasError) output = <Spinner spinner={false} message={error.message}/>
     else if (spin) output = <Spinner/>
     else output = <></>
     

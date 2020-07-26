@@ -12,12 +12,11 @@ const { link, domain, picture } = NYTimes
 
 const useSetNews = () => {
 
-  const [ response, loading, hasError, message ] = useFetch(link, {}, retrieveNews, 'News')
+  const [ response, loading, error ] = useFetch(link, {}, retrieveNews, 'News')
 
   const [ content, setContent] = useState([])
   const [ images, setImages] = useState([])
   const [ url, setUrl] = useState([])
-  const [ error, setError ] = useState({hasError: false, message: ''})
   const [ newsLoaded, setNewsLoaded ] = useState(false)
 
   useEffect(() => {
@@ -33,9 +32,7 @@ const useSetNews = () => {
       })
 
       setNewsLoaded(true)
-    } else if (response === null && hasError) {
-      setError({hasError: hasError, message: message})
-    }
+    } 
   }, [response, loading])
 
   return[{images: images, content: content, url: url}, newsLoaded, error]
@@ -47,7 +44,7 @@ const NewsData = (props) => {
   const [ spin ] = useSpinnerSuspense(50)
   let colors = []
   for (let i = 0; i < news.images.length; i++) {
-    colors.push('#0000'+i.toString() + i.toString())
+    colors.push(`linear-gradient(#212143, #0000${i.toString()}${i.toString()})`)
   }
   let output, height
   

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import { CovidLinks } from './refs/links'
 import Spinner from '../MainSection/Spinner'
 import { Chapter, PS, TextArea, Link } from '../Helpers/DesignAssistants'
@@ -8,25 +8,25 @@ import { SSS } from '../MainSection//styles'
 
 export default (props) => {
 
-  const [response, loading, hasError, message] = useFetch(CovidLinks[0].link, CovidLinks[0].headers, extractCovidData, 'Florida')
-  const [response1, loading1, hasError1, message1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers, extractCovidData, 'USA')
+  const [response, loading, error] = useFetch(CovidLinks[0].link, CovidLinks[0].headers, extractCovidData, 'Florida')
+  const [response1, loading1, error1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers, extractCovidData, 'USA')
   const [spin] = useSpinnerSuspense(10)
 
   let output
 
-  if (response1 !== null &&  response !== null && !hasError ){
+  if (response1 !== null &&  response !== null && !error.hasError && !error1.hasError){
     output = 
     <div style={SSS()}>
       <Chapter>Covid-19 Statistics in USA and Florida</Chapter>
       <div style={{backgroundColor: '#9999ee', boxShadow: '0 0 10px'}}>
         <Chapter additionalStyle={{textAlign: 'center', marginTop: '10vh', paddingTop: '2%'}}>About Covid-19</Chapter>
-        <TextArea additionalStyle={{textAlign: 'left', padding: '0 2%', color: '#333', color: '#222'}}>Covid-19 is an infectious disease caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). It was first identified in December 2019 in Wuhan, Hubei, China, and has resulted in an ongoing pandemic. The first confirmed case has been traced back to 17 November 2019 in Hubei. Common symptoms include fever, cough, fatigue, shortness of breath, and loss of smell and taste. <a href="https://en.wikipedia.org/wiki/Coronavirus_disease_2019">Learn more...</a></TextArea>
+        <TextArea additionalStyle={{textAlign: 'left', padding: '0 2.5%', color: '#222'}}>Covid-19 is an infectious disease caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). It was first identified in December 2019 in Wuhan, Hubei, China, and has resulted in an ongoing pandemic. The first confirmed case has been traced back to 17 November 2019 in Hubei. Common symptoms include fever, cough, fatigue, shortness of breath, and loss of smell and taste. <a href="https://en.wikipedia.org/wiki/Coronavirus_disease_2019" style={{color: '#333'}}>Learn more...</a></TextArea>
         {generateTable({local: response, global: response1})}
       </div>
-      <PS>Source: </PS>
+      <PS>Source: Rapid API Covid-19 API</PS>
     </div>
   }
-  else if(hasError || hasError1) output = <Spinner spinner={false} message={hasError1? message1 : message}/>
+  else if(error.hasError || error1.hasError) output = <Spinner spinner={false} message={error1.hasError? error1.message : error.message}/>
   else if (spin) output = <Spinner/>
 
   return <>{output}</>

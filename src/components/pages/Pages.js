@@ -6,7 +6,6 @@ import Facts from '../MainSection/Facts'
 import Footer from '../FooterSection/Footer'
 import StickyNavbar from '../Header/StickyNavbar'
 import UpperSection from '../Header/UpperSection'
-import { WidthContext } from './contexts'
 import { faVirus, faNewspaper, faCloud } from '@fortawesome/free-solid-svg-icons'
 import UpperOption from '../Header/UpperOption'
 import TwitterTags  from '../Header/TwitterTags'
@@ -16,6 +15,8 @@ import Place from '../MainSection/Place'
 import { NewsData } from '../MainSection/News'
 import CovidData from '../MainSection/Covid'
 import WeatherData from '../MainSection/Weather'
+import Twitter from '../MainSection/Twitter'
+import About from '../MainSection/About'
 
 class Homepage extends React.Component {
   render(){
@@ -36,6 +37,7 @@ class AboutPage extends React.Component{
     return(
       <>
         <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/e/e2/Brickell_skyline_2012.jpg)'}/>
+        <About/>
         <Footer/>
       </>
     )
@@ -112,6 +114,7 @@ const Twitts = (props) => {
         <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
       </UpperSection>
       <TwitterTags tags={twitterTags.filter(twit => twit !== twitt)}/>
+      <Twitter/>
       <Footer/>
     </>
   )
@@ -132,7 +135,7 @@ const WeatherPage = () => {
 }
 
 class Covid extends React.Component{
-  static contextType = WidthContext
+  //static contextType = WidthContext
   render() {
     return(
       <>

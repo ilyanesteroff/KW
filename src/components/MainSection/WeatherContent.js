@@ -2,7 +2,6 @@ import React from 'react'
 import { faSun, faCloud, faCloudSun, 
     faCloudRain, faCloudSunRain, faMoon, 
     faCloudMoonRain, faCloudMoon, faWind } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Height, Width } from '../pages/contexts' 
 
 const WeatherData = (props) => {
@@ -66,6 +65,9 @@ const defineIcon = (type, forPage) => {
           output.icon = faCloudMoonRain
           output.style.color = '#aaaaff'
           return output
+        case ('scattered clouds') :
+          output.icon = faCloud
+          return output
         default : 
           output.icon = faWind
           return output
@@ -88,6 +90,9 @@ const defineIcon = (type, forPage) => {
           output.icon = faCloudSunRain
           output.style.color = '#4444ff'
           return output
+        case ('scattered clouds') :
+          output.icon = faCloud
+          return output
         default : 
           output.icon = faWind
           return output
@@ -104,7 +109,7 @@ const extractWeather = json => {
       pressure: json.main.pressure + ' Pa',
       humidity: json.main.humidity + ' %',
       weather: json.weather[0].description,
-      wind_speed: json.wind.speed / 1.6 + ' mph' 
+      wind_speed: (json.wind.speed / 1.6).toFixed(2) + ' mph' 
     }
     
     output = JSON.stringify(output).replace(/[,]/g,'$')

@@ -139,6 +139,9 @@ td {
   td:hover {
     background-color: #9999ff;
   }
+  .tabLinks:hover:not(.activeTabLink) {
+    background-color: #aaaaff;
+  }
 }
 
 @media only screen and (max-width: 900px){
@@ -163,4 +166,24 @@ td {
   to {
       transform:rotate(360deg);
   }
+}
+
+.tab {
+  width: 100%;
+  background-color: #bbb;
+  text-align: left;
+}
+
+.tabLinks {
+  border: none;
+  padding: 1% 2%;
+  font-family: Nunito, sans-serif;
+  font-weight: 700;
+  background-color: transparent;
+  font-size: 3vh;
+}
+
+.activeTabLink {
+  background-color: #2222ee;
+  outline: none;
 }

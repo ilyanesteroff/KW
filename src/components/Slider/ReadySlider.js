@@ -6,10 +6,9 @@ import { NewsContext } from '../pages/contexts'
 
 export default (props) => {
     let config = {
-        indicators: true
+      indicators: true
     }
     const { color, url } = props
-    console.log(color[0])
     return (
       <div style={{height: props.height + 'vh', width: '80%', 
        marginLeft: '10%', marginTop: '6vh', backgroundColor: '#aaa', 
@@ -20,7 +19,7 @@ export default (props) => {
               const properties ={
                 url: url !== undefined? url[0] : '',
                 height: props.height,
-                color: color[index] || color,
+                color: typeof(color)? color : color[index],
                 isOdd: index % 2 === 0,
                 image: image,
                 key: index

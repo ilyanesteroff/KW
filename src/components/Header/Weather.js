@@ -9,11 +9,11 @@ import { Link } from 'react-router-dom'
 import { Chapter } from '../Helpers/DesignAssistants'
 
 export default () => {
-  let [ response, loading, hasError, message ] = useFetch(weather.url, weather.headers, extractWeather, 'Weather')
+  let [ response, loading, error ] = useFetch(weather.url, weather.headers, extractWeather, 'Weather')
     
   let output
 
-  if (response !== null && !hasError ){
+  if (response !== null && !error.hasError ){
     response = JSON.parse(response[0].replace(/[$]/g,','))
     let icon = defineIcon(response.weather, false)
     output = 
@@ -21,11 +21,11 @@ export default () => {
       <li><FontAwesomeIcon icon={icon.icon} style={Object.assign({}, weatherIconStyle, icon.style)}/></li>
       <li><WeatherForecast type={response.weather} temps={{max: response.max_temperature, min: response.min_temperature, temp: response.temperature}}/></li>
     </>
-  } else if (hasError) {
+  } else if (error.hasError) {
     output = <Chapter additionalStyle={{color: '#ddd', fontSize: '1rem'}}>Cannot load weather</Chapter>
   }
 
-  return(
+  return (
     <Link to="/weather">
       <ul style={Weather}>
         {output}

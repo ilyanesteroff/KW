@@ -38,7 +38,7 @@ let twitterStyle = {
 }
  
 let upperHeader = {
-    backgroundColor: '#332288',
+    background: 'linear-gradient(#332288, #110044)',
     padding: '0.9vh',
     paddingTop: '0.8vh',
     paddingBottom: '1vh',
@@ -97,8 +97,9 @@ let weatherIconStyle ={
 }
 
 let forecastSection = {
-    marginLeft: '2vh',
-    color: 'white'
+    padding: '0 10px',
+    color: 'white',
+    borderRight: 'solid 2px #fafafa'
 }
 
 let hiddenNavbarIcon = {
