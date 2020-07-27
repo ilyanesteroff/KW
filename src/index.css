@@ -187,3 +187,9 @@ td {
   background-color: #2222ee;
   outline: none;
 }
+
+.aboutContent {
+  width: 100%;
+  padding: 8vh 4vh;
+  background-color: #fbfbfb;
+}
