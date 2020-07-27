@@ -125,7 +125,7 @@ let dropDownItem = {
     color: '#aaaaaa',
     padding: '2rem 6rem',
     letterSpacing: '0.1vw',
-    zIndex: '10'
+    zIndex: '3'
 }
 
 let link = {
