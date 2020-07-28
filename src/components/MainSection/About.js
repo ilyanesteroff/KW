@@ -11,9 +11,10 @@ export default () => {
   useLayoutEffect(() => {
     current === 'KeyWest' ? setAboutContent(<AboutKeyWest/>) : setAboutContent(<AboutWebsite/>)
   }, [current])
-  useEffect(() => window.addEventListener('keyup', switchSection), [])
   useEffect(() => {
-  })
+    window.addEventListener('keyup', switchSection)
+    return _ => window.removeEventListener('keyup', switchSection)
+  }, [])
 
   const switchSection = (event) => {
     if(event.keyCode === 13) {
@@ -78,7 +79,7 @@ const AboutKeyWest = () => {
       <TextArea additionalStyle={{textAlign: 'left'}}>Is an island in the Straits of Florida, within the U.S. state of Florida. Together with all or parts of the separate islands of Dredgers Key, Fleming Key, Sunset Key, and the northern part of Stock Island, it constitutes the City of Key West. The Island of Key West is about 4 miles (6 kilometers) long and 1 mile (2 km) wide, with a total land area of 4.2 square miles (11 km2). It lies at the southernmost end of U.S. Route 1, the longest north–south road in the United States. Key West is about 95 miles (153 km) north of Cuba at their closest points. It is also 130 miles (210 km) southwest of Miami by air, about 165 miles (266 km) by road, and 106 miles (171 km) north-northeast of Havana.</TextArea>
       <Chapter>The Southernmost City in the Continental United States</Chapter>
       <TextArea additionalStyle={{textAlign: 'left'}}>Key West is surrounded by the beautiful waters of the Atlantic Ocean and the Gulf of Mexico. Dive the Vandenberg or snorkel our coral reefs, charter a day of fishing, relax on one of our beaches, book an Eco tour, and end your day with a beautiful sunset cruise. Each evening we are treated to the talented Sunset Celebration performers on Mallory Square while enjoying a spectacular sunset.</TextArea>
-      
+
     </>
   )
 }
