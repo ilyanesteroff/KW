@@ -1,10 +1,10 @@
 import React from 'react'
-import { ScrollTopContext } from '../pages/contexts'
+import { ScrollTopContext, StickyNavbarContext } from '../pages/contexts'
 import Navbar from './Navbar'
 import LogoLabel from './LogoLabel'
 
-const StickyNavbar = (props) => {
 
+export default (props) => {
     const ScrollTop = () => React.useContext(ScrollTopContext)
     let style = {
         width: '100%',
@@ -20,11 +20,11 @@ const StickyNavbar = (props) => {
     ScrollTop() || props.fixed ? style.top = '0' : style.top = '-27%'
 
     return (
-        <div style={style}>
+      <StickyNavbarContext.Provider value={style.top === '0'? true : false}>
+        <div style={style} id="StickyNavbar">
             <LogoLabel/>
             <Navbar/>
         </div>
+      </StickyNavbarContext.Provider>
     )
 }
-
-export default StickyNavbar

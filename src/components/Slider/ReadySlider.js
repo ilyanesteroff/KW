@@ -1,25 +1,36 @@
 import React from 'react' 
 import { Fade } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css'
-import { Width } from '../pages/contexts'
-import { NewsContext } from '../pages/contexts'
+import { NewsContext, WidthContext } from '../pages/contexts'
 
-export default (props) => {
+class Slider extends React.Component {
+  static contextType = WidthContext
+  static defaultProps = {
+    sliderStyle: {
+      height: '60vh', 
+      width: '80%', 
+      marginLeft: '10%', 
+      marginTop: '6vh', 
+      backgroundColor: '#aaa', 
+      borderRadius: '5px', 
+      boxShadow: 'none'
+    }
+  }
+  render () {
     let config = {
+      arrows: this.context > 1100,
       indicators: true
     }
-    const { color, url } = props
+    const { color, url } = this.props
     return (
-      <div style={{height: props.height + 'vh', width: '80%', 
-       marginLeft: '10%', marginTop: '6vh', backgroundColor: '#aaa', 
-       borderRadius: '5px', boxShadow: props.shadow? '0 0 10px' : 'none'}}>
+      <div style={this.props.sliderStyle}>
         <div className="slide-container">
           <Fade {...config}>
-            {props.images.map((image, index) => {
-              const properties ={
+            {this.props.images.map((image, index) => {
+              const properties = {
                 url: url !== undefined? url[0] : '',
-                height: props.height,
-                color: typeof(color)? color : color[index],
+                height: this.props.sliderStyle.height,
+                color: typeof(color) === 'object'? color[index] : color,
                 isOdd: index % 2 === 0,
                 image: image,
                 key: index
@@ -27,24 +38,26 @@ export default (props) => {
               return <GenerateSlides
                {...properties}>
                 <div>
-                  {props.info[index]}
+                  {this.props.info[index]}
                 </div>
               </GenerateSlides>})}
           </Fade>
         </div>
       </div>
-    );
-};
+    )
+  }
+}
 
 const GenerateSlides = (props) => {
     let News = () => React.useContext(NewsContext)
+    let Width = () => React.useContext(WidthContext)
     let style = {
       backgroundImage: `url(${props.image})`,
       backgroundSize: 'contain',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center',
-      height: props.height + 'vh',
-      alignItems: News() ? 'flex-end' : 'flex-start'
+      height: props.height,
+      alignItems: News() ? 'flex-end' : 'flex-start',
     }
     let linkContainer, Container
     props.url !== '' ? 
@@ -75,3 +88,4 @@ const GenerateSlides = (props) => {
     )
 }
   
+export default Slider

@@ -49,7 +49,6 @@ const defineIcon = (type, forPage) => {
     if(forPage){
       Height > 400 ? output.style.fontSize = '10vh' : output.style.fontSize = '12vh'
     }
-    console.log(type)
     if (curTime.getHours() < 5 || curTime.getHours() > 20) {
       switch (type) {
         case ('few clouds') :

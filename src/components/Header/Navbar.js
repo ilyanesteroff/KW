@@ -5,6 +5,7 @@ import { WidthContext, ScrollTopContext } from '../pages/contexts'
 import { Link } from "react-router-dom";
 import { link } from './styles'
 import { navbarItems } from '../MainSection/info'
+import { StickyNavbarContext } from '../pages/contexts'
 
 const Navbar = () => {
     const Width = () => React.useContext(WidthContext)
@@ -38,7 +39,9 @@ const Navbar = () => {
          }
         })}
     </ul> 
-     : output = <DropDownIcon/>
+     : output = <StickyNavbarContext.Consumer>
+       { value => <DropDownIcon stickyNavbar={value}/>}
+     </StickyNavbarContext.Consumer>
     return(
       <div style={style}>
         {output}

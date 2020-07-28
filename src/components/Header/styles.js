@@ -113,19 +113,20 @@ let hiddenNavbarIcon = {
 let dropDownMenu = {
     position: 'absolute',
     backgroundColor: '#111166',
-    top: '10vh',
+    top: window.innerHeight < 500 ? window.innerHeight < 300 ? '27vh' : '21vh' : '11vh',
     right: '5%',
     textAlign: 'center',
     boxShadow: '1vh 1vw 3vh',
-    borderRadius: '2vh',
+    borderRadius: '0.5vh',
     zIndex: '5'
 }
 
 let dropDownItem = {
-    color: '#aaaaaa',
-    padding: '2rem 6rem',
+    color: '#fff',
+    padding: '4vh 28vw',
     letterSpacing: '0.1vw',
-    zIndex: '3'
+    zIndex: '10',
+    borderRadius: '0.5vh'
 }
 
 let link = {

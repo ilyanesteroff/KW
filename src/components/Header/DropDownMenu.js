@@ -21,16 +21,16 @@ class DropDownMenu extends React.Component{
             </Link>
     }
     })
-    return (
-      <div style={dropDownMenu}>
-        {options}
-      </div>
-    )
-  }
+    return(
+        <div style={dropDownMenu} id="DropDownMenu">
+          {options}
+        </div>
+      )
+    }
 }
 
-function DropDownItem(props){
-  return <h2 style={props.style}>{props.item}</h2>
+function DropDownItem({item, style}){
+    return <h2 className="DropDownItem" style={style}>{item}</h2>
 }
 
 export default DropDownMenu

@@ -1,4 +1,5 @@
 import React from 'react';
+import reactDom from 'react-dom'
 import { Homepage, InitialPage, AboutPage, 
   HistoryPage, LocationPage, PlacePage, 
   Twitts, Covid, News, WeatherPage, NoMatchPage } from './components/pages/Pages'
@@ -59,11 +60,13 @@ class App extends React.Component {
   }
 
   render = () => {
-    let output 
-    this.state.loaded ? output = <Homepage /> : output = 
+    if (!this.state.loaded) { 
+    document.getElementById('initial-root').style.background = '#333'
+    return reactDom.createPortal (
     <InitialPage>
       <img src={'https://upload.wikimedia.org/wikipedia/commons/2/24/Seal_of_Key_West%2C_Florida.png'} style={{transform: 'scale(0.3)'}}/>
-    </InitialPage>
+    </InitialPage>, document.getElementById('initial-root'))
+    } else 
     return (
       <ScrollTopContext.Provider value={this.state.scrollTop}>
         <WidthContext.Provider value={this.state.width}>
@@ -73,7 +76,7 @@ class App extends React.Component {
               <Router>
                 <div>
                   <Switch>
-                    <Route exact path="/" render={() => output}/>
+                    <Route exact path="/" render={() => <Homepage />}/>
                     <Route path="/about" render={() => <AboutPage/>} />
                     <Route path="/history" render={() => <HistoryPage/>}/>
                     <Route path="/location" render={() => <LocationPage/>}/>
@@ -92,7 +95,7 @@ class App extends React.Component {
           </HeightContext.Provider>
         </WidthContext.Provider>
       </ScrollTopContext.Provider>
-    );
+    )
   }
 }
 

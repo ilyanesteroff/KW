@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import {NYTimes} from './refs/links'
-import ReadySlider from '../Slider/ReadySlider'
+import Slider from '../Slider/ReadySlider'
 import Spinner from '../MainSection/Spinner'
 import { width } from '../Helpers/Helpers'
 import { Chapter, PS } from '../Helpers/DesignAssistants'
-import { NewsContext } from '../pages/contexts'
+import { NewsContext, Width } from '../pages/contexts'
 import UpperContainer from './UpperContainer'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
 
@@ -18,13 +18,14 @@ const useSetNews = () => {
   const [ images, setImages] = useState([])
   const [ url, setUrl] = useState([])
   const [ newsLoaded, setNewsLoaded ] = useState(false)
+  let width = Width()
 
   useEffect(() => {
     if (response !== null) {
 
       response.map((item) => JSON.parse(item.replace(/[$^]/g,','))).forEach((item, index) => {
         let _content 
-        width() < 1000? _content = <h2 key={index + 'h2'}>{item.headline}</h2> : 
+        width < 1000? _content = <h2 key={index + 'h2'}>{item.headline}</h2> : 
           _content = [<h2 key={index + 'h2'}>{item.headline}</h2>, <p key={index+'p'}>{item.content}</p>]
         setContent(content => [...content, _content])
         setImages(images => [...images, item.image])
@@ -48,17 +49,27 @@ const NewsData = (props) => {
   }
   let output, height
   
-  width() < 600? height = 30: height = 60
+  Width() < 600? height = 30: height = 60
 
   if(!newsLoaded && spin) output = <Spinner/>
   else if(error.hasError) output = <Spinner spinner={false} message={error.message}/>
   else if (newsLoaded){
+    let sliderStyle = {
+      height: height + 'vh', 
+      width: '80%', 
+      marginLeft: '10%', 
+      marginTop: '6vh', 
+      marginBottom: '8vh',
+      background: '#333', 
+      borderRadius: '5px', 
+      boxShadow: '0 0 10px'
+    }
     output = 
     <NewsContext.Provider value={true}>
       <UpperContainer>
         <Chapter additionalStyle={{marginTop: '10vh'}}>Here are some breaking news from use and Florida</Chapter>
       </UpperContainer>
-      <ReadySlider images={news.images} info={news.content} color={colors} height={height} url={news.url} shadow/>
+      <Slider images={news.images} info={news.content} color={colors} sliderStyle={sliderStyle} url={news.url}/>
       <UpperContainer>
         <PS>Source: New York Times</PS>
       </UpperContainer>

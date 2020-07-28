@@ -49,23 +49,11 @@ class InitialPage extends React.Component{
       super(props)
   }
   render() {
-      let style = {
-          position: 'relative',
-          height: '100vh', 
-          width: '100%',
-          backgroundColor: '#9999ff'
-      }
-      let innerStyle = {
-          position: 'absolute', 
-          top: '50vh',
-          left: '50%',
-          transform: 'translate(-50%, -50%)'
-      }
-      return(
-        <div style={style}>
-            <div style={innerStyle}>{this.props.children}</div>
-        </div>
-      )
+    return(
+      <div className="landingPage">
+          <div id="logo">{this.props.children}</div>
+      </div>
+    )
   }
 }
 
@@ -134,8 +122,7 @@ const WeatherPage = () => {
   )
 }
 
-class Covid extends React.Component{
-  //static contextType = WidthContext
+class Covid extends React.Component {
   render() {
     return(
       <>
