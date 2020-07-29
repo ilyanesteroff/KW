@@ -46,17 +46,10 @@ const useFetch = (url, opts, func, key) => {
           message: 'Server failed'
         })
       })
-    
-      let timeout
-      loading ? timeout = setTimeout(() => { 
-        controller.abort()
-        setError({
-          hasError: true,
-          message: 'Your internet connection is too slow'
-        })
-      }, 5000) : clearTimeout(timeout)
-      
+
     setLoading(false)
+
+    return _ => controller.abort()
   }, [url])
 
   const getDate = key => {

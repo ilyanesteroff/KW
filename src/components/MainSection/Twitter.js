@@ -3,10 +3,9 @@ import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
 import Spinner from './Spinner'
 import { twitterCredits } from './refs/links'
 
-export default () => {
-  let tweetTopic  = window.location.pathname.split('/')[2]
-  let url = twitterCredits.url.replace('_topic_', tweetTopic)
-  let [ response, loading, error ] = useFetch(url, twitterCredits.headers, retrieveTweets, `${tweetTopic}Tweets`)
+export default ({topic}) => {
+  let url = twitterCredits.url.replace('_topic_', topic)
+  let [ response, loading, error ] = useFetch(url, twitterCredits.headers, retrieveTweets, `${topic}Tweets`)
   const [ spin ] = useSpinnerSuspense(50)
   
   let output
@@ -45,6 +44,34 @@ const retrieveTweets = (json) => {
 
 const Tweets = ({data}) => {
   let json = data.map(item => JSON.parse(item.replace(/[$]/g,',')))
-  //console.log(json)
-  return <div></div>
+  let tweets = json.map((tweet, index) => <Tweet key={index} json={tweet}/>)
+  return <div>{tweets}</div>
 }
+
+const Tweet = ({json}) => {
+  let output = 
+  <div className="Tweet">
+    <div className="TweetUppersection">
+      {json.profile_image !== '' &&
+      <div className="AvatarSection" style={{background: `#${json.profile_background_color}`}}>
+        <img className="Avatar" src={json.profile_image}/>
+      </div>}
+      {json.username !== '' && 
+      <h4 className="UsernameField">{json.username}</h4>}
+    </div>
+    <div className="TweetContent">
+      {json.text !== "" && <p className="TweetText">{json.text}</p>}
+      {json.media !== "" &&
+       <div className="TweetMedia">
+         {<img src={json.media}/>}
+       </div>}
+      {json.retweet_count !== '' && 
+        <h3 className="RetweetCount">Retweeted by {json.retweet_count} users</h3>}
+      <h5 className="CreatedAt">{json.created_at}</h5>
+      {json.tweet_url !== '' && <a className="TweetUrl" href={json.tweet_url} style={{color: `#${json.profile_link_color}`}}>View more</a>}
+    </div>
+  </div>
+  return output
+}
+
+export { Tweets, retrieveTweets }

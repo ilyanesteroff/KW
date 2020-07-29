@@ -17,6 +17,7 @@ import CovidData from '../MainSection/Covid'
 import WeatherData from '../MainSection/Weather'
 import Twitter from '../MainSection/Twitter'
 import About from '../MainSection/About'
+import MainTwitterPage from '../MainSection/TwitterPage'
 
 class Homepage extends React.Component {
   render(){
@@ -102,7 +103,7 @@ const Twitts = (props) => {
         <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
       </UpperSection>
       <TwitterTags tags={twitterTags.filter(twit => twit !== twitt)}/>
-      <Twitter/>
+      <Twitter topic={twitt}/>
       <Footer/>
     </>
   )
@@ -117,6 +118,7 @@ const TwitterPage = props => {
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
         <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
       </UpperSection>
+      <MainTwitterPage/>
       <Footer/>
     </>
   )

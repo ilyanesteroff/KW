@@ -88,7 +88,6 @@ const AboutKeyWest = () => {
     padding: Width() > 800? '2% 0' : '0'
   }
   const { images, descriptions, urls, colors } = about.keyWest.slider
-  console.log(Width())
   return (
     <>
       <Chapter>{about.keyWest.text[0].chapter}</Chapter>
