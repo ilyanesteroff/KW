@@ -4,6 +4,7 @@ import { Width } from '../pages/contexts'
 import { SSS } from './styles'
 import Slider from '../Slider/ReadySlider'
 import { about } from './info'
+import Chart from './KeyWestPopulation'
 
 export default () => {
   const aboutKeyWest = useRef(null)
@@ -87,12 +88,14 @@ const AboutKeyWest = () => {
     padding: Width() > 800? '2% 0' : '0'
   }
   const { images, descriptions, urls, colors } = about.keyWest.slider
+  console.log(Width())
   return (
     <>
       <Chapter>{about.keyWest.text[0].chapter}</Chapter>
       <TextArea additionalStyle={{textAlign: 'left'}}>{about.keyWest.text[0].paragraph}</TextArea>
       <Chapter>{about.keyWest.text[1].chapter}</Chapter>
       <TextArea additionalStyle={{textAlign: 'left'}}>{about.keyWest.text[1].paragraph}</TextArea>
+      {Width() > 800 && <Chart/>}
       <Chapter additionalStyle={{textAlign: 'left', marginTop: '10vh', marginLeft: '8%'}}>A little gallery</Chapter>
       <Slider images={images} info={descriptions} url={urls} sliderStyle={slider} color={colors}/>
     </>

@@ -18,7 +18,7 @@ const Item = (props) => {
 }
 
 const Topic = (props) => {
-  if(width() > 750) return <p style={props.style}>{props.text}</p>
+  if(width() > 850) return <p style={props.style}>{props.text}</p>
   else return ''
 }
 
@@ -56,15 +56,10 @@ const getStyles = () => {
   else if (width() < 768){
     output.iconStyle.fontSize = '2.2rem'
     output.headlineStyle.display = 'inline-block'
-    output.headlineStyle.fontSize = '1.5rem'
+    output.headlineStyle.fontSize = width() < 306  ? '1.2rem' : '1rem'
     output.headlineStyle.marginBottom = 'auto'
-    output.iconStyle.margin = '0 5% 0 0'
+    output.iconStyle.margin = '0 4% 0 0'
     output.mainStyle.width = 'auto'
-  }
-  if(width() < 306) {
-    output.iconStyle.fontSize = '1.8rem'
-    output.headlineStyle.fontSize = '1.2rem'
-    output.mainStyle.margin = '0 2% 0 0'
   }
   return output
 }

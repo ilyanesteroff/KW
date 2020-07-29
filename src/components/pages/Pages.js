@@ -108,6 +108,20 @@ const Twitts = (props) => {
   )
 }
 
+const TwitterPage = props => {
+  return (
+    <>
+      <StickyNavbar fixed={true}/>
+      <UpperSection>
+        <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
+        <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
+        <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
+      </UpperSection>
+      <Footer/>
+    </>
+  )
+}
+
 const WeatherPage = () => {
   return (
     <>
@@ -178,5 +192,5 @@ const NoMatchPage = () => {
 
 export { Homepage, AboutPage, InitialPage, 
   HistoryPage, LocationPage, PlacePage, 
-  Twitts, WeatherPage, NoMatchPage, Covid, 
+  Twitts, WeatherPage, NoMatchPage, TwitterPage, Covid, 
   News}

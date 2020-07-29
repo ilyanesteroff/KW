@@ -11,20 +11,19 @@ const getStyle = (width, height) => {
     let output = {
         position: 'absolute',
         right: '5%',
-        top: '10vh',
-        height: '50vh',
+        bottom: '5%',
+        height: '65%',
         width: '50%',
         border: 'none',
         borderRadius: '2vh'
     }
-    if(width < 925) {
-        output.width = '80%'
-        output.right = '10%' 
-        output.top = '40%'
+    if(width < 567) {
+        output.width = '90%'
+        output.right = '5%' 
     }
     if(width < 400 || height < 500){
-        output.height = '55vh'
-        output.top = '35%'
+        output.height = '40vh'
+        output.borderRadius = 'none'
     }
     if(width >= 768 && height >= 1024 || width >= 1024 && height >= 768)
       output.height = '30vh'

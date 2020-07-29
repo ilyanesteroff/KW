@@ -1,6 +1,6 @@
 import Fact from './Fact'
 import React from 'react'
-import { generateContainerStyle } from './styles'
+import { Chapter } from '../Helpers/DesignAssistants'
 import { factInfo } from './info'
 
 const Facts = (props) => {
@@ -19,8 +19,9 @@ const Facts = (props) => {
       return <Fact {...props}/> 
     })
     return (
-        <div>
-           {facts}
+        <div style={{backgroundColor: '#77aadd', padding:'5vh 0'}}>
+          <Chapter additionalStyle={{marginLeft: '20%', marginBottom: '14vh'}}>The best places for tourists</Chapter>
+          {facts}
         </div>
     )
 }

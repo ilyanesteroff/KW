@@ -7,15 +7,16 @@ const VideoSection = () => {
   let videoSectionStyle = {
     position: 'relative',
     width: '100%',
-    height: '70vh',
+    height: '68vh',
     backgroundColor: '#aaaaff',
-    marginBottom: '20vh'
+    marginBottom: '10vh'
   }
-  if(width() < 925)
-    videoSectionStyle.height = '90vh'
+  /*if(height() < 300) videoSectionStyle.height = '110vh'
+  else */if(width() < 567)
+    videoSectionStyle.height = '70vh'
     //For Ipads
-  if((width() >= 768 && height() >= 1024) || (width() >= 1024 && height() >= 768))
-    videoSectionStyle.height = '60vh'
+  else if((width() >= 768 && height() >= 1024) || (width() >= 1024 && height() >= 768))
+    videoSectionStyle.height = '35vh'
   return(
     <div style={videoSectionStyle}>
       <Video url="https://www.youtube.com/embed/8Bx5I7z7J6I?autoplay=1"/>

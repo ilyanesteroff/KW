@@ -16,7 +16,7 @@ const Headline = (props) => {
     return <h2 style={props.style}>Sights of Florida</h2>
 }
 const Paragraph = (props) => {
-    return <p style={props.style}>In this video are introduced the most marvellous places in Florida state, in this video you will find Key West too</p>
+    return <p style={props.style}>In this video are shown the most remarkable places of Florida, here you will find Key West</p>
 }
 
 const getStyles = (width, height) => {
@@ -24,9 +24,9 @@ const getStyles = (width, height) => {
       main: {
         position: 'absolute',
         width: '30%',
-        top: '10%',
+        top: '7%',
         left: '5%',
-        margin: '5% 0'
+        margin: '3% 0'
       },
       headline: {
         fontSize: '2rem',
@@ -42,10 +42,10 @@ const getStyles = (width, height) => {
         fontWeight: '600'
       } 
     }
-    if(width < 925) {
-        output.main.left = '10%'
+    if(width < 567) {
+        output.main.left = '5%'
         output.main.top = '3%'
-        output.main.width = '80%'
+        output.main.width = '90%'
         output.headline.fontSize = '1.4rem'
         output.paragraph.fontSize = '1.2rem'
         output.paragraph.fontWeight = '500'
@@ -53,8 +53,7 @@ const getStyles = (width, height) => {
     if(height < 500) {
       output.headline.fontSize = '1.4rem'
       output.paragraph.fontSize = '1.2rem'
-      output.main.top = '1%'
-      output.main.margin = '0'
+      output.main.margin = '1% 0 0 0'
     }
     return output
 }

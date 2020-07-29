@@ -76,7 +76,10 @@ const getStyles = (width, height, bgColor, imgDir) => {
         output.content.bottom = '10%'
         output.content.width = '70%'
         output.content.left = '15%'
-        if(height < 500) {
+        if(height < 300) {
+          output.main.height = '90vh'
+          output.img.maxHeight = '50vh'
+        } else if(height < 500) {
             output.title.fontSize = '1.1rem'
             output.para.fontSize = '0.9rem'
             output.img.width = '40%'
@@ -87,7 +90,7 @@ const getStyles = (width, height, bgColor, imgDir) => {
     }
     //For Ipads
     else if(width >= 768 && height >= 1024 || width >= 1024 && height >= 768) {
-        output.main.height = '30vh'
+        output.main.height = '25vh'
         output.img.width = '50%'
         output.img.height = 'auto'
         output.img.borderRadius = '0'

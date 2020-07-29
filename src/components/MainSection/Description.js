@@ -3,7 +3,7 @@ import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 
 const Description = () => {
     let style = {
-        marginBottom: '2vh',
+        marginBottom: '1vh',
         marginTop: '3vh'
     }
     return(
