@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faHeart, faComment, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { WidthContext } from '../pages/contexts'
 
 export default ({topic}) => {
   let url = twitterCredits.url.replace('_topic_', topic)
@@ -27,11 +28,14 @@ const retrieveTweets = (json) => {
   let output = []
   json.statuses.forEach(item => {
     let media = ''
+    let hashtags = []
     if (item.entities.media) if(item.entities.media[0].type = 'photo') media = item.entities.media[0].media_url_https
+    if (item.entities.hashtags) if(item.entities.hashtags !== []) hashtags = item.entities.hashtags.map(tag => hashtags.push(item.text))
     let element = {
       created_at: item.created_at,
       tweet_url: item.entities.urls.length === 0? '' : item.entities.urls[0].expanded_url,
       media: media,
+      hashtags: hashtags,
       retweet_count: item.retweet_count,
       text: item.text,
       username: item.user.screen_name,
@@ -47,9 +51,26 @@ const retrieveTweets = (json) => {
 }
 
 const Tweets = ({data}) => {
+  const Width = () => React.useContext(WidthContext)
+  let style = {
+    tweetSection : {
+      display: 'flex',
+      flexWrap: 'no-wrap',
+      margin: Width() > 1300 ? '5vh 10%' : '5vh 5%' ,
+    }
+  }
   let json = data.map(item => JSON.parse(item.replace(/[$]/g,',')))
   let tweets = json.map((tweet, index) => <Tweet key={index} json={tweet}/>)
-  return <div className="TweetSection">{tweets}</div>
+  let rightTweets = tweets.filter((tweet, index) => index % 2 === 0)
+  let leftTweets = tweets.filter((tweet, index) => index % 2 === 1)
+  let output 
+  Width() > 1100 ? output = 
+  <div style={style.tweetSection}>
+    <div>{rightTweets}</div>
+    <div>{leftTweets}</div>
+  </div> : 
+    output = <div>{tweets}</div>
+  return output
 }
 
 const getMins = mins => {
@@ -71,10 +92,8 @@ const AvatarContext = React.createContext('')
 const UsernameContext = React.createContext('')
 const UsersNameContext = React.createContext('')
 const BgContext = React.createContext('')
-const CreatedAtContext = React.createContext('')
 
 const Tweet = ({json}) => {
-  console.log(json.users_name)
   if (json.text.lastIndexOf('https://') !== -1) json.text = json.text.slice(0, json.text.lastIndexOf('https://'))
   let createdAt = getTime(json.created_at.slice(0, json.created_at.lastIndexOf('+0000')))
 
@@ -109,7 +128,7 @@ const Retweets = ({retweets, url}) => {
 
   if (url !== '')
     output = <a href={url} target="_blank">{output}</a>
-
+  
   return output
 }
 

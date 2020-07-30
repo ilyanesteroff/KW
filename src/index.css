@@ -304,17 +304,11 @@ td {
   background: rgba(20, 20, 20, 0.6);
 }
 
-.TweetSection {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 5vh 10%;
-}
-
 .Tweet {
   position: relative;
-  width: 46%;
+  width: 96%;
   background-color: #fff;
-  margin: 2%;
+  margin: 2% 1%;
   border-radius: 1vh;
   padding: 2%;
   border: solid 1px #bbb;
@@ -455,6 +449,10 @@ td {
 
 .InfoLink:hover .InfoPolicy {
   color: #12bbbb;
+}
+
+.TweetMedia img {
+  max-width: 100%;
 }
 
 .RetweetCount:hover {
