@@ -40,12 +40,14 @@ const useFetch = (url, opts, func, key) => {
         setItem(res, key)
         setResponse(res)
       })
-      .catch(() => {
+      .catch((err) => {
         setError({
           hasError: true,
-          message: 'Server failed'
+          message: 'Something went wrong'
         })
+        console.log('error' + err)
       })
+      //setTimeout(_ => controller.abort(), 10000)
 
     setLoading(false)
 

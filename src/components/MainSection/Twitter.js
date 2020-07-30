@@ -1,7 +1,11 @@
 import React from 'react'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
 import Spinner from './Spinner'
-import { twitterCredits } from './refs/links'
+import { twitterCredits, twitterRules } from './refs/links'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faHeart, faComment, faUser } from '@fortawesome/free-regular-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 export default ({topic}) => {
   let url = twitterCredits.url.replace('_topic_', topic)
@@ -45,33 +49,127 @@ const retrieveTweets = (json) => {
 const Tweets = ({data}) => {
   let json = data.map(item => JSON.parse(item.replace(/[$]/g,',')))
   let tweets = json.map((tweet, index) => <Tweet key={index} json={tweet}/>)
-  return <div>{tweets}</div>
+  return <div className="TweetSection">{tweets}</div>
 }
 
+const getMins = mins => {
+  let output = mins.toString()
+  if (output.length === 1) output = '0' + output 
+  return output
+}
+
+const getTime = (time) => {
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'mMy', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  let date = new Date(time)
+  date.setFullYear(new Date().getFullYear())
+  let utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+  let dt = new Date(utc)
+  return `${dt.getUTCHours()}:${getMins(dt.getMinutes())} | ${months[dt.getMonth()]} ${dt.getUTCDate()} ${dt.getFullYear()}`
+}
+
+const AvatarContext = React.createContext('')
+const UsernameContext = React.createContext('')
+const UsersNameContext = React.createContext('')
+const BgContext = React.createContext('')
+const CreatedAtContext = React.createContext('')
+
 const Tweet = ({json}) => {
+  console.log(json.users_name)
+  if (json.text.lastIndexOf('https://') !== -1) json.text = json.text.slice(0, json.text.lastIndexOf('https://'))
+  let createdAt = getTime(json.created_at.slice(0, json.created_at.lastIndexOf('+0000')))
+
   let output = 
   <div className="Tweet">
-    <div className="TweetUppersection">
-      {json.profile_image !== '' &&
-      <div className="AvatarSection" style={{background: `#${json.profile_background_color}`}}>
-        <img className="Avatar" src={json.profile_image}/>
-      </div>}
-      {json.username !== '' && 
-      <h4 className="UsernameField">{json.username}</h4>}
+    <AvatarContext.Provider value={json.profile_image}>
+      <UsernameContext.Provider value={json.username}>
+        <UsersNameContext.Provider value={json.users_name}>
+          <BgContext.Provider value={json.profile_background_color}>
+            <TweetUpperSection/>
+          </BgContext.Provider>
+        </UsersNameContext.Provider>
+      </UsernameContext.Provider>
+    </AvatarContext.Provider>
+    <TweetContent json={json} createdAt={createdAt}/>
+  </div>
+  return output
+}
+
+const Retweets = ({retweets, url}) => {
+  let output 
+  if(retweets !== 0) 
+    output = <div className="comment">
+    <FontAwesomeIcon className="CommentIcon" icon={faComment}/>
+    <h3 className="RetweetCount"> {retweets} people are tweeting about this</h3>
+  </div>
+  else 
+    output = <div className="comment">
+      <FontAwesomeIcon className="CommentIcon" icon={faUser}/>
+      <h3 className="RetweetCount"> View more tweets from this user</h3>
     </div>
+
+  if (url !== '')
+    output = <a href={url} target="_blank">{output}</a>
+
+  return output
+}
+
+const TweetUpperSection = _ => {
+  return (
+    <div className="TweetUppersection">
+      <AvatarSection/>
+    </div>
+  )
+}
+
+const AvatarSection = _ => {
+  return (
+    <BgContext.Consumer>
+      { bgColor => 
+        <div className="AvatarSection" style={{background: `#${bgColor}99`}}>
+          <AvatarContext.Consumer>
+            { avatar => <img className="Avatar" src={avatar}/> }
+          </AvatarContext.Consumer>
+          <UserNames/>
+          <FontAwesomeIcon className="TwitterIcon" icon={faTwitter}/>
+        </div>
+      }
+    </BgContext.Consumer>
+  )
+}
+
+const UserNames = _ => {
+  return (
+    <div className="UserNames">
+      <UsersNameContext.Consumer>
+        { value => <h4 className="UsernameField">{value}</h4> }
+      </UsersNameContext.Consumer>
+      <UsernameContext.Consumer>
+        { value => <h4 className="UsernameField">@{value}</h4>}
+      </UsernameContext.Consumer>
+    </div>
+  )
+}
+
+const TweetContent = ({json, createdAt}) => {
+  return (
     <div className="TweetContent">
       {json.text !== "" && <p className="TweetText">{json.text}</p>}
       {json.media !== "" &&
-       <div className="TweetMedia">
-         {<img src={json.media}/>}
+      <div className="TweetMedia">
+       {<img src={json.media}/>}
        </div>}
-      {json.retweet_count !== '' && 
-        <h3 className="RetweetCount">Retweeted by {json.retweet_count} users</h3>}
-      <h5 className="CreatedAt">{json.created_at}</h5>
-      {json.tweet_url !== '' && <a className="TweetUrl" href={json.tweet_url} style={{color: `#${json.profile_link_color}`}}>View more</a>}
+       <h5 className="CreatedAt">{createdAt}</h5>
+       {json.tweet_url !== '' && 
+        <a className="TweetUrl" target="_blank" href={json.tweet_url} style={{color: `#${json.profile_link_color}`}}>
+          <FontAwesomeIcon className="HeartIcon" icon={faHeart}/>
+        </a>
+       }
+      <Retweets retweets={json.retweet_count} url={json.tweet_url}/>
+      <a href={twitterRules} target="_blank" className="InfoLink">
+        <FontAwesomeIcon icon={faInfoCircle} className="InfoPolicy"/>
+      </a>
     </div>
-  </div>
-  return output
+  )
 }
 
 export { Tweets, retrieveTweets }

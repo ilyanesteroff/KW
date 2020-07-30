@@ -303,3 +303,161 @@ td {
   height: 100%;
   background: rgba(20, 20, 20, 0.6);
 }
+
+.TweetSection {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5vh 10%;
+}
+
+.Tweet {
+  position: relative;
+  width: 46%;
+  background-color: #fff;
+  margin: 2%;
+  border-radius: 1vh;
+  padding: 2%;
+  border: solid 1px #bbb;
+  transition: background-color 0.5s;
+}
+
+.TweetUppersection {
+  width: 100%;
+  position: relative;
+}
+
+.UserNames {
+  display: inline;
+  position: absolute;
+  top: 50%;
+  left: 13%;
+  transform: translate(5%, -55%);
+}
+
+.UsernameField {
+  font-family: Ubuntu;
+  color: #111;
+}
+
+.AvatarSection{
+  width: 75%;
+  border-radius: 0.5vh;
+  padding: 1%;
+  border: solid 2px #666;
+}
+
+.Avatar {
+  border-radius: 50%;
+  margin: 1%;
+  width: 7vh;
+}
+
+.TwitterIcon {
+  float: right;
+  color: #4eb5ff;
+  margin: 3.5%;
+  font-size: 5vh;
+}
+
+.TweetText {
+  color: #111;
+  margin: 2% 0;
+  font-family: Oxygen;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding-right: 5%;
+}
+
+.CreatedAt {
+  color: #888;
+  margin: 2% 0;
+  font-family: Nunito, sans-serif;
+  font-weight: 500;
+  font-size: 2vh;
+  padding-bottom: 2%;
+  border-bottom: solid #bbb 1px;
+}
+
+.RetweetCount {
+  color: #888;
+  display: inline;
+  font-family: Nunito, sans-serif;
+  font-weight: 500;
+  font-size: 2vh;
+  transition: all 0.5s;
+}
+
+.CommentIcon {
+  color: #888;
+  font-size: 2.5vh;
+  margin-right: 1%;
+  transition: all 0.5s;
+}
+
+.HeartIcon {
+  color: #888;
+  font-size: 2.5vh;
+  transition: all 0.5s;
+}
+
+.TweetUrl {
+  padding: 1%;
+  border-radius: 2vh;
+  margin-right: 2%;
+}
+
+.TweetUrl:hover {
+  background-color: rgba(255, 2, 2, 0.1);
+}
+
+.HeartIcon:hover {
+  color: #c22;
+}
+
+.Tweet:hover {
+  background-color: #eef;
+}
+
+.comment {
+  display: inline;
+  padding: 1%;
+  border-radius: 2vh;
+  transition: all 0.5s;
+}
+
+.comment:hover {
+  background-color: rgba(20, 20, 255, 0.1);
+}
+
+.CommentIcon:hover {
+  color: #2222ee;
+}
+
+.InfoPolicy {
+  color: #888;
+  font-size: 2.5vh;
+  transition: all 0.5s;
+  float: right;
+  clear: both;
+}
+
+.InfoLink {
+  padding: 1%;
+  border-radius: 2vh;
+  transition: all 0.5s;
+  float: right;
+  clear: both;
+}
+
+.InfoLink:hover {
+  background-color: rgba( 2, 2, 244, 0.1);
+}
+
+.InfoLink:hover .InfoPolicy {
+  color: #12bbbb;
+}
+
+.RetweetCount:hover {
+  color: #22aaff;
+  text-decoration: underline;
+}
