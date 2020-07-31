@@ -304,6 +304,23 @@ td {
   background: rgba(20, 20, 20, 0.6);
 }
 
+.ImageInModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.ModalImage {
+  max-height: 50vh;
+  max-width: 60%;
+}
+
 .Tweet {
   position: relative;
   width: 96%;

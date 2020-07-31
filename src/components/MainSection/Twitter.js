@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useLayoutEffect } from 'react'
+import ReactDOM from 'react-dom'
 import { useFetch, useSpinnerSuspense, width } from '../Helpers/Helpers'
 import Spinner from './Spinner'
 import { twitterCredits, twitterRules } from './refs/links'
@@ -10,8 +11,7 @@ import { WidthContext } from '../pages/contexts'
 import { Chapter } from '../Helpers/DesignAssistants'
 import TwitterTags from '../Header/TwitterTags'
 import { twitterTags } from '../MainSection/info'
-
-const TopicContent = React.createContext('')
+import Modal from '../Helpers/Modal'
 
 export default React.memo(({topic}) => {
   let url = twitterCredits.url.replace('_topic_', topic)
@@ -205,10 +205,7 @@ const TweetContent = ({json, createdAt}) => {
   return (
     <div className="TweetContent">
       {json.text !== "" && <p className="TweetText">{json.text}</p>}
-      {json.media !== "" &&
-      <div className="TweetMedia">
-       {<img src={json.media}/>}
-       </div>}
+      {json.media !== "" && <TweetMedia media={json.media}/>}
        {json.hashtags !== [] && <Hashtags source={json.hashtags}/>}
        <h5 className="CreatedAt">{createdAt}</h5>
        {json.tweet_url !== '' && 
@@ -222,6 +219,23 @@ const TweetContent = ({json, createdAt}) => {
       </a>
     </div>
   )
+}
+
+const TweetMedia = ({media}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+    return (
+      <>
+        <div className="TweetMedia">
+          <img src={media} onClick={() => setIsModalOpen(true)}/>
+        </div>
+        {isModalOpen && <Modal>
+          <div className="ImageInModal" onClick={() => setIsModalOpen(false)}>
+            <img src={media} className="ModalImage"/>
+          </div>
+        </Modal>}
+      </>
+    )
 }
 
 const Hashtags = ({source}) => {
