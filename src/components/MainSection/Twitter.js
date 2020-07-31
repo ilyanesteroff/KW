@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
+import { useFetch, useSpinnerSuspense, width } from '../Helpers/Helpers'
 import Spinner from './Spinner'
 import { twitterCredits, twitterRules } from './refs/links'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,22 +7,38 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faHeart, faComment, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { WidthContext } from '../pages/contexts'
+import { Chapter } from '../Helpers/DesignAssistants'
+import TwitterTags from '../Header/TwitterTags'
+import { twitterTags } from '../MainSection/info'
 
-export default ({topic}) => {
+const TopicContent = React.createContext('')
+
+export default React.memo(({topic}) => {
   let url = twitterCredits.url.replace('_topic_', topic)
-  let [ response, loading, error ] = useFetch(url, twitterCredits.headers, retrieveTweets, `${topic}Tweets`)
+  const [ response, loading, error ] = useFetch(url, twitterCredits.headers, retrieveTweets, `${topic}Tweets`)
   const [ spin ] = useSpinnerSuspense(50)
-  
   let output
-  if (response !== null && !error.hasError ){
-    output = <Tweets data={response}/>
+  if (response !== null && response[response.length-1] === window.location.pathname.split('/')[2] && !error.hasError ){
+    output = <>
+      <Tweets data={response}/>
+    </>
   }
   else if(error.hasError) output = <Spinner spinner={false} message={error.message}/>
   else if (spin) output = <Spinner/>
   else output = <></>
-
   return output
-}
+})
+
+const UpperSection = React.memo( _ => {
+  if(twitterTags.length === 3) twitterTags.push('summer')
+  return (
+    <div style={{textAlign: 'left', margin: '2%'}}>    
+      <Chapter>More tweets on following topics</Chapter>
+      <TwitterTags tags={twitterTags.filter(twit => twit != window.location.pathname.split('/')[2])} color="#333"/>
+      <Chapter>Recent Tweets & Retweets on #{window.location.pathname.split('/')[2]}</Chapter>
+    </div>
+  )
+})
 
 const retrieveTweets = (json) => {
   let output = []
@@ -30,7 +46,8 @@ const retrieveTweets = (json) => {
     let media = ''
     let hashtags = []
     if (item.entities.media) if(item.entities.media[0].type = 'photo') media = item.entities.media[0].media_url_https
-    if (item.entities.hashtags) if(item.entities.hashtags !== []) hashtags = item.entities.hashtags.map(tag => hashtags.push(item.text))
+    if (item.entities.hashtags) if(item.entities.hashtags !== []) hashtags = item.entities.hashtags.map(item => hashtags.push(item.text))
+    if (item.entities.hashtags) if(item.entities.hashtags !== []) hashtags = item.entities.hashtags.map(tag => tag.text)
     let element = {
       created_at: item.created_at,
       tweet_url: item.entities.urls.length === 0? '' : item.entities.urls[0].expanded_url,
@@ -47,29 +64,41 @@ const retrieveTweets = (json) => {
     }
     output.push(JSON.stringify(element).replace(/[,]/g,'$'))
   })
+  output.push(window.location.pathname.split('/')[2])
   return output
 }
 
 const Tweets = ({data}) => {
+  let _data = data.filter((item, index) => {
+    if(index !== 20) return item
+  })
   const Width = () => React.useContext(WidthContext)
   let style = {
     tweetSection : {
       display: 'flex',
       flexWrap: 'no-wrap',
-      margin: Width() > 1300 ? '5vh 10%' : '5vh 5%' ,
+    },
+    mainSection : {
+      margin: Width() > 1300 ? '5vh 10%' : '5vh 5%'
+    },
+    mobile: {
+      margin: '5vh 10%'
     }
   }
-  let json = data.map(item => JSON.parse(item.replace(/[$]/g,',')))
+  let json = _data.map(item => JSON.parse(item.replace(/[$]/g,',')))
   let tweets = json.map((tweet, index) => <Tweet key={index} json={tweet}/>)
   let rightTweets = tweets.filter((tweet, index) => index % 2 === 0)
   let leftTweets = tweets.filter((tweet, index) => index % 2 === 1)
   let output 
   Width() > 1100 ? output = 
-  <div style={style.tweetSection}>
-    <div>{rightTweets}</div>
-    <div>{leftTweets}</div>
+  <div style={style.mainSection}>
+    <UpperSection/>
+    <div style={style.tweetSection}>
+      <div>{rightTweets}</div>
+      <div>{leftTweets}</div>
+    </div>
   </div> : 
-    output = <div>{tweets}</div>
+    output = <div style={style.mobile}><UpperSection/>{tweets}</div>
   return output
 }
 
@@ -114,16 +143,17 @@ const Tweet = ({json}) => {
 }
 
 const Retweets = ({retweets, url}) => {
+  const Width = () => React.useContext(WidthContext)
   let output 
   if(retweets !== 0) 
     output = <div className="comment">
     <FontAwesomeIcon className="CommentIcon" icon={faComment}/>
-    <h3 className="RetweetCount"> {retweets} people are tweeting about this</h3>
+    <h3 className="RetweetCount"> {retweets} {Width() > 500 && 'people are tweeting about this'}</h3>
   </div>
   else 
     output = <div className="comment">
       <FontAwesomeIcon className="CommentIcon" icon={faUser}/>
-      <h3 className="RetweetCount"> View more tweets from this user</h3>
+      <h3 className="RetweetCount"> {Width() > 530 && 'View more tweets from this user'}</h3>
     </div>
 
   if (url !== '')
@@ -133,14 +163,16 @@ const Retweets = ({retweets, url}) => {
 }
 
 const TweetUpperSection = _ => {
+  const Avatar = () => React.useContext(AvatarContext)
   return (
     <div className="TweetUppersection">
-      <AvatarSection/>
+      {Avatar() !== '' && <AvatarSection/>}
     </div>
   )
 }
 
 const AvatarSection = _ => {
+  
   return (
     <BgContext.Consumer>
       { bgColor => 
@@ -149,7 +181,7 @@ const AvatarSection = _ => {
             { avatar => <img className="Avatar" src={avatar}/> }
           </AvatarContext.Consumer>
           <UserNames/>
-          <FontAwesomeIcon className="TwitterIcon" icon={faTwitter}/>
+          { window.innerWidth > 400 && <FontAwesomeIcon className="TwitterIcon" icon={faTwitter}/>}
         </div>
       }
     </BgContext.Consumer>
@@ -160,7 +192,7 @@ const UserNames = _ => {
   return (
     <div className="UserNames">
       <UsersNameContext.Consumer>
-        { value => <h4 className="UsernameField">{value}</h4> }
+        { value => <h4 className="UsernameField" id="username">{value}</h4> }
       </UsersNameContext.Consumer>
       <UsernameContext.Consumer>
         { value => <h4 className="UsernameField">@{value}</h4>}
@@ -177,6 +209,7 @@ const TweetContent = ({json, createdAt}) => {
       <div className="TweetMedia">
        {<img src={json.media}/>}
        </div>}
+       {json.hashtags !== [] && <Hashtags source={json.hashtags}/>}
        <h5 className="CreatedAt">{createdAt}</h5>
        {json.tweet_url !== '' && 
         <a className="TweetUrl" target="_blank" href={json.tweet_url} style={{color: `#${json.profile_link_color}`}}>
@@ -189,6 +222,11 @@ const TweetContent = ({json, createdAt}) => {
       </a>
     </div>
   )
+}
+
+const Hashtags = ({source}) => {
+  let hashtags = source.map((item, index) => <a key={index} className="Hashtag" target="_blank" href={`https://twitter.com/hashtag/${item}`}>{`#${item} `}</a>)
+  return <div className="HashTags">{hashtags}</div>
 }
 
 export { Tweets, retrieveTweets }

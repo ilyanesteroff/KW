@@ -14,7 +14,7 @@ class HeaderTweets extends React.Component{
     render(){
         return(
             <div style={headerTwitts}>
-                <UpperOption fontSize="1.2rem" sentence="Trending Twitts" icon={faTwitter} iconStyle={twitterStyle} itemStyle={twitterItem} link="/twitts"/>
+                <UpperOption fontSize="1.2rem" sentence="Trending Twitts" icon={faTwitter} iconStyle={twitterStyle} itemStyle={twitterItem} link="/twitts/summer"/>
                 <TwitterTags tags={tags} />
             </div>
         )

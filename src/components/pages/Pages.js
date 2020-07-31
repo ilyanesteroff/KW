@@ -7,9 +7,8 @@ import Footer from '../FooterSection/Footer'
 import StickyNavbar from '../Header/StickyNavbar'
 import UpperSection from '../Header/UpperSection'
 import { faVirus, faNewspaper, faCloud } from '@fortawesome/free-solid-svg-icons'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import UpperOption from '../Header/UpperOption'
-import TwitterTags  from '../Header/TwitterTags'
-import { twitterTags } from '../MainSection/info'
 import { useLocation } from 'react-router-dom'
 import Place from '../MainSection/Place'
 import { NewsData } from '../MainSection/News'
@@ -102,7 +101,6 @@ const Twitts = (props) => {
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
         <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
       </UpperSection>
-      <TwitterTags tags={twitterTags.filter(twit => twit !== twitt)}/>
       <Twitter topic={twitt}/>
       <Footer/>
     </>
@@ -131,6 +129,7 @@ const WeatherPage = () => {
       <UpperSection>
         <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
+        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/summer'}/></li>
       </UpperSection>
       <WeatherData/>
       <Footer/>
@@ -146,6 +145,7 @@ class Covid extends React.Component {
         <UpperSection>
           <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
           <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
+          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/summer'}/></li>
         </UpperSection>
         <CovidData/>
         <Footer/>
@@ -162,6 +162,7 @@ class News extends React.Component{
         <UpperSection>
           <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
           <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
+          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/summer'}/></li>
         </UpperSection>
         <NewsData/>
         <Footer/>

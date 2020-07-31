@@ -86,7 +86,7 @@ class App extends React.Component {
                     <Route path="/covid" render={() => <Covid/>}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/twitts/:topic" render={({match}) => <Twitts twitt={match.params.topic}/>}/>
-                    <Route path="/twitts" render={() => <TwitterPage/>}/>
+                    <Route path="/twitts/summer" render={() => <TwitterPage/>}/>
                     <Route path="/weather" render={() => <WeatherPage/>}/>
                     <Route path="*" render={() => <NoMatchPage/>}/>
                   </Switch>

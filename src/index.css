@@ -324,7 +324,7 @@ td {
   display: inline;
   position: absolute;
   top: 50%;
-  left: 13%;
+  left: 70px;
   transform: translate(5%, -55%);
 }
 
@@ -334,7 +334,7 @@ td {
 }
 
 .AvatarSection{
-  width: 75%;
+  width: 100%;
   border-radius: 0.5vh;
   padding: 1%;
   border: solid 2px #666;
@@ -343,14 +343,15 @@ td {
 .Avatar {
   border-radius: 50%;
   margin: 1%;
-  width: 7vh;
+  width: 50px;
 }
 
 .TwitterIcon {
   float: right;
   color: #4eb5ff;
-  margin: 3.5%;
-  font-size: 5vh;
+  margin: auto;
+  font-size: 50px;
+  transform: translate(0%, 10%);
 }
 
 .TweetText {
@@ -360,6 +361,7 @@ td {
   font-weight: 500;
   font-size: 1.2rem;
   padding-right: 5%;
+  word-wrap: wrap;
 }
 
 .CreatedAt {
@@ -367,7 +369,7 @@ td {
   margin: 2% 0;
   font-family: Nunito, sans-serif;
   font-weight: 500;
-  font-size: 2vh;
+  font-size: 1rem;
   padding-bottom: 2%;
   border-bottom: solid #bbb 1px;
 }
@@ -377,20 +379,20 @@ td {
   display: inline;
   font-family: Nunito, sans-serif;
   font-weight: 500;
-  font-size: 2vh;
+  font-size: 1rem;
   transition: all 0.5s;
 }
 
 .CommentIcon {
   color: #888;
-  font-size: 2.5vh;
+  font-size: 1.2rem;
   margin-right: 1%;
   transition: all 0.5s;
 }
 
 .HeartIcon {
   color: #888;
-  font-size: 2.5vh;
+  font-size: 1.2rem;
   transition: all 0.5s;
 }
 
@@ -429,7 +431,7 @@ td {
 
 .InfoPolicy {
   color: #888;
-  font-size: 2.5vh;
+  font-size: 1.2rem;
   transition: all 0.5s;
   float: right;
   clear: both;
@@ -444,7 +446,7 @@ td {
 }
 
 .InfoLink:hover {
-  background-color: rgba( 2, 2, 244, 0.1);
+  background-color: rgba(2, 2, 244, 0.1);
 }
 
 .InfoLink:hover .InfoPolicy {
@@ -458,4 +460,14 @@ td {
 .RetweetCount:hover {
   color: #22aaff;
   text-decoration: underline;
+}
+
+#username {
+  max-width: 95%;
+}
+
+.Hashtag {
+  color: #2196F3;
+  font-family: Oxygen, sans-serif;
+  font-weight: 600;
 }
