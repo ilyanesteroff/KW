@@ -6,7 +6,7 @@ import Slider from '../Slider/ReadySlider'
 import { about } from './info'
 import Chart from './KeyWestPopulation'
 
-export default () => {
+export default React.memo(() => {
   const aboutKeyWest = useRef(null)
   const aboutWebsite = useRef(null)
   const [current, setCurrent] = useState('KeyWest')
@@ -54,7 +54,7 @@ export default () => {
       </div>
     </div>
   )
-}
+})
 
 const AboutWebsite = () => {
   return (

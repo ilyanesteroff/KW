@@ -8,7 +8,7 @@ import { WidthContext, HeightContext, ScrollTopContext, FactContext } from './co
 import Head from './components/pages/Head'
 import { factInfo } from './components/MainSection/info'
 
-class App extends React.Component {
+class App extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -86,7 +86,7 @@ class App extends React.Component {
                     <Route path="/covid" render={() => <Covid/>}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/twitts/:topic" render={({match}) => <Twitts twitt={match.params.topic}/>}/>
-                    <Route path="/twitts/summer" render={() => <TwitterPage/>}/>
+                    <Route path="/twitts/Florida" render={() => <Twitts twitt={'Florida'}/>}/>
                     <Route path="/weather" render={() => <WeatherPage/>}/>
                     <Route path="*" render={() => <NoMatchPage/>}/>
                   </Switch>

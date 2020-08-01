@@ -10,11 +10,13 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
-    modalRoot.appendChild(this.el);
+    modalRoot.appendChild(this.el)
+    document.body.style.overflowY = 'hidden'
   }
 
   componentWillUnmount() {
     modalRoot.removeChild(this.el);
+    document.body.style.overflowY = 'auto'
   }
 
   render() {
@@ -24,3 +26,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export { modalRoot }

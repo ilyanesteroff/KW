@@ -8,7 +8,7 @@ import { defineIcon, extractWeather } from '../MainSection/WeatherContent'
 import { Link } from 'react-router-dom'
 import { Chapter } from '../Helpers/DesignAssistants'
 
-export default () => {
+export default React.memo(() => {
   let [ response, loading, error ] = useFetch(weather.url, weather.headers, extractWeather, 'Weather')
     
   let output
@@ -19,7 +19,7 @@ export default () => {
     output = 
     <>
       <li><FontAwesomeIcon icon={icon.icon} style={Object.assign({}, weatherIconStyle, icon.style)}/></li>
-      <li><WeatherForecast type={response.weather} temps={{max: response.max_temperature, min: response.min_temperature, temp: response.temperature}}/></li>
+      <li><WeatherForecast type={response.weather} temps={{max: response.high, min: response.low, temp: response.temperature}}/></li>
     </>
   } else if (error.hasError) {
     output = <Chapter additionalStyle={{color: '#ddd', fontSize: '1rem'}}>Cannot load weather</Chapter>
@@ -32,4 +32,4 @@ export default () => {
       </ul>
     </Link>
   )  
-}
+})

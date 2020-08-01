@@ -67,6 +67,10 @@ const defineIcon = (type, forPage) => {
         case ('scattered clouds') :
           output.icon = faCloud
           return output
+        case ('heavy intensity rain') :
+          output.icon = faCloudRain
+          output.style.color = '#229'
+          return output
         default : 
           output.icon = faWind
           return output
@@ -92,6 +96,10 @@ const defineIcon = (type, forPage) => {
         case ('scattered clouds') :
           output.icon = faCloud
           return output
+        case ('heavy intensity rain') :
+          output.icon = faCloudRain
+          output.style.color = '#229'
+          return output
         default : 
           output.icon = faWind
           return output
@@ -102,13 +110,13 @@ const defineIcon = (type, forPage) => {
 const extractWeather = json => {
     let output = {
       temperature: toFahrenheit(json.main.temp) + ' °F',
-      max_temperature: toFahrenheit(json.main.temp_max) + ' °F',
-      min_temperature: toFahrenheit(json.main.temp_min) + ' °F',
+      high: toFahrenheit(json.main.temp_max) + ' °F',
+      low: toFahrenheit(json.main.temp_min) + ' °F',
       feels_like: toFahrenheit(json.main.feels_like) + ' °F',
       pressure: json.main.pressure + ' Pa',
       humidity: json.main.humidity + ' %',
       weather: json.weather[0].description,
-      wind_speed: (json.wind.speed / 1.6).toFixed(2) + ' mph' 
+      wind_speed: (json.wind.speed / 1.6).toFixed(2) + ' mph', 
     }
     
     output = JSON.stringify(output).replace(/[,]/g,'$')

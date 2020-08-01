@@ -1,44 +1,74 @@
-import React, { useState, useLayoutEffect } from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState, useRef, useEffect } from 'react'
 import { useFetch, useSpinnerSuspense, width } from '../Helpers/Helpers'
 import Spinner from './Spinner'
 import { twitterCredits, twitterRules } from './refs/links'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faHeart, faComment, faUser } from '@fortawesome/free-regular-svg-icons'
+import { faHeart, faComment, faUser, faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { WidthContext } from '../pages/contexts'
-import { Chapter } from '../Helpers/DesignAssistants'
+import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 import TwitterTags from '../Header/TwitterTags'
 import { twitterTags } from '../MainSection/info'
-import Modal from '../Helpers/Modal'
+import Modal, {modalRoot} from '../Helpers/Modal'
 
-export default React.memo(({topic}) => {
+export default ({topic}) => {
+  let sectionStyle = {margin: width() > 1300 ? '5vh 10%' : '5vh 5%'}
+  let mobileStyle = { margin: '5vh 5%' }
+  
   let url = twitterCredits.url.replace('_topic_', topic)
   const [ response, loading, error ] = useFetch(url, twitterCredits.headers, retrieveTweets, `${topic}Tweets`)
   const [ spin ] = useSpinnerSuspense(50)
   let output
   if (response !== null && response[response.length-1] === window.location.pathname.split('/')[2] && !error.hasError ){
-    output = <>
+    output = <div style={width() > 1100? sectionStyle : mobileStyle}>
       <Tweets data={response}/>
-    </>
+    </div>
   }
   else if(error.hasError) output = <Spinner spinner={false} message={error.message}/>
-  else if (spin) output = <Spinner/>
+  else if (spin) output = <><div style={sectionStyle}><UpperSection/></div><Spinner/></>
   else output = <></>
   return output
-})
+  return <></>
+}
 
 const UpperSection = React.memo( _ => {
-  if(twitterTags.length === 3) twitterTags.push('summer')
   return (
-    <div style={{textAlign: 'left', margin: '2%'}}>    
-      <Chapter>More tweets on following topics</Chapter>
+    <div style={{textAlign: 'left', margin: '2%'}}> 
+      <TweetSearcher/>
+      <Chapter>Tweets</Chapter>
       <TwitterTags tags={twitterTags.filter(twit => twit != window.location.pathname.split('/')[2])} color="#333"/>
-      <Chapter>Recent Tweets & Retweets on #{window.location.pathname.split('/')[2]}</Chapter>
+      <Chapter>Recent Tweets & Retweets #{window.location.pathname.split('/')[2]}</Chapter>
     </div>
   )
 })
+
+const TweetSearcher = _ => {
+  const inputRef = useRef(null)
+  const [input, setInput] = useState('')
+  useEffect(() => {
+    window.addEventListener('keyup', _focus)
+    return _ => window.removeEventListener('keyup', _focus)
+  })
+
+  const _focus = event => {
+    if(event.keyCode === 13 && modalRoot.childElementCount === 0)
+      inputRef.current.focus()
+    else if(event.keyCode === 27)
+      inputRef.current.blur()
+  }
+
+  const setVal = event => event.target.value.includes('#')? 
+    setInput(event.target.value) : 
+    setInput(`#${event.target.value}`)
+  
+  return (
+    <label className="TweetSearcher">
+      <TextArea additionalStyle={{fontFamily: 'Ubuntu, sans-serif', fontSize: '1.2rem', fontWeight: '600'}}>Search tweets by tags!</TextArea>
+      <input type="input" id="SearchTweetsInput" ref={inputRef} onChange={setVal} placeholder="#HASHTAG..."/>
+    </label>
+  )
+}
 
 const retrieveTweets = (json) => {
   let output = []
@@ -60,7 +90,8 @@ const retrieveTweets = (json) => {
       profile_link_color: item.user.profile_link_color,
       profile_background_color: item.user.profile_background_color,
       user_descriptions: item.user.description,
-      users_name: item.user.name
+      users_name: item.user.name,
+      verified: item.user.verified
     }
     output.push(JSON.stringify(element).replace(/[,]/g,'$'))
   })
@@ -70,19 +101,13 @@ const retrieveTweets = (json) => {
 
 const Tweets = ({data}) => {
   let _data = data.filter((item, index) => {
-    if(index !== 20) return item
+    if(index !== data.length-1) return item
   })
   const Width = () => React.useContext(WidthContext)
   let style = {
     tweetSection : {
       display: 'flex',
       flexWrap: 'no-wrap',
-    },
-    mainSection : {
-      margin: Width() > 1300 ? '5vh 10%' : '5vh 5%'
-    },
-    mobile: {
-      margin: '5vh 10%'
     }
   }
   let json = _data.map(item => JSON.parse(item.replace(/[$]/g,',')))
@@ -91,14 +116,14 @@ const Tweets = ({data}) => {
   let leftTweets = tweets.filter((tweet, index) => index % 2 === 1)
   let output 
   Width() > 1100 ? output = 
-  <div style={style.mainSection}>
+  <>
     <UpperSection/>
     <div style={style.tweetSection}>
       <div>{rightTweets}</div>
       <div>{leftTweets}</div>
     </div>
-  </div> : 
-    output = <div style={style.mobile}><UpperSection/>{tweets}</div>
+  </> : 
+    output = <><UpperSection/>{tweets}</>
   return output
 }
 
@@ -109,7 +134,7 @@ const getMins = mins => {
 }
 
 const getTime = (time) => {
-  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'mMy', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   let date = new Date(time)
   date.setFullYear(new Date().getFullYear())
   let utc = date.getTime() + (date.getTimezoneOffset() * 60000);
@@ -121,22 +146,24 @@ const AvatarContext = React.createContext('')
 const UsernameContext = React.createContext('')
 const UsersNameContext = React.createContext('')
 const BgContext = React.createContext('')
+const IsVerifiedContext = React.createContext('')
 
 const Tweet = ({json}) => {
   if (json.text.lastIndexOf('https://') !== -1) json.text = json.text.slice(0, json.text.lastIndexOf('https://'))
   let createdAt = getTime(json.created_at.slice(0, json.created_at.lastIndexOf('+0000')))
-
   let output = 
   <div className="Tweet">
-    <AvatarContext.Provider value={json.profile_image}>
-      <UsernameContext.Provider value={json.username}>
-        <UsersNameContext.Provider value={json.users_name}>
-          <BgContext.Provider value={json.profile_background_color}>
-            <TweetUpperSection/>
-          </BgContext.Provider>
-        </UsersNameContext.Provider>
-      </UsernameContext.Provider>
-    </AvatarContext.Provider>
+    <IsVerifiedContext.Provider value={json.verified}>
+      <AvatarContext.Provider value={json.profile_image}>
+        <UsernameContext.Provider value={json.username}>
+          <UsersNameContext.Provider value={json.users_name}>
+            <BgContext.Provider value={json.profile_background_color}>
+              <TweetUpperSection/>
+            </BgContext.Provider>
+          </UsersNameContext.Provider>
+        </UsernameContext.Provider>
+      </AvatarContext.Provider>
+    </IsVerifiedContext.Provider>
     <TweetContent json={json} createdAt={createdAt}/>
   </div>
   return output
@@ -192,7 +219,16 @@ const UserNames = _ => {
   return (
     <div className="UserNames">
       <UsersNameContext.Consumer>
-        { value => <h4 className="UsernameField" id="username">{value}</h4> }
+        { value => 
+        <>
+          <IsVerifiedContext.Consumer>
+            {value => 
+              value && <FontAwesomeIcon icon={faCheckCircle} className="VerifiedUser"/>
+            }
+          </IsVerifiedContext.Consumer>
+          <h4 className="UsernameField" id="username" style={{display: 'inline'}}> {value}</h4>
+        </> 
+        }
       </UsersNameContext.Consumer>
       <UsernameContext.Consumer>
         { value => <h4 className="UsernameField">@{value}</h4>}
@@ -222,25 +258,29 @@ const TweetContent = ({json, createdAt}) => {
 }
 
 const TweetMedia = ({media}) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-    return (
-      <>
-        <div className="TweetMedia">
-          <img src={media} onClick={() => setIsModalOpen(true)}/>
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  useEffect(() => {
+    window.addEventListener('keyup', closeModal)
+    return _ => window.removeEventListener('keyup', closeModal)
+  })
+  const closeModal = event => {
+    if(event.keyCode === 27) setIsModalOpened(false)
+  }
+  return (
+    <>
+      <div className="TweetMedia">
+        <img src={media} onClick={() => setIsModalOpened(true)}/>
+      </div>
+      {isModalOpened && <Modal>
+        <div className="ImageInModal" onClick={() => setIsModalOpened(false)}>
+          <img src={media} className="ModalImage"/>
         </div>
-        {isModalOpen && <Modal>
-          <div className="ImageInModal" onClick={() => setIsModalOpen(false)}>
-            <img src={media} className="ModalImage"/>
-          </div>
-        </Modal>}
-      </>
-    )
+      </Modal>}
+    </>
+  )
 }
 
 const Hashtags = ({source}) => {
   let hashtags = source.map((item, index) => <a key={index} className="Hashtag" target="_blank" href={`https://twitter.com/hashtag/${item}`}>{`#${item} `}</a>)
   return <div className="HashTags">{hashtags}</div>
 }
-
-export { Tweets, retrieveTweets }

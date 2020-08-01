@@ -166,6 +166,18 @@ input:checked + .slider:before {
   }
 }
 
+@media only screen and (max-width: 900px){
+  .TweetSearcher{
+    float: none;
+    display: block;
+    width: 100%;
+    margin-bottom: 5vh;
+  }
+  .ModalImage{
+    width: 90%;
+  }
+}
+
 @media only screen and (max-width: 490px) {
   .each-fade .image{
     width: 100%;
@@ -219,6 +231,17 @@ td {
   .DropDownItem:hover {
     background-color: #2a68e4b1;
     color: '#333'
+  }
+  .SuggestedPlaces:hover {
+    box-shadow: 0 0 1vh bisque;
+  }
+  .ImageOfSuggestedPlace:hover {
+    border-radius: 0 !important;
+    padding: 0.3%;
+    background-color: #111;
+  }
+  .CityService:hover{
+    background-color: rgba(0, 0, 250, 0.1);
   }
 }
 
@@ -301,7 +324,7 @@ td {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(20, 20, 20, 0.6);
+  background: rgba(247, 165, 165, 0.6);
 }
 
 .ImageInModal {
@@ -313,12 +336,12 @@ td {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.9);
 }
 
 .ModalImage {
-  max-height: 50vh;
-  max-width: 60%;
+  max-height: 70vh;
+  max-width: 90%;
 }
 
 .Tweet {
@@ -348,6 +371,12 @@ td {
 .UsernameField {
   font-family: Ubuntu;
   color: #111;
+}
+
+.VerifiedUser {
+  color: #fff;
+  background-color: #33aaff;
+  border-radius: 50%;
 }
 
 .AvatarSection{
@@ -472,6 +501,7 @@ td {
 
 .TweetMedia img {
   max-width: 100%;
+  border-radius: 1vh;
 }
 
 .RetweetCount:hover {
@@ -487,4 +517,108 @@ td {
   color: #2196F3;
   font-family: Oxygen, sans-serif;
   font-weight: 600;
+}
+
+.TweetSearcher {
+  float: right;
+  clear: both;
+}
+
+#SearchTweetsInput {
+  padding: 2% 4%;
+  margin: 2% 0;
+  width: 100%;
+  border: solid 2px #2222ee;
+  border-radius: 1vh;
+}
+
+#SearchTweetsInput:focus {
+  outline: none;
+  border: solid 2px #14b0ee;
+}
+
+#SearchTweetsInput::placeholder{
+  font-family: Ubuntu, sans-serif;
+  color: #444;
+  font-weight: 600;
+}
+
+.PlaceContainer {
+  width: 100%;
+  position: relative;
+  height: 50vh;
+  background-color: #111;
+  margin: 4vh 0;
+  overflow: hidden;
+}
+
+.PlaceImage {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.FlexItem {
+  width: 49%;
+}
+
+.PlaceInfo {
+  position: absolute;
+  color: #fff;
+  left: 0;
+  bottom: -80%;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  transition: .5s ease;
+}
+
+  .PlaceContainer:hover .PlaceInfo { 
+    bottom: 0;
+  }
+
+  .PlaceContainer:hover .OpenCloseBar { 
+    transform: rotate(180deg);
+  }
+
+  .PlaceContainer:hover .NameOfThePlace {
+    margin: 14% 0 0 6%;
+  }
+
+.NameOfThePlace {
+  font-size: 1.4rem;
+  font-family: Ubuntu, sans-serif;
+  margin: 3.4vh 6%;
+  transition: all 0.5s ease-in-out;
+}
+
+.OpenCloseBar {
+  position: absolute;
+  top: 0;
+  right: 4%;
+  font-size: 1.8rem;
+  margin-top: 3vh;
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.PlaceInfoText {
+  color: #ddd;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: Nunito, sans-serif;
+  margin: 10% 6%;
+}
+
+.MoreInfoLink {
+  position: absolute;
+  left: 0;
+  bottom: 1%;
+  margin: 6%;
+  color: #333;
+  padding: 2%;
+  background-color: #11ffff;
+  font-family: Ubuntu, sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
 }

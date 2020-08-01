@@ -16,7 +16,7 @@ import CovidData from '../MainSection/Covid'
 import WeatherData from '../MainSection/Weather'
 import Twitter from '../MainSection/Twitter'
 import About from '../MainSection/About'
-import MainTwitterPage from '../MainSection/TwitterPage'
+import History from '../MainSection/HistoryPage'
 
 class Homepage extends React.Component {
   render(){
@@ -62,6 +62,7 @@ class HistoryPage extends React.Component{
     return(
       <>
         <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/6/6e/Chiaves-la-florida-1584.jpg)'}/>
+        <History/>
         <Footer/>
       </>
     )
@@ -107,21 +108,6 @@ const Twitts = (props) => {
   )
 }
 
-const TwitterPage = props => {
-  return (
-    <>
-      <StickyNavbar fixed={true}/>
-      <UpperSection>
-        <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
-        <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
-        <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
-      </UpperSection>
-      <MainTwitterPage/>
-      <Footer/>
-    </>
-  )
-}
-
 const WeatherPage = () => {
   return (
     <>
@@ -129,7 +115,7 @@ const WeatherPage = () => {
       <UpperSection>
         <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
-        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/summer'}/></li>
+        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/Florida'}/></li>
       </UpperSection>
       <WeatherData/>
       <Footer/>
@@ -145,7 +131,7 @@ class Covid extends React.Component {
         <UpperSection>
           <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
           <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
-          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/summer'}/></li>
+          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/Florida'}/></li>
         </UpperSection>
         <CovidData/>
         <Footer/>
@@ -162,7 +148,7 @@ class News extends React.Component{
         <UpperSection>
           <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
           <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
-          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/summer'}/></li>
+          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/Florida'}/></li>
         </UpperSection>
         <NewsData/>
         <Footer/>
@@ -195,5 +181,5 @@ const NoMatchPage = () => {
 
 export { Homepage, AboutPage, InitialPage, 
   HistoryPage, LocationPage, PlacePage, 
-  Twitts, WeatherPage, NoMatchPage, TwitterPage, Covid, 
+  Twitts, WeatherPage, NoMatchPage, Covid, 
   News}

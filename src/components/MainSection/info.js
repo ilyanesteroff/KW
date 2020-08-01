@@ -6,7 +6,7 @@ let factInfo = [
         url: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Hemingway_House_Key_West_FL1.jpg",
         factType: 'Museum',
         content: 'Author Hemingway lived in Key West, and there is an annual Hemingway look-alike contest in his honor',
-        color: '#0e0880d5',
+        color: 'rgba(15, 8, 128, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Ernest_Hemingway_House',
         imgDir: 'left',
         place: 'heminguay',
@@ -33,7 +33,7 @@ let factInfo = [
         url: 'https://upload.wikimedia.org/wikipedia/commons/d/dc/Southernmost_Point_an_der_S%C3%BCdk%C3%BCste_von_Key_West.jpg',
         factType: 'The buoy',
         content: 'This is the southernmost point of Key West',
-        color: '#0e0660d5',
+        color: 'rgba(15, 6, 96, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Southernmost_point_buoy',
         imgDir: 'right',
         place: 'buoy',
@@ -52,7 +52,7 @@ let factInfo = [
         url: 'https://upload.wikimedia.org/wikipedia/commons/7/74/Southernmosthouse.jpg',
         factType: 'Historic mansion',
         content: 'The Southernmost House is a historic mansion in the U.S. city of Key West',
-        color: '#0e0550d5',
+        color: 'rgba(15, 5, 80, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Southernmost_House',
         imgDir: 'left',
         place: 'mansion',
@@ -71,7 +71,7 @@ let factInfo = [
         url: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Key_West_FL_HD_Little_White_House04.jpg', 
         factType: 'Little White House',
         content: 'The Harry S Truman Little White House in Key West, where President Harry S Truman spent 175 days during 11 visits.',
-        color: '#0e0440d5',
+        color: 'rgba(15, 4, 64, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Harry_S._Truman_Little_White_House',
         imgDir: 'right',
         place: 'white_house',
@@ -90,7 +90,7 @@ let factInfo = [
         url: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Early_morning_Smathers_Beach_Key_West.JPG', 
         factType: 'Nice place to relax',
         content: 'Smathers Beach is the largest public beach in Key West, Florida, United States. It is approximately a half mile long.',
-        color: '#0e0770d5',
+        color: 'rgba(15, 7, 112, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Smathers_Beach',
         imgDir: 'left',
         place: 'beach',
@@ -111,7 +111,7 @@ let factInfo = [
         url: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Mallory_Square.JPG', 
         factType: 'Nice place for visitors',
         content: `Mallory Square is a plaza located on the waterfront in Key West's historic Old Town.`,
-        color: '#0e0990d5',
+        color: 'rgba(15, 9, 144, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Mallory_Square',
         imgDir: 'right',
         place: 'mallory_square',
@@ -135,7 +135,7 @@ let factInfo = [
         url: 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Aerial_view_of_Fort_Zachary_Taylor_State_Park.jpg', 
         factType: 'Fort Zachary Taylor',
         content: 'The Fort Zachary Taylor Historic State Park is a Florida State Park and National Historic Landmark centered on a Civil War-era fort.',
-        color: '#0e0330d5',
+        color: 'rgba(15, 3, 48, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Fort_Zachary_Taylor_Historic_State_Park',
         imgDir: 'left',
         place: 'fort',
@@ -152,6 +152,25 @@ let factInfo = [
             <h2 key={2}>The fort as seen from the Gulf of Mexico</h2>
         ]
     },
+    {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Key_lighthouse.jpeg', 
+        factType: 'Key West Lighthouse',
+        content: 'The first Key West lighthouse was a 65-foot (20 m) tower completed in 1825. It had 15 lamps in 15-inch (380 mm) reflectors.',
+        color: 'rgba(15, 9, 144, 0.8)',
+        href: 'https://en.wikipedia.org/wiki/Key_West_Lighthouse',
+        imgDir: 'left',
+        place: 'lighthouse',
+        topic: 'Key West lighthouse',
+        additionalInfo: `The Key West Lighthouse is located in Key West, Florida. The first Key West lighthouse was a 65-foot (20 m) tower completed in 1825. It had 15 lamps in 15-inch (380 mm) reflectors. The first keeper, Michael Mabrity, died in 1832, and his widow, Barbara, became the lighthouse keeper, serving for 32 years. The Great Havana Hurricane of 1846 destroyed the lighthouse; the USS Morris, which was wrecked during the storm, reported "a white sand beach covers the spot where Key West Lighthouse stood". Barbara Mabrity survived, but fourteen people who had sought refuge in the lighthouse tower died, including seven members of her family. (The same hurricane destroyed the Sand Key Lighthouse, eight miles (13 km) away, killing six people, including the keeper, Rebecca Flaherty, another widow of a previous keeper.) Barbara Mabrity continued to serve as keeper of the Key West Light until the early 1860s, when she was fired at age 82 for making statements against the Union (Key West remained under Union control throughout the Civil War).`,
+        images: [
+            'https://upload.wikimedia.org/wikipedia/commons/9/91/USCGKeywestpre1894.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/a/a7/USCGKeywestpost1894.jpg'
+        ],
+        descriptions: [
+            <h2 key={0}>Original lighthouse, U.S. Coast Guard Archive</h2>,
+            <h2 key={1}>Current lighthouse, U.S. Coast Guard Archive</h2>
+        ]
+    }
 ]
 
 let services = [{
