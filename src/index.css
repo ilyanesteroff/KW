@@ -546,7 +546,6 @@ td {
 .PlaceContainer {
   width: 100%;
   position: relative;
-  height: 50vh;
   background-color: #111;
   margin: 4vh 0;
   overflow: hidden;
@@ -554,7 +553,6 @@ td {
 
 .PlaceImage {
   width: 100%;
-  height: 50vh;
   object-fit: cover;
 }
 
@@ -573,17 +571,21 @@ td {
   transition: .5s ease;
 }
 
-  .PlaceContainer:hover .PlaceInfo { 
+@media only screen and (min-width: 1000px){
+  .PlaceContainer:hover .PlaceInfo {
     bottom: 0;
   }
-
-  .PlaceContainer:hover .OpenCloseBar { 
+  .PlaceContainer:hover .OpenCloseBar {
     transform: rotate(180deg);
   }
-
   .PlaceContainer:hover .NameOfThePlace {
-    margin: 14% 0 0 6%;
+    margin: 15vh 0 0 6%;
   }
+}
+
+.TogglePlaceInfo { 
+  bottom: 0;
+}
 
 .NameOfThePlace {
   font-size: 1.4rem;
@@ -595,7 +597,7 @@ td {
 .OpenCloseBar {
   position: absolute;
   top: 0;
-  right: 4%;
+  right: 3%;
   font-size: 1.8rem;
   margin-top: 3vh;
   transform: rotate(45deg);
@@ -607,18 +609,62 @@ td {
   font-size: 1.2rem;
   font-weight: 500;
   font-family: Nunito, sans-serif;
-  margin: 10% 6%;
+  margin: 6vh 6%;
 }
 
 .MoreInfoLink {
   position: absolute;
   left: 0;
-  bottom: 1%;
-  margin: 6%;
+  bottom: 0;
+  margin: 4vh 6%;
   color: #333;
   padding: 2%;
   background-color: #11ffff;
   font-family: Ubuntu, sans-serif;
   font-weight: 600;
   font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 350px){
+  .NameOfThePlace{
+    font-size: 1rem;
+  }
+  .PlaceInfoText{
+    font-size: 0.8rem;
+  }
+  .MoreInfoLink {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-height: 350px) {
+  .NameOfThePlace{
+    font-size: 1rem;
+  }
+  .PlaceInfoText{
+    font-size: 0.9rem;
+  }
+  .MoreInfoLink {
+    font-size: 1rem;
+  }
+  .OpenCloseBar {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-height: 1000px) {
+  .NameOfThePlace{
+    font-size: 1.8rem;
+  }
+  .PlaceInfoText{
+    font-size: 1.4rem;
+  }
+  .MoreInfoLink {
+    font-size: 1.7rem;
+  }
+  .OpenCloseBar {
+    font-size: 2.5rem;
+    right: 5%;
+    margin-top: 3.4vh;
+  }
 }

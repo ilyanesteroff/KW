@@ -14,7 +14,6 @@ const Facts = (props) => {
         content: factInfo[index].content,
         color: factInfo[index].color,
         href: factInfo[index].href, 
-        imgDir: factInfo[index].imgDir,
         place: factInfo[index].place
       }
       return <Fact {...props}/> 
