@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { HeightContext } from '../pages/contexts'
+import Modal from '../Helpers/Modal'
 
 export default (props) => {
   let Height = () => React.useContext(HeightContext)
+  const [ isModalOpened, setIsModalOpened ] = useState(false)
   let placeInfoStyle = {
     backgroundColor: props.color
   }
@@ -30,15 +32,22 @@ export default (props) => {
   } 
 
   return (
-    <div className="PlaceContainer" style={{height: height}}>
-      <img src={props.url} className="PlaceImage" style={{height: height}}/>
-      <div className="PlaceInfo" style={placeInfoStyle}>
-        <h2 className="NameOfThePlace">{props.factType}</h2>
-        <p className="PlaceInfoText">{props.content}</p>
-        <Link to={`/places/${props.place}`} className="MoreInfoLink">More details</Link>
-        <FontAwesomeIcon icon={faTimesCircle} className="OpenCloseBar" onClick={toggleInfo}/>
+    <>
+      <div className="PlaceContainer" style={{height: height}} onDoubleClick={() => setIsModalOpened(true)}>
+        <img src={props.url} className="PlaceImage" style={{height: height}}/>
+        <div className="PlaceInfo" style={placeInfoStyle}>
+          <h2 className="NameOfThePlace">{props.factType}</h2>
+          <p className="PlaceInfoText">{props.content}</p>
+          <Link to={`/places/${props.place}`} className="MoreInfoLink">More details</Link>
+          <FontAwesomeIcon icon={faTimesCircle} className="OpenCloseBar" onClick={toggleInfo}/>
+        </div>
       </div>
-    </div>
+      {isModalOpened && <Modal>
+        <div className="ImageInModal" onClick={() => setIsModalOpened(false)}>
+          <img src={props.url} className="ModalImage"/>
+        </div>
+      </Modal>}
+    </>
   )
 }
 
