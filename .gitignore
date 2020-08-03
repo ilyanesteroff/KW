@@ -23,5 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 links.js
-AboutSection.js
-Twitter.js
+DirectionArrow.js
+Items.js
+Slide.js
+Slider.js
+SliderContent.js

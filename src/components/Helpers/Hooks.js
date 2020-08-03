@@ -53,7 +53,7 @@ const useDocumentTitleSetting = (content) => {
   useEffect(() => {
     document.title = content
     return _ => document.title = ''
-  })
+  }, [])
 } 
 
 const useFetch = (url, opts, func, key) => {
