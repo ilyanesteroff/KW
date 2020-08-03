@@ -5,52 +5,23 @@ import { SSS } from './styles'
 import Slider from '../Slider/ReadySlider'
 import { about } from './info'
 import Chart from './KeyWestPopulation'
+import { useManageSectionSwitching } from '../Helpers/Hooks'
 
 export default React.memo(() => {
-  const aboutKeyWest = useRef(null)
-  const aboutWebsite = useRef(null)
-  const [current, setCurrent] = useState('KeyWest')
-  const [aboutContent, setAboutContent] = useState(null)
-  useLayoutEffect(() => {
-    current === 'KeyWest' ? setAboutContent(<AboutKeyWest/>) : setAboutContent(<AboutWebsite/>)
-  }, [current])
-  useEffect(() => {
-    window.addEventListener('keyup', switchSection)
-    return _ => window.removeEventListener('keyup', switchSection)
-  }, [])
-
-  const switchSection = (event) => {
-    if(event.keyCode === 13) {
-      if(aboutKeyWest.current.classList.contains('activeTabLink')) {
-        aboutWebsite.current.focus()
-        aboutKeyWest.current.classList.remove('activeTabLink')
-        aboutWebsite.current.classList.add('activeTabLink')
-        setCurrent(aboutWebsite.current.id)
-      } else {
-        aboutKeyWest.current.focus()
-        aboutWebsite.current.classList.remove('activeTabLink')
-        aboutKeyWest.current.classList.add('activeTabLink')
-        setCurrent(aboutKeyWest.current.id)
-      }
-    }
-  } 
-
-  const changeActiveElement = (event) => {
-    let buttons = Array.from(document.getElementsByClassName('tabLinks'))
-    buttons.forEach(button => button.classList.remove('activeTabLink'))
-    event.target.classList.add('activeTabLink')
-    setCurrent(event.target.id)
-  }
+  const [changeActiveElement, refs, current] = useManageSectionSwitching()
 
   return (
     <div style={SSS()}>
       <Chapter additionalStyle={{textAlign: 'left', marginLeft: '2%'}}>About</Chapter>
       <div className="tab">
-        <button className="tabLinks activeTabLink" id="KeyWest" ref={aboutKeyWest} onClick={changeActiveElement}>Key West</button>
-        <button className="tabLinks" id="Website" ref={aboutWebsite} onClick={changeActiveElement}>This Website</button>
+      {about.links.map((link, index) => {
+          const newRef = useRef(null);
+          refs.push(newRef);
+          return <button className="tabLinks" ref={newRef} id={index} onClick={changeActiveElement} key={index}>{link}</button>
+        })}
       </div>
       <div className="aboutContent">
-        {aboutContent}
+        {current === 0 ? <AboutKeyWest/> : <AboutWebsite/>}
       </div>
     </div>
   )

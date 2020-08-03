@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 const modalRoot = document.getElementById('modal-root');
 
 
-export default props => {
+const Modal = props => {
   let element = document.createElement('div')
 
   useLayoutEffect(() => {
@@ -23,4 +23,14 @@ export default props => {
   );
 }
 
-export { modalRoot }
+const ModalTemplate = ({src, opened}) => {
+  return (
+    <Modal>
+      <div className="ImageInModal" onClick={() => opened(false)}>
+        <img src={src} className="ModalImage"/>
+      </div>
+    </Modal>
+  )
+}
+
+export { modalRoot, ModalTemplate }

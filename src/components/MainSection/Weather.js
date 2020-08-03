@@ -1,6 +1,6 @@
 import React from 'react'
 import { weather } from './refs/links'
-import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
+import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 import { SSS } from '../MainSection/styles'
 import { Chapter, TextArea, PS } from '../Helpers/DesignAssistants'
 import Spinner from '../MainSection/Spinner'

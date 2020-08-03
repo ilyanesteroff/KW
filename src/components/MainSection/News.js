@@ -6,7 +6,7 @@ import { width } from '../Helpers/Helpers'
 import { Chapter, PS } from '../Helpers/DesignAssistants'
 import { NewsContext, Width } from '../pages/contexts'
 import UpperContainer from './UpperContainer'
-import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
+import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 
 const { link, domain, picture } = NYTimes
 
@@ -51,8 +51,14 @@ const NewsData = (props) => {
   
   Width() < 600? height = 30: height = 60
 
-  if(!newsLoaded && spin) output = <Spinner/>
-  else if(error.hasError) output = <Spinner spinner={false} message={error.message}/>
+  if(!newsLoaded && spin){
+    document.title = 'Fetching data'
+    output = <Spinner/>
+  }
+  else if(error.hasError) {
+    document.title = 'Error'
+    output = <Spinner spinner={false} message={error.message}/>
+  }
   else if (newsLoaded){
     let sliderStyle = {
       height: height + 'vh', 
@@ -74,6 +80,7 @@ const NewsData = (props) => {
         <PS>Source: New York Times</PS>
       </UpperContainer>
     </NewsContext.Provider>
+    document.title = 'News'
   }
 
   return <div>{output}</div>

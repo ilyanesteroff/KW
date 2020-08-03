@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
+import { useFetch } from '../Helpers/Hooks'
 import { weather } from '../MainSection/refs/links'
 import WeatherForecast from './WeatherForecast'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

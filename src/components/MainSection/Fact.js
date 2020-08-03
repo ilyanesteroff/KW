@@ -1,16 +1,20 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { HeightContext } from '../pages/contexts'
-import Modal from '../Helpers/Modal'
+import { ModalTemplate } from '../Helpers/Modal'
+import { useOpenCloseModal } from '../Helpers/Hooks'
 
 export default (props) => {
   let Height = () => React.useContext(HeightContext)
-  const [ isModalOpened, setIsModalOpened ] = useState(false)
+
+  const [ closeOpenModal, isModalOpened ] = useOpenCloseModal()
+
   let placeInfoStyle = {
     backgroundColor: props.color
   }
+  
   let height 
   Height() < 400 ? height = '70vh' : height = '50vh' 
 
@@ -33,7 +37,7 @@ export default (props) => {
 
   return (
     <>
-      <div className="PlaceContainer" style={{height: height}} onDoubleClick={() => setIsModalOpened(true)}>
+      <div className="PlaceContainer" style={{height: height}} onDoubleClick={() => closeOpenModal(true)}>
         <img src={props.url} className="PlaceImage" style={{height: height}}/>
         <div className="PlaceInfo" style={placeInfoStyle}>
           <h2 className="NameOfThePlace">{props.factType}</h2>
@@ -42,11 +46,7 @@ export default (props) => {
           <FontAwesomeIcon icon={faTimesCircle} className="OpenCloseBar" onClick={toggleInfo}/>
         </div>
       </div>
-      {isModalOpened && <Modal>
-        <div className="ImageInModal" onClick={() => setIsModalOpened(false)}>
-          <img src={props.url} className="ModalImage"/>
-        </div>
-      </Modal>}
+      {isModalOpened && <ModalTemplate src={props.url} opened={closeOpenModal}/>}
     </>
   )
 }

@@ -3,8 +3,8 @@ import { CovidLinks } from './refs/links'
 import Spinner from '../MainSection/Spinner'
 import { Chapter, PS, TextArea, Link } from '../Helpers/DesignAssistants'
 import { width } from '../Helpers/Helpers'
-import { useFetch, useSpinnerSuspense } from '../Helpers/Helpers'
-import { SSS } from '../MainSection//styles'
+import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
+import { SSS } from '../MainSection/styles'
 
 export default (props) => {
 
@@ -15,6 +15,7 @@ export default (props) => {
   let output
 
   if (response1 !== null &&  response !== null && !error.hasError && !error1.hasError){
+    document.title = `Covid-19 - Key West`
     output = 
     <div style={SSS()}>
       <Chapter>Covid-19 Statistics in USA and Florida</Chapter>
@@ -26,8 +27,13 @@ export default (props) => {
       <PS>Source: Rapid API Covid-19 API</PS>
     </div>
   }
-  else if(error.hasError || error1.hasError) output = <Spinner spinner={false} message={error1.hasError? error1.message : error.message}/>
-  else if (spin) output = <Spinner/>
+  else if(error.hasError || error1.hasError) {
+    output = <Spinner spinner={false} message={error1.hasError? error1.message : error.message}/>
+    document.title = 'Error'
+  } else if (spin) {
+    document.title = 'Fetching data'
+    output = <Spinner/>
+  }
 
   return <>{output}</>
 }

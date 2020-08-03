@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useFetch, useSpinnerSuspense, width } from '../Helpers/Helpers'
+import { width } from '../Helpers/Helpers'
 import Spinner from './Spinner'
 import { twitterCredits, twitterRules } from './refs/links'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,7 +10,8 @@ import { WidthContext } from '../pages/contexts'
 import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 import TwitterTags from '../Header/TwitterTags'
 import { twitterTags } from '../MainSection/info'
-import Modal, {modalRoot} from '../Helpers/Modal'
+import {modalRoot, ModalTemplate} from '../Helpers/Modal'
+import { useOpenCloseModal, useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 
 export default ({topic}) => {
   let sectionStyle = {margin: width() > 1300 ? '5vh 10%' : '5vh 5%'}
@@ -24,12 +25,18 @@ export default ({topic}) => {
     output = <div style={width() > 1100? sectionStyle : mobileStyle}>
       <Tweets data={response}/>
     </div>
+    document.title = `#${topic} - Key West`
   }
-  else if(error.hasError) output = <Spinner spinner={false} message={error.message}/>
-  else if (spin) output = <><div style={sectionStyle}><UpperSection/></div><Spinner/></>
+  else if(error.hasError) {
+    output = <Spinner spinner={false} message={error.message}/>
+    document.title = `Error`
+  }
+  else if (spin) {
+    document.title = `loading #${topic} tweets`
+    output = <><div style={sectionStyle}><UpperSection/></div><Spinner/></>
+  }
   else output = <></>
   return output
-  return <></>
 }
 
 const UpperSection = React.memo( _ => {
@@ -258,24 +265,14 @@ const TweetContent = ({json, createdAt}) => {
 }
 
 const TweetMedia = ({media}) => {
-  const [isModalOpened, setIsModalOpened] = useState(false);
-  useEffect(() => {
-    window.addEventListener('keyup', closeModal)
-    return _ => window.removeEventListener('keyup', closeModal)
-  })
-  const closeModal = event => {
-    if(event.keyCode === 27) setIsModalOpened(false)
-  }
+  const [ closeOpenModal, isModalOpened ] = useOpenCloseModal()
+
   return (
     <>
       <div className="TweetMedia">
-        <img src={media} onClick={() => setIsModalOpened(true)}/>
+        <img src={media} onClick={() => closeOpenModal(true)}/>
       </div>
-      {isModalOpened && <Modal>
-        <div className="ImageInModal" onClick={() => setIsModalOpened(false)}>
-          <img src={media} className="ModalImage"/>
-        </div>
-      </Modal>}
+      {isModalOpened && <ModalTemplate src={media} opened={closeOpenModal}/>}
     </>
   )
 }

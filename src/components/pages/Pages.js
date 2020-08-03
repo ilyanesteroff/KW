@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Header from '../Header/Header'
 import VideoSection from '../MainSection/VideoSection'
 import MainSection from '../MainSection/MainSection'
@@ -17,22 +17,29 @@ import WeatherData from '../MainSection/Weather'
 import Twitter from '../MainSection/Twitter'
 import About from '../MainSection/About'
 import History from '../MainSection/HistoryPage'
-
-class Homepage extends React.Component {
-  render(){
-    return(
-      <>
-        <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/b/b5/Key_road.jpeg)'}/>
-        <MainSection/>
-        <VideoSection/> 
-        <Facts/>
-        <Footer/>
-      </>
-    )
-  }
+import Location from '../MainSection/LocationPage'
+import { useDocumentTitleSetting } from '../Helpers/Hooks'
+ 
+const Homepage = () =>  {
+  useDocumentTitleSetting('Key West - Home')
+  return(
+    <>
+      <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/b/b5/Key_road.jpeg)'}/>
+      <MainSection/>
+      <VideoSection/> 
+      <Facts/>
+      <Footer/>
+    </>
+  )
 }
 
 class AboutPage extends React.Component{
+  componentDidMount() {
+    document.title = 'About - Key West'
+  }
+  componentWillUnmount() {
+    document.title = ''
+  }
   render() {
     return(
       <>
@@ -57,7 +64,13 @@ class InitialPage extends React.Component{
   }
 }
 
-class HistoryPage extends React.Component{
+class HistoryPage extends React.Component {
+  componentDidMount() {
+    document.title = 'History - Key West'
+  }
+  componentWillUnmount() {
+    document.title = ''
+  }
   render() {
     return(
       <>
@@ -69,11 +82,18 @@ class HistoryPage extends React.Component{
   }
 }
 
-class LocationPage extends React.Component{
+class LocationPage extends React.Component {
+  componentDidMount() {
+    document.title = 'Location - Key West'
+  }
+  componentWillUnmount() {
+    document.title = ''
+  }
   render() {
     return(
       <>
         <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/f/f4/Carnival_Destiny_Miami_12-22-11.JPG)'}/>
+        <Location/>
         <Footer/>
       </>
     )
@@ -82,6 +102,7 @@ class LocationPage extends React.Component{
 
 const PlacePage = (props) => {
   const { place } = props
+  useDocumentTitleSetting(`Key West - ${place}`)
   return (
     <>
       <Header image={'url('+ place.url + ')'}/>
@@ -109,6 +130,7 @@ const Twitts = (props) => {
 }
 
 const WeatherPage = () => {
+  useDocumentTitleSetting('Key West - Weather')
   return (
     <>
       <StickyNavbar fixed={true}/>
@@ -159,7 +181,7 @@ class News extends React.Component{
 
 const NoMatchPage = () => {
   let location = useLocation()
-
+  useDocumentTitleSetting('No Match')
   return (
     <div style={{position: 'absolute',
       top: '50%',

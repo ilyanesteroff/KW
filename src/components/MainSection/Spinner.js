@@ -29,7 +29,7 @@ export default ({spinner, message}) => {
     }
   }
   let output
-  spinner ? output = <><FontAwesomeIcon icon={faReact} style={style.icon} className="spinner"/><Chapter additionalStyle={style.chapter}>Loading...</Chapter></>
+  spinner ? output = <><FontAwesomeIcon icon={faReact} style={style.icon} className="spinner"/><Chapter additionalStyle={style.chapter}>Processing...</Chapter></>
     : output = <><FontAwesomeIcon icon={faSadCry} style={style.icon}/>
                   <Chapter additionalStyle={style.chapter}>{message}</Chapter> </>
   return (
