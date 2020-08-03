@@ -33,22 +33,15 @@ const Homepage = () =>  {
   )
 }
 
-class AboutPage extends React.Component{
-  componentDidMount() {
-    document.title = 'About - Key West'
-  }
-  componentWillUnmount() {
-    document.title = ''
-  }
-  render() {
-    return(
-      <>
-        <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/e/e2/Brickell_skyline_2012.jpg)'}/>
-        <About/>
-        <Footer/>
-      </>
-    )
-  }
+const AboutPage = _ => {
+  useDocumentTitleSetting('Key West - About')
+  return(
+    <>
+      <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/e/e2/Brickell_skyline_2012.jpg)'}/>
+      <About/>
+      <Footer/>
+    </>
+  )
 }
 
 class InitialPage extends React.Component{
@@ -64,40 +57,26 @@ class InitialPage extends React.Component{
   }
 }
 
-class HistoryPage extends React.Component {
-  componentDidMount() {
-    document.title = 'History - Key West'
-  }
-  componentWillUnmount() {
-    document.title = ''
-  }
-  render() {
-    return(
-      <>
-        <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/6/6e/Chiaves-la-florida-1584.jpg)'}/>
-        <History/>
-        <Footer/>
-      </>
-    )
-  }
+const HistoryPage = _ => {
+  useDocumentTitleSetting('Key West - History')
+  return(
+    <>
+      <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/6/6e/Chiaves-la-florida-1584.jpg)'}/>
+      <History/>
+      <Footer/>
+    </>
+  )
 }
 
-class LocationPage extends React.Component {
-  componentDidMount() {
-    document.title = 'Location - Key West'
-  }
-  componentWillUnmount() {
-    document.title = ''
-  }
-  render() {
-    return(
-      <>
-        <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/f/f4/Carnival_Destiny_Miami_12-22-11.JPG)'}/>
-        <Location/>
-        <Footer/>
-      </>
-    )
-  }
+const LocationPage = _ => {
+  useDocumentTitleSetting('Key West - Location')
+  return(
+    <>
+      <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/f/f4/Carnival_Destiny_Miami_12-22-11.JPG)'}/>
+      <Location/>
+      <Footer/>
+    </>
+  )
 }
 
 const PlacePage = (props) => {
@@ -114,7 +93,6 @@ const PlacePage = (props) => {
 
 const Twitts = (props) => {
   const { twitt } = props
-
   return(
     <>
       <StickyNavbar fixed={true}/>

@@ -290,7 +290,7 @@ td {
   font-family: Nunito, sans-serif;
   font-weight: 700;
   background-color: transparent;
-  font-size: 1.5rem;
+  font-size: 1.38rem;
 }
 
 @media only screen and (max-width: 500px){
@@ -786,4 +786,28 @@ td {
   .HistoricalMedia{
     margin: 0;
   }
+}
+
+.ArrowIcon {
+  display: inline;
+}
+
+.NavArrow  h2{
+  display: inline;
+  font-size: 0.7rem;
+  font-family: Ubuntu, sans-serif;
+  color: #333;
+  margin: 0 2%;
+}
+.Navigation {
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 3vh;
+  position: relative;
+}
+
+.CurrentPage {
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 5vh 0 8vh 0;
 }

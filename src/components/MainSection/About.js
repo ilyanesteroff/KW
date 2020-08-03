@@ -6,9 +6,10 @@ import Slider from '../Slider/ReadySlider'
 import { about } from './info'
 import Chart from './KeyWestPopulation'
 import { useManageSectionSwitching } from '../Helpers/Hooks'
+import LowerNavigation from './NavArrows'
 
 export default React.memo(() => {
-  const [changeActiveElement, refs, current] = useManageSectionSwitching()
+  const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
 
   return (
     <div style={SSS()}>
@@ -22,6 +23,7 @@ export default React.memo(() => {
       </div>
       <div className="aboutContent">
         {current === 0 ? <AboutKeyWest/> : <AboutWebsite/>}
+        <LowerNavigation current={current} content={['About Key West', 'About Website']} handleClick={nextPrev}/>
       </div>
     </div>
   )

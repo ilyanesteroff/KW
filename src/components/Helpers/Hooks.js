@@ -40,13 +40,20 @@ const useManageSectionSwitching = () => {
     }
   } 
 
+  const nextPrev = event => {
+    let element 
+    event.target.classList.contains('NavArrow') ? element = event.target : element = event.target.parentElement
+    if(element.id !== 'right' && element.id !== 'left') element = element.parentElement
+    element.id === 'right' ? setCurrent(current + 1) : setCurrent(current - 1)
+  }
+
   useAddingEventListeners(switchSection)
 
   const changeActiveElement = (event) => {
     setCurrent(parseInt(event.target.id))
   }
 
-  return [changeActiveElement, refs, current]
+  return [changeActiveElement, refs, current, nextPrev]
 }
 
 const useDocumentTitleSetting = (content) => {

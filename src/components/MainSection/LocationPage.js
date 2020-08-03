@@ -5,9 +5,10 @@ import { SSS } from './styles'
 import { Width } from '../pages/contexts'
 import { ModalTemplate } from '../Helpers/Modal'
 import { useManageSectionSwitching, useOpenCloseModal } from '../Helpers/Hooks'
+import LowerNavigation from './NavArrows'
 
 export default () => {
-  const [changeActiveElement, refs, current] = useManageSectionSwitching()
+  const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
 
   return (
     <div style={SSS()}>
@@ -26,6 +27,7 @@ export default () => {
       </div>
       <div className="locationContent">
         <Content index={current}/>
+        <LowerNavigation current={current} content={location.items} handleClick={nextPrev}/>
       </div>
     </div>
   )

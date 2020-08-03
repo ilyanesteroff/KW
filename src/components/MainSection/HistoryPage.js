@@ -4,9 +4,10 @@ import { Width } from '../pages/contexts'
 import { SSS } from './styles'
 import { history } from './info'
 import { useManageSectionSwitching } from '../Helpers/Hooks'
+import LowerNavigation from './NavArrows'
 
 export default () => {
-  const [changeActiveElement, refs, current] = useManageSectionSwitching()
+  const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
   
   return (
     <div style={SSS()}>
@@ -25,6 +26,7 @@ export default () => {
       </div>
       <div className="aboutContent">
         <Content index={current}/>
+        <LowerNavigation current={current} content={history.links} handleClick={nextPrev}/>
       </div>
     </div>
   )
