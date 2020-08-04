@@ -1,5 +1,5 @@
 import React from 'react'
-import { WidthContext, ScrollTopContext } from '../pages/contexts'
+import { WidthContext } from '../pages/contexts'
 
 const Width = () => React.useContext(WidthContext)
 
@@ -7,11 +7,11 @@ const LogoImage = (props) => {
 
   let logoImageStyle = getStyle({
     position: 'absolute'
-}, Width())
+  }, Width())
 
   return(
     <div>
-      <img src={props.url} style={logoImageStyle}  height='auto'/>
+      <img src={props.url} style={logoImageStyle} alt="The logo of Key West"  height='auto'/>
     </div>
   )
 }

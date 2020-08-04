@@ -1,29 +1,21 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { divStyle, item, iconStyle } from './styles'
 import { WidthContext } from '../pages/contexts'
 import { Link } from 'react-router-dom'
 
-class UpperOption extends React.Component{
+export default class extends React.Component{
   
   static contextType = WidthContext
 
-  static defaultProps = {
-    divStyle: divStyle,
-    iconStyle: iconStyle,
-    itemStyle: item,
-    fontSize: '2vh' 
-  }
-
   render() {
-    const { divStyle, iconStyle, link, sentence, icon, itemStyle } = this.props
+    const { link, sentence, icon } = this.props
     let output 
     this.context > 700?
     output =
-    <ul style={divStyle}>
-      <li><FontAwesomeIcon style={iconStyle} icon={icon}/></li>
-      <li><h3 style={itemStyle}> {sentence} </h3></li>
-    </ul> : output = <FontAwesomeIcon style={iconStyle} icon={icon}/>
+    <div className="LocalTime">
+      <span><FontAwesomeIcon className="UpperIcon" icon={icon}/></span>
+      <h3 className="UpperOption"> {sentence} </h3>
+    </div> : output = <FontAwesomeIcon className="UpperIcon" icon={icon}/>
 
     return(
       <div>
@@ -34,5 +26,3 @@ class UpperOption extends React.Component{
     )
   }
 }
-
-export default UpperOption

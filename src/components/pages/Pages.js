@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import Header from '../Header/Header'
 import VideoSection from '../MainSection/VideoSection'
 import MainSection from '../MainSection/MainSection'
@@ -45,9 +45,6 @@ const AboutPage = _ => {
 }
 
 class InitialPage extends React.Component{
-  constructor(props){
-      super(props)
-  }
   render() {
     return(
       <div className="landingPage">
@@ -81,7 +78,7 @@ const LocationPage = _ => {
 
 const PlacePage = (props) => {
   const { place } = props
-  useDocumentTitleSetting(`Key West - ${place}`)
+  useDocumentTitleSetting(`Key West - ${place.place}`)
   return (
     <>
       <Header image={'url('+ place.url + ')'}/>

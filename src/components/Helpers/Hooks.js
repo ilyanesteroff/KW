@@ -7,6 +7,18 @@ const useAddingEventListeners = (func) => {
   }, [])
 }
 
+const useCurrent = (val) => {
+  const [ current, setCurrent ] = useState(val)
+
+  const nextPrev = event => {
+    let element 
+    event.target.classList.contains('NavArrow') ? element = event.target : element = event.target.parentElement
+    setCurrent(prevVal => element.id === 'right' ? prevVal + 1 : prevVal - 1)
+  }
+
+  return [current, setCurrent, nextPrev]
+}
+
 const useOpenCloseModal = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const closeModal = event => {
@@ -18,7 +30,7 @@ const useOpenCloseModal = () => {
 
 const useManageSectionSwitching = () => {
   const refs = []
-  const [ current, setCurrent ] = useState(0)
+  const [current, setCurrent, nextPrev] = useCurrent(0)
 
   useLayoutEffect(() => {
     refs[current].current.focus()
@@ -26,26 +38,14 @@ const useManageSectionSwitching = () => {
   }, [])
 
   useLayoutEffect(() => {
-    let buttons = Array.from(document.getElementsByClassName('tabLinks'))
-    buttons.forEach(button => button.classList.remove('activeTabLink'))
+    Array.from(document.getElementsByClassName('tabLinks')).forEach(button => button.classList.remove('activeTabLink'))
     refs[current].current.focus()
     refs[current].current.classList.add('activeTabLink')
   }, [current])
   
   const switchSection = event => {
-    if(event.keyCode === 13) {
-      setCurrent(prevVal => {
-        return prevVal < refs.length - 1 ? prevVal + 1 : 0;
-      })
-    }
+    if(event.keyCode === 13) setCurrent(prevVal => prevVal < refs.length - 1 ? prevVal + 1 : 0 )
   } 
-
-  const nextPrev = event => {
-    let element 
-    event.target.classList.contains('NavArrow') ? element = event.target : element = event.target.parentElement
-    if(element.id !== 'right' && element.id !== 'left') element = element.parentElement
-    element.id === 'right' ? setCurrent(current + 1) : setCurrent(current - 1)
-  }
 
   useAddingEventListeners(switchSection)
 
@@ -138,4 +138,4 @@ const useSpinnerSuspense = (delay) => {
     return [showSpinner]
 }
 
-export { useOpenCloseModal, useManageSectionSwitching, useDocumentTitleSetting, useSpinnerSuspense, useFetch }
+export { useOpenCloseModal, useManageSectionSwitching, useDocumentTitleSetting, useSpinnerSuspense, useFetch, useCurrent }

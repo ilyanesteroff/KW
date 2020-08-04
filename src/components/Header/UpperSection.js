@@ -1,7 +1,6 @@
 import React from 'react'
 import LocalTime from './LocalTime'
 import RightUpperSection from './RightUpperSection'
-import { upperHeader, rightUpperSection } from './styles'
 import { WidthContext } from '../pages/contexts'
 
 class UpperSection extends React.Component {
@@ -13,7 +12,7 @@ class UpperSection extends React.Component {
 
   render() {
     return (
-      <div style={upperHeader}>
+      <div className="UpperHeader">
         <ul>
           {this.context > 700 && <li><LocalTime/></li>}
           <li>

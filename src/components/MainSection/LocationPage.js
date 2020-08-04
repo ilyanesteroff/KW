@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useLayoutEffect, useRef} from 'react'
+import React, {useRef} from 'react'
 import { location } from './info'
 import { Chapter } from '../Helpers/DesignAssistants' 
 import { SSS } from './styles'
@@ -38,7 +38,7 @@ const Content = ({index}) => {
 
     return (
       <>
-        <img className="MapImage" src={location.content[index]} onClick={closeOpenModal}/>
+        <img className="MapImage" alt={location.items[index]} src={location.content[index]} onClick={closeOpenModal}/>
         {isModalOpened && <ModalTemplate src={location.content[index]} opened={closeOpenModal}/>}
       </>
     )

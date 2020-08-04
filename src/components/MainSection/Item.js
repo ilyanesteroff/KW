@@ -7,7 +7,7 @@ const Item = (props) => {
   
     let output =
       <div style={styles.mainStyle}>
-        <a href={props.url} target="_blank" style={styles.href}>
+        <a href={props.url} target="_blank" rel="noopener noreferrer" style={styles.href}>
           <FontAwesomeIcon style={styles.iconStyle} icon={props.icon}/>
           <h2 style={styles.headlineStyle}>{props.headline}</h2>
           <Topic style={styles.textStyle} text={props.text}/>

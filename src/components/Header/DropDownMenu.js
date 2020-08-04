@@ -1,36 +1,28 @@
 import React from 'react'
-import { dropDownItem, dropDownMenu } from './styles'
 import { Link } from "react-router-dom";
-import { link } from './styles'
 import { navbarItems } from '../MainSection/info'
 
-class DropDownMenu extends React.Component{
-  constructor(props){
-    super(props)
-  }
-
-  render(){
-    let options = navbarItems.map((item, index) => {
+export default () => {
+  let options = navbarItems.map((item, index) => {
     let res
     index > 0 ? res = item.toLowerCase() : res = ''
     if(window.location.pathname === '/' + res) {
       return 
     } else {
-      return <Link to={'/' + res } style={link} key={res}>
-              <DropDownItem item={item} style={dropDownItem}/>
-            </Link>
-    }
-    })
-    return(
-        <div style={dropDownMenu} id="DropDownMenu">
-          {options}
-        </div>
+      return (
+        <Link to={'/' + res }  className="NavbarLink" key={res}>
+          <DropDownItem item={item}/>
+        </Link>
       )
     }
+  })
+  return(
+    <div style={{top: window.innerHeight < 500 ? window.innerHeight < 300 ? '27vh' : '21vh' : '11vh'}} id="DropDownMenu">
+      {options}
+    </div>
+  )
 }
 
-function DropDownItem({item, style}){
-    return <h2 className="DropDownItem" style={style}>{item}</h2>
+function DropDownItem({item}){
+    return <h2 className="DropDownItem">{item}</h2>
 }
-
-export default DropDownMenu

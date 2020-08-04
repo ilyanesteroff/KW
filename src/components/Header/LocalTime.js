@@ -1,46 +1,32 @@
-import React from 'react'
+import React, {useState, useLayoutEffect} from 'react'
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { divStyle, item, iconStyle } from './styles'
 
-class LocalTime extends React.Component {
-    constructor(props) {
-        super(props);
-        this.getTime = this.getTime.bind(this)
-        this.state = {date: this.getTime()}
-      }
-    
-      componentDidMount() {
-        this.timerID = setInterval(
-          () => this.tick(),
-          1000
-        );
-      }
-    
-      componentWillUnmount() {
-        clearInterval(this.timerID);
-      }
+export default _ => {
+  const getTime = () => {
+    let date = new Date();
+    let utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+    return new Date(utc + (3600000*(-4)))
+  }
 
-      tick() {
-        this.setState({
-          date: this.getTime()
-        });
-      }
-
-      getTime = () => {
-        let date = new Date();
-        let utc = date.getTime() + (date.getTimezoneOffset() * 60000);
-        return new Date(utc + (3600000*(-4)))
-      }
+  const [date, setDate] = useState(getTime())
+  
+  useLayoutEffect(_ => {
+    const timerID = setInterval(
+      _ => tick(),
+      1000
+    )
+    return _ => clearInterval(timerID)
+  })
     
-      render() {
-        return (
-          <ul style={divStyle}>
-            <li><FontAwesomeIcon style={iconStyle} icon={faClock} /></li>
-            <li><h3 style={item}> {this.state.date.toLocaleTimeString()} </h3></li>
-          </ul>
-        )
-    }
+  const tick = _ => {
+    setDate(getTime())
+  }
+    
+  return (
+    <div className="LocalTime">
+      <span><FontAwesomeIcon className="UpperIcon" icon={faClock} /></span>
+      <h3 className="UpperOption"> {date.toLocaleTimeString()} </h3>
+    </div>
+  )
 }
-
-export default LocalTime

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState, useLayoutEffect} from 'react';
 import reactDom from 'react-dom'
 import { Homepage, InitialPage, AboutPage, 
   HistoryPage, LocationPage, PlacePage, 
@@ -7,70 +7,58 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { WidthContext, HeightContext, ScrollTopContext, FactContext } from './components/pages/contexts'
 import Head from './components/pages/Head'
 import { factInfo } from './components/MainSection/info'
+import { useCookies } from 'react-cookie' 
 
-class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [ width, setWidth ] = useState(0)
+  const [ height, setHeight ] = useState(0)
+  const [ scrollTop, setScrollTop ] = useState(0)
+  const [ loaded, setLoaded ] = useState(window.location.pathname.includes('places/'))
+  const [ cookies, setCookie ] = useCookies(['KeyWest'])
 
-    this.state = { 
-      width: 0, 
-      height: 0,
-      scrollTop: 0,
-      loaded: false 
-    };
+  useLayoutEffect(() => {
+    updateWindowDimensions()
+    updateScrollTop()
+  }, [])
+  
+  useEffect(() => {
+    window.addEventListener('resize', updateWindowDimensions)
+    window.addEventListener('scroll', updateScrollTop)
+    window.addEventListener('load', changeBg)
+    setCookie('KeyWest', 'security', { path: '/', sameSite: 'None', maxAge: 259200 })
 
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    this.updateScrollTop = this.updateScrollTop.bind(this)
-    this.changeBg = this.changeBg.bind(this)
+    return _ => {
+      window.removeEventListener('resize', updateWindowDimensions)
+      window.removeEventListener('scroll', updateScrollTop)
+      window.removeEventListener('load', changeBg)
+    }
+  }, [])
+
+  const updateWindowDimensions = () => {
+    setHeight(window.innerHeight)
+    setWidth(window.innerWidth)
   }
 
-  componentDidMount = () => {
-    this.updateWindowDimensions()
-    this.updateScrollTop()
-    window.addEventListener('resize', this.updateWindowDimensions)
-    window.addEventListener('scroll', this.updateScrollTop)
-    window.addEventListener('load', this.changeBg)
+  const updateScrollTop = () => {
+    setScrollTop(document.documentElement.scrollTop > height / 4 || document.body.scrollTop > height / 4)
   }
 
-  componentWillUnmount = () => {
-    window.removeEventListener('resize', this.updateWindowDimensions)
-    window.removeEventListener('scroll', this.updateScrollTop)
-    window.removeEventListener('load', this.changeBg)
-  }
-
-  updateWindowDimensions = () => {
-    this.setState({
-       width: window.innerWidth, 
-       height: window.innerHeight 
-    });
-  }
-
-  updateScrollTop = () => {
-    this.setState({
-      scrollTop: document.documentElement.scrollTop > this.state.height / 4 || document.body.scrollTop > this.state.height / 4
-    })
-  }
-
-  changeBg = () => {
+  const changeBg = () => {
     setTimeout(() => {
-      this.setState({
-        loaded: true
-      })
+      setLoaded(true)
     }, 500)
   }
 
-  render = () => {
-    if (!this.state.loaded) { 
-    document.getElementById('initial-root').style.background = '#333'
+  if (!loaded) { 
     return reactDom.createPortal (
     <InitialPage>
       <img src={'https://upload.wikimedia.org/wikipedia/commons/2/24/Seal_of_Key_West%2C_Florida.png'} style={{transform: 'scale(0.5)'}}/>
     </InitialPage>, document.getElementById('initial-root'))
-    } else 
+  } else {
     return (
-      <ScrollTopContext.Provider value={this.state.scrollTop}>
-        <WidthContext.Provider value={this.state.width}>
-          <HeightContext.Provider value={this.state.height}>
+      <ScrollTopContext.Provider value={scrollTop}>
+        <WidthContext.Provider value={width}>
+          <HeightContext.Provider value={height}>
             <div className="App">
               <Head/>
               <Router>
@@ -100,4 +88,3 @@ class App extends React.PureComponent {
   }
 }
 
-export default App;

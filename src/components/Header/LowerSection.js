@@ -3,7 +3,7 @@ import CompleteNavbar from './CompleteNavbar'
 import CompleteLowerLowerSection from './CompleteLowerLowerSection'
 import { Width, Height } from '../pages/contexts'
 
-const LowerSection = (props) => {
+export default props => {
   
   let style = {
       height: Height() < 950? '50vh' : '70vh',
@@ -15,10 +15,8 @@ const LowerSection = (props) => {
   }
   return (
      <div style={style}>
-       {Width() > 950 && <CompleteLowerLowerSection/>}
+       {Width() > 1000 && <CompleteLowerLowerSection/>}
        <CompleteNavbar/>
      </div>
   )
 }
-
-export default LowerSection

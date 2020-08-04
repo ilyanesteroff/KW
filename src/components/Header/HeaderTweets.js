@@ -1,24 +1,29 @@
 import React from 'react'
-import UpperOption from './UpperOption'
 import TwitterTags from './TwitterTags'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
-import { headerTwitts, twitterStyle, twitterItem } from './styles'
 import { twitterTags as tags } from '../MainSection/info'
+import { Link } from 'react-router-dom'
 
 
-class HeaderTweets extends React.PureComponent{
-    constructor(props){
-        super(props)
-    }
-
-    render(){
-        return(
-            <div style={headerTwitts}>
-                <UpperOption fontSize="1.2rem" sentence="Trending Twitts" icon={faTwitter} iconStyle={twitterStyle} itemStyle={twitterItem} link="/twitts/Florida"/>
-                <TwitterTags tags={tags} />
-            </div>
-        )
-    }
+export default _ =>{
+  return (
+    <div className="HeaderTweets">
+      <Headline sentence="Recent Twitts" link="/twitts/Florida"/>
+      <TwitterTags tags={tags} />
+    </div>
+  )
 }
 
-export default HeaderTweets
+const Headline = ({sentence, link}) => {
+  return (
+    <Link to={link}>
+      <h3 className="TwitterSectionHeadline">
+        <span id="HeaderTwitterIcon">
+          <FontAwesomeIcon icon={faTwitter}/>
+        </span>
+        {sentence}
+      </h3>
+    </Link>
+  )
+}

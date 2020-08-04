@@ -3,7 +3,6 @@ import { useFetch } from '../Helpers/Hooks'
 import { weather } from '../MainSection/refs/links'
 import WeatherForecast from './WeatherForecast'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { weather as Weather, weatherIconStyle } from './styles'
 import { defineIcon, extractWeather } from '../MainSection/WeatherContent'
 import { Link } from 'react-router-dom'
 import { Chapter } from '../Helpers/DesignAssistants'
@@ -18,7 +17,7 @@ export default React.memo(() => {
     let icon = defineIcon(response.weather, false)
     output = 
     <>
-      <li><FontAwesomeIcon icon={icon.icon} style={Object.assign({}, weatherIconStyle, icon.style)}/></li>
+      <li><FontAwesomeIcon icon={icon.icon} className="WeatherIconStyle" style={icon.style}/></li>
       <li><WeatherForecast type={response.weather} temps={{max: response.high, min: response.low, temp: response.temperature}}/></li>
     </>
   } else if (error.hasError) {
@@ -27,7 +26,7 @@ export default React.memo(() => {
 
   return (
     <Link to="/weather">
-      <ul style={Weather}>
+      <ul className="HeaderWeather">
         {output}
       </ul>
     </Link>

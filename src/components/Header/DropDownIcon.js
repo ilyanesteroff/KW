@@ -1,5 +1,4 @@
 import React from 'react'
-import { hiddenNavbarIcon } from './styles'
 import DropDownMenu from './DropDownMenu'
 
 class DropDownIcon extends React.Component{
@@ -62,7 +61,7 @@ class DropDownIcon extends React.Component{
   render() {
     return (
       <div ref={this.container}>
-        <h2 style={hiddenNavbarIcon} onClick={this.openNavbar}>☰</h2>
+        <h2 className="HiddenNavbarIcon" onClick={this.openNavbar}>☰</h2>
         {this.state.isClicked && <DropDownMenu/>}
       </div>
     )

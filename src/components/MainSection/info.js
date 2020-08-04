@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { faComment, faChartBar, faBuilding, faNewspaper} from '@fortawesome/free-regular-svg-icons'
 import { Chapter, TextArea } from '../Helpers/DesignAssistants'
-import Slider from '../Slider/ReadySlider'
 
 let factInfo = [
     {
         url: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Hemingway_House_Key_West_FL1.jpg",
         factType: 'Museum',
+        index: 0,
         content: 'Author Hemingway lived in Key West, and there is an annual Hemingway look-alike contest in his honor',
         color: 'rgba(15, 8, 128, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Ernest_Hemingway_House',
@@ -33,6 +33,7 @@ let factInfo = [
     {
         url: 'https://upload.wikimedia.org/wikipedia/commons/d/dc/Southernmost_Point_an_der_S%C3%BCdk%C3%BCste_von_Key_West.jpg',
         factType: 'The buoy',
+        index: 1,
         content: 'This is the southernmost point of Key West',
         color: 'rgba(15, 6, 96, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Southernmost_point_buoy',
@@ -51,6 +52,7 @@ let factInfo = [
     {
         url: 'https://upload.wikimedia.org/wikipedia/commons/7/74/Southernmosthouse.jpg',
         factType: 'Historic mansion',
+        index: 2,
         content: 'The Southernmost House is a historic mansion in the U.S. city of Key West',
         color: 'rgba(15, 5, 80, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Southernmost_House',
@@ -69,6 +71,7 @@ let factInfo = [
     {
         url: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Key_West_FL_HD_Little_White_House04.jpg', 
         factType: 'Little White House',
+        index: 3,
         content: 'The Harry S Truman Little White House in Key West, where President Harry S Truman spent 175 days during 11 visits.',
         color: 'rgba(15, 4, 64, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Harry_S._Truman_Little_White_House',
@@ -87,6 +90,7 @@ let factInfo = [
     {
         url: 'https://upload.wikimedia.org/wikipedia/commons/b/bc/Early_morning_Smathers_Beach_Key_West.JPG', 
         factType: 'Nice place to relax',
+        index: 4,
         content: 'Smathers Beach is the largest public beach in Key West, Florida, United States. It is approximately a half mile long.',
         color: 'rgba(15, 7, 112, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Smathers_Beach',
@@ -107,6 +111,7 @@ let factInfo = [
     {
         url: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Mallory_Square.JPG', 
         factType: 'Nice place for visitors',
+        index: 5,
         content: `Mallory Square is a plaza located on the waterfront in Key West's historic Old Town.`,
         color: 'rgba(15, 9, 144, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Mallory_Square',
@@ -130,6 +135,7 @@ let factInfo = [
     {
         url: 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Aerial_view_of_Fort_Zachary_Taylor_State_Park.jpg', 
         factType: 'Fort Zachary Taylor',
+        index: 6,
         content: 'The Fort Zachary Taylor Historic State Park is a Florida State Park and National Historic Landmark centered on a Civil War-era fort.',
         color: 'rgba(15, 3, 48, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Fort_Zachary_Taylor_Historic_State_Park',
@@ -150,6 +156,7 @@ let factInfo = [
     {
         url: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Key_lighthouse.jpeg', 
         factType: 'Key West Lighthouse',
+        index: 7,
         content: 'The first Key West lighthouse was a 65-foot (20 m) tower completed in 1825. It had 15 lamps in 15-inch (380 mm) reflectors.',
         color: 'rgba(15, 9, 144, 0.8)',
         href: 'https://en.wikipedia.org/wiki/Key_West_Lighthouse',

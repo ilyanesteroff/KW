@@ -44,7 +44,7 @@ const UpperSection = React.memo( _ => {
     <div style={{textAlign: 'left', margin: '2%'}}> 
       <TweetSearcher/>
       <Chapter>Tweets</Chapter>
-      <TwitterTags tags={twitterTags.filter(twit => twit != window.location.pathname.split('/')[2])} color="#333"/>
+      <TwitterTags tags={twitterTags.filter(twit => twit !== window.location.pathname.split('/')[2])} color="#333"/>
       <Chapter>Recent Tweets & Retweets #{window.location.pathname.split('/')[2]}</Chapter>
     </div>
   )
@@ -191,7 +191,7 @@ const Retweets = ({retweets, url}) => {
     </div>
 
   if (url !== '')
-    output = <a href={url} target="_blank">{output}</a>
+    output = <a href={url} target="_blank" rel="noopener noreferrer">{output}</a>
   
   return output
 }
@@ -252,12 +252,12 @@ const TweetContent = ({json, createdAt}) => {
        {json.hashtags !== [] && <Hashtags source={json.hashtags}/>}
        <h5 className="CreatedAt">{createdAt}</h5>
        {json.tweet_url !== '' && 
-        <a className="TweetUrl" target="_blank" href={json.tweet_url} style={{color: `#${json.profile_link_color}`}}>
+        <a className="TweetUrl" target="_blank" rel="noopener noreferrer" href={json.tweet_url} style={{color: `#${json.profile_link_color}`}}>
           <FontAwesomeIcon className="HeartIcon" icon={faHeart}/>
         </a>
        }
       <Retweets retweets={json.retweet_count} url={json.tweet_url}/>
-      <a href={twitterRules} target="_blank" className="InfoLink">
+      <a href={twitterRules} target="_blank" rel="noopener noreferrer" className="InfoLink">
         <FontAwesomeIcon icon={faInfoCircle} className="InfoPolicy"/>
       </a>
     </div>
@@ -278,6 +278,6 @@ const TweetMedia = ({media}) => {
 }
 
 const Hashtags = ({source}) => {
-  let hashtags = source.map((item, index) => <a key={index} className="Hashtag" target="_blank" href={`https://twitter.com/hashtag/${item}`}>{`#${item} `}</a>)
+  let hashtags = source.map((item, index) => <a key={index} rel="noopener noreferrer" className="Hashtag" target="_blank" href={`https://twitter.com/hashtag/${item}`}>{`#${item} `}</a>)
   return <div className="HashTags">{hashtags}</div>
 }

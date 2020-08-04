@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useEffect, useRef, useState } from 'react'
-import { Chapter, TextArea, Link } from '../Helpers/DesignAssistants'
+import React, { useRef } from 'react'
+import { Chapter } from '../Helpers/DesignAssistants'
 import { Width } from '../pages/contexts'
 import { SSS } from './styles'
 import { history } from './info'
@@ -8,7 +8,6 @@ import LowerNavigation from './NavArrows'
 
 export default () => {
   const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
-  
   return (
     <div style={SSS()}>
       <Chapter additionalStyle={{textAlign: 'left', marginLeft: '2%'}}>History of Key West</Chapter>

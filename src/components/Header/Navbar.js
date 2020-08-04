@@ -3,7 +3,6 @@ import NavbarItem from './NavbarItem.js'
 import DropDownIcon from './DropDownIcon'
 import { WidthContext, ScrollTopContext } from '../pages/contexts'
 import { Link } from "react-router-dom";
-import { link } from './styles'
 import { navbarItems } from '../MainSection/info'
 import { StickyNavbarContext } from '../pages/contexts'
 
@@ -35,7 +34,7 @@ const Navbar = () => {
          if(window.location.pathname === '/' + path) {
            return 
          } else {
-           return <li key={item}><Link to={'/' + path} style={link}><NavbarItem option={item} /></Link></li>
+           return <li key={item}><Link to={'/' + path} className="NavbarLink"><NavbarItem option={item} /></Link></li>
          }
         })}
     </ul> 

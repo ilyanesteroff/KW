@@ -1,5 +1,4 @@
 import React from 'react'
-import { twitts } from './styles'
 import { Link } from 'react-router-dom'
 import { WidthContext } from '../pages/contexts'
 
@@ -17,7 +16,7 @@ export default class extends React.Component{
         })
 
         return (
-            <ul style={twitts}>
+            <ul className="Twitts">
                 {twitterTags}
             </ul>
         )

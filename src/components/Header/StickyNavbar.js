@@ -7,15 +7,15 @@ import LogoLabel from './LogoLabel'
 export default ({fixed}) => {
     const ScrollTop = () => React.useContext(ScrollTopContext)
     let style = {
-        width: '100%',
-        height: '13vh',
-        minHeight: '4rem',
-        backgroundColor: 'rgba(51, 34, 136, 0.9)',
-        position : fixed? 'static' : 'fixed', 
-        left: '0',
-        top: '-10%',
-        transition: 'top 0.5s',
-        zIndex: '2'
+      width: '100%',
+      height: '13vh',
+      minHeight: '4rem',
+      backgroundColor: 'rgba(51, 34, 136, 0.9)',
+      position : fixed? 'static' : 'fixed', 
+      left: '0',
+      top: '-10%',
+      transition: 'top 0.5s',
+      zIndex: '2'
     }  
     ScrollTop() || fixed ? style.top = '0' : style.top = '-27%'
 

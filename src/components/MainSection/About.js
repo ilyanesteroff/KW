@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useEffect, useRef, useState } from 'react'
-import { Chapter, TextArea, Link } from '../Helpers/DesignAssistants'
+import React, { useRef} from 'react'
+import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 import { Width } from '../pages/contexts'
 import { SSS } from './styles'
 import Slider from '../Slider/ReadySlider'

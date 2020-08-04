@@ -1,44 +1,61 @@
-import React from 'react'
+import React, { useLayoutEffect, useEffect, useRef } from 'react'
 import { Chapter, TextArea, Link } from '../Helpers/DesignAssistants'
 import { Sectionstyle } from '../MainSection/styles'
 import UpperContainer from '../MainSection/UpperContainer'
 import Slider from '../Slider/ReadySlider'
 import { width } from '../Helpers/Helpers'
+import NavArrows from './NavArrows'
+import { useCurrent } from '../Helpers/Hooks'
+import { factInfo } from './info'
 
-export default class extends React.Component{
-  constructor(props){
-    super(props)
-  }
-
-  render() {
-    const { info } = this.props
-    let height 
-    width() > 625 ? height = 60 : height = 40
-    let sliderStyle = {
-      height: height + 'vh', 
-      width: '80%', 
-      marginLeft: '10%', 
-      marginTop: '5vh', 
-      backgroundColor: '#fff',
-      boxShadow: 'none',
+export default props => {
+  let { info } = props
+  const [current, setCurrent, nextPrev] = useCurrent(info.index)
+  useLayoutEffect(_ => {
+    window.scrollTo(0, 0);
+  }, [])
+  
+  const firstUpdate = useRef(true)
+  useLayoutEffect(_ => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
     }
-    return (
-      <div style={Sectionstyle}>
-        <UpperContainer>
-        <Chapter>
-          {info.topic}
-        </Chapter>
-        <TextArea>
-          {info.additionalInfo}
-        </TextArea>
-        <Link href={info.href}>
-          More info and facts in wikipedia
-        </Link> 
-        </UpperContainer>
-        <div style={{ backgroundColor: '#333', height: `${height }vh`, marginTop: '10vh'}}>
-          <Slider images={info.images} info={info.descriptions} color={info.color} sliderStyle={sliderStyle} url={info.images}/>
-        </div>
-      </div>
-    )
+    window.scrollTo(0, 0)
+  }, [current])
+
+  let height 
+  width() > 625 ? height = 60 : height = 40
+  let sliderStyle = {
+    height: height + 'vh', 
+    width: '80%', 
+    marginLeft: '10%', 
+    marginTop: '5vh', 
+    backgroundColor: '#fff',
+    boxShadow: 'none',
   }
+  return (
+    <div style={Sectionstyle}>
+      <UpperContainer>
+      <Chapter>
+        {info.topic}
+      </Chapter>
+      <TextArea>
+        {info.additionalInfo}
+      </TextArea>
+      <Link href={info.href}>
+        More info and facts in wikipedia
+      </Link> 
+      </UpperContainer>
+      <div style={{ backgroundColor: '#333', height: `${height }vh`, marginTop: '10vh'}}>
+        <Slider images={info.images} info={info.descriptions} color={info.color} sliderStyle={sliderStyle} url={info.images}/>
+      </div>
+      <NavArrows 
+        current={current} 
+        content={factInfo.map(element => element.topic)} 
+        handleClick={nextPrev} 
+        hrefs={factInfo.map(element => `/places/${element.place}`)}
+      />
+    </div>
+  )
 }

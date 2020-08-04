@@ -223,8 +223,98 @@ td {
   transition: all 1s;
 }
 
+#DropDownMenu {
+  position: absolute;
+  background-color: #111166;
+  right: 5%;
+  text-align: center;
+  box-shadow: 1vh 1vw 3vh;
+  border-bottom: 0.5vh;
+  z-index: 5;
+}
+
 .DropDownItem {
   transition: all 0.5s;
+  color: #fff;
+  padding: 4vh 28vw;
+  letter-spacing: 0.1vw;
+  z-index: 10;
+  border-radius: 0.5vh;
+}
+
+.HiddenNavbarIcon {
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  position: relative;
+  float: right;
+}
+
+.ForecastSection{
+  padding: 0 10px;
+  color: #fff;
+  border-right: solid 2px #fafafa;
+}
+
+.WeatherIconStyle {
+  font-size: 5vh;
+  color: #fff;
+}
+
+.LocalTime {
+  margin: 0.5vh 0;
+  padding: 0.2vh;
+  width: 120%;
+}
+
+.UpperIcon {
+  margin-left: 1.5vw;
+  margin-right: 1vw;
+  color: #ffff11;
+  font-size: 1.5rem;
+}
+
+.UpperOption {
+  font-size: 1rem;
+  color: #eee;
+  font-weight: 500;
+  font-family: Roboto Condensed, sans-serif;
+  cursor: pointer;
+  display: inline;
+}
+
+.NavbarItem {
+  color: #fff;
+  font-family: Ubuntu, sans-serif;
+  margin: 0 4vw;
+  cursor: pointer;
+  padding-bottom: 1vh;
+}
+
+.NavbarItem:hover {
+  border-bottom: 2px solid #eeeeee;
+}
+
+.RightUpperSection {
+  position: absolute;
+  right: 4%;
+  top: 0;
+  margin: 0.5vh 0;
+  padding: 0.3vh;
+}
+
+.Twitts {
+  margin: 1vh 0;
+  color: #fff;
+  font-family: Ubuntu, sans-serif;
+}
+
+.UpperHeader {
+  background: linear-gradient(#332288, #110044);
+  padding: 0.9vh;
+  padding-top: 0.8vh;
+  padding-bottom: 1vh;
+  position: relative;
 }
 
 @media only screen and (min-width: 900px) {
@@ -293,6 +383,29 @@ td {
   font-size: 1.38rem;
 }
 
+.NavbarLink {
+  text-decoration: none;
+}
+
+.HeaderTweets {
+  position: absolute;
+  bottom: 2vh;
+  left: 3%;
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  border-radius: 2vh;
+}
+
+.HeaderWeather {
+  position: absolute;
+  bottom: 1vh;
+  right: 3%;
+  padding: 1%;
+  overflow: hidden;
+  border-radius: 1vh;
+  backdrop-filter: blur(1px);
+}
+
 @media only screen and (max-width: 500px){
   .tabLinks{
     font-size: 1.3rem;
@@ -328,9 +441,6 @@ td {
   width: 100%;
 }
 
-.locationContent{
-  background-color: #113;
-}
 
 .shadow {
   position: absolute;
@@ -788,26 +898,103 @@ td {
   }
 }
 
-.ArrowIcon {
-  display: inline;
+.TwitterSectionHeadline {
+  font-size: 1.7rem;
+  font-family:  Ubuntu, sans-serif;
+  color: #ddd;
+  margin-left: 2%;
 }
 
-.NavArrow  h2{
-  display: inline;
-  font-size: 0.7rem;
-  font-family: Ubuntu, sans-serif;
-  color: #333;
-  margin: 0 2%;
+#HeaderTwitterIcon {
+  color: #14b0ee;
+  font-size: 2rem;
+  margin: 10px;
 }
-.Navigation {
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 3vh;
+
+.ArrowContainer {
   position: relative;
+  transition: all 0.5s;
+}
+
+.ArrowFragment {
+  position: absolute;
+  height: 0.5rem;
+  width: 1.15rem;
+  background-color: #038f8f;
+}
+
+.Arrow {
+  position: absolute;
+  bottom: 1rem;
+  transition: all 0.5s;
+}
+
+.RightNavigationArrow {
+  right: 2%;
+  direction: ltr;
+}
+
+.LeftNavigationArrow {
+  left: 2%;
+  direction: rtl;
+}
+
+.NavigationBar {
+  width: 90%;
+  padding: 4vh 0;
+  margin: 5vh 5%;
+  position: relative;
+  text-align: justify;
+}
+
+@media only screen and (max-height: 500px) {
+  .NavigationBar{
+    margin: 12vh 5%;
+  }
+}
+@media only screen and (min-height: 1000px) {
+  .NavigationBar{
+    margin: 2vh 5%;
+  }
+}
+
+.NavigationOption {
+  position: absolute;
+  bottom: 0.2rem;
+  font-size: 1.4rem;
+  color: #337;
+}
+
+.RightOption {
+  right: 4%;
+  transition: all 0.5s;
+}
+
+.LeftOption {
+  left: 4%;
+  transition: all 0.5s;
 }
 
 .CurrentPage {
   text-align: center;
-  font-size: 0.8rem;
-  margin: 5vh 0 8vh 0;
+  font-size: 1.3rem;
+  color: #113;
+}
+
+@media only screen and (min-width: 1100px) {
+  #left:hover .LeftNavigationArrow {
+    left: 0%;
+  }
+
+  #left:hover .LeftOption {
+    left: 3%;
+  }
+
+  #right:hover .RightNavigationArrow {
+    right: 0%; 
+  }
+
+  #right:hover .RightOption {
+    right: 3%;
+  }
 }

@@ -15,7 +15,7 @@ const Modal = props => {
       modalRoot.removeChild(element)
       document.body.style.overflowY = 'auto'
     }
-  }, [])
+  })
 
   return  ReactDOM.createPortal(
     props.children,
@@ -27,7 +27,7 @@ const ModalTemplate = ({src, opened}) => {
   return (
     <Modal>
       <div className="ImageInModal" onClick={() => opened(false)}>
-        <img src={src} className="ModalImage"/>
+        <img src={src} className="ModalImage" alt="Something Missing"/>
       </div>
     </Modal>
   )
