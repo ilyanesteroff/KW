@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { generateContainerStyle } from '../MainSection/styles'
 import SliderContent from './SliderContent'
 import DirArrow from './DirectionArrow'
@@ -11,7 +11,7 @@ const getHeight = () => window.innerHeight
 export default (props) => {
   let style = generateContainerStyle()
 
-  getHeight() > 900 ? style.height = '35vh': style.height = '65vh'
+  getHeight() > 900 ? style.height = '25vh': style.height = '65vh'
   style.overflow = 'hidden'
   style.whiteSpace = 'nowrap'
   style.backgroundColor = '#333'
@@ -19,15 +19,11 @@ export default (props) => {
   
   const { slides } = props
 
-  const firstSlide = slides[0]
-  const secondSlide = slides[1]
-  const lastSlide = slides[slides.length - 1]
-
   const [state, setState] = useState({
     activeSlide: 0,
     translate: getWidth(),
     transition: 0.45,
-    _slides: [lastSlide, firstSlide, secondSlide]
+    _slides: [slides]
   })
 
   const { activeSlide, translate, _slides, transition } = state
@@ -85,18 +81,11 @@ export default (props) => {
   }
 
   const smoothTransition = () => {
-    let _slides = []
-
-    if (activeSlide === slides.length - 1)
-      _slides = [slides[slides.length - 2], lastSlide, firstSlide]
-    else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide]
-    else _slides = slides.slice(activeSlide - 1, activeSlide + 2)
-
     setState({
       ...state,
       _slides,
       transition: 0,
-      translate: getWidth()
+      translate: getWidth() * activeSlide + 1
     })
   }
 
@@ -111,25 +100,31 @@ export default (props) => {
   const prevSlide = () => {
     setState({
       ...state,
-      translate: 0,
+      translate: translate - getWidth(),
       activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
+    })
+  }
+
+  const setSlide = (index) => {
+    setState({
+      ...state,
+      translate: index > activeSlide ? translate + getWidth() * (index - activeSlide) : translate - getWidth() * (activeSlide - index),
+      activeSlide: index
     })
   }
 
   return (
       <div style={style}>
-          <SliderContent translate={translate} transition={transition} width={getWidth() * _slides.length}>
+          <SliderContent translate={translate} transition={transition} width={getWidth() * slides.length}>
             {
-                _slides.map((slide, index) => {
-                  console.log(props.descriptions)
-                  console.log(_slides)
+                slides.map((slide, index) => {
                 return <Slide width={getWidth()} key={slide + index} image={slide} />})
             }
           </SliderContent>
 
           <DirArrow direction={'left'} handleClick={prevSlide}/>
           <DirArrow direction={'right'} handleClick={nextSlide}/>
-          <Items slides={slides} activeSlide={activeSlide}/>
+          <Items slides={slides} activeSlide={activeSlide} handleClick={(event) => setSlide(parseInt(event.target.id))}/>
       </div>
   )
 }

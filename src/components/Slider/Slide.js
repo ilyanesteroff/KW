@@ -7,9 +7,9 @@ export default ({ image, width }) => {
         width: `${width}px`,
         position: 'relative',
         backgroundImage: `url(${image})`,
-        backgroundSize: '40% 100%',
+        backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: '29% 0%',
+        backgroundPosition: 'auto',
     }
     let chapter = {
       position: 'absolute',

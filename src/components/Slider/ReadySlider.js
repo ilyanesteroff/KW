@@ -16,7 +16,8 @@ class Slider extends React.Component {
       boxShadow: 'none'
     }
   }
-  render () {
+  
+  render () { 
     let config = {
       arrows: this.context > 1100,
       indicators: true

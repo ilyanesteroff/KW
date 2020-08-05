@@ -113,6 +113,9 @@ input:checked + .slider:before {
   display: flex;
   max-height: 60vh;
   text-align: center;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
 }
 
 .each-fade  .image {
@@ -120,6 +123,7 @@ input:checked + .slider:before {
   height: 96%;
   display: flex;
   justify-content: center;
+  z-index: 1;
 }
 
 .TextContent {
