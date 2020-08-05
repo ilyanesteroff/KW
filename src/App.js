@@ -13,7 +13,7 @@ export default () => {
   const [ width, setWidth ] = useState(0)
   const [ height, setHeight ] = useState(0)
   const [ scrollTop, setScrollTop ] = useState(0)
-  const [ loaded, setLoaded ] = useState(window.location.pathname.includes('places/'))
+  const [ loaded, setLoaded ] = useState(false)
   const [ cookies, setCookie ] = useCookies(['KeyWest'])
 
   useLayoutEffect(() => {
