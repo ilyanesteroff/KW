@@ -23,8 +23,7 @@ const getStyle = (style, Width) => {
 
   const width = Math.floor(Width/100)
   let minLeft = 10
-  let minTop
-  ScrollTop()? minTop = 4.6 : minTop = 5.3
+  let minTop = 5.3
   let maxfontSize = 1.5
   let ratio = 15 - width
 

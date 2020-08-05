@@ -18,13 +18,6 @@ const Navbar = () => {
       top: '5vh',
     }
     
-    if(scrollTop && width > 1100) {
-      style.top = '5vh'
-    } else if (scrollTop && width < 1100) {
-      style.top = '3vh'
-    } else {
-      style.top = '5vh'
-    }
 
     width > 1100? output = 
     <ul>

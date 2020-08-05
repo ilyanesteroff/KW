@@ -39,20 +39,23 @@ export default props => {
   return (
     <div style={Sectionstyle}>
       <UpperContainer>
-      <Chapter>
-        {info.topic}
-      </Chapter>
-      <TextArea>
-        {info.additionalInfo}
-      </TextArea>
-      <Link href={info.href}>
-        More info and facts in wikipedia
-      </Link> 
+        <Chapter>
+          {info.topic}
+        </Chapter>
+        <TextArea>
+          {info.additionalInfo}
+        </TextArea>
+        <Link href={info.href}>
+          More info and facts in wikipedia
+        </Link> 
       </UpperContainer>
-      <div style={{ backgroundColor: '#333', height: `${height }vh`, marginTop: '10vh'}}>
-        <Slider images={info.images} info={info.descriptions} color={info.color} sliderStyle={sliderStyle} url={info.images}/>
-      </div>
-      <Ndslider slides={info.images} autoPlay={6}/>
+      {info.images !== undefined && 
+        <>
+          <div style={{ backgroundColor: '#333', height: `${height }vh`, marginTop: '10vh'}}>
+            <Slider images={info.images} info={info.descriptions} color={info.color} sliderStyle={sliderStyle} url={info.images}/>
+          </div>
+        </>
+      }
       <NavArrows 
         current={current} 
         content={factInfo.map(element => element.topic)} 

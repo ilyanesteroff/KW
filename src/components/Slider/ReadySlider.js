@@ -22,30 +22,33 @@ class Slider extends React.Component {
       arrows: this.context > 1100,
       indicators: true
     }
+    console.log(this.props.images)
     const { color, url } = this.props
-    return (
-      <div style={this.props.sliderStyle}>
-        <div className="slide-container">
-          <Fade {...config}>
-            {this.props.images.map((image, index) => {
-              const properties = {
-                url: url !== undefined? url[0] : '',
-                height: this.props.sliderStyle.height,
-                color: typeof(color) === 'object'? color[index] : color,
-                isOdd: index % 2 === 0,
-                image: image,
-                key: index
-              }
-              return <GenerateSlides
-               {...properties}>
-                <div>
-                  {this.props.info[index]}
-                </div>
-              </GenerateSlides>})}
-          </Fade>
+    if (this.props.images !== undefined) {
+      return (
+        <div style={this.props.sliderStyle}>
+          <div className="slide-container">
+            <Fade {...config}>
+              {this.props.images.map((image, index) => {
+                const properties = {
+                  url: url !== undefined? url[0] : '',
+                  height: this.props.sliderStyle.height,
+                  color: typeof(color) === 'object'? color[index] : color,
+                  isOdd: index % 2 === 0,
+                  image: image,
+                  key: index
+                }
+                return <GenerateSlides
+                 {...properties}>
+                  <div>
+                    {this.props.info[index]}
+                  </div>
+                </GenerateSlides>})}
+            </Fade>
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else return <></>
   }
 }
 

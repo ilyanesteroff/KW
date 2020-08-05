@@ -8,7 +8,7 @@ import Slide from './Slide'
 const getWidth = () => window.innerWidth
 const getHeight = () => window.innerHeight
 
-export default (props) => {
+export default React.memo(props => {
   let style = generateContainerStyle()
 
   getHeight() > 900 ? style.height = '25vh': style.height = '65vh'
@@ -31,11 +31,13 @@ export default (props) => {
   const autoPlayRef = useRef()
   const transitionRef = useRef()
   const resizeRef = useRef()
+  const prevSlideRef = useRef()
 
   useEffect(() => {
     autoPlayRef.current = nextSlide
     transitionRef.current = smoothTransition
     resizeRef.current = handleResize
+    prevSlideRef.current = prevSlide
   })
 
   let interval = null
@@ -44,6 +46,9 @@ export default (props) => {
     const play = () => {
       autoPlayRef.current()
     }
+ 
+    prevSlideRef.current()
+    setTimeout(() => autoPlayRef.current(), 10)
 
     const smooth = e => {
       if (e.target.className.includes('SliderContent')) {
@@ -55,16 +60,16 @@ export default (props) => {
       resizeRef.current()
     }
 
-    const transitionEnd = window.addEventListener('transitionend', smooth)
-    const onResize = window.addEventListener('resize', resize)
+    window.addEventListener('transitionend', smooth)
+    window.addEventListener('resize', resize)
 
     if (props.autoPlay) {
       interval = setInterval(play, props.autoPlay * 1000)
     }
 
     return () => {
-      window.removeEventListener('transitionend', transitionEnd)
-      window.removeEventListener('resize', onResize)
+      window.removeEventListener('transitionend', smooth)
+      window.removeEventListener('resize', resize)
 
       if (props.autoPlay) {
         clearInterval(interval)
@@ -83,7 +88,6 @@ export default (props) => {
   const smoothTransition = () => {
     setState({
       ...state,
-      _slides,
       transition: 0,
       translate: getWidth() * activeSlide + 1
     })
@@ -100,7 +104,7 @@ export default (props) => {
   const prevSlide = () => {
     setState({
       ...state,
-      translate: translate - getWidth(),
+      translate: activeSlide === 0 ? getWidth() * slides.length : translate - getWidth(),
       activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
     })
   }
@@ -114,17 +118,18 @@ export default (props) => {
   }
 
   return (
-      <div style={style}>
-          <SliderContent translate={translate} transition={transition} width={getWidth() * slides.length}>
-            {
-                slides.map((slide, index) => {
-                return <Slide width={getWidth()} key={slide + index} image={slide} />})
-            }
-          </SliderContent>
+    <div style={style}>
+      <SliderContent translate={translate} transition={transition} width={getWidth() * slides.length}>
+        {
+          slides.map((slide, index) => {
+          console.log(slide, index)
+          return <Slide width={getWidth()} key={slide + index} image={slide} />})
+        }
+      </SliderContent>
 
-          <DirArrow direction={'left'} handleClick={prevSlide}/>
-          <DirArrow direction={'right'} handleClick={nextSlide}/>
-          <Items slides={slides} activeSlide={activeSlide} handleClick={(event) => setSlide(parseInt(event.target.id))}/>
-      </div>
+      <DirArrow direction={'left'} handleClick={prevSlide}/>
+      <DirArrow direction={'right'} handleClick={nextSlide}/>
+      <Items slides={slides} activeSlide={activeSlide} handleClick={(event) => setSlide(parseInt(event.target.id))}/>
+    </div>
   )
-}
+})

@@ -50,7 +50,7 @@ class DropDownIcon extends React.Component{
           })
       } else {
         if(!this.state.deltaScroll.isSet)this.setState({deltaScroll: {isSet: true, delta: window.pageYOffset}})
-        else if(((Math.abs(window.pageYOffset - this.state.deltaScroll.delta))/height)*100 > 30) this.setState({
+        else if(((Math.abs(window.pageYOffset - this.state.deltaScroll.delta))/height)*100 > 30 || document.getElementById('StickyNavbar').style.top !== '0') this.setState({
           isClicked: false,
           deltaScroll: {isSet: false, delta: 0}
         })

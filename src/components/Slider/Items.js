@@ -10,11 +10,11 @@ export default ({ slides, activeSlide, handleClick }) => {
       justifyContent: 'center'
     }
     return (
-        <div style={style}>
-          {slides.map((slide, index) => 
-              <Item key={slide} active={activeSlide === index} handleClick={handleClick} id={index}/>
-          )}
-        </div>
+      <div style={style}>
+        {slides.map((slide, index) => 
+            <Item key={slide} active={activeSlide === index} handleClick={handleClick} id={index}/>
+        )}
+      </div>
     )
 }
 
