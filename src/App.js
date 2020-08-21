@@ -1,10 +1,8 @@
 import React, {useEffect, useState, useLayoutEffect} from 'react';
 import reactDom from 'react-dom'
-import { Homepage, InitialPage, AboutPage, 
-  HistoryPage, LocationPage, PlacePage, 
-  Twitts, Covid, News, WeatherPage, NoMatchPage, TwitterPage } from './components/pages/Pages'
+import * as Pages from './components/pages/Pages'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { WidthContext, HeightContext, ScrollTopContext, FactContext } from './components/pages/contexts'
+import { WidthContext, HeightContext, ScrollTopContext, AdminLogedinContext } from './components/pages/contexts'
 import Head from './components/pages/Head'
 import { factInfo } from './components/MainSection/info'
 import { useCookies } from 'react-cookie' 
@@ -14,6 +12,7 @@ export default () => {
   const [ height, setHeight ] = useState(0)
   const [ scrollTop, setScrollTop ] = useState(0)
   const [ loaded, setLoaded ] = useState(false)
+  const [ adminLoggedin, setAdminLoggedIn ] = useState(false)
   const [ cookies, setCookie ] = useCookies(['KeyWest'])
 
   useLayoutEffect(() => {
@@ -34,6 +33,10 @@ export default () => {
     }
   }, [])
 
+  const logOut = _ => {
+    setAdminLoggedIn(!adminLoggedin)
+  }
+
   const updateWindowDimensions = () => {
     setHeight(window.innerHeight)
     setWidth(window.innerWidth)
@@ -51,36 +54,39 @@ export default () => {
 
   if (!loaded) { 
     return reactDom.createPortal (
-    <InitialPage>
+    <Pages.InitialPage>
       <img src={'https://upload.wikimedia.org/wikipedia/commons/2/24/Seal_of_Key_West%2C_Florida.png'} style={{transform: 'scale(0.5)'}}/>
-    </InitialPage>, document.getElementById('initial-root'))
+    </Pages.InitialPage>, document.getElementById('initial-root'))
   } else {
     return (
       <ScrollTopContext.Provider value={scrollTop}>
         <WidthContext.Provider value={width}>
           <HeightContext.Provider value={height}>
-            <div className="App">
-              <Head/>
-              <Router>
-                <div>
-                  <Switch>
-                    <Route exact path="/" render={() => <Homepage />}/>
-                    <Route path="/about" render={() => <AboutPage/>} />
-                    <Route path="/history" render={() => <HistoryPage/>}/>
-                    <Route path="/location" render={() => <LocationPage/>}/>
-                    <Route path="/places/:place" render={({match}) => <PlacePage place={factInfo.find(fact =>
-                      fact.place === match.params.place
-                    )}/>}/>
-                    <Route path="/covid" render={() => <Covid/>}/>
-                    <Route path="/news" render={() => <News/>}/>
-                    <Route path="/twitts/:topic" render={({match}) => <Twitts twitt={match.params.topic}/>}/>
-                    <Route path="/twitts/Florida" render={() => <Twitts twitt={'Florida'}/>}/>
-                    <Route path="/weather" render={() => <WeatherPage/>}/>
-                    <Route path="*" render={() => <NoMatchPage/>}/>
-                  </Switch>
-                </div>
-              </Router>
-            </div>
+            <AdminLogedinContext.Provider value={{value: adminLoggedin, method: logOut}}>
+              <div className="App">
+                <Head/>
+                <Router>
+                  <div>
+                    <Switch>
+                      <Route exact path="/" render={() => <Pages.Homepage />}/>
+                      <Route path="/about" render={() => <Pages.AboutPage/>} />
+                      <Route path="/history" render={() => <Pages.HistoryPage/>}/>
+                      <Route path="/location" render={() => <Pages.LocationPage/>}/>
+                      <Route path="/places/:place" render={({match}) => <Pages.PlacePage place={factInfo.find(fact =>
+                        fact.place === match.params.place
+                      )}/>}/>
+                      <Route path="/covid" render={() => <Pages.Covid/>}/>
+                      <Route path="/news" render={() => <Pages.News/>}/>
+                      <Route path="/twitts/:topic" render={({match}) => <Pages.Twitts twitt={match.params.topic}/>}/>
+                      <Route path="/twitts/Florida" render={() => <Pages.Twitts twitt={'Florida'}/>}/>
+                      <Route path="/weather" render={() => <Pages.WeatherPage/>}/>
+                      <Route path="/settings" render={() => <Pages.Settings/>}/>
+                      <Route path="*" render={() => <Pages.NoMatchPage/>}/>
+                    </Switch>
+                  </div>
+                </Router>
+              </div>
+            </AdminLogedinContext.Provider>
           </HeightContext.Provider>
         </WidthContext.Provider>
       </ScrollTopContext.Provider>

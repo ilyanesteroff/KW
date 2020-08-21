@@ -19,6 +19,7 @@ import About from '../MainSection/About'
 import History from '../MainSection/HistoryPage'
 import Location from '../MainSection/LocationPage'
 import { useDocumentTitleSetting } from '../Helpers/Hooks'
+import { AdminLogedinContext } from './contexts'
  
 const Homepage = () =>  {
   useDocumentTitleSetting('Key West - Home')
@@ -154,29 +155,41 @@ class News extends React.Component{
   }
 }
 
+const Settings = _ => {
+  return(
+    <>
+      <StickyNavbar fixed={true}/>
+      <UpperSection>
+        <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
+        <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
+        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/Florida'}/></li>
+      </UpperSection>
+      <AdminLogedinContext.Consumer>
+          {value => <>
+            {!value.value && 
+              <h3 className="Warning">It seems that you are not logged in</h3>
+            }
+          </>
+          }
+        </AdminLogedinContext.Consumer>
+      <Footer/>
+    </>
+  )
+}
+
 const NoMatchPage = () => {
   let location = useLocation()
   useDocumentTitleSetting('No Match')
   return (
-    <div style={{position: 'absolute',
-      top: '50%',
-      left: '50%',
-      width: '80%',
-      transform: 'translate(-50%, -50%)',
-      textAlign: 'center'
-    }}>
-      <h3 style={{
-        fontFamily: 'Ubuntu, sans-serif',
-        color: '#444',
-        fontSize: '1.5rem'
-      }}>
+    <div className="NoMatchPageDiv">
+      <h3>
         No results found for <code>{location.pathname}</code>
       </h3>
     </div>
-  );
+  )
 }
 
 export { Homepage, AboutPage, InitialPage, 
   HistoryPage, LocationPage, PlacePage, 
-  Twitts, WeatherPage, NoMatchPage, Covid, 
+  Twitts, WeatherPage, NoMatchPage, Settings, Covid, 
   News}

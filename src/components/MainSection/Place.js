@@ -8,9 +8,10 @@ import { width } from '../Helpers/Helpers'
 import NavArrows from './NavArrows'
 import { useCurrent } from '../Helpers/Hooks'
 import { factInfo } from './info'
-import { isElementOfType } from 'react-dom/test-utils'
+import { WidthContext } from '../pages/contexts'
 
 export default props => {
+  const Width = () => React.useContext(WidthContext)
   let { info } = props
   const [current, setCurrent, nextPrev] = useCurrent(info.index)
   useLayoutEffect(_ => {
@@ -49,6 +50,9 @@ export default props => {
           More info and facts in wikipedia
         </Link> 
       </UpperContainer>
+      {Width() > 1200 &&
+      <Ndslider slides={info.images} autoplay={10} info={info.descriptions}/>
+      }
       {info.images !== undefined && 
         <>
           <div style={{ backgroundColor: '#333', height: `${height }vh`, marginTop: '10vh'}}>

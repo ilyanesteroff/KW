@@ -5,16 +5,20 @@ import DirArrow from './DirectionArrow'
 import Items from './Items'
 import Slide from './Slide'
 
-const getWidth = () => window.innerWidth
+const getWidth = () => window.innerWidth * 0.8
 const getHeight = () => window.innerHeight
 
 export default React.memo(props => {
-  let style = generateContainerStyle()
+  let style = {
+    width: '80%',
+    marginLeft: '10%',
+    position: 'relative'
+  }
 
   getHeight() > 900 ? style.height = '25vh': style.height = '65vh'
   style.overflow = 'hidden'
   style.whiteSpace = 'nowrap'
-  style.backgroundColor = '#333'
+  style.backgroundColor = '#34f'
   style.marginTop = '10vh'
   
   const { slides } = props
@@ -123,7 +127,7 @@ export default React.memo(props => {
         {
           slides.map((slide, index) => {
           console.log(slide, index)
-          return <Slide width={getWidth()} key={slide + index} image={slide} />})
+          return <Slide width={getWidth()} key={slide + index} image={slide} height={style.height} info={props.info[index]}/>})
         }
       </SliderContent>
 

@@ -3,7 +3,7 @@ import React from 'react'
 export default ({ slides, activeSlide, handleClick }) => {
     let style = {
       position: 'absolute',
-      bottom: '4%',
+      bottom: '1%',
       width: '100%',
       display: 'flex',
       alignItems: 'center',

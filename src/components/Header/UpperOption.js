@@ -10,7 +10,7 @@ export default class extends React.Component{
   render() {
     const { link, sentence, icon } = this.props
     let output 
-    this.context > 700?
+    this.context > 800?
     output =
     <div className="LocalTime">
       <span><FontAwesomeIcon className="UpperIcon" icon={icon}/></span>
