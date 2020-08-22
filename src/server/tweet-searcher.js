@@ -9,18 +9,34 @@ class TweetSearcher extends EventEmitter {
 
   searchTweets = tag => {
     let output = []
-    let topics = ['Covid19', 'KeyWest', 'Florida']
-    const pool = new WorkerPool(3, 'searcher.js')
-    let promise = new Promise((resolve, reject) => {
-      topics.forEach((topic, index) => {
-        pool.runTask({path: `./data/tweets/${topic}.json`, tag: tag.toLowerCase()} , (err, result) => {
-          if(result.length !== 0) result.forEach(item => output.push(item))
+    let promises = []
+    
+    async function getFileNames(path) {
+      const dir = await fs.promises.opendir(path);
+      for await (const dirent of dir) {
+        new Promise((resolve, reject) => resolve(dirent.name.split('.')[0]))
+          .then((val) => promises.push(val))
+      }
+    }
+
+    getFileNames('./data/tweets').then(() => promises).then((topics) => {
+      const pool = new WorkerPool(3, 'searcher.js')
+      let counter = 0
+      let counter2 = 0
+      const promise = new Promise((resolve, reject) => { 
+        topics.forEach((topic, index) => {
+          pool.runTask({path: `./data/tweets/${topic}.json`, tag: tag.toLowerCase()} , (err, result) => {
+            counter2 += result.length
+            if(result.length !== 0) result.forEach((item, index2) => {
+              output.push(item)
+              counter++
+              if(counter === counter2) resolve(output)
+            })
+          })
         })
       })
-      resolve(output)
+      promise.then(res => this.emit('output', res))
     })
-    promise.then(i => console.log(i))
-      .catch(err => console.log(err.message))
   }
 }
 

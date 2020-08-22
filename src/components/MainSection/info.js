@@ -198,7 +198,7 @@ let services = [{
      href: 'https://www.cityofkeywest-fl.gov/egov/apps/document/center.egov?view=browse&eGov_searchType=46&eGov_searchDepartment=4'
  }]
 
-let twitterTags = ['COVID19', 'KeyWest', 'Florida']
+let twitterTags = ['Covid19', 'KeyWest', 'Florida']
 
 let navbarItems = ['Home', 'About', 'Location', 'History']
 
