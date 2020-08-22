@@ -53,7 +53,7 @@ export default props => {
       {Width() > 1200 &&
       <Ndslider slides={info.images} autoplay={10} info={info.descriptions}/>
       }
-      {Width() > 00  && info.images !== undefined && 
+      {Width() > 700  && info.images !== undefined && 
         <>
           <div style={{ backgroundColor: '#333', height: `${height }vh`, marginTop: '10vh'}}>
             <Slider images={info.images} info={info.descriptions} color={info.color} sliderStyle={sliderStyle} url={info.images}/>
