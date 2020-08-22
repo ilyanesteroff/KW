@@ -21,17 +21,18 @@ class TweetSearcher extends EventEmitter {
 
     getFileNames('./data/tweets').then(() => promises).then((topics) => {
       const pool = new WorkerPool(3, 'searcher.js')
-      let counter = 0
-      let counter2 = 0
+      let counters = {length: 0, added: 0, enteredAll: promises.map(() => {return false})}
       const promise = new Promise((resolve, reject) => { 
         topics.forEach((topic, index) => {
           pool.runTask({path: `./data/tweets/${topic}.json`, tag: tag.toLowerCase()} , (err, result) => {
-            counter2 += result.length
-            if(result.length !== 0) result.forEach((item, index2) => {
+            counters.length += result.length
+            if(result.length !== 0) result.forEach((item) => {
               output.push(item)
-              counter++
-              if(counter === counter2) resolve(output)
+              counters.added++
+              if(counters.added === counters.length) resolve(output)
             })
+            counters.enteredAll[index] = true
+            if(counters.enteredAll.every(item => item === true) && counters.added === 0 && counters.length === 0) resolve({ Error : 'Found nothing matching your tag'})
           })
         })
       })
