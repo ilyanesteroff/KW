@@ -26,14 +26,12 @@ export default _ => {
 }
 
 const AdminLogin = _ => {
-  const AdminLoggedIn = () => React.useContext(AdminLogedinContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [warning, setWarning] = useState('')
-  const [userLoggedIn, setUserLoggedIn] = useState(AdminLoggedIn())
-  
-  const setInputs = event => {
-    event.target.name === 'username'? setUsername(event.target.value) : setPassword(event.target.value)
+
+  const setInputs = (name, value) => {
+    name === 'username'? setUsername(value) : setPassword(value)
   }
 
   const makeAuthorization = (event, cb) => {
@@ -45,13 +43,11 @@ const AdminLogin = _ => {
       </span>)
     else {
       setWarning('')
-      setUserLoggedIn(true)
       cb()
     }
   }
 
   const logOut = cb => {
-    setUserLoggedIn(false)
     setPassword('')
     setUsername('')
     cb()
@@ -66,23 +62,19 @@ const AdminLogin = _ => {
               <h2 className="Contact">Log in as an admin of this site:</h2>
               <h2>{warning}</h2>
               <form>
-                <label className="Label">
-                  <h3 className="FormLabel">Username: </h3>
-                  <input type="text" name="username" onChange={setInputs} className="SigninLabel"/>
-                </label>
-                <label className="Label">
-                  <h3 className="FormLabel">Password: </h3>
-                  <input type="password" name="password" onChange={setInputs} className="SigninLabel"/>
-                </label>
+                <Label text="Username: " type="text" name="username" manageInput={setInputs}/>
+                <Label text="Password: " type="password" name="password" manageInput={setInputs}/>
                 <button className="LoginButton" onClick={(event) => makeAuthorization(event, value.method)}>Log in</button>
               </form>
             </>} 
             { value.value && 
             <div>
               <h2 className="Contact">You are currently logged in as Admin</h2>
-              <Link to="/settings">
-                <h4 className="ContentManagerLink">Go to content manager</h4>
-              </Link>
+              {window.location.pathname !== '/settings' && 
+                <Link to="/settings">
+                  <h4 className="ContentManagerLink">Go to content manager</h4>
+                </Link>
+              }
               <button className="LoginButton" onClick={() => logOut(value.method)}>Log out</button>
             </div>
           }
@@ -91,6 +83,19 @@ const AdminLogin = _ => {
     </AdminLogedinContext.Consumer>
   )
 } 
+
+const Label = ({text, manageInput, type, name}) => {
+  const changeInput = event => {
+    manageInput(event.target.name, event.target.value)
+  }
+
+  return (
+    <label className="Label">
+      <h3 className="FormLabel">{text}</h3>
+      <input type={type} name={name} onChange={changeInput} className="SigninLabel"/>
+    </label>
+  )
+}
 
 const SocialMedias = _ => {
   let links = ['https://www.facebook.com', 'https://www.twitter.com', 'https://www.instagram.com', 'https://www.youtube.com/']

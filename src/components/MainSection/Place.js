@@ -2,12 +2,12 @@ import React, { useLayoutEffect, useEffect, useRef } from 'react'
 import { Chapter, TextArea, Link } from '../Helpers/DesignAssistants'
 import UpperContainer from '../MainSection/UpperContainer'
 import Slider from '../Slider/ReadySlider'
-import Ndslider from '../Slider/Slider'
 import { width } from '../Helpers/Helpers'
 import NavArrows from './NavArrows'
 import { useCurrent } from '../Helpers/Hooks'
 import { factInfo } from './info'
 import { WidthContext } from '../pages/contexts'
+import ErrorBoundary from '../pages/ErrorBoundary'
 
 export default props => {
   const Width = () => React.useContext(WidthContext)
@@ -49,13 +49,12 @@ export default props => {
           More info and facts in wikipedia
         </Link> 
       </UpperContainer>
-      {Width() > 1200 &&
-      <Ndslider slides={info.images} autoplay={10} info={info.descriptions}/>
-      }
       {Width() > 700  && info.images !== undefined && 
         <>
           <div style={{ backgroundColor: '#333', height: `${height }vh`, marginTop: '10vh'}}>
-            <Slider images={info.images} info={info.descriptions} color={info.color} sliderStyle={sliderStyle} url={info.images}/>
+            <ErrorBoundary callback={() => window.location.reload()}>
+              <Slider images={info.images} info={info.descriptions} color={info.color} sliderStyle={sliderStyle} url={info.images}/>
+            </ErrorBoundary>
           </div>
         </>
       }

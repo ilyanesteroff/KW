@@ -1348,9 +1348,93 @@ td {
   width: 90%;
 }
 
+.TableSection {
+  text-align: center;
+  margin-top: 7.5vh;
+}
+
 @media only screen and (min-width: 1000px){
   .MainSectionContainer {
     margin-left: 10%;
     width: 80%;
   }
+}
+
+.SettingSection {
+  margin: 7vh 0;
+}
+
+.ModifyingCategory {
+  width: 100%;
+  background-color: #ccccff;
+  position: relative;
+  margin: 2vh 0; 
+  padding: 2vh 2%;
+  border-radius: 1vh;
+  border: solid 1px #333;
+  transition: all 0.5s;
+}
+
+.ModifyingCategory h2{
+  font-size: 1.2rem;
+  font-family: Nunito, sans-serif;
+  color: #110033;
+}
+
+.DownArrow{
+  position: absolute;
+  top: 1vh;
+  right: 2%;
+  transform: rotate(-1deg);
+  transition: all 0.5s;
+  padding: 2vh 2%;
+}
+
+.ArrowPart {
+  height: 2.5vh;
+  width: 0.5vh;
+  background-color: #110044;
+  display: inline-block;
+  border-radius: 0.4vh;
+}
+
+.LeftSide {
+  transform: rotate(-45deg);
+  margin-right: 1vh;
+}
+
+.RightSide {
+  transform: rotate(45deg);
+}
+
+.CategoryTextArea {
+  width: 50%;
+  margin: 3vh 0;
+  max-width: 95%;
+  height: 50vh;
+  border: solid 1px #333;
+  border-radius: 2px;
+  padding: 2vh 2%;
+  color: #222;
+  font-family: Abel, sans-serif;
+  font-size: 1.5rem;
+  background-color: #ccc;
+}
+
+@media only screen and (max-width: 1000px){
+  .CategoryTextArea{
+    width: 90%;
+  }
+}
+
+.SendDataBtn {
+  color: #eee;
+  font-size: 1.3rem;
+  font-family: Ubuntu, sans-serif;
+  background-color: #110044;
+  padding: 2vh 3%;
+  width: 50%;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
 }

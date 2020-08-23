@@ -1,7 +1,6 @@
 import React, { useRef} from 'react'
 import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 import { Width } from '../pages/contexts'
-import { SSS } from './styles'
 import Slider from '../Slider/ReadySlider'
 import { about } from './info'
 import Chart from './KeyWestPopulation'
@@ -12,7 +11,7 @@ export default React.memo(() => {
   const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
 
   return (
-    <div style={SSS()}>
+    <div className="MainSectionContainer TableSection">
       <Chapter additionalStyle={{textAlign: 'left', marginLeft: '2%'}}>About</Chapter>
       <div className="tab">
       {about.links.map((link, index) => {

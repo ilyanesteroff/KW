@@ -17,8 +17,12 @@ export default React.memo(() => {
     let icon = defineIcon(response.weather, false)
     output = 
     <>
-      <li><FontAwesomeIcon icon={icon.icon} className="WeatherIconStyle" style={icon.style}/></li>
-      <li><WeatherForecast type={response.weather} temps={{max: response.high, min: response.low, temp: response.temperature}}/></li>
+      <li>
+        <FontAwesomeIcon icon={icon.icon} className="WeatherIconStyle" style={icon.style}/>
+      </li>
+      <li>
+        <WeatherForecast type={response.weather} temps={{max: response.high, min: response.low, temp: response.temperature}}/>
+      </li>
     </>
   } else if (error.hasError) {
     output = <Chapter additionalStyle={{color: '#ddd', fontSize: '1rem'}}>Cannot load weather</Chapter>

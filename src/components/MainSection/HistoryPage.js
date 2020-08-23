@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { Chapter } from '../Helpers/DesignAssistants'
 import { Width } from '../pages/contexts'
-import { SSS } from './styles'
 import { history } from './info'
 import { useManageSectionSwitching } from '../Helpers/Hooks'
 import LowerNavigation from './NavArrows'
@@ -9,7 +8,7 @@ import LowerNavigation from './NavArrows'
 export default () => {
   const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
   return (
-    <div style={SSS()}>
+    <div className="MainSectionContainer TableSection">
       <Chapter additionalStyle={{textAlign: 'left', marginLeft: '2%'}}>History of Key West</Chapter>
       <div className="tab">
         {history.links.map((link, index) => {

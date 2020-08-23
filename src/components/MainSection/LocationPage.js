@@ -1,7 +1,6 @@
 import React, {useRef} from 'react'
 import { location } from './info'
 import { Chapter } from '../Helpers/DesignAssistants' 
-import { SSS } from './styles'
 import { Width } from '../pages/contexts'
 import { ModalTemplate } from '../Helpers/Modal'
 import { useManageSectionSwitching, useOpenCloseModal } from '../Helpers/Hooks'
@@ -11,7 +10,7 @@ export default () => {
   const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
 
   return (
-    <div style={SSS()}>
+    <div className="MainSectionContainer TableSection">
       <Chapter additionalStyle={{textAlign: 'left', marginLeft: '2%'}}>Location of Key West</Chapter>
       <div className="tab">
         {location.items.map((item, index) => {

@@ -22,7 +22,6 @@ class Slider extends React.Component {
       arrows: this.context > 1100,
       indicators: true
     }
-    console.log(this.props.images)
     const { color, url } = this.props
     if (this.props.images !== undefined) {
       return (

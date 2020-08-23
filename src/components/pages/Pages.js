@@ -18,6 +18,7 @@ import Twitter from '../MainSection/Twitter'
 import About from '../MainSection/About'
 import History from '../MainSection/HistoryPage'
 import Location from '../MainSection/LocationPage'
+import SettingsPage from '../MainSection/Settings'
 import { useDocumentTitleSetting } from '../Helpers/Hooks'
 import { AdminLogedinContext } from './contexts'
  
@@ -168,6 +169,9 @@ const Settings = _ => {
           {value => <>
             {!value.value && 
               <h3 className="Warning">It seems that you are not logged in</h3>
+            }
+            {value.value && 
+              <SettingsPage categories={['places', 'twitter-tags', 'about', 'location', 'video', 'services']}/>
             }
           </>
           }

@@ -1,7 +1,6 @@
 import React from 'react'
 import { weather } from './refs/links'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
-import { SSS } from '../MainSection/styles'
 import { Chapter, TextArea, PS } from '../Helpers/DesignAssistants'
 import Spinner from '../MainSection/Spinner'
 import { defineIcon, extractWeather, WeatherData } from './WeatherContent'
@@ -17,11 +16,11 @@ export default React.memo(() => {
     if (response !== null && !error.hasError ){
         output = 
         <>
-          <div style={SSS()}>
+          <div className="MainSectionContainer TableSection">
             <Chapter additionalStyle={{textAlign: 'left', marginTop: '10vh'}}>Current weather in Key West</Chapter>
             <TextArea additionalStyle={{textAlign: 'left', fontWeight: '600'}}>{defineDay()}</TextArea>
           </div>
-          <div style={Object.assign({}, SSS(), {backgroundColor: '#9999ee', boxShadow: '0 0 10px'})}>
+          <div style={{backgroundColor: '#9999ee', boxShadow: '0 0 10px'}} className="MainSectionContainer TableSection">
             <Weather data={JSON.parse(response[0].replace(/[$]/g,','))}/>
           </div>
         </>

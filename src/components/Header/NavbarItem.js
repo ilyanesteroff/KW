@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import React, { useContext } from 'react'
 import { ScrollTopContext } from '../pages/contexts'
 
 export default props =>{

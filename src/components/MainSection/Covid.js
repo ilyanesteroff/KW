@@ -4,7 +4,6 @@ import Spinner from '../MainSection/Spinner'
 import { Chapter, PS, TextArea, Link } from '../Helpers/DesignAssistants'
 import { width } from '../Helpers/Helpers'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
-import { SSS } from '../MainSection/styles'
 
 export default (props) => {
 
@@ -17,7 +16,7 @@ export default (props) => {
   if (response1 !== null &&  response !== null && !error.hasError && !error1.hasError){
     document.title = `Covid-19 - Key West`
     output = 
-    <div style={SSS()}>
+    <div  className="MainSectionContainer TableSection">
       <Chapter>Covid-19 Statistics in USA and Florida</Chapter>
       <div style={{backgroundColor: '#9999ee', boxShadow: '0 0 10px'}}>
         <Chapter additionalStyle={{textAlign: 'center', marginTop: '10vh', paddingTop: '2%'}}>About Covid-19</Chapter>
