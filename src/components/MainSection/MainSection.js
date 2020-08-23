@@ -1,23 +1,10 @@
 import React from 'react'
 import UpperContainer from './UpperContainer'
-import { Sectionstyle } from './styles'
 
-class MainSection extends React.Component{
-    constructor(props){
-        super(props)
-    }
-
-    shouldComponentUpdate(){
-      return false
-    }
-
-    render() {
-        return(
-            <main style={Sectionstyle}>
-                <UpperContainer/>
-            </main>
-        )
-    }
+export default _ => {
+  return(
+    <main>
+      <UpperContainer/>
+    </main>
+  )
 }
-
-export default MainSection 

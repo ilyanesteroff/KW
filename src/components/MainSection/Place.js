@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useEffect, useRef } from 'react'
 import { Chapter, TextArea, Link } from '../Helpers/DesignAssistants'
-import { Sectionstyle } from '../MainSection/styles'
 import UpperContainer from '../MainSection/UpperContainer'
 import Slider from '../Slider/ReadySlider'
 import Ndslider from '../Slider/Slider'
@@ -38,7 +37,7 @@ export default props => {
     boxShadow: 'none',
   }
   return (
-    <div style={Sectionstyle}>
+    <div className="MainSectionStyle">
       <UpperContainer>
         <Chapter>
           {info.topic}

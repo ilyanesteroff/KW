@@ -1202,3 +1202,155 @@ td {
   font-family: Ubuntu, sans-serif;
   margin-top: -2vh;
 }
+
+.VideoSection {
+  position: relative;
+  display: flex;
+  height: auto;
+  background-color: #aaaaff;
+  margin: 5vh 0;
+  padding: 5vh 5%;
+}
+
+.Video {
+  height: 50vh;
+  width: 100%;
+  border: none;
+  border-radius: 2vh;
+}
+
+.VideoDescription {
+  width: 100%;
+  padding-right: 5%;
+}
+
+.VideoDescription h2 {
+  font-size: 2rem;
+  font-family: Oxygen, sans-serif;
+  color: #111144;
+  margin: 2%;
+}
+
+.VideoDescription p {
+  font-size: 1.5rem;
+  font-family: Abel, sans-serif;
+  margin: 1%;
+  color: #212131;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 800px) {
+  .VideoSection{
+    display: block;
+  }
+  .VideoDescription{
+    padding-bottom: 5vh;
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  .VideoDescription {
+    width: 90%;
+  }
+  .VideoDescription h2{
+    font-size: 1.6rem;
+  }
+  .VideoDescription p {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+}
+
+@media only screen and (max-height: 500px){
+  .VideoDescription{
+    margin: 0;
+    margin-top: 1%;
+  }
+  .VideoDescription h2 {
+    font-size: 1.4rem;
+  }
+  .VideoDescription p {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-height: 1000px){
+  .Video{
+    height: 25vh;
+  }
+  .VideoSection{
+    padding: 2vh 2%;
+  }
+}
+
+.CityServicesSection {
+  width: 100%;
+  display: flex;
+  padding: 5vh 0;
+  height: auto;
+  text-align: center;
+}
+
+.CityServicesIcon {
+  font-size: 3rem;
+  color: #886611;
+  margin: 5%;
+}
+
+.CityServicesHeadline {
+  font-size: 1.2rem;
+  color: #111177;
+  font-family: Ubuntu, sans-serif;
+  margin-top: 3vh;
+}
+
+.CityServicesText {
+  font-size: 1rem;
+  color: #111155;
+  font-family: Oxygen, sans-serif;
+}
+
+.CityService {
+  border-radius: 2vh;
+  padding: 2%;
+  width: 25%;
+}
+
+@media only screen and (max-width: 750px){
+  .CityServicesSection {
+    display: block;
+    text-align: left;
+  }
+  .CityServicesHeadline{
+    display: inline-block;
+  }
+  .CityService{
+    width: auto;
+  }
+  .CityServicesIcon{
+    margin: 0;
+    margin-right: 5%;
+    margin-top: 2vh;
+    font-size: 2.2rem;
+  }
+}
+
+@media only screen and (max-width: 1000px){
+  .CityServicesText{
+    display: none;
+  }
+}
+
+.MainSectionContainer {
+  position: relative;
+  margin-top: 10vh;
+  margin-left: 5%;
+  width: 90%;
+}
+
+@media only screen and (min-width: 1000px){
+  .MainSectionContainer {
+    margin-left: 10%;
+    width: 80%;
+  }
+}
