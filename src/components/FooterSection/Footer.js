@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faFacebook, faInstagram, faYoutube} from '@fortawesome/free-brands-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { AdminLogedinContext } from '../pages/contexts'
-import { Link } from "react-router-dom";
-
+import { Link } from "react-router-dom"
+import { serverKey, serverUrl } from '../MainSection/refs/key'
+ 
 export default _ => {
   return (
     <div id="footer">
@@ -29,21 +30,50 @@ const AdminLogin = _ => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [warning, setWarning] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const setInputs = (name, value) => {
     name === 'username'? setUsername(value) : setPassword(value)
   }
 
+  const removeInputs = _ => {
+    Array.from(document.getElementsByClassName('SigninLabel'))
+      .forEach(item => item.value = '')
+  }
+
+  const sendDataToServer = (username, password, cb) => {
+    setLoading(true)
+    fetch(`https://cors-anywhere.herokuapp.com/https://7bfadb9a67bf.ngrok.io/authorization`, {method: 'POST', headers : {
+      'authorization' : serverKey, 
+      'content-type' : 'application/json'
+    }, body : `{ "username": "${username}", "password": "${password}"}`})
+      .then(res => res.json())
+      .then(res => {
+        if(res.Authentication === "succeded") {
+          setWarning('')
+          window.location.pathname = '/settings'
+          cb()
+        } else {
+          setWarning(<Warning text={`Invalid credentials`} handleClick={() => setWarning('')}/>)
+          removeInputs()
+        }
+        setPassword('')
+        setUsername('')
+        setLoading(false)
+      })
+      .catch(() => {
+        removeInputs()
+        setLoading(false)
+      })
+  }
+
   const makeAuthorization = (event, cb) => {
     event.preventDefault()
     if(username === '' || password === '') 
-      setWarning(
-      <span className="LoginError" onClick={() => setWarning('')}>Input your {username === ''? 'username ' : 'password '}
-        <FontAwesomeIcon className="LoginErrorIcon" icon={faTimesCircle}/>
-      </span>)
+      setWarning(<Warning text={`Input your${username=== ''? 'username' : 'password'}`} handleClick={() => setWarning('')}/>)
     else {
       setWarning('')
-      cb()
+      sendDataToServer(username, password, cb)
     }
   }
 
@@ -59,12 +89,14 @@ const AdminLogin = _ => {
         <>
           {!value.value && 
             <>
-              <h2 className="Contact">Log in as an admin of this site:</h2>
+              <h2 className="Contact">Log in as an admin:</h2>
               <h2>{warning}</h2>
               <form>
                 <Label text="Username: " type="text" name="username" manageInput={setInputs}/>
                 <Label text="Password: " type="password" name="password" manageInput={setInputs}/>
-                <button className="LoginButton" onClick={(event) => makeAuthorization(event, value.method)}>Log in</button>
+                <button className="LoginButton" onClick={(event) => makeAuthorization(event, value.method)}>
+                  {loading ? 'processing...' : 'Log in'}
+                </button>
               </form>
             </>} 
             { value.value && 
@@ -94,6 +126,14 @@ const Label = ({text, manageInput, type, name}) => {
       <h3 className="FormLabel">{text}</h3>
       <input type={type} name={name} onChange={changeInput} className="SigninLabel"/>
     </label>
+  )
+}
+
+const Warning = ({text, handleClick}) => {
+  return (
+    <span className="LoginError" onClick={handleClick}>{text}
+      <FontAwesomeIcon className="LoginErrorIcon" icon={faTimesCircle}/>
+    </span>
   )
 }
 

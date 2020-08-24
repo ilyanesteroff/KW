@@ -21,26 +21,42 @@ import Location from '../MainSection/LocationPage'
 import SettingsPage from '../MainSection/Settings'
 import { useDocumentTitleSetting } from '../Helpers/Hooks'
 import { AdminLogedinContext } from './contexts'
+import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
+import FetchRenderer from '../MainSection/FetchRenderer'
  
 const Homepage = () =>  {
+  const [response, loading, error] = useFetch('/main')
+  const [spin] = useSpinnerSuspense(40)
+
   useDocumentTitleSetting('Key West - Home')
   return(
     <>
       <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/b/b5/Key_road.jpeg)'}/>
-      <MainSection/>
-      <VideoSection/> 
-      <Facts/>
+      <FetchRenderer response={response} error={error} spin={spin}>
+        {response !== null && 
+          <>
+          <MainSection data={response.services}/>
+          <VideoSection data={response.video}/> 
+          <Facts places={response.places}/>
+          </>
+        }
+      </FetchRenderer>
       <Footer/>
     </>
   )
 }
 
 const AboutPage = _ => {
+  const [response, loading, error] = useFetch('/about')
+  const [spin] = useSpinnerSuspense(10)
   useDocumentTitleSetting('Key West - About')
+
   return(
     <>
       <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/e/e2/Brickell_skyline_2012.jpg)'}/>
-      <About/>
+      <FetchRenderer response={response} error={error} spin={spin}>
+        <About data={response}/>
+      </FetchRenderer>
       <Footer/>
     </>
   )
@@ -68,23 +84,35 @@ const HistoryPage = _ => {
 }
 
 const LocationPage = _ => {
+  const [response, loading, error] = useFetch('/location')
+  const [spin] = useSpinnerSuspense(10)
+
   useDocumentTitleSetting('Key West - Location')
   return(
     <>
       <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/f/f4/Carnival_Destiny_Miami_12-22-11.JPG)'}/>
-      <Location/>
+      <FetchRenderer response={response} error={error} spin={spin}>
+        <Location data={response}/>
+      </FetchRenderer>
       <Footer/>
     </>
   )
 }
 
 const PlacePage = (props) => {
+  const [response, loading, error] = useFetch('/places')
+  const [spin] = useSpinnerSuspense(10)
+
   const { place } = props
-  useDocumentTitleSetting(`Key West - ${place.place}`)
+  useDocumentTitleSetting(`Key West - places`)
   return (
     <>
       <Header image={'url('+ place.url + ')'}/>
-      <Place info={place}/>
+      <FetchRenderer response={response} error={error} spin={spin}>
+        {response !== null &&
+          <Place info={response.places.find(item => item.place === place)} places={response.places}/>
+        }
+      </FetchRenderer>
       <Footer/>
     </>
   )

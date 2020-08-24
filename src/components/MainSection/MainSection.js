@@ -1,10 +1,10 @@
 import React from 'react'
 import UpperContainer from './UpperContainer'
 
-export default _ => {
+export default ({data}) => {
   return(
     <main>
-      <UpperContainer/>
+      <UpperContainer data={data}/>
     </main>
   )
 }

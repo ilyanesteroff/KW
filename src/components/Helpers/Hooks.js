@@ -1,4 +1,5 @@
 import { useLayoutEffect, useEffect, useState } from 'react'
+import { serverKey, serverUrl } from '../MainSection/refs/key'
 
 const useAddingEventListeners = (func) => {
   useEffect(() => {
@@ -63,7 +64,7 @@ const useDocumentTitleSetting = (content) => {
   }, [])
 } 
 
-const useFetch = (url, opts, func, key) => {
+const useFetch = (link, func = '', key = '', options = {}) => {
     const controller = new AbortController()
     const [response, setResponse] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -72,13 +73,19 @@ const useFetch = (url, opts, func, key) => {
     useEffect(() => {
       setLoading(true)
       let dataExists = getDate(key)
-        
+      const url = serverUrl+link
+      const opts = generateOptions(options)
+
       dataExists ? setResponse(dataExists) : 
-      fetch(url, Object.assign({}, opts, {signal: controller.signal}))
+      fetch(url, Object.assign({}, opts , {signal: controller.signal}))
         .then(res => res.json())
-        .then(res => func(res))
         .then(res => {
-          setItem(res, key)
+          console.log(res)
+          if(func === '') return res
+          else return func(res)
+        })
+        .then(res => {
+          if (key !== '') setItem(res, key)
           setResponse(res)
         })
         .catch((err) => {
@@ -92,7 +99,7 @@ const useFetch = (url, opts, func, key) => {
       setLoading(false)
   
       return _ => controller.abort()
-    }, [url])
+    }, [link])
   
     const getDate = key => {
       let data = localStorage.getItem(key)
@@ -136,6 +143,17 @@ const useSpinnerSuspense = (delay) => {
     }, [showSpinner])
   
     return [showSpinner]
+}
+
+const generateOptions = data => {
+  let opts = {
+    'headers' : {
+      'Content-Type' : 'application/json', 
+      'authorization' : serverKey
+    }
+  }
+  if (data === {}) return opts
+  else return Object.assign({}, data, opts)
 }
 
 export { useOpenCloseModal, useManageSectionSwitching, useDocumentTitleSetting, useSpinnerSuspense, useFetch, useCurrent }

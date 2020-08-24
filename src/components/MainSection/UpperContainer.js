@@ -8,7 +8,7 @@ export default (props) => {
          { props.children === undefined &&
            <>
              <Description/>
-             <CityStuff/>
+             <CityStuff services={props.data}/>
            </>
          }
          {props.children}

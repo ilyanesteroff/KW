@@ -2,33 +2,32 @@ import React, { useRef} from 'react'
 import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 import { Width } from '../pages/contexts'
 import Slider from '../Slider/ReadySlider'
-import { about } from './info'
 import Chart from './KeyWestPopulation'
 import { useManageSectionSwitching } from '../Helpers/Hooks'
 import LowerNavigation from './NavArrows'
 
-export default React.memo(() => {
+export default ({data}) => {
   const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
 
   return (
     <div className="MainSectionContainer TableSection">
       <Chapter additionalStyle={{textAlign: 'left', marginLeft: '2%'}}>About</Chapter>
       <div className="tab">
-      {about.links.map((link, index) => {
+      {data.links.map((link, index) => {
           const newRef = useRef(null);
           refs.push(newRef);
           return <button className="tabLinks" ref={newRef} id={index} onClick={changeActiveElement} key={index}>{link}</button>
         })}
       </div>
       <div className="aboutContent">
-        {current === 0 ? <AboutKeyWest/> : <AboutWebsite/>}
+        {current === 0 ? <AboutKeyWest about={data}/> : <AboutWebsite about={data}/>}
         <LowerNavigation current={current} content={['About Key West', 'About Website']} handleClick={nextPrev}/>
       </div>
     </div>
   )
-})
+}
 
-const AboutWebsite = () => {
+const AboutWebsite = ({about}) => {
   return (
     <>
       <div className="paragraph">
@@ -47,7 +46,7 @@ const AboutWebsite = () => {
   )
 }
 
-const AboutKeyWest = () => {
+const AboutKeyWest = ({about}) => {
   let slider = {
     height:  Width() > 800? '60vh' : '40vh', 
     width:  Width() > 800? '90%' : '100%', 
@@ -68,7 +67,7 @@ const AboutKeyWest = () => {
       <TextArea additionalStyle={{textAlign: 'left'}}>{about.keyWest.text[1].paragraph}</TextArea>
       {Width() > 800 && <Chart/>}
       <Chapter additionalStyle={{textAlign: 'left', marginTop: '10vh', marginLeft: '8%'}}>A little gallery</Chapter>
-      <Slider images={images} info={descriptions} url={urls} sliderStyle={slider} color={colors}/>
+      <Slider images={images} info={descriptions.map((item, index) => <h2 key={index}>{item}</h2>)} url={urls} sliderStyle={slider} color={colors}/>
     </>
   )
 }

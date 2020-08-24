@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { width } from '../Helpers/Helpers'
 import Spinner from './Spinner'
-import { twitterCredits, twitterRules } from './refs/links'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faHeart, faComment, faUser, faCheckCircle } from '@fortawesome/free-regular-svg-icons'
@@ -13,15 +12,18 @@ import { twitterTags } from '../MainSection/info'
 import {modalRoot, ModalTemplate} from '../Helpers/Modal'
 import { useOpenCloseModal, useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 
+
+let twitterRules = 'https://help.twitter.com/en/twitter-for-websites-ads-info-and-privacy'
+
 export default ({topic}) => {
   let sectionStyle = {margin: width() > 1300 ? '5vh 10%' : '5vh 5%'}
   let mobileStyle = { margin: '5vh 5%' }
   
-  let url = twitterCredits.url.replace('_topic_', topic)
-  const [ response, loading, error ] = useFetch(url, twitterCredits.headers, retrieveTweets, `${topic}Tweets`)
+  const [ response, loading, error ] = useFetch(`/tweets/${topic}`, retrieveTweets, `${topic}Tweets`)
   const [ spin ] = useSpinnerSuspense(50)
   let output
   if (response !== null && response[response.length-1] === window.location.pathname.split('/')[2] && !error.hasError ){
+    window.scrollTo(0, 0)
     output = <div style={width() > 1100? sectionStyle : mobileStyle}>
       <Tweets data={response}/>
     </div>

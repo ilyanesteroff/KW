@@ -1,35 +1,27 @@
 import React from 'react'
-import { weather } from './refs/links'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 import { Chapter, TextArea, PS } from '../Helpers/DesignAssistants'
 import Spinner from '../MainSection/Spinner'
 import { defineIcon, extractWeather, WeatherData } from './WeatherContent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { months, days } from '../Helpers/Time'
+import FetchRenderer from './FetchRenderer'
 
 export default React.memo(() => {
-    const [ response, loading, error ] = useFetch(weather.url, weather.headers, extractWeather, 'Weather')
-    const [ spin ] = useSpinnerSuspense(7)
+  const [ response, loading, error ] = useFetch('/weather', extractWeather, 'Weather')
+  const [ spin ] = useSpinnerSuspense(7)
     
-    let output
-
-    if (response !== null && !error.hasError ){
-        output = 
-        <>
-          <div className="MainSectionContainer TableSection">
-            <Chapter additionalStyle={{textAlign: 'left', marginTop: '10vh'}}>Current weather in Key West</Chapter>
-            <TextArea additionalStyle={{textAlign: 'left', fontWeight: '600'}}>{defineDay()}</TextArea>
-          </div>
-          <div style={{backgroundColor: '#9999ee', boxShadow: '0 0 10px'}} className="MainSectionContainer TableSection">
-            <Weather data={JSON.parse(response[0].replace(/[$]/g,','))}/>
-          </div>
-        </>
-    }
-    else if(error.hasError) output = <Spinner spinner={false} message={error.message}/>
-    else if (spin) output = <Spinner/>
-    else output = <></>
-    
-    return output
+  return (
+    <FetchRenderer response={response} error={error} spin={spin}>
+      <div className="MainSectionContainer TableSection">
+        <Chapter additionalStyle={{textAlign: 'left', marginTop: '10vh'}}>Current weather in Key West</Chapter>
+        <TextArea additionalStyle={{textAlign: 'left', fontWeight: '600'}}>{defineDay()}</TextArea>
+      </div>
+      <div style={{backgroundColor: '#9999ee', boxShadow: '0 0 10px'}} className="MainSectionContainer TableSection">
+        <Weather data={JSON.parse(response[0].replace(/[$]/g,','))}/>
+      </div>
+    </FetchRenderer>
+  )
 })
 
 const defineDay = _ => {

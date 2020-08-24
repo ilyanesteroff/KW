@@ -4,7 +4,6 @@ import * as Pages from './components/pages/Pages'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { WidthContext, HeightContext, ScrollTopContext, AdminLogedinContext } from './components/pages/contexts'
 import Head from './components/pages/Head'
-import { factInfo } from './components/MainSection/info'
 import { useCookies } from 'react-cookie' 
 
 export default () => {
@@ -72,9 +71,7 @@ export default () => {
                       <Route path="/about" render={() => <Pages.AboutPage/>} />
                       <Route path="/history" render={() => <Pages.HistoryPage/>}/>
                       <Route path="/location" render={() => <Pages.LocationPage/>}/>
-                      <Route path="/places/:place" render={({match}) => <Pages.PlacePage place={factInfo.find(fact =>
-                        fact.place === match.params.place
-                      )}/>}/>
+                      <Route path="/places/:place" render={({match}) => <Pages.PlacePage place={match.params.place}/>}/>
                       <Route path="/covid" render={() => <Pages.Covid/>}/>
                       <Route path="/news" render={() => <Pages.News/>}/>
                       <Route path="/twitts/:topic" render={({match}) => <Pages.Twitts twitt={match.params.topic}/>}/>

@@ -18,8 +18,9 @@ const handleGetRequests = (request, response) => {
 const handlePostRequests = (request, response) => {
   if(request.url === '/authorization') {
     postHandler(request, response, (chunks) => {
-      let body = JSON.parse(Buffer.concat(chunks).toString())
 
+      let body = JSON.parse(Buffer.concat(chunks).toString())
+      console.log(body)
       if(body.password === 'r*26puls' && body.username === 'PetyaPiskin') 
         return headWriter(response, 200, '{"Authentication" : "succeded"}')
       else

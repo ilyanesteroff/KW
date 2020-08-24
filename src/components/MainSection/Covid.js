@@ -1,5 +1,4 @@
 import React from 'react'
-import { CovidLinks } from './refs/links'
 import Spinner from '../MainSection/Spinner'
 import { Chapter, PS, TextArea, Link } from '../Helpers/DesignAssistants'
 import { width } from '../Helpers/Helpers'
@@ -7,8 +6,8 @@ import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 
 export default (props) => {
 
-  const [response, loading, error] = useFetch(CovidLinks[0].link, CovidLinks[0].headers, extractCovidData, 'Florida')
-  const [response1, loading1, error1] = useFetch(CovidLinks[1].link, CovidLinks[1].headers, extractCovidData, 'USA')
+  const [response, loading, error] = useFetch('/covid-florida', extractCovidData, 'Florida')
+  const [response1, loading1, error1] = useFetch('/covid-usa', extractCovidData, 'USA')
   const [spin] = useSpinnerSuspense(10)
 
   let output

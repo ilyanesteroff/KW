@@ -8,16 +8,20 @@ parentPort.on('message', (task) => {
 
 const makeRequest = (data) => {
   const {url, options, path} = data
-  https.get(url, options, function (res) {
+  const req = https.get(url, options, function (res) {
     var chunks = []
     
     res.on("data", function (chunk) {
       chunks.push(chunk)
     })
+
+    res.on('error', (err) => console.log(err.message))
     
     res.on("end", function () {
-      const writer = fs.createWriteStream(path)
-      writer.end(Buffer.concat(chunks).toString(), () => parentPort.postMessage('data fetched!'))
+      if(res.statusCode === 200) {
+        const writer = fs.createWriteStream(path)
+        writer.end(Buffer.concat(chunks).toString(), () => parentPort.postMessage('data fetched!'))
+      }
     })
   })
 }

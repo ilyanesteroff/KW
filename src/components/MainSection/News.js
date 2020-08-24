@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import {NYTimes} from './refs/links'
 import Slider from '../Slider/ReadySlider'
 import Spinner from '../MainSection/Spinner'
 import { Chapter, PS } from '../Helpers/DesignAssistants'
@@ -7,11 +6,12 @@ import { NewsContext, Width } from '../pages/contexts'
 import UpperContainer from './UpperContainer'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 
-const { link, domain, picture } = NYTimes
+let domain = 'https://www.nytimes.com/'
+let picture = 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Nytimes_hq.jpg'
 
 const useSetNews = () => {
 
-  const [ response, loading, error ] = useFetch(link, {}, retrieveNews, 'News')
+  const [ response, loading, error ] = useFetch('/news', retrieveNews, 'News')
 
   const [ content, setContent] = useState([])
   const [ images, setImages] = useState([])
