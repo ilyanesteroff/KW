@@ -8,5 +8,6 @@ const NewsContext = React.createContext(false)
 const StickyNavbarContext = React.createContext(null)
 const Width = () => React.useContext(WidthContext)
 const Height = () => React.useContext(HeightContext)
+const PlacesContext = React.createContext({})
 
-export { WidthContext, HeightContext, ScrollTopContext, NewsContext, StickyNavbarContext, AdminLogedinContext, Width, Height }
+export { WidthContext, HeightContext, ScrollTopContext, NewsContext, StickyNavbarContext, AdminLogedinContext, PlacesContext, Width, Height }

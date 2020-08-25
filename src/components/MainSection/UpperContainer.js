@@ -7,8 +7,8 @@ export default (props) => {
       <div className="MainSectionContainer">
          { props.children === undefined &&
            <>
-             <Description/>
-             <CityStuff services={props.data}/>
+             <Description content={props.data.content}/>
+             <CityStuff services={props.data.services}/>
            </>
          }
          {props.children}

@@ -11,12 +11,13 @@ export default () => {
   const [ height, setHeight ] = useState(0)
   const [ scrollTop, setScrollTop ] = useState(0)
   const [ loaded, setLoaded ] = useState(false)
-  const [ adminLoggedin, setAdminLoggedIn ] = useState(false)
+  const [ adminLoggedin, setAdminLoggedIn ] = useState(true)
   const [ cookies, setCookie ] = useCookies(['KeyWest'])
 
   useLayoutEffect(() => {
     updateWindowDimensions()
     updateScrollTop()
+    sessionStorage.getItem('auth') === 'true' ? setAdminLoggedIn(true) : setAdminLoggedIn(false)
   }, [])
   
   useEffect(() => {

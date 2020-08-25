@@ -80,7 +80,6 @@ const useFetch = (link, func = '', key = '', options = {}) => {
       fetch(url, Object.assign({}, opts , {signal: controller.signal}))
         .then(res => res.json())
         .then(res => {
-          console.log(res)
           if(func === '') return res
           else return func(res)
         })

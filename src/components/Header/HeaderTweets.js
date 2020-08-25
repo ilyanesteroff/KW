@@ -2,14 +2,13 @@ import React from 'react'
 import TwitterTags from './TwitterTags'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
-import { twitterTags as tags } from '../MainSection/info'
 import { Link } from 'react-router-dom'
 
 
-export default _ =>{
+export default ({tags}) =>{
   return (
     <div className="HeaderTweets">
-      <Headline sentence="Recent Twitts" link="/twitts/Florida"/>
+      <Headline sentence="Recent Twitts" link={`/twitts/${tags[2]}`}/>
       <TwitterTags tags={tags} />
     </div>
   )

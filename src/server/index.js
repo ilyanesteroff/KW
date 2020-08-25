@@ -1,15 +1,18 @@
 const http = require('http')
-const credentials = require('./Credentials')
 const dataLoader = require('./data-refresher')
 const key = require('./key')
 const { getHandler, postHandler } = require('./routeHandlers')
 const { headWriter }  = require('./method-handlers')
+const { loadTweets } = require('./tweet-loader')
+const {apis, tweets} = require('./Credentials')
 
-dataLoader(credentials)
+dataLoader(apis)
+loadTweets(tweets)
 
 setInterval(() => {
-  dataLoader(credentials)
-  //console.log('updated data!', new Date().getMinutes())
+  dataLoader(apis)
+  loadTweets(tweets)
+  console.log('updated data!', new Date().getMinutes())
 }, 3600000)
 
 http.createServer((request, response) => {

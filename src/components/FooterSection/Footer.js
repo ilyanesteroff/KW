@@ -43,7 +43,7 @@ const AdminLogin = _ => {
 
   const sendDataToServer = (username, password, cb) => {
     setLoading(true)
-    fetch(`https://cors-anywhere.herokuapp.com/https://7bfadb9a67bf.ngrok.io/authorization`, {method: 'POST', headers : {
+    fetch(`https://cors-anywhere.herokuapp.com/https://7a31fbc2bd49.ngrok.io/authorization`, {method: 'POST', headers : {
       'authorization' : serverKey, 
       'content-type' : 'application/json'
     }, body : `{ "username": "${username}", "password": "${password}"}`})
@@ -52,6 +52,7 @@ const AdminLogin = _ => {
         if(res.Authentication === "succeded") {
           setWarning('')
           window.location.pathname = '/settings'
+          window.sessionStorage.setItem('auth', 'true')
           cb()
         } else {
           setWarning(<Warning text={`Invalid credentials`} handleClick={() => setWarning('')}/>)
@@ -80,6 +81,7 @@ const AdminLogin = _ => {
   const logOut = cb => {
     setPassword('')
     setUsername('')
+    window.sessionStorage.setItem('auth', 'false')
     cb()
   }
 

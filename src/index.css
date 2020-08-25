@@ -487,6 +487,7 @@ td {
 .TweetUppersection {
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .UserNames {
@@ -659,6 +660,9 @@ td {
   width: 100%;
   border: solid 2px #2222ee;
   border-radius: 1vh;
+  font-family: Ubuntu, sans-serif;
+  color: #222;
+  font-weight: 900;
 }
 
 #SearchTweetsInput:focus {

@@ -35,7 +35,7 @@ const Homepage = () =>  {
       <FetchRenderer response={response} error={error} spin={spin}>
         {response !== null && 
           <>
-          <MainSection data={response.services}/>
+          <MainSection data={response.MainSection}/>
           <VideoSection data={response.video}/> 
           <Facts places={response.places}/>
           </>
@@ -100,7 +100,7 @@ const LocationPage = _ => {
 }
 
 const PlacePage = (props) => {
-  const [response, loading, error] = useFetch('/places')
+  const [response, loading, error] = useFetch('/main')
   const [spin] = useSpinnerSuspense(10)
 
   const { place } = props
@@ -119,7 +119,11 @@ const PlacePage = (props) => {
 }
 
 const Twitts = (props) => {
+  const [response, loading, error] = useFetch('/twitter-tags')
+  const [spin] = useSpinnerSuspense(10)
+
   const { twitt } = props
+
   return(
     <>
       <StickyNavbar fixed={true}/>
@@ -128,10 +132,10 @@ const Twitts = (props) => {
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
         <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
       </UpperSection>
-      <Twitter topic={twitt}/>
+      <Twitter topic={twitt} tags={response}/>
       <Footer/>
     </>
-  )
+  ) 
 }
 
 const WeatherPage = () => {
@@ -142,7 +146,7 @@ const WeatherPage = () => {
       <UpperSection>
         <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
-        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/Florida'}/></li>
+        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/KeyWest'}/></li>
       </UpperSection>
       <WeatherData/>
       <Footer/>
@@ -158,7 +162,7 @@ class Covid extends React.Component {
         <UpperSection>
           <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
           <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
-          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/Florida'}/></li>
+          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/KeyWest'}/></li>
         </UpperSection>
         <CovidData/>
         <Footer/>
@@ -175,7 +179,7 @@ class News extends React.Component{
         <UpperSection>
           <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
           <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
-          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/Florida'}/></li>
+          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/KeyWest'}/></li>
         </UpperSection>
         <NewsData/>
         <Footer/>
@@ -191,7 +195,7 @@ const Settings = _ => {
       <UpperSection>
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
         <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
-        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/Florida'}/></li>
+        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/KeyWest'}/></li>
       </UpperSection>
       <AdminLogedinContext.Consumer>
           {value => <>

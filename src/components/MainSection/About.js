@@ -61,10 +61,12 @@ const AboutKeyWest = ({about}) => {
   const { images, descriptions, urls, colors } = about.keyWest.slider
   return (
     <>
-      <Chapter>{about.keyWest.text[0].chapter}</Chapter>
-      <TextArea additionalStyle={{textAlign: 'left'}}>{about.keyWest.text[0].paragraph}</TextArea>
-      <Chapter>{about.keyWest.text[1].chapter}</Chapter>
-      <TextArea additionalStyle={{textAlign: 'left'}}>{about.keyWest.text[1].paragraph}</TextArea>
+      {about.keyWest.text.map(item => 
+        <>
+          <Chapter>{item.chapter}</Chapter>
+          <TextArea additionalStyle={{textAlign: 'left'}}>{item.paragraph}</TextArea>
+        </>
+      )}
       {Width() > 800 && <Chart/>}
       <Chapter additionalStyle={{textAlign: 'left', marginTop: '10vh', marginLeft: '8%'}}>A little gallery</Chapter>
       <Slider images={images} info={descriptions.map((item, index) => <h2 key={index}>{item}</h2>)} url={urls} sliderStyle={slider} color={colors}/>

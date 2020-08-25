@@ -167,28 +167,34 @@
             ]
         }
     ],
-    "services" : [
-        {
-           "point": "Contact us", 
-           "text": "Contact Key West government and administration", 
-           "href": "https://www.cityofkeywest-fl.gov/egov/apps/services/index.egov?view=detail;id=109"
-        },
-        {
-           "point": "Agendas & Minutes", 
-           "text": "Find out about upcoming events and meetings at Key West Florida", 
-           "href": "http://keywest.legistar.com/Calendar.aspx"
-        },
-        {
-           "point": "Parking Information", 
-           "text": "Learn more about parking rules and pricing at Key West", 
-           "href": "https://www.cityofkeywest-fl.gov/department/index.php?structureid=18"
-        },
-        {
-           "point": "Key West news", 
-           "text": "Check out about what happens in Key West", 
-           "href": "https://www.cityofkeywest-fl.gov/egov/apps/document/center.egov?view=browse&eGov_searchType=46&eGov_searchDepartment=4"
+    "MainSection" : {
+        "services" : [
+            {
+                "point": "Contact us", 
+                "text": "Contact Key West government and administration", 
+                "href": "https://www.cityofkeywest-fl.gov/egov/apps/services/index.egov?view=detail;id=109"
+            },
+            {
+                "point": "Agendas & Minutes", 
+                "text": "Find out about upcoming events and meetings at Key West Florida", 
+                "href": "http://keywest.legistar.com/Calendar.aspx"
+            },
+            {
+                "point": "Parking Information", 
+                "text": "Learn more about parking rules and pricing at Key West", 
+                "href": "https://www.cityofkeywest-fl.gov/department/index.php?structureid=18"
+            },
+            {
+                "point": "Key West news", 
+                "text": "Check out about what happens in Key West", 
+                "href": "https://www.cityofkeywest-fl.gov/egov/apps/document/center.egov?view=browse&eGov_searchType=46&eGov_searchDepartment=4"
+            }
+        ],
+        "content" : {
+            "chapter" : "Fishing, diving and beaches on idyllic islands",
+            "text": "A drive through the Florida Keys and Key West is one of the best scenic road trips in the USA. Only one road connects the 161-kilometer-long island chain: It began as Flagler’s Railroad, became the legendary Overseas Highway and now has been designated an All-American Road under the National Scenic Byways program. The drive has magnificent scenery, significant historic value and an abundance of recreational opportunities, making it a vacation unto itself."
         }
-    ],
+    },
     "video" : 
     {
         "link": "https://www.youtube.com/embed/8Bx5I7z7J6I?autoplay=1",

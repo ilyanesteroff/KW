@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react'
 import { width } from '../Helpers/Helpers'
 import Spinner from './Spinner'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,17 +8,18 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { WidthContext } from '../pages/contexts'
 import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 import TwitterTags from '../Header/TwitterTags'
-import { twitterTags } from '../MainSection/info'
 import {modalRoot, ModalTemplate} from '../Helpers/Modal'
 import { useOpenCloseModal, useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
+import { serverKey, serverUrl } from './refs/key'
 
+const TagsContext = React.createContext(null)
 
 let twitterRules = 'https://help.twitter.com/en/twitter-for-websites-ads-info-and-privacy'
 
-export default ({topic}) => {
+export default ({topic, tags}) => {
   let sectionStyle = {margin: width() > 1300 ? '5vh 10%' : '5vh 5%'}
   let mobileStyle = { margin: '5vh 5%' }
-  
+
   const [ response, loading, error ] = useFetch(`/tweets/${topic}`, retrieveTweets, `${topic}Tweets`)
   const [ spin ] = useSpinnerSuspense(50)
   let output
@@ -38,27 +39,57 @@ export default ({topic}) => {
     output = <><div style={sectionStyle}><UpperSection/></div><Spinner/></>
   }
   else output = <></>
-  return output
+  return (
+    <TagsContext.Provider value={tags}>
+      {output}
+    </TagsContext.Provider>
+  )
 }
 
-const UpperSection = React.memo( _ => {
+const UpperSection = _ => {
   return (
     <div style={{textAlign: 'left', margin: '2%'}}> 
       <TweetSearcher/>
       <Chapter>Tweets</Chapter>
-      <TwitterTags tags={twitterTags.filter(twit => twit !== window.location.pathname.split('/')[2])} color="#333"/>
+      <TagsContext.Consumer>
+        {
+          value => value !== null && <TwitterTags tags={value.data.filter(twit => twit !== window.location.pathname.split('/')[2])} color="#333"/>
+        }
+      </TagsContext.Consumer>
       <Chapter>Recent Tweets & Retweets #{window.location.pathname.split('/')[2]}</Chapter>
     </div>
   )
-})
+}
 
 const TweetSearcher = _ => {
   const inputRef = useRef(null)
   const [input, setInput] = useState('')
+  let loading = false
+  let tweetsFound = {found: false, count: 0, content: []}
+
   useEffect(() => {
     window.addEventListener('keyup', _focus)
     return _ => window.removeEventListener('keyup', _focus)
   })
+
+  useEffect(() => {
+    if(input !== '') {
+      loading = true
+      let url = serverUrl+'/tweets/search/q='+input
+      fetch(url, {headers: 
+        {
+          'Content-Type' : 'application/json', 
+          'authorization' : serverKey
+        }
+      })
+        .then(res => res.json())
+        .then(res => {
+          if(res.length !== undefined) tweetsFound = {found: true, count: res.length, content: res}
+          else tweetsFound = {found: false, count: 0, content: []}
+          loading = false
+        })
+    }
+  }, [input])
 
   const _focus = event => {
     if(event.keyCode === 13 && modalRoot.childElementCount === 0)
@@ -67,10 +98,10 @@ const TweetSearcher = _ => {
       inputRef.current.blur()
   }
 
-  const setVal = event => event.target.value.includes('#')? 
-    setInput(event.target.value) : 
-    setInput(`#${event.target.value}`)
-  
+  const setVal = event => {
+    event.target.value.charAt(0) === '#' ? setInput(event.target.value.substr(1)) : setInput(event.target.value) 
+  }
+
   return (
     <label className="TweetSearcher">
       <TextArea additionalStyle={{fontFamily: 'Ubuntu, sans-serif', fontSize: '1.2rem', fontWeight: '600'}}>Search tweets by tags!</TextArea>
