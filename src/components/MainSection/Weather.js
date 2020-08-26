@@ -47,6 +47,3 @@ const Weather = ({data}) => {
     </>
   )
 }
-
-
-//https://keywestwebapp.herokuapp.com/
