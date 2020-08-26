@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Chapter, TextArea } from '../Helpers/DesignAssistants'
+import { useFetch } from '../Helpers/Hooks'
+import { serverKey, serverUrl } from './refs/key'
+import { text } from '@fortawesome/fontawesome-svg-core'
 
 export default ({categories}) => {
   return (
@@ -14,24 +17,35 @@ export default ({categories}) => {
 }
 
 const Category = ({category}) => {
-  
+  const textarea = React.useRef(null)
+  const button = React.useRef(null)
   const [ isOpened, setIsOpened ] = useState(false)
-  const [ data, setData ] = useState('')
+  const [response, loading, error] = useFetch(`/${category}`)
 
   const toggleCategory = event => {
     setIsOpened(!isOpened)
     let container
     event.target.id === 'Arrow'? container = event.target : container = event.target.parentElement
     isOpened ? container.style.transform = 'rotate(-1deg)' : container.style.transform = 'rotate(-181deg)'
-
   }
 
-  const handleDataChange = event => {
-    setData(event.target.value)
+  const changeButton = () => {
+    button.current.innerHTML === 'Update!' ? button.current.innerHTML = 'updating...' : button.current.innerHTML = 'Update!'
+    button.current.style.backgroundColor === '#110044' ? button.current.style.backgroundColor = '#aaaaff' : button.current.style.backgroundColor = '#110044'
   }
 
   const sendData = _ => {
-    console.log('data sent!')
+    changeButton()
+    fetch(`${serverUrl}/${category}`, {body: textarea.current.value, method: 'POST', headers: {
+        'Content-Type' : 'application/json', 
+        'authorization' : serverKey
+      }
+    })
+      .then(res => res.json())
+      .then(res => {
+        res.updated ? console.log('updated') : console.log('failed')
+        changeButton()
+      })
   }
 
   return (
@@ -42,8 +56,8 @@ const Category = ({category}) => {
       </div>
       {isOpened && 
         <>
-          <TextContent handleChange={handleDataChange}/>
-          <SendDataBtn handleClick={sendData}/>
+          <TextContent ref={textarea} content={response !== null? response : ''}/>
+          <SendDataBtn handleClick={sendData} ref={button}/>
         </>
       }
     </div>
@@ -59,14 +73,14 @@ const Arrow = ({direction, clickHandler}) => {
   )
 }
 
-const TextContent = ({handleChange}) => {
+const TextContent = React.forwardRef((props, ref) => {
   return (
-    <textarea className="CategoryTextArea" onChange={handleChange} defaultValue="data"></textarea>
+    <textarea className="CategoryTextArea" ref={ref} defaultValue={JSON.stringify(props.content)}></textarea>
   )
-}
+})
 
-const SendDataBtn = ({handleClick}) => {
+const SendDataBtn = React.forwardRef((props, ref) => {
   return (
-    <h1 className="SendDataBtn" onClick={handleClick}>Update!</h1>
+    <h1 ref={ref} className="SendDataBtn" onClick={props.handleClick}>Update!</h1>
   )
-}
+})

@@ -7,21 +7,23 @@ const loadTweets = data => {
 
   reader.on('data', (chunk) => chunks.push(chunk))
   reader.on('end', () => {
-    let tags = JSON.parse(Buffer.concat(chunks).toString()).data
-    const pool = new WorkerPool(tags.length, 'requester.js')
+    try {
+      let tags = JSON.parse(Buffer.concat(chunks).toString()).data
+      const pool = new WorkerPool(tags.length, 'requester.js')
 
-    let tweets = tags.map(tag => {
-      return {
-        url : data.url.replace('<Topic>', tag),
-        options : data.options,
-        path : data.path.replace('<Topic>', tag)
-      }
-    })
-    tweets.forEach((item) => {
-      pool.runTask(item, (err, result) => {
-        console.log(result)
+      let tweets = tags.map(tag => {
+        return {
+          url : data.url.replace('<Topic>', tag),
+          options : data.options,
+          path : data.path.replace('<Topic>', tag)
+        }
       })
-    })
+      tweets.forEach((item) => {
+        pool.runTask(item, (err, result) => { })
+      })
+    } catch {
+
+    }
   })
 }
 

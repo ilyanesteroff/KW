@@ -12,22 +12,62 @@ import {modalRoot, ModalTemplate} from '../Helpers/Modal'
 import { useOpenCloseModal, useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 import { serverKey, serverUrl } from './refs/key'
 
+
 const TagsContext = React.createContext(null)
+const ChangeInput = React.createContext(null)
+const title = document.title
 
 let twitterRules = 'https://help.twitter.com/en/twitter-for-websites-ads-info-and-privacy'
 
-export default ({topic, tags}) => {
+const useTweetSearcher = (input) => {
+  let [tweetsFound, setTweetsFound] = useState({found: false, count: 0, content: [], tag: '', page: window.location.pathname.split('/')[2]})
+
+  useEffect(() => {
+    document.title = 'Loading...'
+    if(input !== '') {
+      let url = serverUrl+'/tweets/search/q='+input
+      fetch(url, {headers: 
+        {
+          'Content-Type' : 'application/json', 
+          'authorization' : serverKey
+        }
+      })
+        .then(res => res.json())
+        .then(res => {
+          if(res.length !== undefined) setTweetsFound({found: true, count: res.length, content: retrieveTweets(res, false), tag: input, page: window.location.pathname.split('/')[2]})
+          else setTweetsFound({found: false, count: 0, content: [], tag: input, page: window.location.pathname.split('/')[2]})
+        })
+    }
+  }, [input])
+
+  return [tweetsFound]
+}
+
+const Main = React.memo(({topic, tags}) => {
+  const [input, setInput] = useState('')
+  const [tweetsFound] = useTweetSearcher(input)
+
+  const setVal = event => {
+    event.target.value.charAt(0) === '#' ? setInput(event.target.value.substr(1)) : setInput(event.target.value) 
+  }
+
   let sectionStyle = {margin: width() > 1300 ? '5vh 10%' : '5vh 5%'}
   let mobileStyle = { margin: '5vh 5%' }
 
   const [ response, loading, error ] = useFetch(`/tweets/${topic}`, retrieveTweets, `${topic}Tweets`)
   const [ spin ] = useSpinnerSuspense(50)
+
   let output
   if (response !== null && response[response.length-1] === window.location.pathname.split('/')[2] && !error.hasError ){
     window.scrollTo(0, 0)
-    output = <div style={width() > 1100? sectionStyle : mobileStyle}>
-      <Tweets data={response}/>
-    </div>
+    let data
+    tweetsFound.content.length > 0 && tweetsFound.page === window.location.pathname.split('/')[2] ? 
+      data = tweetsFound.content : data = 
+      response.filter((item, index) => { if(index !== response.length-1) return item }).map(item => JSON.parse(item.replace(/[$]/g,',')))
+    output =
+      <div style={width() > 1100? sectionStyle : mobileStyle}>
+        <Tweets data={data}/>
+      </div>
     document.title = `#${topic} - Key West`
   }
   else if(error.hasError) {
@@ -40,11 +80,13 @@ export default ({topic, tags}) => {
   }
   else output = <></>
   return (
-    <TagsContext.Provider value={tags}>
-      {output}
-    </TagsContext.Provider>
+    <ChangeInput.Provider value={setVal}>
+      <TagsContext.Provider value={tags}>
+        {output}
+      </TagsContext.Provider>
+    </ChangeInput.Provider>
   )
-}
+})
 
 const UpperSection = _ => {
   return (
@@ -63,33 +105,11 @@ const UpperSection = _ => {
 
 const TweetSearcher = _ => {
   const inputRef = useRef(null)
-  const [input, setInput] = useState('')
-  let loading = false
-  let tweetsFound = {found: false, count: 0, content: []}
 
   useEffect(() => {
     window.addEventListener('keyup', _focus)
     return _ => window.removeEventListener('keyup', _focus)
   })
-
-  useEffect(() => {
-    if(input !== '') {
-      loading = true
-      let url = serverUrl+'/tweets/search/q='+input
-      fetch(url, {headers: 
-        {
-          'Content-Type' : 'application/json', 
-          'authorization' : serverKey
-        }
-      })
-        .then(res => res.json())
-        .then(res => {
-          if(res.length !== undefined) tweetsFound = {found: true, count: res.length, content: res}
-          else tweetsFound = {found: false, count: 0, content: []}
-          loading = false
-        })
-    }
-  }, [input])
 
   const _focus = event => {
     if(event.keyCode === 13 && modalRoot.childElementCount === 0)
@@ -98,21 +118,21 @@ const TweetSearcher = _ => {
       inputRef.current.blur()
   }
 
-  const setVal = event => {
-    event.target.value.charAt(0) === '#' ? setInput(event.target.value.substr(1)) : setInput(event.target.value) 
-  }
-
   return (
     <label className="TweetSearcher">
       <TextArea additionalStyle={{fontFamily: 'Ubuntu, sans-serif', fontSize: '1.2rem', fontWeight: '600'}}>Search tweets by tags!</TextArea>
-      <input type="input" id="SearchTweetsInput" ref={inputRef} onChange={setVal} placeholder="#HASHTAG..."/>
+      <ChangeInput.Consumer>
+        {value => <input type="input" id="SearchTweetsInput" ref={inputRef} onChange={value} placeholder="#HASHTAG..."/>}
+      </ChangeInput.Consumer>
     </label>
   )
 }
 
-const retrieveTweets = (json) => {
+const retrieveTweets = (json, decrypt = true) => {
   let output = []
-  json.statuses.forEach(item => {
+  let items
+  json.statuses === undefined ? items = json : items = json.statuses
+  items.forEach(item => {
     let media = ''
     let hashtags = []
     if (item.entities.media) if(item.entities.media[0].type = 'photo') media = item.entities.media[0].media_url_https
@@ -133,16 +153,13 @@ const retrieveTweets = (json) => {
       users_name: item.user.name,
       verified: item.user.verified
     }
-    output.push(JSON.stringify(element).replace(/[,]/g,'$'))
+    decrypt ? output.push(JSON.stringify(element).replace(/[,]/g,'$')) : output.push(element)
   })
-  output.push(window.location.pathname.split('/')[2])
+  if(decrypt) output.push(window.location.pathname.split('/')[2])
   return output
 }
 
 const Tweets = ({data}) => {
-  let _data = data.filter((item, index) => {
-    if(index !== data.length-1) return item
-  })
   const Width = () => React.useContext(WidthContext)
   let style = {
     tweetSection : {
@@ -150,8 +167,8 @@ const Tweets = ({data}) => {
       flexWrap: 'no-wrap',
     }
   }
-  let json = _data.map(item => JSON.parse(item.replace(/[$]/g,',')))
-  let tweets = json.map((tweet, index) => <Tweet key={index} json={tweet}/>)
+  document.title = title
+  let tweets = data.map((tweet, index) => <Tweet key={index} json={tweet}/>)
   let rightTweets = tweets.filter((tweet, index) => index % 2 === 0)
   let leftTweets = tweets.filter((tweet, index) => index % 2 === 1)
   let output 
@@ -314,3 +331,5 @@ const Hashtags = ({source}) => {
   let hashtags = source.map((item, index) => <a key={index} rel="noopener noreferrer" className="Hashtag" target="_blank" href={`https://twitter.com/hashtag/${item}`}>{`#${item} `}</a>)
   return <div className="HashTags">{hashtags}</div>
 }
+
+export { Main, Tweets }

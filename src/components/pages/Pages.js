@@ -14,13 +14,13 @@ import Place from '../MainSection/Place'
 import { NewsData } from '../MainSection/News'
 import CovidData from '../MainSection/Covid'
 import WeatherData from '../MainSection/Weather'
-import Twitter from '../MainSection/Twitter'
+import {Main} from '../MainSection/Twitter'
 import About from '../MainSection/About'
 import History from '../MainSection/HistoryPage'
 import Location from '../MainSection/LocationPage'
 import SettingsPage from '../MainSection/Settings'
 import { useDocumentTitleSetting } from '../Helpers/Hooks'
-import { AdminLogedinContext } from './contexts'
+import { AdminLogedinContext, FoundTweetContext } from './contexts'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 import FetchRenderer from '../MainSection/FetchRenderer'
  
@@ -118,7 +118,7 @@ const PlacePage = (props) => {
   )
 }
 
-const Twitts = (props) => {
+const Tweets = (props) => {
   const [response, loading, error] = useFetch('/twitter-tags')
   const [spin] = useSpinnerSuspense(10)
 
@@ -132,7 +132,7 @@ const Twitts = (props) => {
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
         <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
       </UpperSection>
-      <Twitter topic={twitt} tags={response}/>
+      <Main topic={twitt} tags={response}/>
       <Footer/>
     </>
   ) 
@@ -146,7 +146,7 @@ const WeatherPage = () => {
       <UpperSection>
         <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
-        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/KeyWest'}/></li>
+        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/tweets/KeyWest'}/></li>
       </UpperSection>
       <WeatherData/>
       <Footer/>
@@ -162,7 +162,7 @@ class Covid extends React.Component {
         <UpperSection>
           <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
           <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
-          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/KeyWest'}/></li>
+          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/tweets/KeyWest'}/></li>
         </UpperSection>
         <CovidData/>
         <Footer/>
@@ -179,7 +179,7 @@ class News extends React.Component{
         <UpperSection>
           <li><UpperOption sentence={"Covid-19 Updates"} icon={faVirus} link={'/covid'}/></li>
           <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
-          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/KeyWest'}/></li>
+          <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/tweets/KeyWest'}/></li>
         </UpperSection>
         <NewsData/>
         <Footer/>
@@ -195,7 +195,7 @@ const Settings = _ => {
       <UpperSection>
         <li><UpperOption sentence={"Breaking News"} icon={faNewspaper} link={'/news'}/></li>
         <li><UpperOption sentence={"Weather"} icon={faCloud} link={'/weather'}/></li>
-        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/twitts/KeyWest'}/></li>
+        <li><UpperOption sentence={"Tweets"} icon={faTwitter} link={'/tweets/KeyWest'}/></li>
       </UpperSection>
       <AdminLogedinContext.Consumer>
           {value => <>
@@ -203,7 +203,7 @@ const Settings = _ => {
               <h3 className="Warning">It seems that you are not logged in</h3>
             }
             {value.value && 
-              <SettingsPage categories={['places', 'twitter-tags', 'about', 'location', 'video', 'services']}/>
+              <SettingsPage categories={['about', 'twitter-tags', 'main', 'location']}/>
             }
           </>
           }
@@ -227,5 +227,5 @@ const NoMatchPage = () => {
 
 export { Homepage, AboutPage, InitialPage, 
   HistoryPage, LocationPage, PlacePage, 
-  Twitts, WeatherPage, NoMatchPage, Settings, Covid, 
+  Tweets, WeatherPage, NoMatchPage, Settings, Covid, 
   News}

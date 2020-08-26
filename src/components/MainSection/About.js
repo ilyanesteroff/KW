@@ -61,10 +61,10 @@ const AboutKeyWest = ({about}) => {
   const { images, descriptions, urls, colors } = about.keyWest.slider
   return (
     <>
-      {about.keyWest.text.map(item => 
+      {about.keyWest.text.map((item, index) => 
         <>
-          <Chapter>{item.chapter}</Chapter>
-          <TextArea additionalStyle={{textAlign: 'left'}}>{item.paragraph}</TextArea>
+          <Chapter key={index+'c'}>{item.chapter}</Chapter>
+          <TextArea key={index+'t'} additionalStyle={{textAlign: 'left'}}>{item.paragraph}</TextArea>
         </>
       )}
       {Width() > 800 && <Chart/>}

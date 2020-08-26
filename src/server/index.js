@@ -1,19 +1,11 @@
 const http = require('http')
-const dataLoader = require('./data-refresher')
 const key = require('./key')
 const { getHandler, postHandler } = require('./routeHandlers')
 const { headWriter }  = require('./method-handlers')
-const { loadTweets } = require('./tweet-loader')
-const {apis, tweets} = require('./Credentials')
+const WorkerPool = require('./worker-pool')
 
-dataLoader(apis)
-loadTweets(tweets)
-
-setInterval(() => {
-  dataLoader(apis)
-  loadTweets(tweets)
-  console.log('updated data!', new Date().getMinutes())
-}, 3600000)
+const manager = new WorkerPool(1, 'update-content.js')
+manager.runTask('run', (err, res) => {})
 
 http.createServer((request, response) => {
   const { method, headers } = request

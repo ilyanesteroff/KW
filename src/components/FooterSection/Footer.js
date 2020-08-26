@@ -43,7 +43,7 @@ const AdminLogin = _ => {
 
   const sendDataToServer = (username, password, cb) => {
     setLoading(true)
-    fetch(`https://cors-anywhere.herokuapp.com/https://7a31fbc2bd49.ngrok.io/authorization`, {method: 'POST', headers : {
+    fetch(`${serverUrl}/authorization`, {method: 'POST', headers : {
       'authorization' : serverKey, 
       'content-type' : 'application/json'
     }, body : `{ "username": "${username}", "password": "${password}"}`})
@@ -51,7 +51,7 @@ const AdminLogin = _ => {
       .then(res => {
         if(res.Authentication === "succeded") {
           setWarning('')
-          window.location.pathname = '/settings'
+          if(window.location.pathname !== '/settings') window.location.pathname = '/settings'
           window.sessionStorage.setItem('auth', 'true')
           cb()
         } else {

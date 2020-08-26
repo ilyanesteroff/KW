@@ -18,15 +18,17 @@ const handleGetRequests = (request, response) => {
 const handlePostRequests = (request, response) => {
   if(request.url === '/authorization') {
     postHandler(request, response, (chunks) => {
-
-      let body = JSON.parse(Buffer.concat(chunks).toString())
-      console.log(body)
-      if(body.password === 'r*26puls' && body.username === 'PetyaPiskin') 
-        return headWriter(response, 200, '{"Authentication" : "succeded"}')
-      else
-        return headWriter(response, 400, '{ "Authentication": "failed" }')
+      try {
+        let body = JSON.parse(Buffer.concat(chunks).toString())
+        if(body.password === 'r*26puls' && body.username === 'PetyaPiskin') 
+          return headWriter(response, 200, '{"Authentication" : "succeded"}')
+        else
+          return headWriter(response, 400, '{ "Authentication": "failed" }')
+      } catch {
+        return headWriter(response, 400, '{ "Error": "The body was not JSON" }')
+      }
     })
-  } else if (!request.url.includes('/tweets')) {
+  } else if (!request.url.includes('/tweets') && ['/about', '/twitter-tags', '/main', '/location'].some(item => request.url === item)) {
     fs.exists(path.resolve(__dirname, `./data/${request.url.substr(1)}.json`), (exists) => {
       postHandler(request, response, (chunks) => {
         if(exists) {
@@ -41,7 +43,7 @@ const handlePostRequests = (request, response) => {
           return headWriter(response, 404, '{ "Error" : "Unsupported request method" }')
       })
     })
-  }
+  } else return headWriter(response, 400, '{ "Error" : "This file cannot be modified" }')
 }
 
 exports.getHandler = handleGetRequests

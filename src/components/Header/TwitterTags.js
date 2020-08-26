@@ -8,7 +8,7 @@ export default class extends React.Component{
     let twitterTags = this.props.tags.map((tag, index) => {
       return (
         <h3 key={index} style={{margin: '1vh', display: this.context > 700? 'inline' : 'block'}}>
-          <Link to={`/twitts/${tag}`} style={{textDecoration: 'none', color: this.props.color === undefined ? '#eee' : this.props.color}}>
+          <Link to={`/tweets/${tag}`} style={{textDecoration: 'none', color: this.props.color === undefined ? '#eee' : this.props.color}}>
             {'#' + tag}
           </Link>
         </h3>

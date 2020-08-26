@@ -75,8 +75,7 @@ export default () => {
                       <Route path="/places/:place" render={({match}) => <Pages.PlacePage place={match.params.place}/>}/>
                       <Route path="/covid" render={() => <Pages.Covid/>}/>
                       <Route path="/news" render={() => <Pages.News/>}/>
-                      <Route path="/twitts/:topic" render={({match}) => <Pages.Twitts twitt={match.params.topic}/>}/>
-                      <Route path="/twitts/Florida" render={() => <Pages.Twitts twitt={'Florida'}/>}/>
+                      <Route path="/tweets/:topic" render={({match}) => <Pages.Tweets twitt={match.params.topic}/>}/>
                       <Route path="/weather" render={() => <Pages.WeatherPage/>}/>
                       <Route path="/settings" render={() => <Pages.Settings/>}/>
                       <Route path="*" render={() => <Pages.NoMatchPage/>}/>

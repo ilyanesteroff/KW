@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 export default ({tags}) =>{
   return (
     <div className="HeaderTweets">
-      <Headline sentence="Recent Twitts" link={`/twitts/${tags[2]}`}/>
+      <Headline sentence="Recent Twitts" link={`/tweets/${tags[2]}`}/>
       <TwitterTags tags={tags} />
     </div>
   )
