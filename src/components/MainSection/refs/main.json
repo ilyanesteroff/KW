@@ -1,10 +1,10 @@
 {
-    "places" : [
+    "places": [
         {
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Hemingway_House_Key_West_FL1.jpg",
             "factType": "Museum",
             "index": 0,
-            "content":"Author Hemingway lived in Key West, and there is an annual Hemingway look-alike contest in his honor",
+            "content": "Author Hemingway lived in Key West, and there is an annual Hemingway look-alike contest in his honor",
             "color": "rgba(15, 8, 128, 0.8)",
             "href": "https://en.wikipedia.org/wiki/Ernest_Hemingway_House",
             "place": "heminguay",
@@ -40,10 +40,10 @@
             "images": [
                 "https://upload.wikimedia.org/wikipedia/commons/1/18/The_Southernmost_Point%2C_90_miles_to_Cuba-_Key_West%2C_Florida_%288379456437%29.jpg",
                 "https://upload.wikimedia.org/wikipedia/commons/9/99/SOUVENIR_SEASHELLS_FOR_SALE_AT_THE_SOUTHERNMOST_POINT_OF_THE_UNITED_STATES_-_NARA_-_548545.jpg"
-            ], 
+            ],
             "descriptions": [
-                 "The bouy",
-                 "Tourists in Hemingway house"
+                "The bouy",
+                "Tourists in Hemingway house"
             ]
         },
         {
@@ -66,11 +66,11 @@
             ]
         },
         {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Key_West_FL_HD_Little_White_House04.jpg", 
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Key_West_FL_HD_Little_White_House04.jpg",
             "factType": "Little White House",
             "index": 3,
             "content": "The Harry S Truman Little White House in Key West, where President Harry S Truman spent 175 days during 11 visits.",
-            "color":  "rgba(15, 4, 64, 0.8)",
+            "color": "rgba(15, 4, 64, 0.8)",
             "href": "https://en.wikipedia.org/wiki/Harry_S._Truman_Little_White_House",
             "place": "white_house",
             "topic": "Harry S. Truman Little White House",
@@ -85,7 +85,7 @@
             ]
         },
         {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Early_morning_Smathers_Beach_Key_West.JPG", 
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Early_morning_Smathers_Beach_Key_West.JPG",
             "factType": "Nice place to relax",
             "index": 4,
             "content": "Smathers Beach is the largest public beach in Key West, Florida, United States. It is approximately a half mile long.",
@@ -104,7 +104,7 @@
             ]
         },
         {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Mallory_Square.JPG", 
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Mallory_Square.JPG",
             "factType": "Nice place for visitors",
             "index": 5,
             "content": "Mallory Square is a plaza located on the waterfront in Key West's historic Old Town.",
@@ -125,9 +125,9 @@
                 "Tourists and the Majesty of the Seas",
                 "Sunset"
             ]
-        }, 
+        },
         {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Aerial_view_of_Fort_Zachary_Taylor_State_Park.jpg", 
+            "url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Aerial_view_of_Fort_Zachary_Taylor_State_Park.jpg",
             "factType": "Fort Zachary Taylor",
             "index": 6,
             "content": "The Fort Zachary Taylor Historic State Park is a Florida State Park and National Historic Landmark centered on a Civil War-era fort.",
@@ -148,7 +148,7 @@
             ]
         },
         {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Key_lighthouse.jpeg", 
+            "url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Key_lighthouse.jpeg",
             "factType": "Key West Lighthouse",
             "index": 7,
             "content": "The first Key West lighthouse was a 65-foot (20 m) tower completed in 1825. It had 15 lamps in 15-inch (380 mm) reflectors.",
@@ -167,41 +167,39 @@
             ]
         }
     ],
-    "MainSection" : {
-        "services" : [
+    "MainSection": {
+        "services": [
             {
-                "point": "Contact us", 
-                "text": "Contact Key West government and administration", 
+                "point": "Contact us",
+                "text": "Contact Key West government and administration",
                 "href": "https://www.cityofkeywest-fl.gov/egov/apps/services/index.egov?view=detail;id=109"
             },
             {
-                "point": "Agendas & Minutes", 
-                "text": "Find out about upcoming events and meetings at Key West Florida", 
+                "point": "Agendas & Minutes",
+                "text": "Find out about upcoming events and meetings at Key West Florida",
                 "href": "http://keywest.legistar.com/Calendar.aspx"
             },
             {
-                "point": "Parking Information", 
-                "text": "Learn more about parking rules and pricing at Key West", 
+                "point": "Parking Information",
+                "text": "Learn more about parking rules and pricing at Key West",
                 "href": "https://www.cityofkeywest-fl.gov/department/index.php?structureid=18"
             },
             {
-                "point": "Key West news", 
-                "text": "Check out about what happens in Key West", 
+                "point": "Key West news",
+                "text": "Check out about what happens in Key West",
                 "href": "https://www.cityofkeywest-fl.gov/egov/apps/document/center.egov?view=browse&eGov_searchType=46&eGov_searchDepartment=4"
             }
         ],
-        "content" : {
-            "chapter" : "Fishing, diving and beaches on idyllic islands",
+        "content": {
+            "chapter": "Fishing, diving and beaches on idyllic islands",
             "text": "A drive through the Florida Keys and Key West is one of the best scenic road trips in the USA. Only one road connects the 161-kilometer-long island chain: It began as Flagler’s Railroad, became the legendary Overseas Highway and now has been designated an All-American Road under the National Scenic Byways program. The drive has magnificent scenery, significant historic value and an abundance of recreational opportunities, making it a vacation unto itself."
         }
     },
-    "video" : 
-    {
+    "video": {
         "link": "https://www.youtube.com/embed/8Bx5I7z7J6I?autoplay=1",
-        "description" : 
-        {
-            "headline" : "Sights of Florida", 
-            "text" : "In this video are shown the most remarkable places of Florida, here you will find Key West"
+        "description": {
+            "headline": "Sights of Florida",
+            "text": "In this video are shown the most remarkable places of Florida, here you will find Key West"
         }
     }
 }

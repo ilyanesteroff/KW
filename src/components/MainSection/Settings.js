@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 import { useFetch } from '../Helpers/Hooks'
 import { serverKey, serverUrl } from './refs/key'
-import { text } from '@fortawesome/fontawesome-svg-core'
 
 export default ({categories}) => {
   return (

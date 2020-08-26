@@ -2,8 +2,6 @@ import React from 'react'
 import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 
 
-let twitterTags = ['Covid19', 'KeyWest', 'Florida']
-
 let navbarItems = ['Home', 'About', 'Location', 'History']
 
 const chartState = {
@@ -130,4 +128,4 @@ const history = {
     ]
 }
 
-export { twitterTags, navbarItems, chartState, history }
+export { navbarItems, chartState, history }

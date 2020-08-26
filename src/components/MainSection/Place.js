@@ -49,7 +49,7 @@ export default ({info, places}) => {
           More info and facts in wikipedia
         </Link> 
       </UpperContainer>
-      {Width() > 700  && info.images !== undefined && 
+      {Width() > 500  && info.images !== undefined && 
         <>
           <div style={{ backgroundColor: '#333', height: `${height }vh`, marginTop: '10vh'}}>
             <ErrorBoundary callback={() => window.location.reload()}>
