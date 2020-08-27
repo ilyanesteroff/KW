@@ -4,7 +4,7 @@ import LogoLabel from './LogoLabel'
 
 export default props => {
   return(
-    <div>
+    <div className="KeyWestLogo">
       <LogoImage url={props.url} />
       <LogoLabel />
     </div>

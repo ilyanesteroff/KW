@@ -1451,3 +1451,43 @@ td {
   border-radius: 5px;
   border: none;
 }
+
+.KeyWestLogo {
+  position: absolute;
+  top: 5%;
+  left: 20px;
+  display: flex;
+  width: 70%;
+  padding-bottom: 1.5rem;
+}
+
+.KeyWestLogoImage{
+  width: 5rem;
+}
+
+.KeyWestLogoLabel{
+  color: #ccf;
+  font-family: Nunito, sans-serif;
+  font-size: 1.4rem;
+}
+
+.KeyWestLogoLabelBox{
+  display: flex;
+  align-items: center;
+  padding-left: 3%;
+}
+
+@media only screen and (max-width: 1000px){
+  .KeyWestLogoImage{
+    width: 3.7rem;
+  }
+  .KeyWestLogo {
+    top: 7%;
+    left: 20px;
+    display: flex;
+    width: 70%;
+  }
+  .KeyWestLogoLabel{
+    font-size: 1.2rem;
+  }
+}
