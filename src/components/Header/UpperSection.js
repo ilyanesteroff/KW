@@ -17,7 +17,7 @@ class UpperSection extends React.Component {
     return (
       <div className="UpperHeader">
         <ul>
-          {this.context > 800 && <li><LocalTime/></li>}
+          <li><LocalTime/></li>
           <li>
             <RightUpperSection>
               <>
