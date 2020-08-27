@@ -9,18 +9,17 @@ export default class extends React.Component{
 
   render() {
     const { link, sentence, icon } = this.props
-    let output 
-    this.context > 800?
-    output =
-    <div className="LocalTime">
-      <span><FontAwesomeIcon className="UpperIcon" icon={icon}/></span>
-      <h3 className="UpperOption"> {sentence} </h3>
-    </div> : output = <FontAwesomeIcon className="UpperIcon" icon={icon}/>
-
     return(
       <div>
         <Link to={link}>
-          {output}
+          <div className="LocalTime">
+            <span> 
+              <FontAwesomeIcon className="UpperIcon" icon={icon}/>
+            </span>
+            <h3 className="UpperOption"> 
+              {sentence} 
+            </h3>
+          </div>
         </Link>
       </div>
     )

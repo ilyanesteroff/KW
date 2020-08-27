@@ -9,7 +9,7 @@ export default ({spinner, message}) => {
   let style = {
     main : {
       width: '100%' ,
-      height: '50vh',
+      height: '75vh',
       textAlign: 'center',
       display: 'flex',
       alignItems: 'center',
@@ -24,7 +24,7 @@ export default ({spinner, message}) => {
     },
     chapter : {
       position: 'absolute',
-      bottom: '-30%',
+      bottom: '-20%',
       marginLeft: '3%'
     }
   }

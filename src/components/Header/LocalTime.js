@@ -24,7 +24,7 @@ export default _ => {
   }
     
   return (
-    <div className="LocalTime">
+    <div className="LocalTime" id="time">
       <span><FontAwesomeIcon className="UpperIcon" icon={faClock} /></span>
       <h3 className="UpperOption"> {date.toLocaleTimeString()} </h3>
     </div>

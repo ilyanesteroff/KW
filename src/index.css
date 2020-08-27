@@ -287,6 +287,15 @@ td {
   display: inline;
 }
 
+@media only screen and (max-width: 800px){
+  .UpperOption{
+    display: none;
+  }
+  #time{
+    display: none;
+  }
+}
+
 .NavbarItem {
   color: #fff;
   font-family: Ubuntu, sans-serif;
