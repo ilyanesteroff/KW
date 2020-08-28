@@ -13,6 +13,7 @@ export default () => {
   const [ loaded, setLoaded ] = useState(false)
   const [ adminLoggedin, setAdminLoggedIn ] = useState(true)
   const [ cookies, setCookie ] = useCookies(['KeyWest'])
+  useScrollToTheTop()
 
   useLayoutEffect(() => {
     updateWindowDimensions()
