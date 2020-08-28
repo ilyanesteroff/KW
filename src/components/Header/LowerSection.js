@@ -6,7 +6,6 @@ import { Width, Height } from '../pages/contexts'
 export default React.memo(props => {
   
   let style = {
-    height: Height() < 950? '50vh' : '70vh',
     backgroundImage: props.image,
   }
 
