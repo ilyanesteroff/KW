@@ -1,7 +1,7 @@
 import React from 'react'
 import DropDownMenu from './DropDownMenu'
 
-class DropDownIcon extends React.Component{
+class DropDownIcon extends React.PureComponent{
   constructor(props){
     super(props)
     this.openNavbar = this.openNavbar.bind(this)

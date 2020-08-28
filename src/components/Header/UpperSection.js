@@ -6,7 +6,7 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 import { AdminLogedinContext } from '../pages/contexts'
 import UpperOption from './UpperOption'
 
-class UpperSection extends React.Component {
+class UpperSection extends React.PureComponent {
   constructor(props){
       super(props)
   }

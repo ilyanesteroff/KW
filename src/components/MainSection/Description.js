@@ -1,13 +1,9 @@
 import React from 'react'
 import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 
-const Description = ({content}) => {
-  let style = {
-    marginBottom: '1vh',
-    marginTop: '3vh'
-  }
+const Description = React.memo(({content}) => {
   return (
-    <div style={style}>
+    <div className="Service-Description">
       <Chapter>
         {content.chapter}
       </Chapter>
@@ -16,6 +12,6 @@ const Description = ({content}) => {
       </TextArea>
     </div>
   )
-}
+})
 
 export default Description

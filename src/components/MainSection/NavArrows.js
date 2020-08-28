@@ -2,7 +2,7 @@ import React from 'react'
 import { Width } from '../pages/contexts'
 import { Link } from 'react-router-dom'
 
-export default ({current, content, handleClick, hrefs}) => {
+export default React.memo(({current, content, handleClick, hrefs}) => {
   let links = null
   let directions = {right: false, left: false}
   let contents = {}
@@ -24,9 +24,9 @@ export default ({current, content, handleClick, hrefs}) => {
   return (
     <Navigation directions={directions} contents={contents} current={content[current]} handleClick={handleClick} links={links}/>
   )
-}
+})
 
-const Navigation = ({directions, contents, current, handleClick, links}) => {
+const Navigation = React.memo(({directions, contents, current, handleClick, links}) => {
 
   return (
     <div className="NavigationBar">
@@ -49,9 +49,9 @@ const Navigation = ({directions, contents, current, handleClick, links}) => {
       }
     </div>
   )
-}
+})
 
-const LeftArrow = _ => {
+const LeftArrow = React.memo(_ => {
 
   return (
     <div className="ArrowContainer" id="LeftArrow">
@@ -63,9 +63,9 @@ const LeftArrow = _ => {
       </span>
     </div>
   )
-}
+})
 
-const RightArrow = _ => {
+const RightArrow = React.memo(_ => {
 
   return (
     <div className="ArrowContainer" id="RightArrow">
@@ -77,4 +77,4 @@ const RightArrow = _ => {
       </span>
     </div>
   )
-}
+})

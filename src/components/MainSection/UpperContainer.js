@@ -2,7 +2,7 @@ import React from 'react'
 import Description from './Description'
 import CityStuff from './CityStuff'
 
-export default (props) => {
+export default React.memo((props) => {
   return (
       <div className="MainSectionContainer">
          { props.children === undefined &&
@@ -14,4 +14,4 @@ export default (props) => {
          {props.children}
       </div>
   )
-}
+})

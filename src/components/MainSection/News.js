@@ -38,7 +38,7 @@ const useSetNews = () => {
   return[{images: images, content: content, url: url}, newsLoaded, error]
 }
 
-const NewsData = (props) => {
+const NewsData = React.memo((props) => {
 
   const [ news, newsLoaded, error ] = useSetNews()
   const [ spin ] = useSpinnerSuspense(50)
@@ -83,7 +83,7 @@ const NewsData = (props) => {
   }
 
   return <div>{output}</div>
-}
+})
 
 
 

@@ -4,7 +4,7 @@ import { faSun, faCloud, faCloudSun,
     faCloudMoonRain, faCloudMoon, faWind } from '@fortawesome/free-solid-svg-icons'
 import { Height, Width } from '../pages/contexts' 
 
-const WeatherData = (props) => {
+const WeatherData = React.memo((props) => {
   const { data } = props
   let content
   if(Width() > 1024) {
@@ -33,7 +33,7 @@ const WeatherData = (props) => {
       {content}
     </table>
   )
-}
+})
 
 const defineIcon = (type, forPage) => {
     let output = {

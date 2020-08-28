@@ -5,7 +5,7 @@ import { ModalTemplate } from '../Helpers/Modal'
 import { useManageSectionSwitching, useOpenCloseModal } from '../Helpers/Hooks'
 import LowerNavigation from './NavArrows'
 
-export default ({data}) => {
+export default React.memo(({data}) => {
   const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
   const {items, content} = data
 
@@ -30,9 +30,9 @@ export default ({data}) => {
       </div>
     </div>
   )
-}
+})
 
-const Content = ({item, content}) => {
+const Content = React.memo(({item, content}) => {
     const [ closeOpenModal, isModalOpened ] = useOpenCloseModal()
 
     return (
@@ -41,4 +41,4 @@ const Content = ({item, content}) => {
         {isModalOpened && <ModalTemplate src={content} opened={closeOpenModal}/>}
       </>
     )
-}
+})

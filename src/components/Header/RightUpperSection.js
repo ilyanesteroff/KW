@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default props => {
+export default React.memo(props => {
   return(
     <>
       <ul className="RightUpperSection">
@@ -8,4 +8,4 @@ export default props => {
       </ul>
     </>
   ) 
-}
+})

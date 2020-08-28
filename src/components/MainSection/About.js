@@ -6,7 +6,7 @@ import Chart from './KeyWestPopulation'
 import { useManageSectionSwitching } from '../Helpers/Hooks'
 import LowerNavigation from './NavArrows'
 
-export default ({data}) => {
+export default React.memo(({data}) => {
   const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
 
   return (
@@ -25,28 +25,22 @@ export default ({data}) => {
       </div>
     </div>
   )
-}
+})
 
-const AboutWebsite = ({about}) => {
+const AboutWebsite = React.memo(({about}) => {
   return (
     <>
-      <div className="paragraph">
-        <Chapter>{about.website.text[0].chapter}</Chapter>
-        <TextArea additionalStyle={{textAlign: 'left'}}>{about.website.text[0].paragraph}</TextArea>
-      </div>
-      <div className="paragraph">
-        <Chapter>{about.website.text[1].chapter}</Chapter>
-        <TextArea additionalStyle={{textAlign: 'left'}}>{about.website.text[1].paragraph}</TextArea>
-      </div>
-      <div className="paragraph">
-        <Chapter>{about.website.text[2].chapter}</Chapter>
-        <TextArea additionalStyle={{textAlign: 'left'}}>{about.website.text[2].paragraph}</TextArea>
-      </div>
+      {about.website.text.map((item, index) => 
+        <div className="paragraph" key={index+'div'}>
+          <Chapter key={index+'c'}>{item.chapter}</Chapter>
+          <TextArea key={index+'t'} additionalStyle={{textAlign: 'left'}}>{item.paragraph}</TextArea>
+        </div>
+      )}
     </>
   )
-}
+})
 
-const AboutKeyWest = ({about}) => {
+const AboutKeyWest = React.memo(({about}) => {
   let slider = {
     height:  Width() > 800? '60vh' : '40vh', 
     width:  Width() > 800? '90%' : '100%', 
@@ -72,4 +66,4 @@ const AboutKeyWest = ({about}) => {
       <Slider images={images} info={descriptions.map((item, index) => <h2 key={index}>{item}</h2>)} url={urls} sliderStyle={slider} color={colors}/>
     </>
   )
-}
+})

@@ -3,7 +3,7 @@ import React from 'react'
 import { Chapter } from '../Helpers/DesignAssistants'
 import { WidthContext } from '../pages/contexts'
 
-const Facts = ({places}) => {
+const Facts = React.memo(({places}) => {
   let Width = () => React.useContext(WidthContext)
     let facts = places.map((fact, index) => {
       let props = {  
@@ -17,22 +17,22 @@ const Facts = ({places}) => {
       }
       return <Fact {...props}/> 
     })
+    let content
+    Width() > 1000
+     ? content = 
+      <> 
+        <div className="FlexItem">{facts.filter((item, index) => index % 2 === 0)}</div>
+        <div className="FlexItem">{facts.filter((item, index) => index % 2 === 1)}</div>
+      </>
+      : content = <div className="FlexItem">{facts}</div>
     return (
-        <div style={{backgroundColor: '#77aadd'}}>
+        <div style={{backgroundColor: '#eeeeff', paddingBottom: '5vh 0'}}>
           <Chapter additionalStyle={{textAlign: 'center', paddingTop: '5vh'}}>The best places for tourists</Chapter>
-          {Width() > 1000 &&
-          <div style={{display: 'flex', flexWrap: 'no-wrap', justifyContent: 'space-between', margin: Width() > 1200 ? '5vh 10%' : '5vh 5%'}}>
-            <div className="FlexItem">{facts.filter((item, index) => index % 2 === 0)}</div>
-            <div className="FlexItem">{facts.filter((item, index) => index % 2 === 1)}</div>
+          <div className="Places-Container">
+            {content}
           </div>
-          }
-          {Width() < 1000 &&
-            <div style={{margin: Width() > 500 ? '5vh 10%' : '5vh 5%'}}>
-              {facts}
-            </div>
-          }
         </div>
     )
-}
+})
 
 export default Facts

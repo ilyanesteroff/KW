@@ -3,7 +3,7 @@ import HeaderTweets from './HeaderTweets'
 import Weather from './Weather'
 import {useFetch} from '../Helpers/Hooks'
 
-const CompleteLowerLowerSection = () => {
+const CompleteLowerLowerSection = React.memo(() => {
   const [response, loading, error] = useFetch('/twitter-tags')
 
   return(
@@ -14,6 +14,6 @@ const CompleteLowerLowerSection = () => {
       <Weather/>
     </div>
   )
-}
+})
 
 export default CompleteLowerLowerSection

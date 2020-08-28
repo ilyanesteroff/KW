@@ -1,15 +1,13 @@
 import React from 'react'
 import NavbarItem from './NavbarItem.js'
 import DropDownIcon from './DropDownIcon'
-import { WidthContext, ScrollTopContext, StickyNavbarContext } from '../pages/contexts'
+import { WidthContext, StickyNavbarContext } from '../pages/contexts'
 import { Link } from "react-router-dom";
 import { navbarItems } from '../MainSection/info'
 
-export default () => {
+export default React.memo(() => {
   const Width = () => React.useContext(WidthContext)
-  const ScrollTop = () => React.useContext(ScrollTopContext)
   const width = Width()
-  const scrollTop = ScrollTop()
   let output
   let style = {
     position: 'absolute',
@@ -38,4 +36,4 @@ export default () => {
       {output}
     </div>
   )
-}
+})

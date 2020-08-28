@@ -32,7 +32,7 @@ const defineDay = _ => {
   return `${days[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}`
 }
 
-const Weather = ({data}) => {
+const Weather = React.memo(({data}) => {
   let icon = defineIcon(data.weather, true)
   return ( 
     <>
@@ -46,4 +46,4 @@ const Weather = ({data}) => {
       <WeatherData data={Object.keys(data).map((key) => [key, data[key]])}/>
     </>
   )
-}
+})

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { WidthContext } from '../pages/contexts'
 
-export default class extends React.Component{
+export default class extends React.PureComponent{
   static contextType = WidthContext
   render() {
     let twitterTags = this.props.tags.map((tag, index) => {

@@ -1,44 +1,19 @@
 import React from 'react'
 import { NewsContext, Width } from '../pages/contexts'
 
-const Chapter = props => {
-    let chapterStyle = {
-        color: '#222255',
-        fontFamily: 'Ubuntu, sans-serif',
-        margin: '3%',
-        marginLeft: '0',
-        fontSize: Width() > 750 ? '1.8rem' : '1.3rem'
-    }
-    if (props.additionalStyle !== undefined)
-      chapterStyle = Object.assign({}, chapterStyle, props.additionalStyle)
-    return <h2 style={chapterStyle}>{props.children}</h2>
-}
+const Chapter = React.memo((props) => {
+    return <h2 className="Chapter" style={props.additionalStyle}>{props.children}</h2>
+})
 
-const TextArea = props => {
-    let paragraphStyle = {
-        color: '#111133',
-        fontFamily: 'Josefin Sans, sans-serif',
-        fontSize: Width() > 750 ? '1.4rem': '1.1rem'
-    }
-    if (props.additionalStyle !== undefined)
-      paragraphStyle = Object.assign({}, paragraphStyle, props.additionalStyle)
-    return <p style={paragraphStyle}>{props.children}</p>
-}
+const TextArea = React.memo((props) => {
+    return <p className="Text" style={props.additionalStyle}>{props.children}</p>
+})
 
-const Link = props => {
-    let style = {
-        color: '#222255',
-        fontFamily: 'Nunito, sans-serif',
-        fontSize: Width() > 750? '1.6rem' : '1.2rem',
-        textDecoration: 'none',
-        lineHeight: '8vh'
-    }
-    if (props.additionalStyle !== undefined)
-      style = Object.assign({}, style, props.additionalStyle)
-    return <a style={style} href={props.href}>{props.children}</a>
-}
+const Link = React.memo((props) => {
+    return <a className="Link" style={props.additionalStyle} href={props.href}>{props.children}</a>
+})
 
-const PS = props => {
+const PS = React.memo((props) => {
     const News = () => React.useContext(NewsContext)
     let style = {
         color: '#444',
@@ -50,7 +25,7 @@ const PS = props => {
     if (props.additionalStyle !== undefined)
       style = Object.assign({}, style, props.additionalStyle)
     return <h3 style={style}>{props.children}</h3>
-}
+})
 
 export {
     Chapter, TextArea, Link, PS

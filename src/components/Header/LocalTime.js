@@ -2,7 +2,7 @@ import React, {useState, useLayoutEffect} from 'react'
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default _ => {
+export default React.memo(_ => {
   const getTime = () => {
     let date = new Date();
     let utc = date.getTime() + (date.getTimezoneOffset() * 60000);
@@ -29,4 +29,4 @@ export default _ => {
       <h3 className="UpperOption"> {date.toLocaleTimeString()} </h3>
     </div>
   )
-}
+})

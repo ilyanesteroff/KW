@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WidthContext } from '../pages/contexts'
 import { Link } from 'react-router-dom'
 
-export default class extends React.Component{
+export default class extends React.PureComponent{
   
   static contextType = WidthContext
 

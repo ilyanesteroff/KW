@@ -3,7 +3,18 @@ import { Fade } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css'
 import { NewsContext, WidthContext } from '../pages/contexts'
 
-class Slider extends React.Component {
+class Slider extends React.PureComponent {
+  constructor(props){
+    super(props)
+    this.state = {
+      error: false
+    }
+  }
+
+  componentDidCatch(error, errorInfo){
+    this.setState({error: true})
+  }
+
   static contextType = WidthContext
   static defaultProps = {
     sliderStyle: {
@@ -23,7 +34,7 @@ class Slider extends React.Component {
       indicators: true
     }
     const { color, url } = this.props
-    if (this.props.images !== undefined) {
+    if (this.props.images !== undefined && !this.state.error) {
       return (
         <div style={this.props.sliderStyle}>
           <div className="slide-container">
@@ -47,11 +58,11 @@ class Slider extends React.Component {
           </div>
         </div>
       )
-    } else return <></>
+    } else return <><h2>Something went wrong try to reload page</h2></>
   }
 }
 
-const GenerateSlides = (props) => {
+const GenerateSlides = React.memo((props) => {
     let News = () => React.useContext(NewsContext)
     let Width = () => React.useContext(WidthContext)
     let style = {
@@ -89,6 +100,6 @@ const GenerateSlides = (props) => {
           {Container}
         </div>
     )
-}
+})
   
 export default Slider

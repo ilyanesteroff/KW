@@ -6,7 +6,7 @@ import { AdminLogedinContext } from '../pages/contexts'
 import { Link } from "react-router-dom"
 import { serverKey, serverUrl } from '../MainSection/refs/key'
  
-export default _ => {
+export default React.memo(_ => {
   return (
     <div id="footer">
       <h2 className="AboveFooter">Key West 2020</h2>
@@ -24,9 +24,9 @@ export default _ => {
       </div>
     </div>
   )
-}
+})
 
-const AdminLogin = _ => {
+const AdminLogin = React.memo(_ => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [warning, setWarning] = useState('')
@@ -116,9 +116,9 @@ const AdminLogin = _ => {
       }
     </AdminLogedinContext.Consumer>
   )
-} 
+}) 
 
-const Label = ({text, manageInput, type, name}) => {
+const Label = React.memo(({text, manageInput, type, name}) => {
   const changeInput = event => {
     manageInput(event.target.name, event.target.value)
   }
@@ -129,17 +129,17 @@ const Label = ({text, manageInput, type, name}) => {
       <input type={type} name={name} onChange={changeInput} className="SigninLabel"/>
     </label>
   )
-}
+})
 
-const Warning = ({text, handleClick}) => {
+const Warning = React.memo(({text, handleClick}) => {
   return (
     <span className="LoginError" onClick={handleClick}>{text}
       <FontAwesomeIcon className="LoginErrorIcon" icon={faTimesCircle}/>
     </span>
   )
-}
+})
 
-const SocialMedias = _ => {
+const SocialMedias = React.memo(_ => {
   let links = ['https://www.facebook.com', 'https://www.twitter.com', 'https://www.instagram.com', 'https://www.youtube.com/']
   let icons = [faFacebook, faTwitter, faInstagram, faYoutube]
   let content = links.map((link, index) => <Icon link={link} icon={icons[index]} key={index}/>)
@@ -151,12 +151,12 @@ const SocialMedias = _ => {
       </div>
     </>
   )
-}
+})
 
-const Icon = ({link, icon}) => {
+const Icon = React.memo(({link, icon}) => {
   return (
     <a className="SocialMediaIcon" href={link} target="_blank">
       <FontAwesomeIcon icon={icon}/>
     </a>
   )
-}
+})

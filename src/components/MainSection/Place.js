@@ -8,7 +8,7 @@ import { useCurrent } from '../Helpers/Hooks'
 import { WidthContext } from '../pages/contexts'
 import ErrorBoundary from '../pages/ErrorBoundary'
 
-export default ({info, places}) => {
+export default React.memo(({info, places}) => {
   const Width = () => React.useContext(WidthContext)
   const [current, setCurrent, nextPrev] = useCurrent(info.index)
   useLayoutEffect(_ => {
@@ -66,4 +66,4 @@ export default ({info, places}) => {
       />
     </div>
   )
-}
+})

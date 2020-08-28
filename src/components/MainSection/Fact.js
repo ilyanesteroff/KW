@@ -6,7 +6,7 @@ import { HeightContext } from '../pages/contexts'
 import { ModalTemplate } from '../Helpers/Modal'
 import { useOpenCloseModal } from '../Helpers/Hooks'
 
-export default (props) => {
+export default React.memo((props) => {
   let Height = () => React.useContext(HeightContext)
 
   const [ closeOpenModal, isModalOpened ] = useOpenCloseModal()
@@ -16,7 +16,7 @@ export default (props) => {
   }
   
   let height 
-  Height() < 400 ? height = '70vh' : height = '50vh' 
+  Height() < 500 ? height = '70vh' : height = '50vh' 
 
   const toggleInfo = event => {
     if(window.innerWidth < 1000) {
@@ -49,5 +49,5 @@ export default (props) => {
       {isModalOpened && <ModalTemplate src={props.url} opened={closeOpenModal}/>}
     </>
   )
-}
+})
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import ForecastSection from './ForecastSection'
 
-export default props => {
+export default React.memo(props => {
   return (
     <ul>
       <li>
@@ -15,4 +15,4 @@ export default props => {
       </li>
     </ul>
   )
-}
+})

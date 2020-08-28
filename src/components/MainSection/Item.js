@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-export default (props) => {
+export default React.memo((props) => {
   return (
     <div className="CityService">
       <a href={props.url} target="_blank" rel="noopener noreferrer" >
@@ -11,4 +11,4 @@ export default (props) => {
       </a>
     </div>
   )
-}
+})

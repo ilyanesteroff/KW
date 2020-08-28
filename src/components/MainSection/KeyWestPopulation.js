@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { chartState } from './info'
 import { Chapter } from '../Helpers/DesignAssistants';
 
-export default class extends React.Component {
+export default class extends React.PureComponent {
   constructor(props){
     super(props)
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this)

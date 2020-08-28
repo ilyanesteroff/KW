@@ -7,7 +7,7 @@ import {Width} from '../pages/contexts'
 import { faVirus, faNewspaper, faCloud } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
-export default props => {
+export default React.memo(props => {
   return (
     <div>
       <StickyNavbar/>
@@ -20,4 +20,4 @@ export default props => {
       <LowerSection image={props.image}/>
     </div>
   )
-}
+})

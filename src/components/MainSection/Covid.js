@@ -4,7 +4,7 @@ import { Chapter, PS, TextArea, Link } from '../Helpers/DesignAssistants'
 import { width } from '../Helpers/Helpers'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 
-export default (props) => {
+export default React.memo((props) => {
 
   const [response, loading, error] = useFetch('/covid-florida', extractCovidData, 'Florida')
   const [response1, loading1, error1] = useFetch('/covid-usa', extractCovidData, 'USA')
@@ -34,7 +34,7 @@ export default (props) => {
   }
 
   return <>{output}</>
-}
+})
 
 const extractCovidData = (json) => {
   if(json.data === undefined)

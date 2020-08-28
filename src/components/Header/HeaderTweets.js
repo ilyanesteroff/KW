@@ -5,16 +5,16 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { Link } from 'react-router-dom'
 
 
-export default ({tags}) =>{
+export default React.memo(({tags}) =>{
   return (
     <div className="HeaderTweets">
       <Headline sentence="Recent Twitts" link={`/tweets/${tags[2]}`}/>
       <TwitterTags tags={tags} />
     </div>
   )
-}
+})
 
-const Headline = ({sentence, link}) => {
+const Headline = React.memo(({sentence, link}) => {
   return (
     <Link to={link}>
       <h3 className="TwitterSectionHeadline">
@@ -25,4 +25,4 @@ const Headline = ({sentence, link}) => {
       </h3>
     </Link>
   )
-}
+})

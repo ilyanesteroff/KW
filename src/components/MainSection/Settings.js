@@ -3,7 +3,7 @@ import { Chapter, TextArea } from '../Helpers/DesignAssistants'
 import { useFetch } from '../Helpers/Hooks'
 import { serverKey, serverUrl } from './refs/key'
 
-export default ({categories}) => {
+export default React.memo(({categories}) => {
   return (
     <div className="MainSectionContainer">
       <Chapter>Manage website's content here</Chapter>
@@ -13,9 +13,9 @@ export default ({categories}) => {
       </div>
     </div>
   )
-}
+})
 
-const Category = ({category}) => {
+const Category = React.memo(({category}) => {
   const textarea = React.useRef(null)
   const button = React.useRef(null)
   const [ isOpened, setIsOpened ] = useState(false)
@@ -61,16 +61,16 @@ const Category = ({category}) => {
       }
     </div>
   )
-}
+})
 
-const Arrow = ({direction, clickHandler}) => {
+const Arrow = React.memo(({direction, clickHandler}) => {
   return (
     <div className="DownArrow" id="Arrow" onClick={(event) => clickHandler(event)}>
       <div className="LeftSide ArrowPart"></div>
       <div className="RightSide ArrowPart"></div>
     </div>
   )
-}
+})
 
 const TextContent = React.forwardRef((props, ref) => {
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { navbarItems } from '../MainSection/info'
 
-export default () => {
+export default React.memo(() => {
   let options = navbarItems.map((item, index) => {
     let res
     index > 0 ? res = item.toLowerCase() : res = ''
@@ -21,8 +21,8 @@ export default () => {
       {options}
     </div>
   )
-}
+})
 
-function DropDownItem({item}){
+const DropDownItem = ({item}) => {
     return <h2 className="DropDownItem">{item}</h2>
 }

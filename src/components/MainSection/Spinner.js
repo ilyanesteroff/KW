@@ -4,7 +4,7 @@ import { faReact } from '@fortawesome/free-brands-svg-icons'
 import { faSadCry } from '@fortawesome/free-regular-svg-icons'
 import { Chapter } from '../Helpers/DesignAssistants'
 
-export default ({spinner, message}) => {
+export default React.memo(({spinner, message}) => {
   if(spinner === undefined) spinner = true
   let style = {
     main : {
@@ -37,4 +37,4 @@ export default ({spinner, message}) => {
         {output}
       </div>
   )
-}
+})

@@ -5,7 +5,7 @@ import { history } from './info'
 import { useManageSectionSwitching } from '../Helpers/Hooks'
 import LowerNavigation from './NavArrows'
 
-export default () => {
+export default React.memo(() => {
   const [changeActiveElement, refs, current, nextPrev] = useManageSectionSwitching()
   return (
     <div className="MainSectionContainer TableSection">
@@ -28,11 +28,11 @@ export default () => {
       </div>
     </div>
   )
-}
+})
 
-const Content = ({index}) => {
+const Content = React.memo(({index}) => {
   return <>
     {history.content[index].fullLink}
     {history.content[index].text}
   </>
-}
+})

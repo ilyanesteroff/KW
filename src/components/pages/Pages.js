@@ -24,7 +24,7 @@ import { AdminLogedinContext, FoundTweetContext } from './contexts'
 import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
 import FetchRenderer from '../MainSection/FetchRenderer'
  
-const Homepage = () =>  {
+const Homepage = React.memo(() =>  {
   const [response, loading, error] = useFetch('/main')
   const [spin] = useSpinnerSuspense(40)
 
@@ -44,9 +44,9 @@ const Homepage = () =>  {
       <Footer/>
     </>
   )
-}
+})
 
-const AboutPage = _ => {
+const AboutPage = React.memo(_ => {
   const [response, loading, error] = useFetch('/about')
   const [spin] = useSpinnerSuspense(10)
   useDocumentTitleSetting('Key West - About')
@@ -60,9 +60,9 @@ const AboutPage = _ => {
       <Footer/>
     </>
   )
-}
+})
 
-class InitialPage extends React.Component{
+class InitialPage extends React.PureComponent{
   render() {
     return(
       <div className="landingPage">
@@ -72,7 +72,7 @@ class InitialPage extends React.Component{
   }
 }
 
-const HistoryPage = _ => {
+const HistoryPage = React.memo(_ => {
   useDocumentTitleSetting('Key West - History')
   return(
     <>
@@ -81,9 +81,9 @@ const HistoryPage = _ => {
       <Footer/>
     </>
   )
-}
+})
 
-const LocationPage = _ => {
+const LocationPage = React.memo(_ => {
   const [response, loading, error] = useFetch('/location')
   const [spin] = useSpinnerSuspense(10)
 
@@ -97,28 +97,32 @@ const LocationPage = _ => {
       <Footer/>
     </>
   )
-}
+})
 
-const PlacePage = (props) => {
+const PlacePage = React.memo((props) => {
   const [response, loading, error] = useFetch('/main')
   const [spin] = useSpinnerSuspense(10)
-
   const { place } = props
   useDocumentTitleSetting(`Key West - places`)
+  let info, imgLink 
+  if(response !== null) {
+    info = response.places.find(item => item.place === place)
+    imgLink = info.url
+  }
   return (
     <>
-      <Header image={'url('+ place.url + ')'}/>
+      <Header image={`url(${imgLink})`}/>
       <FetchRenderer response={response} error={error} spin={spin}>
         {response !== null &&
-          <Place info={response.places.find(item => item.place === place)} places={response.places}/>
+          <Place info={info} places={response.places}/>
         }
       </FetchRenderer>
       <Footer/>
     </>
   )
-}
+})
 
-const Tweets = (props) => {
+const Tweets = React.memo((props) => {
   const [response, loading, error] = useFetch('/twitter-tags')
   const [spin] = useSpinnerSuspense(10)
 
@@ -136,9 +140,9 @@ const Tweets = (props) => {
       <Footer/>
     </>
   ) 
-}
+})
 
-const WeatherPage = () => {
+const WeatherPage = React.memo(() => {
   useDocumentTitleSetting('Key West - Weather')
   return (
     <>
@@ -152,9 +156,9 @@ const WeatherPage = () => {
       <Footer/>
     </>
   )
-}
+})
 
-class Covid extends React.Component {
+class Covid extends React.PureComponent {
   render() {
     return(
       <>
@@ -171,7 +175,7 @@ class Covid extends React.Component {
   }
 }
 
-class News extends React.Component{
+class News extends React.PureComponent{
   render() {
     return(
       <>
@@ -188,7 +192,7 @@ class News extends React.Component{
   }
 }
 
-const Settings = _ => {
+const Settings = React.memo(_ => {
   return(
     <>
       <StickyNavbar fixed={true}/>
@@ -211,9 +215,9 @@ const Settings = _ => {
       <Footer/>
     </>
   )
-}
+})
 
-const NoMatchPage = () => {
+const NoMatchPage = React.memo(() => {
   let location = useLocation()
   useDocumentTitleSetting('No Match')
   return (
@@ -223,7 +227,7 @@ const NoMatchPage = () => {
       </h3>
     </div>
   )
-}
+})
 
 export { Homepage, AboutPage, InitialPage, 
   HistoryPage, LocationPage, PlacePage, 

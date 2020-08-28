@@ -698,8 +698,15 @@ td {
   object-fit: cover;
 }
 
+.Places-Container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 5vh 10%;
+}
+
 .FlexItem {
-  width: 49%;
+  width: 98%;
 }
 
 .PlaceInfo {
@@ -722,6 +729,9 @@ td {
   }
   .PlaceContainer:hover .NameOfThePlace {
     margin: 15vh 0 0 6%;
+  }
+  .FlexItem{
+    width: 49%;
   }
 }
 
@@ -1490,4 +1500,60 @@ td {
   .KeyWestLogoLabel{
     font-size: 1.2rem;
   }
+}
+
+.Chapter {
+  color: #222255;
+  font-family: Ubuntu, sans-serif;
+  margin: 3%;
+  margin-left: 0;
+  font-size: 1.8rem;
+}
+
+.Text {
+  color: #111133;
+  font-family: Josefin Sans, sans-serif;
+  font-size: 1.4rem;
+}
+
+.Link {
+  color: #222255;
+  font-family: Nunito, sans-serif;
+  font-size: 1.6rem;
+  text-decoration: none;
+  line-height: 8vh;
+}
+
+@media only screen and (max-width: 750px){
+  .Chapter{
+    font-size: 1.3rem;
+  }
+  .Text{
+    font-size: 1.1rem;
+  }
+  .Link{
+    font-size: 1.2rem;
+  }
+}
+
+.Service-Description { 
+  margin-bottom: 1vh;
+  margin-top: 3vh;
+}
+
+#StickyNavbar {
+  width: 100%;
+  height: 13vh;
+  min-height: 4rem;
+  background-color: rgba(51, 34, 136, 0.9);
+  left: 0;
+  transition: top 0.5s;
+  z-index: 2;
+}
+
+.Header-LowerSection{
+  position: relative;
+  box-shadow: inset 0 0 40vh black, inset 0 0 40vh black;
+  background-position: center;
+  background-size: cover;
 }
