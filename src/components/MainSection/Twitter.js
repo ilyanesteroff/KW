@@ -226,7 +226,7 @@ const Tweet = ({json}) => {
   return output
 }
 
-const Retweets = ({retweets, url}) => {
+const Retweets = React.memo(({retweets, url}) => {
   const Width = () => React.useContext(WidthContext)
   let output 
   if(retweets !== 0) 
@@ -244,18 +244,22 @@ const Retweets = ({retweets, url}) => {
     output = <a href={url} target="_blank" rel="noopener noreferrer">{output}</a>
   
   return output
-}
+})
 
-const TweetUpperSection = _ => {
+const TweetUpperSection = React.memo(_ => {
   const Avatar = () => React.useContext(AvatarContext)
+  let content 
+  Avatar() !== '' 
+    ? content = <AvatarSection/>
+    : content = <></>
   return (
     <div className="TweetUppersection">
-      {Avatar() !== '' && <AvatarSection/>}
+      {content}
     </div>
   )
-}
+})
 
-const AvatarSection = _ => {
+const AvatarSection = React.memo(_ => {
   
   return (
     <BgContext.Consumer>
@@ -270,9 +274,9 @@ const AvatarSection = _ => {
       }
     </BgContext.Consumer>
   )
-}
+})
 
-const UserNames = _ => {
+const UserNames = Reeact.memo(_ => {
   return (
     <div className="UserNames">
       <UsersNameContext.Consumer>
@@ -292,9 +296,9 @@ const UserNames = _ => {
       </UsernameContext.Consumer>
     </div>
   )
-}
+})
 
-const TweetContent = ({json, createdAt}) => {
+const TweetContent = React.memo(({json, createdAt}) => {
   return (
     <div className="TweetContent">
       {json.text !== "" && <p className="TweetText">{json.text}</p>}
@@ -312,9 +316,9 @@ const TweetContent = ({json, createdAt}) => {
       </a>
     </div>
   )
-}
+})
 
-const TweetMedia = ({media}) => {
+const TweetMedia = React.memo(({media}) => {
   const [ closeOpenModal, isModalOpened ] = useOpenCloseModal()
 
   return (
@@ -325,11 +329,11 @@ const TweetMedia = ({media}) => {
       {isModalOpened && <ModalTemplate src={media} opened={closeOpenModal}/>}
     </>
   )
-}
+})
 
-const Hashtags = ({source}) => {
+const Hashtags = React.memo(({source}) => {
   let hashtags = source.map((item, index) => <a key={index} rel="noopener noreferrer" className="Hashtag" target="_blank" href={`https://twitter.com/hashtag/${item}`}>{`#${item} `}</a>)
   return <div className="HashTags">{hashtags}</div>
-}
+})
 
 export { Main, Tweets }
