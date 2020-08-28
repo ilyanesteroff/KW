@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import Header from '../Header/Header'
 import VideoSection from '../MainSection/VideoSection'
 import MainSection from '../MainSection/MainSection'
@@ -20,14 +20,14 @@ import History from '../MainSection/HistoryPage'
 import Location from '../MainSection/LocationPage'
 import SettingsPage from '../MainSection/Settings'
 import { useDocumentTitleSetting } from '../Helpers/Hooks'
-import { AdminLogedinContext, FoundTweetContext } from './contexts'
-import { useFetch, useSpinnerSuspense } from '../Helpers/Hooks'
+import { AdminLogedinContext } from './contexts'
+import { useFetch, useSpinnerSuspense, useScrollToTheTop } from '../Helpers/Hooks'
 import FetchRenderer from '../MainSection/FetchRenderer'
  
 const Homepage = React.memo(() =>  {
   const [response, loading, error] = useFetch('/main')
   const [spin] = useSpinnerSuspense(40)
-
+  useScrollToTheTop()
   useDocumentTitleSetting('Key West - Home')
   return(
     <>
@@ -50,6 +50,7 @@ const AboutPage = React.memo(_ => {
   const [response, loading, error] = useFetch('/about')
   const [spin] = useSpinnerSuspense(10)
   useDocumentTitleSetting('Key West - About')
+  useScrollToTheTop()
 
   return(
     <>
@@ -74,6 +75,8 @@ class InitialPage extends React.PureComponent{
 
 const HistoryPage = React.memo(_ => {
   useDocumentTitleSetting('Key West - History')
+  useScrollToTheTop()
+
   return(
     <>
       <Header image={'url(https://upload.wikimedia.org/wikipedia/commons/6/6e/Chiaves-la-florida-1584.jpg)'}/>
@@ -86,6 +89,7 @@ const HistoryPage = React.memo(_ => {
 const LocationPage = React.memo(_ => {
   const [response, loading, error] = useFetch('/location')
   const [spin] = useSpinnerSuspense(10)
+  useScrollToTheTop()
 
   useDocumentTitleSetting('Key West - Location')
   return(
@@ -102,6 +106,8 @@ const LocationPage = React.memo(_ => {
 const PlacePage = React.memo((props) => {
   const [response, loading, error] = useFetch('/main')
   const [spin] = useSpinnerSuspense(10)
+  useScrollToTheTop()
+
   const { place } = props
   useDocumentTitleSetting(`Key West - places`)
   let info, imgLink 
@@ -125,6 +131,7 @@ const PlacePage = React.memo((props) => {
 const Tweets = React.memo((props) => {
   const [response, loading, error] = useFetch('/twitter-tags')
   const [spin] = useSpinnerSuspense(10)
+  useScrollToTheTop()
 
   const { twitt } = props
 
@@ -144,6 +151,8 @@ const Tweets = React.memo((props) => {
 
 const WeatherPage = React.memo(() => {
   useDocumentTitleSetting('Key West - Weather')
+  useScrollToTheTop()
+
   return (
     <>
       <StickyNavbar fixed={true}/>
@@ -193,6 +202,8 @@ class News extends React.PureComponent{
 }
 
 const Settings = React.memo(_ => {
+  useScrollToTheTop()
+  
   return(
     <>
       <StickyNavbar fixed={true}/>

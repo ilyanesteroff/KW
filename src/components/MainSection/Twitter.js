@@ -276,7 +276,7 @@ const AvatarSection = React.memo(_ => {
   )
 })
 
-const UserNames = Reeact.memo(_ => {
+const UserNames = React.memo(_ => {
   return (
     <div className="UserNames">
       <UsersNameContext.Consumer>

@@ -155,4 +155,10 @@ const generateOptions = data => {
   else return Object.assign({}, data, opts)
 }
 
-export { useOpenCloseModal, useManageSectionSwitching, useDocumentTitleSetting, useSpinnerSuspense, useFetch, useCurrent }
+const useScrollToTheTop = _ => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+}
+
+export { useOpenCloseModal, useManageSectionSwitching, useDocumentTitleSetting, useSpinnerSuspense, useFetch, useCurrent, useScrollToTheTop }
