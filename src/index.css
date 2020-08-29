@@ -702,7 +702,7 @@ td {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  margin: 5vh 10%;
+  margin: 5vh 5%;
 }
 
 .FlexItem {
@@ -734,7 +734,7 @@ td {
     width: 49%;
   }
   .Places-Container{
-    margin: 5vh 5%;
+    margin: 5vh 10%;
   }
 }
 
