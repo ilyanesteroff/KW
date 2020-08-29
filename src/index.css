@@ -733,6 +733,9 @@ td {
   .FlexItem{
     width: 49%;
   }
+  .Places-Container{
+    margin: 5vh 5%;
+  }
 }
 
 .TogglePlaceInfo { 
