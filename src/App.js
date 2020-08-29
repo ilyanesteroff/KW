@@ -6,7 +6,7 @@ import { WidthContext, HeightContext, ScrollTopContext, AdminLogedinContext } fr
 import Head from './components/pages/Head'
 import { useCookies } from 'react-cookie' 
 
-export default () => {
+export default React.memo(() => {
   const [ width, setWidth ] = useState(0)
   const [ height, setHeight ] = useState(0)
   const [ scrollTop, setScrollTop ] = useState(0)
@@ -90,5 +90,5 @@ export default () => {
       </ScrollTopContext.Provider>
     )
   }
-}
+})
 
