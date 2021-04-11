@@ -4,7 +4,6 @@ import * as Pages from './components/pages/Pages'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { WidthContext, HeightContext, ScrollTopContext, AdminLogedinContext } from './components/pages/contexts'
 import Head from './components/pages/Head'
-import { useCookies } from 'react-cookie' 
 
 export default React.memo(() => {
   const [ width, setWidth ] = useState(0)
@@ -12,8 +11,6 @@ export default React.memo(() => {
   const [ scrollTop, setScrollTop ] = useState(0)
   const [ loaded, setLoaded ] = useState(false)
   const [ adminLoggedin, setAdminLoggedIn ] = useState(true)
-  const [ cookies, setCookie ] = useCookies(['KeyWest'])
-  useScrollToTheTop()
 
   useLayoutEffect(() => {
     updateWindowDimensions()
@@ -25,7 +22,6 @@ export default React.memo(() => {
     window.addEventListener('resize', updateWindowDimensions)
     window.addEventListener('scroll', updateScrollTop)
     window.addEventListener('load', changeBg)
-    setCookie('KeyWest', 'security', { path: '/', sameSite: 'None', maxAge: 259200 })
 
     return _ => {
       window.removeEventListener('resize', updateWindowDimensions)
