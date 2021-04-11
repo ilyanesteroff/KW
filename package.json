@@ -21,7 +21,7 @@
     "react-scripts": "3.4.1",
     "react-slideshow-image": "^2.0.2",
     "styled-components": "5.2.3"  
-  },
+  }, 
   "scripts": {
     "start": "react-scripts start",
     "build": "CI= react-scripts build",
