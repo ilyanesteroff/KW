@@ -4,6 +4,7 @@ import * as Pages from './components/pages/Pages'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { WidthContext, HeightContext, ScrollTopContext, AdminLogedinContext } from './components/pages/contexts'
 import Head from './components/pages/Head'
+import Global from './styles/global'
 
 
 export default React.memo(() => {
@@ -61,6 +62,7 @@ export default React.memo(() => {
         <WidthContext.Provider value={width}>
           <HeightContext.Provider value={height}>
             <AdminLogedinContext.Provider value={{value: adminLoggedin, method: logOut}}>
+              <Global/>
               <div className="App">
                 <Head/>
                 <Router>
