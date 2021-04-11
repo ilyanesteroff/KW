@@ -8,32 +8,26 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 li{
   display: inline-block;
   list-style-type: none;
 }
-
 a {
   text-decoration: none;
 }
-
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 :root {
   background-color: #ddd;
 }
-
 .ChartSettings {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
 }
-
 .switch {
   position: relative;
   display: block;
@@ -41,13 +35,11 @@ a {
   height: 34px;
   margin: 0.5vh 2%;
 }
-
 .switch input { 
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 .slider {
   position: absolute;
   cursor: pointer;
@@ -59,7 +51,6 @@ a {
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -71,44 +62,35 @@ a {
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 input:checked + .slider {
   background-color: #2196F3;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
-
 .landingPage {
   position: 'relative';
   height: 100vh;
   width: 100%;
   background: #7ae9ec;
 }
-
 #logo {
   position: absolute;
   top: 50vh;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .each-fade {
   display: flex;
   max-height: 60vh;
@@ -117,7 +99,6 @@ input:checked + .slider:before {
   overflow: visible;
   z-index: 1;
 }
-
 .each-fade  .image {
   width: 70%;
   height: 96%;
@@ -125,7 +106,6 @@ input:checked + .slider:before {
   justify-content: center;
   z-index: 1;
 }
-
 .TextContent {
   width: 30%;
   display: flex;
@@ -135,14 +115,12 @@ input:checked + .slider:before {
   padding: 0 3%;
   border : solid 2px black;
 }
-
 .TextContent h2{
   color: #99dddd;
   font-size: 1.4rem;
   font-family: 'Ubuntu', sans-serif;
   margin: 10% 0;
 }
-
 .TextContent p{
   color: #11ffff;
   font-size: 1rem;
@@ -150,14 +128,12 @@ input:checked + .slider:before {
   margin: auto;
   text-align: justify;
 }
-
 .image h2 {
   font-size: 1rem;
   margin-bottom: 5%;
   color: #333;
   text-shadow: 0 0 0.1rem #11ffff;
 }
-
 @media only screen and (max-width: 600px){
   .TextContent h2{
     font-size: 0.6rem;
