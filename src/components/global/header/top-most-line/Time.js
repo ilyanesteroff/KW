@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -12,12 +12,9 @@ const Time = () => {
 
   const [ date, setDate ] = useState(getTime())
   
-  useLayoutEffect(_ => {
-    const timerID = setInterval(
-      () => tick(),
-      1000
-    )
-    return _ => clearInterval(timerID)
+  useEffect(_ => {
+    const clock = setInterval(() => tick(), 1000)
+    return () => clearInterval(clock)
   })
     
   const tick = _ => {
@@ -25,9 +22,12 @@ const Time = () => {
   }
     
   return (
-    <div className="LocalTime" id="time">
-      <span><FontAwesomeIcon className="UpperIcon" icon={faClock} /></span>
-      <h3 className="UpperOption"> {date.toLocaleTimeString()} </h3>
+    <div 
+      id="time"
+      className="icon-label"
+    >
+      <FontAwesomeIcon icon={ faClock }/>
+      <h3>{date.toLocaleTimeString()}</h3>
     </div>
   )
 }
