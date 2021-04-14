@@ -9,6 +9,7 @@ const Container = styled.div`
   background-image: ${ props => props.imageUrl };
   height: 50vh;
   min-height: 450px;
+  overflow: hidden;
 
   @media only screen and (min-height: 950px){
     height: 70vh; 

@@ -24,6 +24,39 @@ const global = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  .invisible{
+    display: none;
+  }
+  .icon-label{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1rem;
+  }
+  .icon-label svg {
+    margin-right: .6rem;
+    color: #ffff11;
+    font-size: 1.5rem;
+  }
+  .icon-label h3{
+    font-size: 1rem;
+    color: #eee;
+    font-weight: 500;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+  @media only screen and (max-width: 1100px){
+    #search-top{
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 900px){
+    .icon-label h3{
+      display: none;
+    }
+    .icon-label {
+      margin: 0 .3rem;
+    }
+  }
 `
 
 export default global

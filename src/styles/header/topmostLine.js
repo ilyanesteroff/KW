@@ -9,24 +9,6 @@ const Container = styled.div`
   cursor: pointer;
   justify-content: space-between;
  
-  .icon-label{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 1rem;
-  }
-  svg {
-    margin-right: .6rem;
-    color: #ffff11;
-    font-size: 1.5rem;
-  }
-  h3 {
-    font-size: 1rem;
-    color: #eee;
-    font-weight: 500;
-    font-family: 'Roboto Condensed', sans-serif;
-    display: inline;
-  }
   #links, #min-width-1100{
     display: flex;
   }
@@ -38,11 +20,8 @@ const Container = styled.div`
   @media only screen and (max-width: 900px){
     justify-content: flex-end;
     padding: .5rem .2rem;
-    #time, h3{
+    #time{
       display: none;
-    }
-    .icon-label {
-      margin: 0 .3rem;
     }
   }
 `

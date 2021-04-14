@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink as Link } from './Link'
-import MenuToggler from './MenuToggler'
+import Container from '../../../../styles/header/menu'
 import { links } from './links'
+import { MenuOpenedContext } from '../../../../helpers/contexts'
+import SearchInMenu from '../../search/IconAndLabel'
 
 
-const Navbar = () => {
+const Menu = () => {
+  const { opened } = useContext(MenuOpenedContext)
+
   const generateLinks = () => {
     const output = links.map((link, index) => (
       <Link
@@ -13,22 +17,22 @@ const Navbar = () => {
             ? '/' 
             : `/${link.toLowerCase()}`
         }
-        id="link"
+        id="menu-link"
         key={ link + index }
         label={ link }
       />
     ))
     return output
   }
-  
+
   return(
-    <>
-      <div id="navigation">
+    <Container opened={ opened }>
+      <div>
         { generateLinks() }
+        <SearchInMenu/>
       </div>
-      <MenuToggler/>
-    </>
+    </Container>
   )
 }
 
-export default Navbar
+export default Menu
