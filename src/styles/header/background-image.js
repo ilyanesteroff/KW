@@ -11,6 +11,13 @@ const Container = styled.div`
   min-height: 450px;
   overflow: hidden;
 
+  #lowest-header{
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0; left: 0;
+  }
+
   @media only screen and (min-height: 950px){
     height: 70vh; 
   }

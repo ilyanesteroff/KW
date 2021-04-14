@@ -44,8 +44,11 @@ const global = createGlobalStyle`
     font-weight: 500;
     font-family: 'Roboto Condensed', sans-serif;
   }
+  #flex{
+    display: flex;
+  }
   @media only screen and (max-width: 1100px){
-    #search-top{
+    #search-top, #lowest-header{
       display: none;
     }
   }
