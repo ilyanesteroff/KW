@@ -5,7 +5,6 @@ import { links } from './links'
 
 export const NavLink = ({ to, label, id, ...props }) => {
   const { pathname } = useLocation()
-  console.log(pathname.split('/'))
 
   if(to === '/' + pathname.split('/')[1]) return null
 

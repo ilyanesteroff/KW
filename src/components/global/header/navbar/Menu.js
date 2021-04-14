@@ -26,7 +26,10 @@ const Menu = () => {
   }
 
   return(
-    <Container opened={ opened }>
+    <Container 
+      id="menu-bar"
+      opened={ opened }
+    >
       <div>
         { generateLinks() }
         <SearchInMenu/>
