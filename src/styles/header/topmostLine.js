@@ -8,6 +8,7 @@ const Container = styled.div`
   display: flex;
   cursor: pointer;
   justify-content: space-between;
+  z-index: 2;
  
   #links, #min-width-1100{
     display: flex;

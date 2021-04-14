@@ -8,7 +8,7 @@ const Container = styled.div`
   background-size: cover;
   background-image: ${ props => props.imageUrl };
   height: 50vh;
-  min-height: 450px;
+  min-height: 500px;
   overflow: hidden;
 
   #lowest-header{

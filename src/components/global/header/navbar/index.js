@@ -5,7 +5,7 @@ import Menu from './Menu'
 import { MenuOpenedContext } from '../../../../helpers/contexts'
 
 
-const Navbar = ({ withLogo = false }) => {
+const Navbar = ({ withLogo = false, bgColor = false }) => {
   const [ opened, setOpened ] = useState(false)
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Navbar = ({ withLogo = false }) => {
 
   return(
     <MenuOpenedContext.Provider value={{ opened, setOpened }}>
-      <Container>
+      <Container bgColor={ bgColor }>
         <div id="image-label">
           { withLogo &&
             <img 

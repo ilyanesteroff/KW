@@ -4,7 +4,10 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem 1.5rem;
+  background-color: ${ props =>  props.bgColor ? '#3377ff77' : 'transparent'  };
+  box-shadow: 0 0 .2rem ${ props =>  props.bgColor ? '#222' : 'transparent'  };
 
   #image-label{
     display: flex;
@@ -15,13 +18,14 @@ const Container = styled.div`
     margin-right: 1rem;
   }
   .logo-label{
-    color: #ccf;
+    color: #fff;
     font-family: Nunito, sans-serif;
     font-size: 1.4rem;
   }
   #navigation{
     display: flex;
     align-items: center;
+    margin-top: .6rem;
   }
   #link {
     color: #fff;

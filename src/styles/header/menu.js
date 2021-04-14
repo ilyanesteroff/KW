@@ -7,9 +7,10 @@ const Container = styled.div`
   transition: right .5s;
   right: ${ props => props.opened ? '0' : '-100%' };
   height: 100%;
+  min-height: 300px;
   width: 30%;
   min-width: 250px;
-  background-color: #2255aaaa;
+  background-color: #2255aadd;
   display: flex;
   align-items: center;
   box-shadow: 0 0 .2rem #fff;

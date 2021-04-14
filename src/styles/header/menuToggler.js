@@ -4,9 +4,8 @@ import styled from 'styled-components'
 const Container = styled.div`
   position: relative;
   width: 1.3rem;
-  margin-top: 1.1rem;
-  padding: 1rem;
   z-index: 5; 
+  margin-bottom: .7rem;
   
   div{
     width: 1.1rem;
@@ -21,10 +20,10 @@ const Container = styled.div`
     left: 0; top: 0;
   }
   #middle{
-    left: 0; top: .4rem;
+    left: 0; top: .3rem;
   }
   #bottom{
-    left: 0; top: .8rem;
+    left: 0; top: .6rem;
   }
   #middle{
     opacity: ${ props => props.opened ? 0 : 1 }; 
