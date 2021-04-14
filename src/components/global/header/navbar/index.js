@@ -10,12 +10,15 @@ const Navbar = ({ withLogo = false }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (event.target.id !== 'menu-bar') setOpened(false)
+      if(opened){
+        if (event.target.id === 'menu-bar') return 
+        setOpened(false)
+      }
     }
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [])
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [ opened ])
 
   return(
     <MenuOpenedContext.Provider value={{ opened, setOpened }}>

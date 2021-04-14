@@ -9,7 +9,10 @@ const MenuToggler = () => {
   return(
     <Container 
       opened={ opened }
-      onClick={() => setOpened(!opened)}
+      onClick={(e) => {
+        e.stopPropagation()
+        setOpened(!opened)
+      }}
     >
       <div id="top"></div>
       <div id="middle"></div>
