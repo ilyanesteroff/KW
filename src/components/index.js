@@ -1,21 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Router from '../routes'
 import Global from '../styles/global'
 import Head from '../meta'
+import InitialPage from '../pages/InitialPage'
+import { ContentContext } from '../helpers/contexts'
 
 
 const App = () => {
+  const [ content, setContent ] = useState(null)
+  const [ showInitialPage, setShowInitialPage ] = useState(true)
+
   useEffect(() => {
-    fetch('/main.json')
-      .then((res) => res.json())
-      .then(console.log)
+    fetch('/data.json')
+      .then((res) => {
+        if(res.ok) return res.json()
+      })
+      .then(setContent)
+      .then(() => setTimeout(() => setShowInitialPage(false), 500))
   }, [])
   
   return(
     <>
       <Head/>
       <Global/>
-      <Router/>
+      {showInitialPage && <InitialPage/>}
+      {content && 
+        <ContentContext.Provider value={ content }>
+          <Router/>
+        </ContentContext.Provider>
+      }
     </>
   )
 }

@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import Container from '../../../../styles/header/tweets'
+import { ContentContext } from '../../../../helpers/contexts'
 
 
 const TweetsTags = () => {
-  const [ tags, setTags ] = useState([])
-
-  useEffect(() => {
-    fetch('/twitter-tags.json')
-      .then(res => res.json())
-      .then(res => {
-        if(res.data) setTags(res.data)
-      })
-  })
+  const { tags } = useContext(ContentContext)
 
   return(
     <Container>

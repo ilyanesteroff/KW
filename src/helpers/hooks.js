@@ -16,3 +16,11 @@ export const useFetch = (url, setData, extractData) => {
       })
   }, [ url, setData, extractData ])
 }
+
+
+export const useOverflowBlock = () => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => document.body.style.overflow = 'unset'
+  })
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import TopmostLine from '../components/global/header/top-most-line'
 
 import Main from '../pages/Main'
@@ -16,14 +16,15 @@ const Router = () => (
   <BrowserRouter>
     <TopmostLine/>
     <Switch>
-      <Route path="/weather" component={ Weather }/>
-      <Route path="/news" component={ News }/>
-      <Route path="/covid" component={ Covid }/>
-      <Route path="/trips" component={ Trips }/>
-      <Route path="/about" component={ About }/>
-      <Route path="/history" component={ History }/>
-      <Route path="/location" component={ Location }/>
-      <Route path="/" component={ Main }/>
+      <Route exact path="/weather" component={ Weather }/>
+      <Route exact path="/news" component={ News }/>
+      <Route exact path="/covid" component={ Covid }/>
+      <Route exact path="/trips" component={ Trips }/>
+      <Route exact path="/about" component={ About }/>
+      <Route exact path="/history" component={ History }/>
+      <Route exact path="/location" component={ Location }/>
+      <Route exact path="/" component={ Main }/>
+      <Redirect to="/"/>
     </Switch>
   </BrowserRouter>
 )

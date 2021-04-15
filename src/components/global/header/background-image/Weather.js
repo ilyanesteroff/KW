@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Container from '../../../../styles/header/weather'
-import { useFetch } from '../../../../helpers/hooks'
 import { defineIcon, extractWeather } from '../../../../helpers/weather'
+import { ContentContext } from '../../../../helpers/contexts'
 
 
 const Weather = () => {
-  const [ data, setData ] = useState(null)
+  const { weather } = useContext(ContentContext)
+  const [ data ] = useState(extractWeather(weather))
   const [ icon, setIcon ] = useState(null)
   const [ color, setColor ] = useState('#bbb')
 
-  useFetch('/weather.json', setData, extractWeather)
-
   useEffect(() => {
-    if(data){
-      let icon = defineIcon(data.weather, false)
-      if(icon.color) setColor(icon.color)
-      setIcon(icon.icon)
-    }
+    let icon = defineIcon(data.weather, false)
+    if(icon.color) setColor(icon.color)
+    setIcon(icon.icon)
   }, [ data ])
 
   return(
