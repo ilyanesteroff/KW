@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Container from '../../../../styles/header/background-image'
 import Navbar from '../navbar'
 import LowerSection from './TweetsNWeather'
@@ -13,4 +13,4 @@ const BackgroundImage = ({ imageUrl }) => {
   )
 }
 
-export default BackgroundImage
+export default memo(BackgroundImage)

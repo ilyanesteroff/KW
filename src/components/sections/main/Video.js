@@ -5,7 +5,7 @@ import Container from '../../../styles/main/video'
 
 const Video = () => {
   const { video } = useContext(ContentContext).main
-  console.log(video)
+  
   return(
     <Container>
       <div className="description">

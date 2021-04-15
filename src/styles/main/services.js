@@ -54,6 +54,9 @@ const Container = styled.div`
     p{
       display: none;
     }
+    svg{
+      font-size: 1.9rem;
+    }
   }
 `
 
