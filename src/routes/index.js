@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import TopmostLine from '../components/global/header/top-most-line'
+import Footer from '../components/global/footer'
 
 import Main from '../pages/Main'
 import About from '../pages/About'
@@ -26,6 +27,7 @@ const Router = () => (
       <Route exact path="/" component={ Main }/>
       <Redirect to="/"/>
     </Switch>
+    <Footer/>
   </BrowserRouter>
 )
 
