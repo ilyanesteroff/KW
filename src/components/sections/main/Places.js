@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { ContentContext } from '../../../helpers/contexts'
+import { useModal } from '../../../helpers/hooks'
 import Container from '../../../styles/main/places'
 import PlaceContainer from '../../../styles/main/place'
 
@@ -28,6 +29,7 @@ const Places = () => {
 
 const Place = memo(({ color, url, factType, content, place }) => {
   const [ opened, setOpened ] = useState(false)
+  const { setImage } = useModal()
 
   return (
     <>
@@ -35,8 +37,9 @@ const Place = memo(({ color, url, factType, content, place }) => {
         bgClr={ color }
         opened={ opened }
         imgUrl={ url }
+        onDoubleClick={() => setImage(url)}
       >
-        <div className="info">
+        <div className="info"> 
           <h3>{ factType }</h3>
           <p>{ content }</p>
           <Link to={`/places/${ place }`}>More details</Link>

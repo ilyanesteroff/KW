@@ -17,10 +17,13 @@
     "react-chartjs-2": "^2.10.0",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
+    "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-slideshow-image": "^2.0.2",
-    "styled-components": "5.2.3"
+    "redux": "^4.0.5",
+    "styled-components": "5.2.3",
+    "validator": "^13.5.2"
   },
   "scripts": {
     "start": "react-scripts start",

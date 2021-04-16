@@ -27,6 +27,7 @@ const SocialMedias = () => {
               href={ link } 
               target="_blank" 
               rel="noopener noreferrer"
+              key={ link + index }
             >
               <FontAwesomeIcon icon={ icons[index] }/>
             </a>
