@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { kwOnChange, openModal } from '../redux/actions'
+import { openModal } from '../redux/actions'
 import { useLocation } from 'react-router-dom'
 
 
@@ -28,24 +28,6 @@ export const useOverflowBlock = () => {
   })
 }
 
-export const useSearch = () => {
-  const query = useQuery('name')
-  const [ keyword, setKeyword ] = useState(query)
-  const history = useHistory()
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    const params = new URLSearchParams()
-    keyword
-      ? params.append("name", keyword)
-      : params.delete("name")
-
-    history.push({ search: params.toString() })
-    dispatch(kwOnChange, keyword)
-  }, [ keyword, history, dispatch ])
-
-  return { keyword, setKeyword }
-}
 
 export const useModal = () => {
   const [ image, setImage ] = useState('')

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import TopmostLine from '../components/global/header/top-most-line'
 import Footer from '../components/global/footer'
 import Modal from '../components/global/modal'
+import Search from '../components/global/search'
 
 import Main from '../pages/Main'
 import About from '../pages/About'
@@ -29,6 +30,7 @@ const Router = () => (
       <Redirect to="/"/>
     </Switch>
     <Modal/>
+    <Search/>
     <Footer/>
   </BrowserRouter>
 )

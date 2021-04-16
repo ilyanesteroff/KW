@@ -1,20 +1,15 @@
 import React from 'react'
-import { useSearch } from '../../../helpers/hooks'
-import SearchBar from './Searchbar'
-import Container from '../../../../styles/search/main'
+import { connect } from 'react-redux'
+import { search } from '../../../redux/selectors'
+import Search from './Search'
 
 
-const Search = () => {
-  const { keyword, setKeyword } = useSearch()
+const Main = ({ opened }) => (
+  opened
+    ? <Search/>
+    : null
+)
 
-  return(
-    <Container>
-      <SearchBar
-        value={ keyword }
-        onChange={(e) => setKeyword(e.target.value)}
-      />
-    </Container>
-  )
-}
 
-export default Search
+
+export default connect(search)(Main)
