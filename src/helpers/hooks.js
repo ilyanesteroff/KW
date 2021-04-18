@@ -1,12 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { openModal } from '../redux/actions'
-import { useLocation } from 'react-router-dom'
+import validator from 'validator'
 
 
-export const useQuery = (keyword) => new URLSearchParams(useLocation().search).get(keyword)
+export const useParamsManager = (keyword) => {
+  const params = new URLSearchParams(window.location.search)
+  const history = useHistory()
+  const value = params.get(keyword)
 
+  const deleteParam = (callback = () => {}) => {
+    params.delete(keyword)
+    history.push({ search: params.toString() })
+    callback()
+  }
+
+  return { deleteParam, value }
+}
 
 export const useFetch = (url, setData, extractData) => {
   useEffect(() => {
@@ -30,18 +41,17 @@ export const useOverflowBlock = () => {
 
 
 export const useModal = () => {
-  const [ image, setImage ] = useState('')
   const dispatch = useDispatch()
   const history = useHistory()
-
-  useEffect(() => {
-    if(image.length > 0){
+ 
+  const setImage = (image) => {
+    if(image.length > 0 && validator.isURL(image)){
       dispatch(openModal(image))
       const params = new URLSearchParams()
       params.set('image', image)
       history.push({ search: params.toString() })
     }
-  }, [ image, dispatch, history ])
+  }
 
   return { setImage }
 }

@@ -21,9 +21,3 @@ export const openSearch = () => ({
 export const closeSearch = () => ({
   type: SEARCH_ACTION_TYPES.CLOSE_SEARCH
 })
-
-
-export const kwOnChange = (keyword) => ({
-  type: SEARCH_ACTION_TYPES.ON_CHANGE,
-  keyword
-})

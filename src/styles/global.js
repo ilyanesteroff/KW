@@ -25,6 +25,9 @@ const global = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  .no-scroll{
+    overflow: hidden;
+  }
   .invisible{
     display: none;
   }

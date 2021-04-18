@@ -16,7 +16,6 @@ const Footer = () => (
 const SocialMedias = () => {
   const links = ['https://www.facebook.com', 'https://www.twitter.com', 'https://www.instagram.com', 'https://www.youtube.com/']
   const icons = [faFacebook, faTwitter, faInstagram, faYoutube]
-
   return (
     <>
       <div id="social-networks">

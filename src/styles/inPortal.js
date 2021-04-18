@@ -12,6 +12,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
+  overflow: hidden;
 
   img{
     max-width: 90%;

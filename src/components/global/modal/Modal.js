@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { closeModal } from '../../../redux/actions'
+import { useParamsManager } from '../../../helpers/hooks'
 import Portal from '../Portal'
 import CloseBtn from './CloseModal'
 import Container from '../../../styles/inPortal'
@@ -9,14 +9,7 @@ import Container from '../../../styles/inPortal'
 
 const Modal = ({ url }) => {
   const dispatch = useDispatch()
-  const history = useHistory()
-
-  const close = () => {
-    const params = new URLSearchParams(window.location.search)
-    params.delete('image')
-    dispatch(closeModal())
-    history.push({ search: params.toString() })
-  }
+  const { deleteParam } = useParamsManager('image')
 
   return(
     <Portal parent="modal-root">
@@ -25,7 +18,7 @@ const Modal = ({ url }) => {
           src={ url } 
           alt="pic"
         />
-        <CloseBtn close={ close }/>
+        <CloseBtn close={() => deleteParam(() => dispatch(closeModal()))}/>
       </Container>
     </Portal>
   )

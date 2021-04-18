@@ -207,5 +207,34 @@
     }
   },
   "tags": ["Covid19","Florida","KeyWest"],
-  "weather": {"coord":{"lon":-81.78,"lat":24.56},"weather":[{"id":802,"main":"Clouds","description":"scattered clouds","icon":"03d"}],"base":"stations","main":{"temp":304.18,"feels_like":307.08,"temp_min":304.15,"temp_max":304.26,"pressure":1016,"humidity":66},"visibility":10000,"wind":{"speed":4.1,"deg":150},"clouds":{"all":40},"dt":1598462520,"sys":{"type":1,"id":4033,"country":"US","sunrise":1598439987,"sunset":1598485892},"timezone":-14400,"id":4160812,"name":"Key West","cod":200}
+  "weather": {"coord":{"lon":-81.78,"lat":24.56},"weather":[{"id":802,"main":"Clouds","description":"scattered clouds","icon":"03d"}],"base":"stations","main":{"temp":304.18,"feels_like":307.08,"temp_min":304.15,"temp_max":304.26,"pressure":1016,"humidity":66},"visibility":10000,"wind":{"speed":4.1,"deg":150},"clouds":{"all":40},"dt":1598462520,"sys":{"type":1,"id":4033,"country":"US","sunrise":1598439987,"sunset":1598485892},"timezone":-14400,"id":4160812,"name":"Key West","cod":200},
+  "keywords": {
+        "/covid": [
+            "stats", "coronavirus", "covid", "sars", "covid19", "deaths", "cases", "infections", "virus", "statistics"
+        ],
+        "/news": [
+            "news", "articles", "events", "breaking", "florida", "nytimes", "new york times", "ny times"
+        ],
+        "/weather": [
+            "rain", "forecasts", "weather", "sun", "clouds", "humidity", "precipitations"
+        ],
+        "/tweets": [
+            "twitter", "tweets", "florida", "key west", "news", "events"
+        ],
+        "/history": [
+            "history", "stories", "story", "Key West"
+        ],
+        "/about": [
+            "history", "stories", "story", "Key West", "about", "information"
+        ],
+        "/location": [
+            "location", "geolocation", "place"
+        ],
+        "/trips": [
+            "trips", "advisors", "traveling", "travelers", "offers"
+        ],
+        "/": [
+            "main", "introduction", "places", "home"
+        ]
+    }
 }
