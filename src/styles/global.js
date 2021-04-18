@@ -25,11 +25,61 @@ const global = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  h2{
+    color: #222255;
+    font-family: Ubuntu, sans-serif;
+    font-size: 1.8rem;
+  }
+  p{
+    font-weight: 600;
+    color: #111133;
+    font-family: Josefin Sans, sans-serif;
+  }
+  th{
+    /* padding: 1rem;
+    font-size: 0.9rem; */
+    border: solid 2px #444;
+    padding: .9rem .4rem;
+    background-color: #113377;
+    color: #ddd;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  td{
+    /* padding: 1rem;
+    font-size: 0.7rem; */
+    border: solid 2px #444;
+    background-color: #33aaff;
+    padding: .9rem .3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    min-width: 10vw;
+    text-align: center;
+    transition: all 1s;
+  }
+  table{
+    border-collapse: collapse;
+    font-family: 'Ubuntu', sans-serif;
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+    table-layout: fixed;
+    word-wrap: break-word;
+  }
   .no-scroll{
     overflow: hidden;
   }
   .invisible{
     display: none;
+  }
+  .section{
+    margin-left: 10%;
+    width: 80%;
+    position: relative;
+    margin-top: 3rem;
+  }
+  .table{
+    text-align: center;
   }
   .icon-label{
     display: flex;
@@ -63,6 +113,15 @@ const global = createGlobalStyle`
       display: none;
     }
   }
+  @media only screen and (max-width: 1000px){
+    .section {
+      margin-left: 5%;
+      width: 90%;
+    }
+    h2{
+      font-size: 1.5rem;
+    }
+  }
   @media only screen and (max-width: 900px){
     .icon-label h3{
       display: none;
@@ -73,6 +132,17 @@ const global = createGlobalStyle`
     .above-footer {
       font-size: 1.2rem;
       margin: 1.5rem;
+    }
+    table{
+      margin-top: 1.5rem;
+    }
+    th{
+      padding: 1rem;
+      font-size: 0.9rem; 
+    }
+    td{
+      padding: 1rem;
+      font-size: 0.8rem; 
     }
   }
 `

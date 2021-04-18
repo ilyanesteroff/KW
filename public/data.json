@@ -236,5 +236,33 @@
         "/": [
             "main", "introduction", "places", "home"
         ]
+    },
+    "covid": {
+        "usa": [{"country":"USA","code":"US","confirmed":5970799,"recovered":3257962,"critical":16484,"deaths":182923,"latitude":37.09024,"longitude":-95.712891,"lastChange":"2020-08-26T19:04:45+02:00","lastUpdate":"2020-08-26T19:15:03+02:00"}],
+        "florida": {
+            "date": "2020-08-25",
+            "confirmed": 605502,
+            "deaths": 10580,
+            "recovered": 0,
+            "confirmed_diff": 2673,
+            "deaths_diff": 183,
+            "recovered_diff": 0,
+            "last_update": "2020-08-26 04:28:11",
+            "active": 594922,
+            "active_diff": 2490,
+            "fatality_rate": 0.0175
+        },
+        "monroe": {
+            "name": "Monroe",
+            "date": "2020-08-25",
+            "fips": 12087,
+            "lat": "25.20904673",
+            "long": "-81.07812416",
+            "confirmed": 1695,
+            "deaths": 14,
+            "confirmed_diff": 1,
+            "deaths_diff": 0,
+            "last_update": "2020-08-26 04:28:11"
+        }
     }
 }

@@ -14,6 +14,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   box-shadow: 0 0 .2rem #fff;
+  z-index: 2;
    
   div{
     width: 100%;

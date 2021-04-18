@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom' 
 import { useDispatch } from 'react-redux'
 import SearchBar from './Searchbar'
 import Container from '../../../styles/search/main'
@@ -12,22 +11,9 @@ import Results from './Results'
 
 const Search = () => {
   const dispatch = useDispatch()
-  const { deleteParam } = useParamsManager('name')
-  const [ query, setQuery ] = useState(
-    new URLSearchParams(window.location.search).get('name') || ''
-  )
-  const history = useHistory()
+  const { deleteParam, modifyParam, value } = useParamsManager('name')
+  const [ query, setQuery ] = useState(value || '')
   useOverflowBlock()
-
-  const onChange = (e) => {
-    const { value } = e.target
-    const params = new URLSearchParams()
-    value
-      ? params.append('name', value)
-      : params.delete('name')
-    setQuery(value)
-    history.push({ search: params.toString() })
-  }
 
   return(
     <ModalContent>
@@ -35,7 +21,7 @@ const Search = () => {
       <Container>
         <SearchBar 
           value={ query } 
-          onChange={ onChange }
+          onChange={(e) => modifyParam(setQuery(e.target.value), e.target.value)}
         />
         <Results value={ query.toLowerCase() }/>
       </Container>

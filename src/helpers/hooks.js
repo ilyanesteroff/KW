@@ -16,7 +16,15 @@ export const useParamsManager = (keyword) => {
     callback()
   }
 
-  return { deleteParam, value }
+  const modifyParam = (callback = () => {}, value) => {
+    value
+      ? params.set('name', value)
+      : params.delete('name')
+    callback()
+    history.push({ search: params.toString() })
+  }
+
+  return { deleteParam, modifyParam, value }
 }
 
 export const useFetch = (url, setData, extractData) => {

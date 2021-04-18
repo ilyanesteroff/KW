@@ -3,10 +3,11 @@ import {
   faCloudMoonRain, faCloudRain, faWind, 
   faCloudSun, faSun, faCloudSunRain 
 } from '@fortawesome/free-solid-svg-icons'
+import { months, days } from '../helpers/utils'
 
 
-export const defineIcon = (type, forPage) => {
-  let output = {}
+export const defineIcon = (type) => {
+  let output = { color: '#888' }
   let date = new Date()
   let utc = date.getTime() + (date.getTimezoneOffset() * 60000)
   let curTime = new Date(utc + (3600000*(-4)))
@@ -82,4 +83,9 @@ export const extractWeather = (json) => ({
 
 const toFahrenheit = temp => {
   return ((temp - 273.15) * 9/5 + 32).toFixed(2)
+}
+
+export const defineDay = () => {
+  let today = new Date()
+  return `${days[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}`
 }
