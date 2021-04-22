@@ -13,6 +13,7 @@ import Weather from '../pages/Weather'
 import Covid from '../pages/Covid'
 import News from '../pages/News'
 import Trips from '../pages/Trips'
+import Place from '../pages/Places'
 
 
 const Router = () => (
@@ -26,6 +27,7 @@ const Router = () => (
       <Route exact path="/about" component={ About }/>
       <Route exact path="/history" component={ History }/>
       <Route exact path="/location" component={ Location }/>
+      <Route exact path="/places/:place" component={ Place }/>
       <Route exact path="/" component={ Main }/>
       <Redirect to="/"/>
     </Switch>

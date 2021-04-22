@@ -98,6 +98,12 @@ const global = createGlobalStyle`
     font-weight: 500;
     font-family: 'Roboto Condensed', sans-serif;
   }
+  .page-container {
+    position: relative;
+    margin-top: 5rem;
+    margin-left: 10%;
+    width: 80%;
+  }
   #flex{
     display: flex;
   }
@@ -108,6 +114,40 @@ const global = createGlobalStyle`
     color: #111166;
     margin: 3rem;
   }
+  .introduction h2{
+    color: #222255;
+    font-family: Ubuntu, sans-serif;
+    margin: 2.5rem;
+    margin-left: 0;
+    font-size: 1.8rem;
+  }
+  .introduction p{
+    color: #111133;
+    font-family: Josefin Sans, sans-serif;
+    font-size: 1.4rem;
+  }
+  .introduction a {
+    font-family: Roboto Condensed, sans-serif;
+    display: block;
+    color: #113355;
+    margin-top: 1rem; 
+    font-size: 1.2rem;
+  }
+
+  @media only screen and (max-width: 750px){
+    .introduction h2 {
+      margin: 2rem;
+      margin-left: 0;
+      font-size: 1.3rem;
+    }
+    .introduction p {
+      font-size: 1.2rem;
+    }
+    .introduction {
+      font-size: 1rem;
+      margin-top: .8rem;
+    }
+  }
   @media only screen and (max-width: 1100px){
     #search-top, #lowest-header{
       display: none;
@@ -115,6 +155,11 @@ const global = createGlobalStyle`
   }
   @media only screen and (max-width: 1000px){
     .section {
+      margin-left: 5%;
+      width: 90%;
+    }
+    .page-container {
+      margin-top: 3rem;
       margin-left: 5%;
       width: 90%;
     }

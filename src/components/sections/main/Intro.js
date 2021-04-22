@@ -1,16 +1,15 @@
 import React, { useContext } from 'react'
 import { ContentContext } from '../../../helpers/contexts'
-import Container from '../../../styles/main/intro'
 
 
 const Intro = () => {
   const { chapter, text } = useContext(ContentContext).main.MainSection.content
 
   return (
-    <Container>
+    <div className="introduction">
       <h2>{ chapter }</h2>
       <p>{ text }</p>
-    </Container>
+    </div>
   )
 }
 
