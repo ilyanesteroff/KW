@@ -1,20 +1,25 @@
 import React from 'react'
+import Links from './Links'
+
 
 const Place = ({ data }) => {
   console.log(data)
 
   return (
     <>
-      <div className="page-container introduction">
-        <h2>{ data.topic }</h2>
-        <p>{ data.additionalInfo }</p>
-        <a 
-          href={ data.href } 
-          target="_blank"
-          rel="noopener noreferrer"
-        >More info and facts in wikipedia</a>
+      <div className="page-container">
+        <div className="introduction">
+          <h2>{ data.topic }</h2>
+          <p>{ data.additionalInfo }</p>
+          <a 
+            href={ data.href } 
+            target="_blank"
+            rel="noopener noreferrer"
+          >More info and facts in wikipedia</a>
+        </div>
+        <Links/>
       </div>
-
+      
       {/* <UpperContainer>
         <Chapter>
           {info.topic}
