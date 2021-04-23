@@ -7,7 +7,7 @@ const Container = styled.div`
   background-position: center;
   background-size: cover;
   background-image: ${ props => props.imageUrl };
-  height: 50vh;
+  height: 75vh;
   min-height: 500px;
   overflow: hidden;
 
