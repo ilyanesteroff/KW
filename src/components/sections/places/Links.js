@@ -13,10 +13,7 @@ const Links = () => {
   return(
     <Container>
       {place > 0 &&
-        <Link 
-          id="left"
-          to={`/places/${ places[place - 1].place }`}
-        >
+        <Link to={`/places/${ places[place - 1].place }`}>
           { places[place - 1].label }
         </Link>
       }

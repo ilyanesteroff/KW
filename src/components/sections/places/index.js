@@ -1,9 +1,10 @@
 import React from 'react'
 import Links from './Links'
-
+import Slider from '../../global/slider'
+import { WithScrollUp } from '../../../helpers/HOC'
 
 const Place = ({ data }) => {
-  console.log(data)
+  //console.log(data)
 
   return (
     <>
@@ -17,9 +18,12 @@ const Place = ({ data }) => {
             rel="noopener noreferrer"
           >More info and facts in wikipedia</a>
         </div>
+        <Slider 
+          auto
+          items={[1, 2, 3]}
+        />
         <Links/>
       </div>
-      
       {/* <UpperContainer>
         <Chapter>
           {info.topic}
@@ -50,4 +54,4 @@ const Place = ({ data }) => {
   )
 }
 
-export default Place
+export default WithScrollUp(Place)

@@ -133,13 +133,6 @@ const global = createGlobalStyle`
     margin-top: 1rem; 
     font-size: 1.2rem;
   }
-  #left{
-    
-  }
-  #right{
-    float: right;
-    clear: both;
-  }
 
   @media only screen and (max-width: 750px){
     .introduction h2 {
