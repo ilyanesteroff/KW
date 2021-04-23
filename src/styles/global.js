@@ -136,6 +136,22 @@ const global = createGlobalStyle`
     font-size: 1.2rem;
   }
 
+  #search-top {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #ffffff;
+    width: 300px;
+    border-radius: 50px;
+    padding: 2px 10px;
+    cursor: pointer;
+    margin: 0 1rem;
+  }
+
+  #search-top svg {
+    color: #616161;
+  }
+
   @media only screen and (max-width: 750px){
     .introduction h2 {
       margin: 2rem;
@@ -175,6 +191,9 @@ const global = createGlobalStyle`
     }
     .icon-label {
       margin: 0 .3rem;
+    }
+    .icon-label svg{
+      font-size: 1.3rem
     }
     .above-footer {
       font-size: 1.2rem;

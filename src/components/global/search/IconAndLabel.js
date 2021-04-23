@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { openSearch } from '../../../redux/actions'
+import SearchTop from '../../../styles/header/search'
 
 
 const Main = ({ top = false }) => {
@@ -18,12 +19,11 @@ const Main = ({ top = false }) => {
 const IconAndLabel = (props) => {
   return(
     <div
-      className="icon-label"
       id="search-top"
       { ...props }
     >
       <FontAwesomeIcon icon={ faSearch }/>
-      <h3>Search</h3>
+      <SearchTop type="text" name="search" id='search-top-input' placeholder='Search' disabled/>
     </div>
   )
 }
