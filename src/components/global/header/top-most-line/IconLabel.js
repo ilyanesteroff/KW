@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 const IconLabel = ({ link, icon, label, ...props }) => (
   <NavLink 
     className="icon-label"
-    activeStyle={{ display: 'none' }}
+    activeStyle={{ display: 'none'}}
     to={ link }
     { ...props }
   >

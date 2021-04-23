@@ -86,15 +86,17 @@ const global = createGlobalStyle`
     justify-content: space-between;
     align-items: center;
     margin: 0 1rem;
+    cursor: pointer
   }
+  
   .icon-label svg {
     margin-right: .6rem;
-    color: #ffff11;
-    font-size: 1.5rem;
+    color: #e3e3e3;
+    font-size: 1rem;
   }
   .icon-label h3{
-    font-size: 1rem;
-    color: #eee;
+    font-size: 0.9rem;
+    color: #e3e3e3;
     font-weight: 500;
     font-family: 'Roboto Condensed', sans-serif;
   }
