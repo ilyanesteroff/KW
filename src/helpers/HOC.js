@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useModal } from './hooks'
 
+
 export const WithScrollUp = Component => {
   const Wrapper = ({ ...props }) => {
     useEffect(() => {

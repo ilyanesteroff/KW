@@ -238,7 +238,15 @@
         ]
     },
     "covid": {
-        "usa": [{"country":"USA","code":"US","confirmed":5970799,"recovered":3257962,"critical":16484,"deaths":182923,"latitude":37.09024,"longitude":-95.712891,"lastChange":"2020-08-26T19:04:45+02:00","lastUpdate":"2020-08-26T19:15:03+02:00"}],
+        "covid": {
+            "title": "Covid-19 Statistics in USA and Florida",
+            "about": {
+                "title": "About Covid-19",
+                "content": "Covid-19 is an infectious disease caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). It was first identified in December 2019 in Wuhan, Hubei, China, and has resulted in an ongoing pandemic. The first confirmed case has been traced back to 17 November 2019 in Hubei. Common symptoms include fever, cough, fatigue, shortness of breath, and loss of smell and taste. ",
+                "link": "https://en.wikipedia.org/wiki/Coronavirus_disease_2019"
+            }
+        },
+        "usa": {"country":"USA","code":"US","confirmed":5970799,"recovered":3257962,"critical":16484,"deaths":182923,"latitude":37.09024,"longitude":-95.712891,"lastChange":"2020-08-26T19:04:45+02:00","lastUpdate":"2020-08-26T19:15:03+02:00"},
         "florida": {
             "date": "2020-08-25",
             "confirmed": 605502,
@@ -251,18 +259,6 @@
             "active": 594922,
             "active_diff": 2490,
             "fatality_rate": 0.0175
-        },
-        "monroe": {
-            "name": "Monroe",
-            "date": "2020-08-25",
-            "fips": 12087,
-            "lat": "25.20904673",
-            "long": "-81.07812416",
-            "confirmed": 1695,
-            "deaths": 14,
-            "confirmed_diff": 1,
-            "deaths_diff": 0,
-            "last_update": "2020-08-26 04:28:11"
         }
     }
 }
