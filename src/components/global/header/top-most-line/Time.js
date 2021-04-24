@@ -25,6 +25,7 @@ const Time = () => {
     <div 
       id="time"
       className="icon-label"
+      style={{cursor: 'default'}}
     >
       <FontAwesomeIcon icon={ faClock }/>
       <h3>{date.toLocaleTimeString()}</h3>

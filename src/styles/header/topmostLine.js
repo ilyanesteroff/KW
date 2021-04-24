@@ -2,11 +2,10 @@ import styled from 'styled-components'
 
 
 const Container = styled.div`
-  background: linear-gradient(#3322aa, #110044);
+  background: #101010;
   padding: .8rem .2rem;
   position: relative;
   display: flex;
-  cursor: pointer;
   justify-content: space-between;
   z-index: 2;
  

@@ -90,15 +90,17 @@ const global = createGlobalStyle`
     justify-content: space-between;
     align-items: center;
     margin: 0 1rem;
+    cursor: pointer
   }
+  
   .icon-label svg {
     margin-right: .6rem;
-    color: #ffff11;
-    font-size: 1.5rem;
+    color: #e3e3e3;
+    font-size: 1rem;
   }
   .icon-label h3{
-    font-size: 1rem;
-    color: #eee;
+    font-size: 0.9rem;
+    color: #e3e3e3;
     font-weight: 500;
     font-family: 'Roboto Condensed', sans-serif;
   }
@@ -151,6 +153,22 @@ const global = createGlobalStyle`
     font-size: 1.2rem;
   }
 
+  #search-top {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #ffffff;
+    width: 300px;
+    border-radius: 50px;
+    padding: 2px 10px;
+    cursor: pointer;
+    margin: 0 1rem;
+  }
+
+  #search-top svg {
+    color: #616161;
+  }
+
   @media only screen and (max-width: 750px){
     .introduction h2 {
       margin: 2rem;
@@ -190,6 +208,9 @@ const global = createGlobalStyle`
     }
     .icon-label {
       margin: 0 .3rem;
+    }
+    .icon-label svg{
+      font-size: 1.3rem
     }
     .above-footer {
       font-size: 1.2rem;
