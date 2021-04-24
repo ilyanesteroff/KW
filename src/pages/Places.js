@@ -9,12 +9,12 @@ const Places = () => {
   const { places } = useContext(ContentContext).main
   const params = useParams()
   const place = places.find(p => p.place === params.place)
-
+  
   return place
     ? (
         <>  
           <BackgroundImage imageUrl={ `url(${place.url})` }/>
-          <Place data={ place }/>
+          <Place { ...place }/>
         </>
       )
     : <Redirect to="/"/>

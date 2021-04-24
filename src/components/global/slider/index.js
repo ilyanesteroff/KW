@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Container from '../../../styles/slider'
 import Arrow from './Arrows'
 import Bars from './Bars'
@@ -10,9 +11,14 @@ const Slider = (props) => {
     (props.transition && (props.transition < 0 || props.transition > 4))
   ) return null
 
-  const Wrapper = ({ items, transition, auto, delay, initial = 0 }) => {
-    const [ current, setCurrent ] = useState(initial)
+  const Wrapper = ({ items, transition, auto, delay }) => {
+    const [ current, setCurrent ] = useState(0)
     const [ direction, setDirection ] = useState('right')
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+      setCurrent(0)
+    }, [ pathname ])
 
     useEffect(() => {
       if(auto){
