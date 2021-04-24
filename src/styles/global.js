@@ -107,12 +107,25 @@ const global = createGlobalStyle`
   #flex{
     display: flex;
   }
+  .slider-container{
+    width: 100%;
+    height: 100%;
+  }
   .above-footer {
     text-align: center;
     font-family: Ubuntu, sans-serif;
     font-size: 1.5rem;
     color: #111166;
     margin: 3rem;
+  }
+  .with-before::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    background-position: center;
+    background-size: cover;
   }
   .introduction h2{
     color: #222255;

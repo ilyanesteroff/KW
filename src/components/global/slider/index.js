@@ -10,8 +10,8 @@ const Slider = (props) => {
     (props.transition && (props.transition < 0 || props.transition > 4))
   ) return null
 
-  const Wrapper = ({ items, transition, auto, delay }) => {
-    const [ current, setCurrent ] = useState(0)
+  const Wrapper = ({ items, transition, auto, delay, initial = 0 }) => {
+    const [ current, setCurrent ] = useState(initial)
     const [ direction, setDirection ] = useState('right')
 
     useEffect(() => {

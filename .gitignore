@@ -22,11 +22,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-DirectionArrow.js
-Items.js
-Slide.js
-Slider.js
-SliderContent.js
-Credentials.js
-styles.js

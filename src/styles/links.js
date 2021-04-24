@@ -7,6 +7,7 @@ const Container = styled.div`
   padding: .5rem 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   a{
     font-size: 1.2rem;
@@ -17,6 +18,12 @@ const Container = styled.div`
   }
   #right {
     text-align: right;
+  }
+  @media only screen and (max-width: 750px){
+    margin: 1.5rem;
+    a{
+      font-size: 1rem;
+    }
   }
 `
 

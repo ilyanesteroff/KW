@@ -7,7 +7,7 @@ const Bars = ({ items, setCurrent, current }) => (
       <Bar 
         onClick={() => setCurrent(index)}
         key={ index }
-        current={ index === current }
+        id={ index === current ? 'active' : '' }
       />
     )) }
   </div>
@@ -17,7 +17,6 @@ const Bars = ({ items, setCurrent, current }) => (
 const Bar = (props) => (
   <div 
     className="bar" 
-    id={ props.current ? 'active' : '' }
     { ...props }
   ></div>
 )
