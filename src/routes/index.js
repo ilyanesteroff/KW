@@ -24,7 +24,7 @@ const Router = () => (
       <Route exact path="/news" component={ News }/>
       <Route exact path="/covid" component={ Covid }/>
       <Route exact path="/trips" component={ Trips }/>
-      <Route exact path="/about" component={ About }/>
+      <Route exact path="/about/:page" component={ About }/>
       <Route exact path="/history" component={ History }/>
       <Route 
         exact 
@@ -34,6 +34,7 @@ const Router = () => (
       <Route exact path="/places/:place" component={ Place }/>
       <Route exact path="/" component={ Main }/>
       <Redirect from="/location" to="/location/1"/>
+      <Redirect from="/about" to="/about/1"/>
       <Redirect to="/"/>
     </Switch>
     <Modal/>

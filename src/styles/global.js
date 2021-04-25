@@ -168,12 +168,24 @@ const global = createGlobalStyle`
   #search-top svg {
     color: #616161;
   }
-
+  .framed-container{
+    border-radius: .5rem;
+    margin: 1.5rem 0;
+    border: solid 1px #333;
+    padding: 1rem;
+    background-color: #fff;
+  }
+  .with-box-shadow{
+    box-shadow: 0 0 .2rem #333;
+  }
   @media only screen and (max-width: 750px){
     .introduction h2 {
       margin: 2rem;
       margin-left: 0;
       font-size: 1.3rem;
+    }
+    .framed-container{
+      margin: 1rem 0;
     }
     .introduction p {
       font-size: 1.2rem;

@@ -13,18 +13,20 @@ const Location = ({ setImage, map }) => {
   if(index < 0) return <Redirect to={`/location/${ location.items[0] }`}/>
   
   return(
-    <Container className="page-container">
-      <h2>{ location.items[ index ] }</h2>
-      <img
-        src={ location.content[ index ] }
-        alt="Satelite map"
-        onClick={() => setImage(location.content[ index ])}
-      />
-      <Navigation
-        prev={ index > 0 ? location.items[ index - 1 ] : null } 
-        next={ index < location.items.length - 1 ? location.items[ index + 1 ] : null }
-      />
-    </Container>
+    <>
+      <Container className="page-container">
+        <h2>{ location.items[ index ] }</h2>
+        <img
+          src={ location.content[ index ] }
+          alt="Satelite map"
+          onClick={() => setImage(location.content[ index ])}
+        />
+        <Navigation
+          prev={ index > 0 ? location.items[ index - 1 ] : null } 
+          next={ index < location.items.length - 1 ? location.items[ index + 1 ] : null }
+        />
+      </Container>
+    </>
   )
 }
 

@@ -20,7 +20,7 @@ const Container = styled.div`
     text-align: right;
   }
   @media only screen and (max-width: 750px){
-    margin: 1.5rem;
+    margin: 1.5rem 0;
     a{
       font-size: 1rem;
     }
