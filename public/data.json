@@ -11,11 +11,7 @@
                   "paragraph":"This website is written on React js, it is completely responsive. As you noticed there is a lot of the same components that are rendered on different pages, for instance navbars, footer section, headlines, menu items etc. Creating this application a lot of advanced react stuff such as react hooks, fragments, portals was applied. High abstraction level of the components provides extreme reusability (that means components are applied several times for different purposes throughout the application). Application components that calls APIs or making expensive operations e.g. operations or actions, that requires a little bit more time to get done they are written as functional componets that use custom hooks which loads, retrieves information and provides a far better user experience. All of the data, that was retrieved from API calls is stored in the local storage, to be displayed instantly whenever user re-visits some pages. However information that is stored in the local storage updates hourly, this action is triggered by user visiting page one hour later."
               },
               {
-                  "chapter":"About developer",
-                  "paragraph":"I am Ilya Nesterow, I was working on solidifying my knowledges of react js and javascript. After reading a lot of concepts from documentations I realised, I need some practice, so I decided to create this website"
-              },
-              {
-                  "chapter":"About policy",
+                  "chapter":"Policy",
                   "paragraph":"This website does not tend to use anyone's private data, contrary it provides only data selected from official and public sources. The aim of this web application is to narrate about some aspects, interesting facts etc of Key West, using publicly available data"
               }
           ]

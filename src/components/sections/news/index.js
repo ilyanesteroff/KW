@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { ContentContext } from '../../../helpers/contexts'
-import Container from '../../../styles/news'
+import Container from '../../../styles/pages/news'
 import Slider from '../../global/slider'
 import Article from './Article'
 

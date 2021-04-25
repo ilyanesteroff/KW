@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { ContentContext } from '../../../helpers/contexts'
 import { WithModal, WithScrollUp } from '../../../helpers/HOC'
 import Navigation from './Navigation'
-import Container from '../../../styles/location'
+import Container from '../../../styles/pages/location'
 
 
 const Location = ({ setImage, map }) => {

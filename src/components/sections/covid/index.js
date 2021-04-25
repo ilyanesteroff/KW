@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Container from '../../../styles/covid'
+import Container from '../../../styles/pages/covid'
 import { ContentContext } from '../../../helpers/contexts'
 
 
