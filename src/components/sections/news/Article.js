@@ -4,7 +4,7 @@ import Container from '../../../styles/slider/articles'
 import { WithModal } from '../../../helpers/HOC'
 
 
-const Article = ({ image, url, title, summary, setImage }) => (
+const Article = ({ image, url, title, summary, setImage, byline }) => (
   !isMobile
     ? (
         <Container className="slider-container">
@@ -13,10 +13,13 @@ const Article = ({ image, url, title, summary, setImage }) => (
             alt={ title }
             onClick={() => setImage(image)}
           />
-          <div id="description">
+          <div id="normal-description">
             <div>
               <h3>{ title }</h3>
               <p>{ summary }</p>
+              {byline &&
+                <p id="byline">{ byline }</p>
+              }
               <a 
                 href={ url } 
                 target="_blank" 
@@ -27,16 +30,24 @@ const Article = ({ image, url, title, summary, setImage }) => (
         </Container>
       )
     : (
-        <Container className="slider-container">
-          <img src={ image } alt={ title }/>
-          <div>
-            <h3>{ title }</h3>
-            <p>{ summary }</p>
-            <a 
+        <Container 
+          className="slider-container"
+          image={ `url(${image})` }
+        >
+          <div 
+            id="mobile-container"
+            className="with-before"
+            onClick={() => setImage(image)}
+          >
+            <a
               href={ url } 
               target="_blank" 
               rel="noopener noreferrer"
-            >Original article</a>
+            >
+              <div id="mobile-description">
+                <h3>{ title }</h3>
+              </div>
+            </a>
           </div>
         </Container>
       )

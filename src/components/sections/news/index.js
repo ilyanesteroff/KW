@@ -7,7 +7,7 @@ import Article from './Article'
 
 const News = () => {
   const { news } = useContext(ContentContext)
-
+  
   return(
     <Container className="page-container">
       <h2>New York Times news</h2>
@@ -23,11 +23,12 @@ const News = () => {
             }
             url={ item.web_url }
             title={ item.headline.main }
+            byline={ item.byline.original }
             summary={ item.lead_paragraph }
           />
         )) }
       />
-      <h3>{ news.copyright }</h3>
+      <h4>{ news.copyright }</h4>
     </Container>
   )
 }
