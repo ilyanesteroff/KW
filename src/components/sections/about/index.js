@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Redirect, useParams, Link } from 'react-router-dom'
 import { ContentContext } from '../../../helpers/contexts'
+import { WithScrollUp } from '../../../helpers/HOC'
 import Website from './Website'
 import KeyWest from './KeyWest'
 import Container from '../../../styles/pages/about'
@@ -43,4 +44,4 @@ const About = () => {
   )
 }
 
-export default About
+export default WithScrollUp(About)

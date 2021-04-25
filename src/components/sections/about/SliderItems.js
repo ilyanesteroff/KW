@@ -1,5 +1,4 @@
 import React from 'react'
-import { isMobile } from 'react-device-detect'
 import { WithModal } from '../../../helpers/HOC'
 import Container from '../../../styles/slider/cards'
 
