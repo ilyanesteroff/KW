@@ -24,7 +24,11 @@ const Router = () => (
       <Route exact path="/news" component={ News }/>
       <Route exact path="/covid" component={ Covid }/>
       <Route exact path="/trips" component={ Trips }/>
-      <Route exact path="/about/:page" component={ About }/>
+      <Route 
+        exact 
+        path="/about/:page" 
+        render={({ match }) => <About page={ match.params.page }/>}
+      />
       <Route exact path="/history" component={ History }/>
       <Route 
         exact 

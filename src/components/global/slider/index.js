@@ -21,6 +21,18 @@ const Slider = (props) => {
     }, [ pathname ])
 
     useEffect(() => {
+      const switchSlides = (e) => {
+        if(e.key === 'ArrowRight'){
+          if(current <  items.length - 1) setCurrent(current + 1)
+        } else if(e.key === 'ArrowLeft'){
+          if(current > 0) setCurrent(current - 1)
+        }
+      }
+      document.addEventListener('keydown', switchSlides)
+      return () => document.removeEventListener('keydown', switchSlides)
+    })
+
+    useEffect(() => {
       if(auto){
         const interval = setInterval(() => {
           if(direction === 'right'){

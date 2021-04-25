@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Redirect, useParams, Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { ContentContext } from '../../../helpers/contexts'
 import { WithScrollUp } from '../../../helpers/HOC'
 import Website from './Website'
@@ -8,9 +8,8 @@ import Container from '../../../styles/pages/about'
 import Links from '../../../styles/links'
 
 
-const About = () => {
+const About = ({ page }) => {
   const { about } = useContext(ContentContext)
-  const { page } = useParams()
   const item = about.links.find((i) => i.param === page)
   if(!item) return <Redirect to={ `/about/${ about.links[0].param }` }/>
 
