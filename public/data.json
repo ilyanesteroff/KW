@@ -36,24 +36,30 @@
           "slider":{
               "images":[
                   "https://upload.wikimedia.org/wikipedia/commons/2/28/Flag_of_Key_West%2C_Florida.svg",
-                  "https://upload.wikimedia.org/wikipedia/commons/2/24/Seal_of_Key_West%2C_Florida.png",
-                  "https://upload.wikimedia.org/wikipedia/commons/8/82/1542644843_48446_o.jpg",
+                  "https://i.pinimg.com/originals/2e/20/8a/2e208a0a4f9ce458b487ac8094be0482.jpg",
+                  "https://i.pinimg.com/564x/d4/fd/d6/d4fdd6c910473a41a06ec33390e55740.jpg",
+                  "https://upload.wikimedia.org/wikipedia/commons/4/40/Key_west_2001.JPG",
+                  "https://upload.wikimedia.org/wikipedia/commons/c/cc/Gov_Ron_DeSantis_Portrait.jpg",
                   "https://upload.wikimedia.org/wikipedia/commons/f/f7/Key_west_from_iss.jpg",
                   "https://upload.wikimedia.org/wikipedia/commons/0/0e/Key_cruise.jpg",
                   "https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg"
               ],
               "descriptions":[
-                  "The flag of the Key West",
-                  "The seal of the Key West",
-                  "Teri Johnston - the mayor of the Key West",
+                  "The flag of Key West",
+                  "The seal of Key West",
+                  "The seal of Monroe county",
+                  "Aerial photo of Key West",
+                  "Ronald Dion DeSantis - governor of Florida",
                   "Key West from satelite",
                   "A cruise ship docked at the Navy Mole pier in Key West",
                   "The flag of the Florida"
               ],
               "urls":[
                   "https://upload.wikimedia.org/wikipedia/commons/2/28/Flag_of_Key_West%2C_Florida.svg",
-                  "https://upload.wikimedia.org/wikipedia/commons/2/24/Seal_of_Key_West%2C_Florida.png",
-                  "https://upload.wikimedia.org/wikipedia/commons/8/82/1542644843_48446_o.jpg",
+                  "https://i.pinimg.com/originals/2e/20/8a/2e208a0a4f9ce458b487ac8094be0482.jpg",
+                  "https://i.pinimg.com/564x/d4/fd/d6/d4fdd6c910473a41a06ec33390e55740.jpg",
+                  "https://upload.wikimedia.org/wikipedia/commons/4/40/Key_west_2001.JPG",
+                  "https://upload.wikimedia.org/wikipedia/commons/c/cc/Gov_Ron_DeSantis_Portrait.jpg",
                   "https://upload.wikimedia.org/wikipedia/commons/f/f7/Key_west_from_iss.jpg",
                   "https://upload.wikimedia.org/wikipedia/commons/0/0e/Key_cruise.jpg",
                   "https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg"
@@ -61,6 +67,8 @@
               "colors":[
                   "#232365",
                   "#111188",
+                  "#1177ff",
+                  "#113399",
                   "#555577",
                   "#333355",
                   "#111133",
