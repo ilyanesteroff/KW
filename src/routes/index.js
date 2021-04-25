@@ -26,10 +26,14 @@ const Router = () => (
       <Route exact path="/trips" component={ Trips }/>
       <Route exact path="/about" component={ About }/>
       <Route exact path="/history" component={ History }/>
-      <Route exact path="/location/:map" component={ Location }/>
+      <Route 
+        exact 
+        path="/location/:map" 
+        render={({ match }) => <Location map={ match.params.map }/>}
+      />
       <Route exact path="/places/:place" component={ Place }/>
       <Route exact path="/" component={ Main }/>
-      <Redirect from="/location" to="/location/0"/>
+      <Redirect from="/location" to="/location/1"/>
       <Redirect to="/"/>
     </Switch>
     <Modal/>

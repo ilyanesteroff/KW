@@ -9,7 +9,7 @@ import { ContentContext } from '../helpers/contexts'
 const App = () => {
   const [ content, setContent ] = useState(null)
   const [ showInitialPage, setShowInitialPage ] = useState(true)
-
+  
   useEffect(() => {
     fetch('/data.json')
       .then((res) => {

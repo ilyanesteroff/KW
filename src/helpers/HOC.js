@@ -5,7 +5,7 @@ import { useModal } from './hooks'
 export const WithScrollUp = Component => {
   const Wrapper = ({ ...props }) => {
     useEffect(() => {
-      window.scrollTo(0, 0)
+      document.body.scroll(0, 0)
     })
     return <Component { ...props } />
   }

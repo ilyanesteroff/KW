@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { openModal } from '../redux/actions'
@@ -42,8 +43,8 @@ export const useFetch = (url, setData, extractData) => {
 
 export const useOverflowBlock = () => {
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
-    return () => document.body.style.overflow = 'unset'
+    disableBodyScroll(document)
+    return () => enableBodyScroll(document)
   })
 }
 

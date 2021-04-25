@@ -1,18 +1,18 @@
 import React, { useContext } from 'react'
-import { useParams, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { ContentContext } from '../../../helpers/contexts'
-import { WithModal } from '../../../helpers/HOC'
+import { WithModal, WithScrollUp } from '../../../helpers/HOC'
 import Navigation from './Navigation'
 import Container from '../../../styles/location'
 
 
-const Location = ({ setImage }) => {
-  const { map } = useParams()
+const Location = ({ setImage, map }) => {
   const { location } = useContext(ContentContext)
   const index = location.items.findIndex((item) => item === map)
+
   if(index < 0) return <Redirect to={`/location/${ location.items[0] }`}/>
   
-  const Wrapper = ({ index }) => (
+  return(
     <Container className="page-container">
       <h2>{ location.items[ index ] }</h2>
       <img
@@ -26,8 +26,6 @@ const Location = ({ setImage }) => {
       />
     </Container>
   )
-
-  return Wrapper({ index })
 }
 
-export default WithModal(Location)
+export default WithScrollUp(WithModal(Location))
