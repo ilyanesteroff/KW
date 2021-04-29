@@ -14,6 +14,7 @@ import Covid from '../pages/Covid'
 import News from '../pages/News'
 import Trips from '../pages/Trips'
 import Place from '../pages/Places'
+import Tweets from '../pages/Tweets'
 
 
 const Router = () => (
@@ -38,6 +39,10 @@ const Router = () => (
         exact 
         path="/location/:map" 
         render={({ match }) => <Location map={ match.params.map }/>}
+      />
+      <Route
+        path="/tweets/:tag"
+        render={({ match }) => <Tweets/>}
       />
       <Route exact path="/places/:place" component={ Place }/>
       <Route exact path="/" component={ Main }/>
