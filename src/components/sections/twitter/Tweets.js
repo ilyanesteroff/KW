@@ -10,18 +10,18 @@ import TweetContainer from '../../../styles/tweets/tweet'
 
 const Tweets = ({ tweets, tag }) => (
   <div id="tweets">
-    { tweets.filter((t) => {
-        if(!tag) return true
-        return t.hashtags && t.hashtags.some((h) => h.toLowerCase().startsWith(tag.toLowerCase()))
-      }).map((tweet, index) => (
-        <Tweet 
-          key={ index + tweet.created_at } 
-          data={ tweet }
-        />)
-      )
+    { tweets
+        ? (tweets.map((tweet, index) => (
+            <Tweet 
+              key={ index + tweet.created_at } 
+              data={ tweet }
+            />)
+          ))
+        : <h3>No tweets matching #{tag} found</h3>
     }
   </div>
 )
+
 
 
 const Metadata = ({ profile_image, verified_user, users_name, username }) => (
@@ -73,7 +73,13 @@ const Retweets = React.memo(({ retweet_count, tweet_url }) => {
 const Body = WithModal(({ text, media, hashtags, tweet_url, retweet_count, profile_link_color, createdAt, setImage }) => (
   <div className="TweetContent">
     {text && <p className="TweetText">{ text }</p>}
-    {media && <img src={ media } alt=""/>}
+    {media && 
+      <img 
+        onClick={() => setImage(media)}
+        src={ media } 
+        alt=""
+        id="media"
+      />}
     {hashtags && 
       hashtags.map((item, index) => (
         <a 
