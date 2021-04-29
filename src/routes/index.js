@@ -29,7 +29,11 @@ const Router = () => (
         path="/about/:page" 
         render={({ match }) => <About page={ match.params.page }/>}
       />
-      <Route exact path="/history" component={ History }/>
+      <Route 
+        exact 
+        path="/history/:page" 
+        render={({ match }) => <History page={ match.params.page }/>}
+      />
       <Route 
         exact 
         path="/location/:map" 
@@ -39,6 +43,7 @@ const Router = () => (
       <Route exact path="/" component={ Main }/>
       <Redirect from="/location" to="/location/1"/>
       <Redirect from="/about" to="/about/1"/>
+      <Redirect from="/history" to="/history/1"/>
       <Redirect to="/"/>
     </Switch>
     <Modal/>

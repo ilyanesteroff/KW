@@ -1,4 +1,31 @@
 {
+  "history": {
+    "links": [
+        {
+            "label": "Precolonial and colonial times",
+            "param": "precolonial_colonial_times"
+        }, 
+        { 
+            "label": "Ownership claims",
+            "param": "ownership"
+        }, 
+        {
+            "label": "First developers",
+            "param": "developers"
+        },
+        {
+            "label": "late 19th century", 
+            "param": "19th_century"
+        }, 
+        {
+            "label": "20th century",
+            "param": "20th_century"
+        }
+    ],
+    "content": [
+
+    ]
+  },
   "about":{
       "links":[
           {

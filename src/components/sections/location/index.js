@@ -2,14 +2,13 @@ import React, { useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import { ContentContext } from '../../../helpers/contexts'
 import { WithModal, WithScrollUp } from '../../../helpers/HOC'
-import Navigation from './Navigation'
+import Navigation from '../../global/Navigation'
 import Container from '../../../styles/pages/location'
 
 
 const Location = ({ setImage, map }) => {
   const { location } = useContext(ContentContext)
   const index = location.items.findIndex((item) => item === map)
-
   if(index < 0) return <Redirect to={`/location/${ location.items[0] }`}/>
   
   return(
@@ -22,8 +21,17 @@ const Location = ({ setImage, map }) => {
           onClick={() => setImage(location.content[ index ])}
         />
         <Navigation
-          prev={ index > 0 ? location.items[ index - 1 ] : null } 
-          next={ index < location.items.length - 1 ? location.items[ index + 1 ] : null }
+          path="location"
+          prev={
+            index > 0
+              ? location.items[ index - 1 ]
+              : null
+          }
+          next={
+            index < location.items.length - 1 
+              ? location.items[ index + 1 ]
+              : null
+          }
         />
       </Container>
     </>
