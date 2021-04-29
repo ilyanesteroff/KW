@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { ContentContext } from '../../../helpers/contexts'
 import Container from '../../../styles/pages/history'
 import Navigation from '../../global/Navigation'
+import Page from './Page'
 
 
 const History = ({ page }) => {
@@ -12,6 +13,7 @@ const History = ({ page }) => {
   
   return(
     <Container className="page-container">
+      <Page content={ history.content[index] }/>
       <Navigation 
         path="history"
         next={
