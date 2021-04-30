@@ -16,7 +16,7 @@ const App = () => {
         if(res.ok) return res.json()
       })
       .then(setContent)
-      .then(() => setTimeout(() => setShowInitialPage(false), 500))
+      .then(() => setTimeout(() => setShowInitialPage(false), 2000))
   }, [])
   
   return(
