@@ -9,6 +9,12 @@ const Container = styled.div`
     justify-content: space-evenly;
     flex-wrap: wrap;
   }
+  #no-tweets{
+    font-family: Nunito, sans-serif;
+    font-size: 1.5rem;
+    color: #5af;
+    margin: 2rem 0;
+  }
 `
 
 export default Container
