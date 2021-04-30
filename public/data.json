@@ -18263,5 +18263,31 @@
                 "lang":"en"
             }
         ]
-  }
+  },
+  "trips": [
+      {
+          "link": "https://www.tui.co.uk/",
+          "name": "TUI",
+          "image": "https://yt3.ggpht.com/ytc/AAUvwniCOI-tTZFNXQ7rJ9pepcOzQK8kbaOhY-bokqXmqQ=s900-c-k-c0x00ffffff-no-rj",
+          "summary": "TUI AG, also known as TUI Group, is an Anglo-German multinational travel and tourism company headquartered in Hanover, Germany. It is the largest leisure, travel and tourism company in the world, and it owns travel agencies, hotels, airlines, cruise ships and retail shops."
+      },
+      {
+          "link": "https://www.thomascook.com/",
+          "name": "Thomas Cook",
+          "image": "https://s.yimg.com/ny/api/res/1.2/gACJYY2hE5TlpYqYGut7xA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MA--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2020-09/e414d3c0-f761-11ea-bfe9-16cfc1f37105",
+          "summary": "Thomas Cook Group plc was a British global travel group which was listed on the London Stock Exchange from its formation on 19 June 2007 by the merger of Thomas Cook AG and MyTravel Group until 23 September 2019 when it went into compulsory liquidation."
+      },
+      {
+          "link": "https://www.viator.com/Florida/d276-ttd",
+          "name": "Viator",
+          "image": "https://pbs.twimg.com/profile_images/1278996584810905601/lUnDeFE4.jpg",
+          "summary": "Viator, a TripAdvisor company, is the market leading destination tours and activities provider, featuring thousands of in destination travel activities in more than 2,000 destinations worldwide via our award-winning websites and mobile apps."
+      },
+      {
+          "link": "https://www.tripadvisor.com/",
+          "name": "Tripadvisor",
+          "image": "https://play-lh.googleusercontent.com/wIkKC1t469OyMFhNTdKNt-1IR6-YQL6cAQrzBBnMK9BSGdkvVTcjAWLEoam6fWxymuyY",
+          "summary": "Tripadvisor, Inc. is an American online travel company that operates a website and mobile app with user-generated content and a comparison shopping website. It also offers online hotel reservations and bookings for transportation, lodging, travel experiences, and restaurants."
+      }
+  ]
 }
