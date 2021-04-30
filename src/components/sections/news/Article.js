@@ -4,7 +4,7 @@ import Container from '../../../styles/slider/articles'
 import { WithModal } from '../../../helpers/HOC'
 
 
-const Article = ({ image, url, title, summary, setImage, byline }) => (
+const Article = ({ image, url, title, summary, setImage, byline, linkLabel = 'Original article' }) => (
   !isMobile
     ? (
         <Container className="slider-container">
@@ -24,7 +24,7 @@ const Article = ({ image, url, title, summary, setImage, byline }) => (
                 href={ url } 
                 target="_blank" 
                 rel="noopener noreferrer"
-              >Original article</a>
+              >{ linkLabel }</a>
             </div>
           </div>
         </Container>
