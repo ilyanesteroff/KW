@@ -4,15 +4,15 @@ import Controls from './Controls'
 
 
 const Body = WithModal(({ text, media, hashtags, tweet_url, retweet_count, createdAt, setImage }) => (
-  <div className="tweet-body">
+  <div id="tweet-body">
     {text && <p>{ text }</p>}
     {media && 
       <img 
         onClick={() => setImage(media)}
         src={ media } 
         alt=""
-        id="media"
-      />}
+      />
+    }
     {hashtags && 
       <div id="hashtags">
         {

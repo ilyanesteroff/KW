@@ -41,14 +41,17 @@ const Router = () => (
         render={({ match }) => <Location map={ match.params.map }/>}
       />
       <Route
+        exact
         path="/tweets/:tag"
-        render={({ match }) => <Tweets/>}
+        render={({ match }) => <Tweets tag={ match.params.tag }/>}
       />
       <Route exact path="/places/:place" component={ Place }/>
       <Route exact path="/" component={ Main }/>
       <Redirect from="/location" to="/location/1"/>
       <Redirect from="/about" to="/about/1"/>
       <Redirect from="/history" to="/history/1"/>
+      <Redirect from="/tweets" to="/tweets/1"/>
+      <Redirect from="/twitter" to="/tweets/1"/>
       <Redirect to="/"/>
     </Switch>
     <Modal/>

@@ -3,11 +3,11 @@ import Navbar from '../components/global/header/navbar'
 import Main from '../components/sections/twitter'
 
 
-const Tweets = () => (
+const Tweets = ({ tag }) => (
   <>
     <Navbar withLogo bgColor/>
-    <Main/>
+    <Main { ...{ tag } }/>
   </>
 )
 
-export default Tweets
+export default React.memo(Tweets)

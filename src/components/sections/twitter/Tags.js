@@ -10,6 +10,7 @@ const Tags = () => {
 
   return(
     <div id="tags">
+      <h3>More tweets</h3>
       {tags.filter((t) => t !== tag).map((t, index) => (
         <Link 
           to={`/tweets/${t}`}

@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { useParams, Redirect } from 'react-router-dom'
+import React, { useContext, useState, memo } from 'react'
+import { Redirect } from 'react-router-dom'
 import { ContentContext } from '../../../helpers/contexts'
 import Container from '../../../styles/tweets'
 import Tweets from './Tweets'
@@ -7,16 +7,21 @@ import Tags from './Tags'
 import { retrieveTweets } from '../../../helpers/tweets'
 
 
-const Main = () => {
-  const { tag } = useParams()
+const Main = ({ tag }) => {
   const { tweets, tags } = useContext(ContentContext)
   const [ search, setSearch ] = useState('')
   if(!tags.find((t) => t === tag)) return <Redirect to={`/tweets/${tags[0]}`}/>
 
   return(
     <Container className="page-container">
-      <input type="text" onChange={(e) => setSearch(e.target.value)}/>
-      <h2>#{tag} tweets</h2>
+      <div id="upper">
+        <h2>#{tag} tweets</h2>
+        <input 
+          type="text" 
+          placeholder="Enter tag here..."
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
       <Tweets 
         tweets={ 
           retrieveTweets(tweets[tag]).filter((t) => {
@@ -31,4 +36,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default memo(Main)

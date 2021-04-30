@@ -2,9 +2,8 @@ import styled from 'styled-components'
 
 
 const Container = styled.div`
-  width: 49%;
   border-radius: .7rem;
-  margin: .2rem 0;
+  margin-bottom: .8rem;
   padding: 1rem;
   background-color: #fff;
   border: solid 1px #bbb;
@@ -13,7 +12,7 @@ const Container = styled.div`
   img{
     text-indent: -9999px;
   }
-  img#media{
+  #tweet-body img{
     max-width: 100%;
     border-radius: .5rem;
     border: solid 1px #333;
@@ -65,8 +64,8 @@ const Container = styled.div`
     margin-right: .5rem;
   }
   #verified {
-    color: #fff;
-    background-color: #33aaff;
+    background-color: #fff;
+    color: #33aaff;
     border-radius: 50%;
     margin-right: .5rem;
   }
@@ -96,13 +95,6 @@ const Container = styled.div`
   #controls div{
     display: flex;
   }
-  .InfoLink {
-    padding: 1%;
-    border-radius: 2vh;
-    transition: all 0.5s;
-    float: right;
-    clear: both;
-  }
   #comment svg {
     color: #888;
     font-size: 1.2rem;
@@ -110,6 +102,7 @@ const Container = styled.div`
     transition: all 0.5s;
   }
   #info svg {
+    color: #22e;
     transition: color .5s;
   }
   #comment h3 {
@@ -131,6 +124,19 @@ const Container = styled.div`
   }
   :hover {
     background-color: #effaff;
+  }
+  @media only screen and (max-width: 850px){
+    margin-bottom: 1rem;
+  }
+  @media only screen and (max-width: 850px){
+    #comment h3{
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 400px){
+    #twitter-icon {
+      display: none;
+    }
   }
 `
 
